@@ -32,6 +32,8 @@ if (days) {
   check('固定18天且日序唯一', days.length === 18 && new Set(days.map(day => day.d)).size === 18);
   check('日期唯一', new Set(days.map(day => day.date)).size === 18);
   check('D3为额济纳到敦煌', /额济纳.*敦煌/.test(days[2]?.title || ''));
+  check('D1改住巴彦淖尔维也纳国际酒店并保留电话', /维也纳国际酒店/.test(days[0]?.stay || '') && /04788259998/.test(days[0]?.stay || ''));
+  check('D2改住额济纳旗尚景酒店并保留电话', /额济纳旗尚景酒店/.test(days[1]?.stay || '') && /04836529358/.test(days[1]?.stay || ''));
   check('D4完整行驶S240和S245到哈密', /敦煌/.test(days[3]?.title || '') && /哈密/.test(days[3]?.title || '') && /S240.*S245/.test(days[3]?.route || ''));
   check('D5哈密经巴里坤直达江布拉克', /哈密.*江布拉克/.test(days[4]?.title || '') && /巴里坤/.test(days[4]?.route || ''));
   const km = days.reduce((sum, day) => sum + Number(day.km || 0), 0);
@@ -48,6 +50,7 @@ const forbidden = [
   '每桩2个20kW接口慢充',
   '已升级为顺顺充华为超充站',
   '乌鲁木齐（同D4酒店',
+  '当前执行基线为 V7',
   '现有公安厅页面为公开征求意见稿',
   '独库北段预约信息不可当作最终公告'
 ];
