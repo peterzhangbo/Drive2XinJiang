@@ -90,6 +90,7 @@ const localLinks = [...html.matchAll(/href="([^"]+\.(?:md|html))"/g)]
   .filter(href => !/^https?:/.test(href));
 const missingLocal = localLinks.filter(href => !fs.existsSync(path.join(root, decodeURIComponent(href))));
 check('页面引用的本地文件均存在', missingLocal.length === 0, missingLocal.join(', '));
+check('使用内联图标避免本地预览请求缺失favicon', /<link\s+rel="icon"\s+href="data:image\/svg\+xml,/.test(html));
 
 check('导航具有tablist语义', /<nav[^>]*role="tablist"/.test(html));
 check('导航按钮具有tab和aria-selected语义', /role="tab"/.test(html) && /aria-selected=/.test(html));
