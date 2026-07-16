@@ -48,10 +48,14 @@ if (days) {
   check('D6入住阿勒泰友谊宾馆并保留电话和市区充电备选', /阿勒泰友谊宾馆/.test(days[5]?.stay || '') && /09062315888/.test(days[5]?.stay || '') && /阿勒泰市区两个不同运营商公共快充/.test((days[5]?.charge || []).join('')));
   check('D7阿勒泰经布尔津补电进禾木', /阿勒泰.*布尔津.*禾木/.test(days[6]?.title || '') && /用户已确认.*边牧.*带入禾木村/.test((days[6]?.play || []).join('')));
   check('D7入住牧雅居民宿并保留双联系电话', /牧雅居民宿.*落日观景台店/.test(days[6]?.stay || '') && /18126209839/.test(days[6]?.stay || '') && /17844447778/.test(days[6]?.stay || ''));
-  check('D8禾木返回布尔津', /禾木.*布尔津/.test(days[7]?.title || '') && /静逸时光民宿/.test(days[7]?.stay || ''));
+  check('D8禾木经布尔津到乌尔禾并入住柏纳', /禾木.*布尔津.*乌尔禾/.test(days[7]?.title || '') && days[7]?.km === 410 && /柏纳酒店.*世界魔鬼城店/.test(days[7]?.stay || '') && /15009906218/.test(days[7]?.stay || '') && /09907561820/.test(days[7]?.stay || '') && /200元/.test(days[7]?.stay || ''));
+  check('D9乌尔禾到赛湖东门并入住赛官房', /乌尔禾.*赛里木湖东门/.test(days[8]?.title || '') && days[8]?.km === 420 && /赛官房民宿.*东门游客中心店/.test(days[8]?.stay || '') && /09092222000/.test(days[8]?.stay || '') && /无早餐/.test(days[8]?.stay || ''));
+  check('D10赛湖东门进南门出经薰衣草园到伊宁', /东门进.*南门出.*薰衣草园.*伊宁/.test(days[9]?.title || '') && days[9]?.km === 170 && /不(?:要)?预设顺时针或逆时针/.test((days[9]?.play || []).join('')) && /栖云馆民宿/.test(days[9]?.stay || '') && /13899730840/.test(days[9]?.stay || ''));
+  check('D10提示八月薰衣草花况风险', /6—7月|6-7月/.test(`${days[9]?.decision || ''} ${(days[9]?.play || []).join('')}`) && /前一天/.test(`${days[9]?.decision || ''} ${(days[9]?.tips || []).join('')}`));
+  check('D11伊宁休整并在栖云馆连住第二晚', /伊宁休整/.test(days[10]?.title || '') && days[10]?.km === 30 && /栖云馆民宿.*第2晚/.test(days[10]?.stay || '') && /13899730840/.test(days[10]?.stay || ''));
   const km = days.reduce((sum, day) => sum + Number(day.km || 0), 0);
-  check('逐日里程为合理数值并由页面承载自动汇总', km > 8500 && km < 9000 && /id="totalKm"/.test(html), `当前合计${km}km`);
-  check('住宿夜数结构为16晚住宿和1晚条件营地', /16晚/.test(html) && /1晚/.test(html) && days.filter(day => day.tags?.includes('car')).length === 1);
+  check('逐日里程约8680km并由页面承载自动汇总', km === 8680 && /id="totalKm"/.test(html), `当前合计${km}km`);
+  check('住宿夜数结构为17晚且没有睡车夜', /17晚住宿/.test(html) && /0晚睡车/.test(html) && days.filter(day => day.tags?.includes('car')).length === 0);
 }
 
 const forbidden = [
@@ -73,7 +77,8 @@ const forbidden = [
   '阿禾公路精华段 → 布尔津',
   '鄯善县宠物友好酒店（待补名称）',
   '北屯市宠物友好酒店（待补名称）',
-  '禾木老村宠物友好民宿（待补名称/电话）'
+  '禾木老村宠物友好民宿（待补名称/电话）',
+  '当前执行基线为 V10'
 ];
 for (const text of forbidden) check(`删除过期或过度确定文案：${text}`, !html.includes(text));
 check('引用独库正式公告', html.includes('202607/d75de3d68abb43feb47d0defc201411e.shtml'));
@@ -94,6 +99,10 @@ if (chargeSegments) {
   check('S21终点为阿勒泰且主备站为克拉美丽五家渠吉利湖', s21 && /阿勒泰/.test(s21.route) && /克拉美丽/.test(s21.primary) && /五家渠/.test(s21.backupA) && /吉利湖/.test(s21.backupB) && /黄花沟只休息/.test(s21.fallback));
   const hemu = chargeSegments.find(segment => /禾木/.test(segment.route));
   check('禾木补能不依赖景区内快充', hemu && /不承诺禾木|不依赖禾木/.test(`${hemu.evidence} ${hemu.fallback}`));
+  const d9Saihu = chargeSegments.find(segment => segment.days === 'D9' && /赛里木湖东门/.test(segment.route));
+  check('D9赛湖东门住宿前具备三层补能并为次日留电', d9Saihu && /克拉玛依|奎屯/.test(d9Saihu.primary) && /精河/.test(d9Saihu.backupA) && /五台|东门/.test(d9Saihu.backupB) && /次日环湖/.test(d9Saihu.fallback));
+  const d10Saihu = chargeSegments.find(segment => segment.days === 'D10' && /南门.*霍城.*伊宁/.test(segment.route));
+  check('D10赛湖南门后以清水河霍城和伊宁补能', d10Saihu && /东门|五台/.test(d10Saihu.primary) && /清水河|霍城/.test(d10Saihu.backupA) && /伊宁/.test(d10Saihu.backupB) && /果子沟/.test(d10Saihu.fallback));
   check('拥堵只切同城或沿线备选而非默认绕行', chargeSegments.every(segment => /20分钟|不可用|无法确认|低于20%/.test(segment.trigger)));
 }
 
@@ -103,7 +112,7 @@ if (budgetItems) {
   const min = budgetItems.reduce((sum, item) => sum + item.min, 0);
   const max = budgetItems.reduce((sum, item) => sum + item.max, 0);
   check('预算上下限可由分项求和', min > 0 && max > min && /id="budgetTotal"/.test(html), `¥${min}–${max}`);
-  check('条件营地与失败备用住宿不重复计费', budgetItems.filter(item => /条件营地|备用酒店/.test(item.name)).length === 1 && /1晚/.test(budgetItems.find(item => /条件营地/.test(item.name))?.name || ''));
+  check('预算按17晚住宿且不再包含条件营地', budgetItems.some(item => item.name === '住宿17晚') && budgetItems.every(item => !/条件营地|备用酒店/.test(item.name)));
 }
 
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
