@@ -237,7 +237,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <div class="stat"><div class="n" id="totalKm">计算中</div><div class="l">逐日里程自动合计 km</div></div>
     <div class="stat"><div class="n">2晚</div><div class="l">睡车（营地）</div></div>
     <div class="stat"><div class="n">15晚</div><div class="l">宠物友好酒店/民宿</div></div>
-    <div class="stat"><div class="n">2.6–3.4万</div><div class="l">预估总花费（元）</div></div>
+    <div class="stat"><div class="n" id="totalBudget">计算中</div><div class="l">含安全机动金（元）</div></div>
   </div>
 
   <div class="mapwrap">
@@ -366,25 +366,14 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <h2 class="sec">⚡ Model Y L 充电总策略</h2>
   <div class="card">
     <p><b>车辆基准</b>：CLTC 751km，高速实际按 <b>500–550km</b> 估算；8月高温空调 + 戈壁侧风，按 <b>-20~30%</b> 预留；山区（果子沟、独库、阿禾）电耗再 +15~30%。</p>
-    <p style="margin-top:8px"><b>三条铁律</b>：① 每晚睡前把电充满（酒店桩/附近超充）；② 无人区段「逢桩必充，充到90%」，任何时刻保有到达<b>下下一个</b>充电点的电量；③ 手机双卡（电信+移动互补），无信号路段提前把桩位截图。</p>
+    <p style="margin-top:8px"><b>统一切换规则</b>：预计排队超过20分钟、不可用桩超过一半、无法确认开放，或预测到站电量低于20%时，立即切换主备站。拥堵只换附近备选，不触发长距离绕行；只有连续关键站均不可确认且尚未进入风险路段，才在最后安全城市决定延迟或改线。</p>
+    <p style="margin-top:8px"><b>三条铁律</b>：① 每晚睡前完成主站或备选站补能；② 无人区逢可用桩补电，任何时刻保有到达下一安全城镇或下下个已确认站的电量；③ 出发前24小时和最后安全决策点各核验一次，弱信号段提前截图。</p>
   </div>
 
   <h2 class="sec">🔌 全程关键补能节点</h2>
   <div class="twrap"><table>
-    <thead><tr><th>路段</th><th>关键充电点</th><th>类型</th><th>备注</th></tr></thead>
-    <tbody>
-      <tr><td>D1 北京→临河</td><td>呼和浩特·维多利摩尔城（新华东街62号B2层）/ 包头·香格里拉大酒店（民族东路66号B1层，V3 250kW×6，24h）/ 巴彦淖尔·维多利万悦城（临河区新华西街维多利广场）</td><td class="ok">特斯拉超充</td><td>临河万悦城是进无人区前<b>最后的特斯拉超充</b>；特斯拉App内搜站名导航</td></tr>
-      <tr><td>D2 临白段无人区</td><td>乌力吉 / 苏宏图 / 雅干等服务区</td><td class="warn">国网/交投桩</td><td>930km 无人区，全程最大风险点，逢桩必充；额济纳县城公共桩过夜补满</td></tr>
-      <tr><td>D3 →敦煌</td><td>额济纳满电→金塔/酒泉/瓜州实时公共快充→敦煌太阳庄园酒店特斯拉超充</td><td class="warn">公共快充→特斯拉</td><td>约700km长途日，按车机实时路线在金塔、酒泉或瓜州至少完成一次有效补能</td></tr>
-      <tr><td>D4 S240＋S245 →哈密</td><td>敦煌太阳庄园酒店特斯拉超充＋敦煌城区公共快充双备份→哈密华宇大酒店特斯拉超充＋哈密城区公共快充</td><td class="warn">两端城市补能</td><td>主管部门资料未证明S240/S245沿线充电已投运；充至95%以上且车机预测抵达不少于20%才进入</td></tr>
-      <tr><td>D5-6 巴里坤/江布拉克/可可托海</td><td>哈密→巴里坤县城→奇台县城→恰库尔图→富蕴县城</td><td class="warn">特斯拉/公共快充</td><td>哈密直达江布拉克，取消先去乌鲁木齐再折返；进山前在奇台补足</td></tr>
-      <tr><td>D7-8 布尔津/阿禾</td><td>布尔津与阿勒泰市区公共快充（以特斯拉/e疆充/高德实时站点为准）</td><td class="warn">第三方</td><td>不再声称民宿自带桩；D8布尔津满电、阿勒泰补满后进入阿禾公路，按预设返航电量折返</td></tr>
-      <tr><td>D9 乌尔禾</td><td>檀程酒店充电车位 / 乌尔禾镇公共快充</td><td class="warn">第三方</td><td>平台只证明酒店有充电车位，不能推定特斯拉超充；到店前在车辆导航和充电App核对功率、开放与占用</td></tr>
-      <tr><td>D10 →赛里木湖</td><td>奎屯/精河实时可用快充 → 赛湖周边公共桩</td><td class="warn">第三方公共桩</td><td>博州市场监管局2025年8月公开信息仅能确认赛里木湖、五台服务区等合计48台充电桩、96把充电枪完成检定；不能拆分推定赛湖单点数量，也不代表到达时可用，更不等于酒店或营位自有桩，须以车机/运营商App实时状态为准</td></tr>
-      <tr><td>D11-12 伊宁/那拉提</td><td>伊宁市区（辰甲电）/ 尼勒克县城 / 那拉提度假酒店</td><td class="warn">第三方+目的地</td><td>伊犁河谷桩密集，无焦虑</td></tr>
-      <tr><td>D13 独库北段</td><td>那拉提镇实时公共快充→独山子/奎屯城区公共快充</td><td class="warn">两端城市快充</td><td>不对沿线固定桩距或功率作承诺；那拉提完成主备站核验并满电进山，乔尔玛只作路况与电量复核点</td></tr>
-      <tr><td>D15-18 回程</td><td>鄯善/吐鲁番/哈密超充 → G7同去程 或 G30河西走廊超充线</td><td class="ok">特斯拉为主</td><td>G30「丝绸之路」27座超充站，站距100-300km</td></tr>
-    </tbody>
+    <thead><tr><th>日程 / 路段</th><th>主站</th><th>备选A</th><th>备选B</th><th>切换与最后决策点</th><th>异常动作</th><th>证据</th></tr></thead>
+    <tbody id="chargeRows"></tbody>
   </table></div>
 
   <div class="note red"><b>⚠️ G7 临白段风险预案</b>：规划目标不能当作每个服务区已经可用。出发前24小时和临河出发前分别用「e充电」App＋「e路畅通」核查乌力吉、苏宏图、雅干。单站排队或部分故障只切换沿线备选，不绕行；只有连续关键站均不可确认且车辆尚未进入无人区时，才在临河决定延迟出发或改走G30。进入后不得临时驶离铺装道路找桩或违法掉头。</div>
@@ -641,17 +630,8 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <h2 class="sec">💰 预算估算（两人两狗）</h2>
   <div class="twrap"><table>
     <thead><tr><th>项目</th><th>估算</th><th>说明</th></tr></thead>
-    <tbody>
-      <tr><td>住宿 15 晚</td><td>¥6,000–9,000</td><td>按400–600/晚；两晚条件营地失败时会增加酒店支出</td></tr>
-      <tr><td>条件营地 2 晚</td><td>¥0–1,000</td><td>只有电话确认可带两犬且可睡普通私家车才订；否则计入酒店</td></tr>
-      <tr><td>充电</td><td>¥1,900–2,500</td><td>约8,500km × 0.19–0.22kWh/km × 综合1.2–1.35元/kWh</td></tr>
-      <tr><td>过路费</td><td>¥2,500–3,200</td><td>以导航实时路线为准；G7异常改G30会变化</td></tr>
-      <tr><td>门票 + 自驾</td><td>¥500–1,200</td><td>主要为江布拉克与赛湖；阿禾、唐布拉、独库公共道路不收景区票</td></tr>
-      <tr><td>餐饮 18 天</td><td>¥7,200–9,000</td><td>两人400–500/天，含夜市和特色餐</td></tr>
-      <tr><td>狗证件与耗材</td><td>¥800–1,500</td><td>抗体检测、驱虫、药品与清洁耗材；零寄养</td></tr>
-      <tr><td>机动金</td><td>¥3,000–4,000</td><td>旺季房价、绕行、救援与营地改酒店</td></tr>
-      <tr><td><b>合计</b></td><td><b>约 ¥26,000–34,000</b></td><td>符合舒适型2.5–3.5万目标；不是锁价报价</td></tr>
-    </tbody>
+    <tbody id="budgetRows"></tbody>
+    <tfoot><tr><td><b>合计</b></td><td><b id="budgetTotal">计算中</b></td><td>由以上分项自动求和；包含安全机动金，不是锁价报价</td></tr></tfoot>
   </table></div>
 
   <h2 class="sec">🎒 行前清单（可勾选，进度自动保存）</h2>
@@ -941,6 +921,73 @@ document.querySelectorAll('[data-total-km]').forEach(el => {
   el.textContent = (Math.round(computedTotalKm / 100) * 100).toLocaleString('zh-CN');
 });
 
+const CHARGE_SEGMENTS = [
+  {id:'d1-beijing-linhe',days:'D1',route:'北京→临河',primary:'呼和浩特维多利摩尔城特斯拉超充',backupA:'包头香格里拉大酒店特斯拉超充',backupB:'巴彦淖尔维多利万悦城特斯拉超充',channels:'Tesla App、车机',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'呼和浩特/包头进入下一段前',fallback:'按车机就近切换同城或下一城市备选，不为拥堵长距离绕行',evidence:'Tesla官方固定站点；实时占用以App为准',verified:'2026-07-16'},
+  {id:'d2-g7-linbai',days:'D2',route:'临河→额济纳（G7临白段）',primary:'乌力吉服务区实时可用快充',backupA:'苏宏图服务区实时可用快充',backupB:'雅干服务区/额济纳县城公共快充',channels:'e充电、e路畅通、车机',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'临河满电后、进入无人区前',fallback:'单站异常继续用沿线备选；连续关键站不可确认且尚未进入时延迟出发或改G30',evidence:'服务区名称可核，实时可用性未作静态承诺',verified:'2026-07-16'},
+  {id:'d3-ejina-dunhuang',days:'D3',route:'额济纳→敦煌',primary:'额济纳县城实时公共快充',backupA:'金塔/酒泉城区实时公共快充',backupB:'瓜州城区公共快充或敦煌太阳庄园特斯拉超充',channels:'车机、e充电、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'额济纳出发前；金塔/酒泉补能后',fallback:'无法形成至少一次中途有效补能则延迟出发，不赌700km长途',evidence:'城市站点按运营商App实时选定',verified:'2026-07-16'},
+  {id:'d4-s240-s245',days:'D4',route:'敦煌→S240→S245→哈密',primary:'敦煌太阳庄园酒店特斯拉超充',backupA:'敦煌城区第一处不同运营商公共快充',backupB:'敦煌城区第二处不同运营商公共快充',channels:'Tesla App、车机、e充电、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'敦煌城区，进入S240前',fallback:'未充至95%或预测抵达哈密低于20%就延迟出发；未获官方确认沿线充电，不把收费站当充电点',evidence:'官方仅确认通车、里程与收费；沿线充电未获官方确认',verified:'2026-07-16'},
+  {id:'d5-hami-jiangbulake',days:'D5',route:'哈密→巴里坤→江布拉克',primary:'哈密华宇大酒店特斯拉超充',backupA:'巴里坤县城实时公共快充',backupB:'奇台县城实时公共快充',channels:'Tesla App、车机、e充电',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'哈密出发前；奇台进山前',fallback:'巴里坤站异常则控制车速直达已确认的奇台备选；奇台无可用站不进江布拉克',evidence:'哈密超充有Tesla官方页，其余按App实时确认',verified:'2026-07-16'},
+  {id:'d6-jiangbulake-koktokay',days:'D6',route:'江布拉克→可可托海',primary:'奇台县城实时公共快充',backupA:'恰库尔图服务区实时快充',backupB:'富蕴县城公共快充',channels:'车机、e疆充、e充电',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'奇台离城前；恰库尔图',fallback:'恰库尔图不可用时以富蕴为安全终点，不带低电量继续进可可托海',evidence:'第三方站实时状态为C级',verified:'2026-07-16'},
+  {id:'d7-fuyun-burqin',days:'D7',route:'可可托海→布尔津',primary:'富蕴县城实时公共快充',backupA:'北屯市区公共快充',backupB:'布尔津县城公共快充',channels:'车机、e疆充、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'富蕴离城前',fallback:'北屯或布尔津均无法确认时留在富蕴，不进入下一日阿禾准备段',evidence:'城市公共站按App实时选择',verified:'2026-07-16'},
+  {id:'d8-ahe',days:'D8',route:'布尔津→阿勒泰→阿禾精华段→布尔津',primary:'布尔津县城实时公共快充',backupA:'阿勒泰市区第一处公共快充',backupB:'阿勒泰市区第二处不同运营商快充',channels:'车机、e疆充、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'阿勒泰市区，进入阿禾公路前',fallback:'阿勒泰无法补满或天气/道路异常就取消阿禾往返，不进弱信号山区',evidence:'阿禾道路开放有来源，沿线补给少且不承诺桩位',verified:'2026-07-16'},
+  {id:'d9-burqin-wuerhe',days:'D9',route:'布尔津→乌尔禾',primary:'布尔津县城实时公共快充',backupA:'北屯/福海城区公共快充',backupB:'乌尔禾镇公共快充或檀程酒店充电车位',channels:'车机、e疆充、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'布尔津离城前',fallback:'酒店车位只作到达备选，不把“有车位”推定为高功率快充',evidence:'酒店平台仅证明充电车位，功率与占用需实时确认',verified:'2026-07-16'},
+  {id:'d10-wuerhe-sailimu',days:'D10',route:'乌尔禾→赛里木湖',primary:'克拉玛依/奎屯实时公共快充',backupA:'精河县城实时公共快充',backupB:'五台服务区或赛湖东门周边实时公共快充',channels:'车机、e充电、顺顺充、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'精河县城，进入赛湖段前',fallback:'赛湖周边主备均无法确认时不环湖睡车，改住精河或东门已确认酒店',evidence:'公开检定信息不能推出赛湖单点数量或实时可用',verified:'2026-07-16'},
+  {id:'d11-sailimu-yining',days:'D11',route:'赛里木湖→伊宁',primary:'赛湖东门周边实时公共快充',backupA:'果子沟/清水河镇实时公共快充',backupB:'伊宁绿发洲际酒店特斯拉超充',channels:'车机、Tesla App、e充电',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'赛湖东门离开前',fallback:'赛湖站拥堵时保留足够电量直达清水河或伊宁，不在果子沟临时找桩',evidence:'伊宁超充有Tesla官方页，其余实时确认',verified:'2026-07-16'},
+  {id:'d12-yining-nalati',days:'D12',route:'伊宁→唐布拉→那拉提',primary:'伊宁绿发洲际酒店特斯拉超充',backupA:'尼勒克县城实时公共快充',backupB:'那拉提镇两处实时公共快充之一',channels:'Tesla App、车机、e充电',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'尼勒克县城；那拉提入住前',fallback:'尼勒克无法形成到那拉提安全余量就缩短唐布拉停留，优先补能',evidence:'伊宁固定站可核，县城站实时选定',verified:'2026-07-16'},
+  {id:'d13-duku',days:'D13',route:'那拉提→独库北段→奎屯',primary:'那拉提镇第一处实时公共快充',backupA:'那拉提镇第二处不同运营商快充',backupB:'独山子/奎屯城区公共快充',channels:'车机、e充电、新疆路网、新疆交警',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'那拉提镇进入G217前；乔尔玛仅复核不赌补能',fallback:'主备无法确认、未预约或天气不满足就不进独库，按实时导航走G218/G30',evidence:'预约为正式政策；沿线固定桩距和功率不作承诺',verified:'2026-07-16'},
+  {id:'d14-kuitun-urumqi',days:'D14',route:'奎屯→沙湾→乌鲁木齐',primary:'奎屯城区实时公共快充',backupA:'石河子服务区/城区公共快充',backupB:'乌鲁木齐万科生活广场特斯拉超充',channels:'车机、Tesla App、e充电',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'奎屯离城前',fallback:'沿G30按车机切石河子或乌市备选，拥堵不改变主路线',evidence:'乌市超充有Tesla官方页，其余实时确认',verified:'2026-07-16'},
+  {id:'d15-urumqi-hami',days:'D15',route:'乌鲁木齐→哈密（G30）',primary:'乌鲁木齐万科生活广场特斯拉超充',backupA:'吐鲁番/鄯善城区实时快充',backupB:'哈密华宇大酒店特斯拉超充',channels:'Tesla App、车机、e充电',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'乌鲁木齐离城前；鄯善',fallback:'大风或站点异常时在吐鲁番/鄯善等待，不带低电量穿风区',evidence:'两端Tesla固定站可核，中途站实时确认',verified:'2026-07-16'},
+  {id:'d16-hami-ejina',days:'D16',route:'哈密→额济纳（G7）',primary:'哈密华宇大酒店特斯拉超充',backupA:'骆驼圈子/白疙瘩服务区实时快充',backupB:'额济纳县城实时公共快充',channels:'Tesla App、车机、e充电、e路畅通',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'哈密离城前；骆驼圈子',fallback:'不能复用去程桩况；连续关键站不可确认且尚未进入时延迟或改G30',evidence:'固定城市站可核，G7实时状态必须重新检查',verified:'2026-07-16'},
+  {id:'d17-d18-home',days:'D17–D18',route:'额济纳→临河→北京',primary:'额济纳县城实时公共快充',backupA:'乌力吉服务区实时快充',backupB:'巴彦淖尔/呼和浩特特斯拉超充',channels:'车机、Tesla App、e充电、e路畅通',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'额济纳离城前；临河离城前',fallback:'G7关键站异常时在安全城市等待或切同城备选，不在无人区临时改线',evidence:'城市固定站与沿线实时核验结合',verified:'2026-07-16'}
+];
+
+const chargeRows = document.getElementById('chargeRows');
+CHARGE_SEGMENTS.forEach(segment => {
+  const row = document.createElement('tr');
+  [
+    `${segment.days} ${segment.route}`,
+    segment.primary,
+    segment.backupA,
+    segment.backupB,
+    `${segment.trigger}。最后决策点：${segment.decisionPoint}`,
+    segment.fallback,
+    `${segment.evidence}（复核 ${segment.verified}）`
+  ].forEach((value, index) => {
+    const cell = document.createElement('td');
+    cell.textContent = value;
+    if (index === 0) cell.style.fontWeight = '700';
+    row.appendChild(cell);
+  });
+  chargeRows.appendChild(row);
+});
+
+const BUDGET_ITEMS = [
+  {name:'住宿15晚',min:6000,max:9000,note:'按400–600元/晚；D3敦煌替换原哈密夜，不增加住宿夜数'},
+  {name:'条件营地/备用酒店2晚',min:0,max:1200,note:'营地成功计营位费；失败改酒店，同一晚只计一次'},
+  {name:'充电',min:2100,max:2800,note:'按约8,600km、高温/山路损耗和不同运营商价差估算'},
+  {name:'过路费',min:3000,max:4000,note:'包含S245两处收费段；以ETC账单和实时路线为准'},
+  {name:'门票与自驾',min:700,max:1400,note:'主要为江布拉克与赛湖；公共景观公路不计景区票'},
+  {name:'餐饮18天',min:7200,max:9000,note:'两人400–500元/天，含特色餐与打包'},
+  {name:'狗证件与耗材',min:1000,max:2000,note:'抗体检测、驱虫、药品与清洁耗材；零寄养'},
+  {name:'安全机动金',min:5000,max:5000,note:'旺季房价、救援、天气等待或营地改酒店的独立余量'}
+];
+
+const formatMoney = value => `¥${value.toLocaleString('zh-CN')}`;
+const budgetRows = document.getElementById('budgetRows');
+BUDGET_ITEMS.forEach(item => {
+  const row = document.createElement('tr');
+  [item.name, `${formatMoney(item.min)}–${formatMoney(item.max)}`, item.note].forEach(value => {
+    const cell = document.createElement('td');
+    cell.textContent = value;
+    row.appendChild(cell);
+  });
+  budgetRows.appendChild(row);
+});
+const budgetMin = BUDGET_ITEMS.reduce((sum, item) => sum + item.min, 0);
+const budgetMax = BUDGET_ITEMS.reduce((sum, item) => sum + item.max, 0);
+document.getElementById('budgetTotal').textContent = `${formatMoney(budgetMin)}–${formatMoney(budgetMax)}`;
+document.getElementById('totalBudget').textContent = `${(budgetMin / 10000).toFixed(1)}–${(budgetMax / 10000).toFixed(1)}万`;
+
 /* ====================== 渲染每日卡片 ====================== */
 const listEl = document.getElementById('dayList');
 function segHtml(cls, icon, title, items){
@@ -1057,9 +1104,11 @@ const CONFIRM_TASKS = [
   stayTask('stay-d15',15,'2026-08-15','哈密海逸酒店','2026-07-18','https://hotels.ctrip.com/hotels/122779043.html'),
   stayTask('stay-d16',16,'2026-08-16','额济纳旗云朵酒店','2026-07-18','https://hotels.ctrip.com/hotels/80911875.html'),
   stayTask('stay-d17',17,'2026-08-17','临河云庭酒店','2026-07-18','https://hotels.ctrip.com/hotels/112823609.html'),
-  {id:'g7-out',category:'道路与充电',title:'G7去程：乌力吉—雅干关键桩实时状态',tripDate:'2026-08-02',dueDate:'2026-07-29',recheckDate:'2026-08-01',sourceVerified:'2026-07-13',contacts:[{label:'e路畅通',text:'微信小程序'},{label:'e充电',text:'App'}],fallback:'关键站连续异常则走G30河西走廊。'},
-  {id:'g7-back',category:'道路与充电',title:'G7返程：白疙瘩—乌力吉关键桩重新核查',tripDate:'2026-08-16',dueDate:'2026-08-13',recheckDate:'2026-08-15',sourceVerified:'2026-07-13',contacts:[{label:'e路畅通',text:'微信小程序'},{label:'e充电',text:'App'}],fallback:'不能复用去程结论；失败改G30并增加1天。'},
-  {id:'s240-s245',category:'道路与充电',title:'D4 S240/S245：敦煌出发双备选、风况与抵达电量',tripDate:'2026-08-04',dueDate:'2026-08-03',recheckDate:'2026-08-04',sourceVerified:'2026-07-16',contacts:[{label:'S245收费批复',href:'https://jtyst.xinjiang.gov.cn/xjjtysj/tjgf/202411/d62f562572cb4855962ae00f799c9866.shtml'},{label:'Tesla App',text:'实时站点'}],fallback:'无法充至95%或预测抵达低于20%则延迟出发，不依赖未经确认的沿线桩。'},
+  ...CHARGE_SEGMENTS.map(segment=>{
+    const day=Number(segment.days.match(/\d+/)?.[0]||1);
+    const tripDate=`2026-08-${String(day).padStart(2,'0')}`;
+    return {id:`charge-${segment.id}`,category:'道路与充电',title:`${segment.days} ${segment.route}：主站＋备选A＋备选B`,tripDate,dueDate:day<=4?'2026-07-29':'2026-07-31',recheckDate:tripDate,sourceVerified:segment.verified,contacts:[{label:segment.channels,text:'实时核验'}],fallback:segment.fallback};
+  }),
   {id:'duku-book',category:'道路与充电',title:'独库北段：正式通告、开放状态与预约',tripDate:'2026-08-13',dueDate:'2026-08-06',recheckDate:'2026-08-12',sourceVerified:'2026-07-16',contacts:[{label:'公安厅正式公告',href:'https://gat.xinjiang.gov.cn/gat/tzgg/202607/d75de3d68abb43feb47d0defc201411e.shtml'},{label:'新疆交警',text:'公众号'}],fallback:'未开放或预约失败即改G218/G30，不闯卡。'},
   {id:'cert-out',category:'证件与天气',title:'去程动物A证：出证有效期覆盖进疆检查点',tripDate:'2026-08-03',dueDate:'2026-07-29',recheckDate:'',sourceVerified:'2026-07-13',contacts:[{label:'材料要求',href:'https://www.suzhou.gov.cn/szsrmzf/snfwzsk/202602/18e141e9957d42baa3768ba8f028aa16.shtml'}]},
   {id:'cert-back',category:'证件与天气',title:'返程动物A证：乌鲁木齐属地受理与出证',tripDate:'2026-08-14',dueDate:'2026-08-11',recheckDate:'2026-08-13',sourceVerified:'2026-07-13',contacts:[{label:'乌市宠物医院搜索',href:'https://uri.amap.com/search?keyword=乌鲁木齐宠物医院'}]},
