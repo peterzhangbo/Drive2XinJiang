@@ -34,17 +34,20 @@ if (days) {
   check('D3为额济纳到敦煌', /额济纳.*敦煌/.test(days[2]?.title || ''));
   check('D1改住巴彦淖尔维也纳国际酒店并保留电话', /维也纳国际酒店/.test(days[0]?.stay || '') && /04788259998/.test(days[0]?.stay || ''));
   check('D2改住额济纳旗尚景酒店并保留电话', /额济纳旗尚景酒店/.test(days[1]?.stay || '') && /04836529358/.test(days[1]?.stay || ''));
-  check('D3改住敦煌家天下精品客栈鸣沙山店并保留电话', /家天下精品客栈.*鸣沙山店/.test(days[2]?.stay || '') && /18437722550/.test(days[2]?.stay || ''));
-  check('D4改住哈密星旺宾馆并保留电话', /哈密.*星旺宾馆/.test(days[3]?.stay || '') && /09026975888/.test(days[3]?.stay || ''));
+  check('D3改住敦煌家天下民宿并保留双联系电话', /家天下民宿.*鸣沙山月牙泉景区店/.test(days[2]?.stay || '') && /18437722550/.test(days[2]?.stay || '') && /17709370998/.test(days[2]?.stay || ''));
+  check('D4改住哈密星旺宾馆主店并保留电话地址', /哈密星旺宾馆/.test(days[3]?.stay || '') && /中旺路24号/.test(days[3]?.stay || '') && /09026975888/.test(days[3]?.stay || ''));
   check('D15返程哈密住宿仍为海逸酒店', /海逸酒店/.test(days[14]?.stay || '') && !/同D3酒店/.test(days[14]?.stay || ''));
   check('D16返程额济纳住宿仍为云朵酒店', /云朵酒店/.test(days[15]?.stay || '') && !/同D2/.test(days[15]?.stay || ''));
   check('D17返程临河住宿仍为云庭酒店', /云庭酒店/.test(days[16]?.stay || '') && !/同D1/.test(days[16]?.stay || ''));
   check('D4完整行驶S240和S245到哈密', /敦煌/.test(days[3]?.title || '') && /哈密/.test(days[3]?.title || '') && /S240.*S245/.test(days[3]?.route || ''));
   check('D5哈密穿越大海道后住鄯善', /哈密.*大海道.*鄯善/.test(days[4]?.title || '') && /通天洞/.test((days[4]?.play || []).join('')));
   check('D5不依赖红柳滩充电且有低底盘退出方案', /不把红柳滩|不依赖红柳滩/.test(`${days[4]?.decision || ''} ${(days[4]?.charge || []).join(' ')}`) && /东门浅游/.test(days[4]?.decision || ''));
-  check('D6完整走S21到北屯并使用官方三处充电备选', /鄯善.*S21.*北屯/.test(days[5]?.title || '') && /克拉美丽/.test((days[5]?.charge || []).join('')) && /五家渠/.test((days[5]?.charge || []).join('')) && /吉利湖/.test((days[5]?.charge || []).join('')));
+  check('D5入住鄯善龙诚酒店并保留电话', /鄯善龙诚酒店/.test(days[4]?.stay || '') && /09958326888/.test(days[4]?.stay || '') && /充电车位/.test(days[4]?.stay || ''));
+  check('D6完整走S21到阿勒泰并使用官方三处充电备选', /鄯善.*S21.*阿勒泰/.test(days[5]?.title || '') && days[5]?.km === 750 && /克拉美丽/.test((days[5]?.charge || []).join('')) && /五家渠/.test((days[5]?.charge || []).join('')) && /吉利湖/.test((days[5]?.charge || []).join('')));
   check('D6不把黄花沟作为充电点', /不把黄花沟当充电点/.test(days[5]?.decision || ''));
-  check('D7北屯经布尔津补电进禾木', /北屯.*布尔津.*禾木/.test(days[6]?.title || '') && /用户已确认.*边牧.*带入禾木村/.test((days[6]?.play || []).join('')));
+  check('D6入住阿勒泰友谊宾馆并保留电话和市区充电备选', /阿勒泰友谊宾馆/.test(days[5]?.stay || '') && /09062315888/.test(days[5]?.stay || '') && /阿勒泰市区两个不同运营商公共快充/.test((days[5]?.charge || []).join('')));
+  check('D7阿勒泰经布尔津补电进禾木', /阿勒泰.*布尔津.*禾木/.test(days[6]?.title || '') && /用户已确认.*边牧.*带入禾木村/.test((days[6]?.play || []).join('')));
+  check('D7入住牧雅居民宿并保留双联系电话', /牧雅居民宿.*落日观景台店/.test(days[6]?.stay || '') && /18126209839/.test(days[6]?.stay || '') && /17844447778/.test(days[6]?.stay || ''));
   check('D8禾木返回布尔津', /禾木.*布尔津/.test(days[7]?.title || '') && /静逸时光民宿/.test(days[7]?.stay || ''));
   const km = days.reduce((sum, day) => sum + Number(day.km || 0), 0);
   check('逐日里程为合理数值并由页面承载自动汇总', km > 8500 && km < 9000 && /id="totalKm"/.test(html), `当前合计${km}km`);
@@ -62,11 +65,15 @@ const forbidden = [
   '乌鲁木齐（同D4酒店',
   '当前执行基线为 V7',
   '当前执行基线为 V8',
+  '当前执行基线为 V9',
   '现有公安厅页面为公开征求意见稿',
   '独库北段预约信息不可当作最终公告',
   '不进入禾木景区',
   '禾木 / 五彩滩</b></td><td class="no"',
-  '阿禾公路精华段 → 布尔津'
+  '阿禾公路精华段 → 布尔津',
+  '鄯善县宠物友好酒店（待补名称）',
+  '北屯市宠物友好酒店（待补名称）',
+  '禾木老村宠物友好民宿（待补名称/电话）'
 ];
 for (const text of forbidden) check(`删除过期或过度确定文案：${text}`, !html.includes(text));
 check('引用独库正式公告', html.includes('202607/d75de3d68abb43feb47d0defc201411e.shtml'));
@@ -84,7 +91,7 @@ if (chargeSegments) {
   const s240 = chargeSegments.find(segment => /S240/.test(segment.route));
   check('S240/S245不虚构沿线充电桩', s240 && /未获官方确认|不把.*充电/.test(`${s240.evidence} ${s240.fallback}`));
   const s21 = chargeSegments.find(segment => /S21/.test(segment.route));
-  check('S21主备站为克拉美丽五家渠吉利湖', s21 && /克拉美丽/.test(s21.primary) && /五家渠/.test(s21.backupA) && /吉利湖/.test(s21.backupB) && /黄花沟只休息/.test(s21.fallback));
+  check('S21终点为阿勒泰且主备站为克拉美丽五家渠吉利湖', s21 && /阿勒泰/.test(s21.route) && /克拉美丽/.test(s21.primary) && /五家渠/.test(s21.backupA) && /吉利湖/.test(s21.backupB) && /黄花沟只休息/.test(s21.fallback));
   const hemu = chargeSegments.find(segment => /禾木/.test(segment.route));
   check('禾木补能不依赖景区内快充', hemu && /不承诺禾木|不依赖禾木/.test(`${hemu.evidence} ${hemu.fallback}`));
   check('拥堵只切同城或沿线备选而非默认绕行', chargeSegments.every(segment => /20分钟|不可用|无法确认|低于20%/.test(segment.trigger)));
