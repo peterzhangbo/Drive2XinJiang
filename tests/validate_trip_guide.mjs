@@ -52,9 +52,12 @@ if (days) {
   check('D9乌尔禾到赛湖东门并入住赛官房', /乌尔禾.*赛里木湖东门/.test(days[8]?.title || '') && days[8]?.km === 420 && /赛官房民宿.*东门游客中心店/.test(days[8]?.stay || '') && /09092222000/.test(days[8]?.stay || '') && /无早餐/.test(days[8]?.stay || ''));
   check('D10赛湖东门进南门出经薰衣草园到伊宁', /东门进.*南门出.*薰衣草园.*伊宁/.test(days[9]?.title || '') && days[9]?.km === 170 && /不(?:要)?预设顺时针或逆时针/.test((days[9]?.play || []).join('')) && /栖云馆民宿/.test(days[9]?.stay || '') && /13899730840/.test(days[9]?.stay || ''));
   check('D10提示八月薰衣草花况风险', /6—7月|6-7月/.test(`${days[9]?.decision || ''} ${(days[9]?.play || []).join('')}`) && /前一天/.test(`${days[9]?.decision || ''} ${(days[9]?.tips || []).join('')}`));
-  check('D11伊宁休整并在栖云馆连住第二晚', /伊宁休整/.test(days[10]?.title || '') && days[10]?.km === 30 && /栖云馆民宿.*第2晚/.test(days[10]?.stay || '') && /13899730840/.test(days[10]?.stay || ''));
+  check('D11经八卦城和库尔德宁到那拉提并入住悠然民宿', /伊宁.*特克斯八卦城.*库尔德宁.*那拉提/.test(days[10]?.title || '') && days[10]?.km === 480 && /悠然民宿.*第1晚/.test(days[10]?.stay || '') && /15886986899/.test(days[10]?.stay || '') && /0999-7758580/.test((days[10]?.play || []).join('')));
+  check('D12深度游那拉提并保留携宠失败替代', /那拉提草原深度游/.test(days[11]?.title || '') && days[11]?.km === 80 && /智游那拉提/.test((days[11]?.play || []).join('')) && /狗不去＝我们不去/.test(days[11]?.decision || '') && /悠然民宿.*第2晚/.test(days[11]?.stay || ''));
+  check('D13唐布拉住宿具备充电主备且纠正仙女湖直达', /那拉提.*乔尔玛.*唐布拉.*蜜蜂小镇/.test(days[12]?.title || '') && days[12]?.km === 180 && /听泉别院/.test(days[12]?.stay || '') && /19326665500/.test(days[12]?.stay || '') && /特来电/.test((days[12]?.charge || []).join('')) && /星星充电/.test((days[12]?.charge || []).join('')) && /不是.*直达/.test((days[12]?.play || []).join('')));
+  check('D14从唐布拉走独库北段到乌鲁木齐并修正里程', /唐布拉.*乔尔玛.*独库北段.*独山子.*乌鲁木齐/.test(days[13]?.title || '') && days[13]?.km === 520 && /08:00–10:00/.test(`${days[13]?.decision || ''} ${(days[13]?.tips || []).join('')}`) && /250–270km/.test((days[13]?.play || []).join('')) && /缘来如玉民宿/.test(days[13]?.stay || ''));
   const km = days.reduce((sum, day) => sum + Number(day.km || 0), 0);
-  check('逐日里程约8680km并由页面承载自动汇总', km === 8680 && /id="totalKm"/.test(html), `当前合计${km}km`);
+  check('逐日里程约8850km并由页面承载自动汇总', km === 8850 && /id="totalKm"/.test(html), `当前合计${km}km`);
   check('住宿夜数结构为17晚且没有睡车夜', /17晚住宿/.test(html) && /0晚睡车/.test(html) && days.filter(day => day.tags?.includes('car')).length === 0);
 }
 
@@ -103,6 +106,12 @@ if (chargeSegments) {
   check('D9赛湖东门住宿前具备三层补能并为次日留电', d9Saihu && /克拉玛依|奎屯/.test(d9Saihu.primary) && /精河/.test(d9Saihu.backupA) && /五台|东门/.test(d9Saihu.backupB) && /次日环湖/.test(d9Saihu.fallback));
   const d10Saihu = chargeSegments.find(segment => segment.days === 'D10' && /南门.*霍城.*伊宁/.test(segment.route));
   check('D10赛湖南门后以清水河霍城和伊宁补能', d10Saihu && /东门|五台/.test(d10Saihu.primary) && /清水河|霍城/.test(d10Saihu.backupA) && /伊宁/.test(d10Saihu.backupB) && /果子沟/.test(d10Saihu.fallback));
+  const d11Yili = chargeSegments.find(segment => segment.days === 'D11' && /特克斯.*库尔德宁.*那拉提/.test(segment.route));
+  check('D11伊宁到那拉提具备特克斯巩留补能备选', d11Yili && /伊宁/.test(d11Yili.primary) && /特克斯/.test(d11Yili.backupA) && /巩留|那拉提/.test(d11Yili.backupB));
+  const d13Tangbula = chargeSegments.find(segment => segment.days === 'D13' && /唐布拉|蜜蜂小镇/.test(segment.route));
+  check('D13唐布拉过夜补能有住宿和公共桩三层冗余', d13Tangbula && /听泉别院/.test(d13Tangbula.primary) && /特来电/.test(d13Tangbula.backupA) && /星星充电|驴充充/.test(d13Tangbula.backupB) && /不在唐布拉过夜/.test(d13Tangbula.fallback));
+  const d14Duku = chargeSegments.find(segment => segment.days === 'D14' && /独库北段.*乌鲁木齐/.test(segment.route));
+  check('D14独库以独山子主充毛溜沟应急奎屯备选', d14Duku && /独山子/.test(d14Duku.primary) && /毛溜沟/.test(d14Duku.backupA) && /奎屯/.test(d14Duku.backupB) && /单一山中桩/.test(d14Duku.fallback));
   check('拥堵只切同城或沿线备选而非默认绕行', chargeSegments.every(segment => /20分钟|不可用|无法确认|低于20%/.test(segment.trigger)));
 }
 
