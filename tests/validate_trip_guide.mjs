@@ -34,6 +34,9 @@ if (days) {
   check('D3为额济纳到敦煌', /额济纳.*敦煌/.test(days[2]?.title || ''));
   check('D1改住巴彦淖尔维也纳国际酒店并保留电话', /维也纳国际酒店/.test(days[0]?.stay || '') && /04788259998/.test(days[0]?.stay || ''));
   check('D2改住额济纳旗尚景酒店并保留电话', /额济纳旗尚景酒店/.test(days[1]?.stay || '') && /04836529358/.test(days[1]?.stay || ''));
+  check('D3改住敦煌家天下精品客栈鸣沙山店并保留电话', /家天下精品客栈.*鸣沙山店/.test(days[2]?.stay || '') && /18437722550/.test(days[2]?.stay || ''));
+  check('D4改住哈密星旺宾馆并保留电话', /哈密.*星旺宾馆/.test(days[3]?.stay || '') && /09026975888/.test(days[3]?.stay || ''));
+  check('D15返程哈密住宿仍为海逸酒店', /海逸酒店/.test(days[14]?.stay || '') && !/同D3酒店/.test(days[14]?.stay || ''));
   check('D4完整行驶S240和S245到哈密', /敦煌/.test(days[3]?.title || '') && /哈密/.test(days[3]?.title || '') && /S240.*S245/.test(days[3]?.route || ''));
   check('D5哈密经巴里坤直达江布拉克', /哈密.*江布拉克/.test(days[4]?.title || '') && /巴里坤/.test(days[4]?.route || ''));
   const km = days.reduce((sum, day) => sum + Number(day.km || 0), 0);
