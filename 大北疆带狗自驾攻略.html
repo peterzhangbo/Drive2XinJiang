@@ -220,7 +220,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 
 <main>
 
-<div id="freshnessBanner" class="freshness-banner" role="status" data-verified="2026-07-13" data-stale-after="7"></div>
+<div id="freshnessBanner" class="freshness-banner" role="status" data-verified="2026-07-16" data-stale-after="7"></div>
 
 <!-- ================= 总览 ================= -->
 <section class="tab on" id="tab-overview">
@@ -228,13 +228,13 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <p class="lead">2026年8月 · 北京⇄大北疆环线 · 夫妻二人 + 两条成年边牧 · 特斯拉 Model Y L（CLTC 751km）· 全程自驾往返。基线 18 天，计划在江布拉克与赛里木湖各尝试一晚指定营地床车；两处都必须先确认当日开放、宠物与自带床车规则，未确认则启用页面中的酒店备选。点击地图节点可跳转到当天行程。</p>
 
   <div class="note teal">
-    <b>当前执行版本：V7（2026-07-13）</b>。本页只保留最终主计划；历史变更、删改原因和证据等级已移至独立页面。
+    <b>当前执行版本：V8（2026-07-16）</b>。18天不延长，S240＋S245 敦煌—哈密经典路段列为必走主线；通过哈密直达江布拉克消除乌鲁木齐折返。
     <button class="lnk bk tab-link" data-go-tab="changelog">查看更新日志</button>
   </div>
 
   <div class="stats">
     <div class="stat"><div class="n">18天</div><div class="l">全程天数（纯带狗版·零寄养）</div></div>
-    <div class="stat"><div class="n">≈8,500</div><div class="l">总里程 km</div></div>
+    <div class="stat"><div class="n" id="totalKm">计算中</div><div class="l">逐日里程自动合计 km</div></div>
     <div class="stat"><div class="n">2晚</div><div class="l">睡车（营地）</div></div>
     <div class="stat"><div class="n">15晚</div><div class="l">宠物友好酒店/民宿</div></div>
     <div class="stat"><div class="n">2.6–3.4万</div><div class="l">预估总花费（元）</div></div>
@@ -242,7 +242,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 
   <div class="mapwrap">
     <div class="legend">
-      <span><i class="lk" style="background:#c2670a"></i>去程 G7 京新高速（D1–D4）</span>
+      <span><i class="lk" style="background:#c2670a"></i>去程 G7＋S240/S245（D1–D5）</span>
       <span><i class="lk" style="background:#0e7268"></i>大北疆环线（D5–D14）</span>
       <span><i class="lk" style="background:#8d867a"></i>回程（D15–D18）</span>
     </div>
@@ -252,7 +252,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <h2 class="sec">💡 这次规划的四条底层逻辑</h2>
   <div class="card">
     <p><b>1. 「公共道路优先，区间车景区退出」</b>——行程把权重压在阿禾公路、独库公路、唐布拉百里画廊等公共道路，以及确认后可自驾的赛里木湖、江布拉克。禾木、喀纳斯、天池、巴音布鲁克九曲等依赖区间车或宠物口径不明的项目全部移出执行行程。</p>
-    <p style="margin-top:10px"><b>2. 电车走新疆已经不是冒险</b>——新疆 105 对高速服务区充电全覆盖，赛里木湖东门有 24 个快充桩（含特斯拉），独库公路沿线桩距&lt;100km。唯一硬风险是去程 G7 临白段 930km 无人区：策略是「满电进、逢桩必充、保留到达下下站的电量」，并准备 G30 绕行预案。</p>
+    <p style="margin-top:10px"><b>2. 补能结论必须分证据等级</b>——城市超充可以用运营商页面确认，但实时排队、故障和临时关闭只能在车机或运营商App核对。G7临白段与S240/S245都按风险路段管理：前者逐站复核，后者未找到主管部门或运营商对沿线充电投运的可靠确认，因此必须在敦煌完成双站备选和满电门槛后再进入。</p>
     <p style="margin-top:10px"><b>3. 8月 = 避热跑北线</b>——行程刻意绕开吐鲁番/沙漠白天活动，把狗的户外时间放在早10点前、晚7点后（新疆9点半才天黑）；睡车两晚都选在海拔 1700m+ 的凉爽营地，露营模式整夜空调只耗 10–20 度电。</p>
     <p style="margin-top:10px"><b>4. 每晚住宿都要电话二次确认</b>——平台「宠物友好」标签 ≠ 收两只边牧（很多只收小型犬）。打电话时报「两只边境牧羊犬、约 15-20kg、不拆家、自备垫子」，把疫苗本拍照发过去，成功率大增。</p>
   </div>
@@ -260,6 +260,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <h2 class="sec">⭐ 行程高光（为狗设计的）</h2>
   <div class="card">
     <ul style="list-style:none">
+      <li style="padding:5px 0">🛣️ <b>S240＋S245 敦煌—哈密经典公路</b>：D4完整行驶，两条主线合计约351km；官方可确认通车和收费，但未确认沿线可靠充电，按敦煌满电进入、哈密双站到达补能执行</li>
       <li style="padding:5px 0">🏆 <b>赛里木湖自驾环湖 + 营地睡车</b>：买自驾票开进环湖公路，南岸无名草坡=雪山+湖水+边牧狂奔；24小时票可看日落+日出两轮（D10-11）</li>
       <li style="padding:5px 0">🥈 <b>独库公路北段 + 唐布拉百里画廊</b>：全程免费自驾，垭口雪山、云杉峡谷、喀什河草甸随停随玩（D12-13）</li>
       <li style="padding:5px 0">🥉 <b>江布拉克麦浪条件行程</b>：官方可核门票与自驾收费；只有客服同时确认两只边牧和指定床车营位后执行，否则改住奇台（D5）</li>
@@ -273,12 +274,13 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <div class="twrap"><table>
     <thead><tr><th>景点</th><th>确切位置</th><th>门票</th><th>购票 / 导航</th></tr></thead>
     <tbody>
+      <tr><td><b>S240＋S245（D4）</b></td><td>敦煌G215过境段接S240，方山口甘新界接S245，至哈密二道湖互通</td><td><span class="pill p-green">A 官方通车/收费</span> S240约164.8km、S245约186.187km；S245设小白地、东南河两处主线收费站。收费站不等于充电站，沿线补能不得作确定承诺</td><td><a class="lnk bk" href="https://www.xinhuanet.com/photo/20241026/c095453c139f482f8b01de1ca6eba6a6/c.html" target="_blank" rel="noopener">新华社通车</a><a class="lnk bk" href="https://jtyst.xinjiang.gov.cn/xjjtysj/tjgf/202411/d62f562572cb4855962ae00f799c9866.shtml" target="_blank" rel="noopener">S245收费批复</a></td></tr>
       <tr><td><b>赛里木湖（东门游客中心）</b></td><td>G30连霍高速赛里木湖东立交下，沿净海路至游客中心；点将台位于环湖公路北侧</td><td><span class="pill p-red">C 实时确认</span> 公开票务技术支持页当前显示24h成人自驾套票155/人，但它不是政府官网；最终价格、宠物和床车营位只认「赛里木湖旅游 / 一部手机游赛湖」实时页面</td><td><a class="lnk bk" href="https://www.yujiansailimuhu.com/" target="_blank" rel="noopener">票务技术支持页</a><a class="lnk" href="https://uri.amap.com/search?keyword=赛里木湖游客服务中心" target="_blank" rel="noopener">导航</a></td></tr>
       <tr><td><b>江布拉克</b></td><td>昌吉州奇台县半截沟镇南部山区</td><td><span class="pill p-green">A 官方核价</span> 旺季55/人、淡季25/人；7座及以下自驾车100/辆。只在指定停车场和指定营地停留，床车与宠物须☎0994-7325888确认</td><td><a class="lnk bk" href="https://xjdrc.xinjiang.gov.cn/xjfgw/c108396/202412/8273ab8e78624d8798c39cb0322eeca4.shtml" target="_blank" rel="noopener">发改委核价</a><a class="lnk bk" href="https://piao.ctrip.com/dest/u-_-119707.html" target="_blank" rel="noopener">购票</a><a class="lnk" href="https://uri.amap.com/search?keyword=江布拉克景区" target="_blank" rel="noopener">导航</a></td></tr>
       <tr><td><b>阿禾公路（D8）</b></td><td>北起阿勒泰市、南至禾木方向，全长约209.45km；本行程从阿勒泰端进入后量电往返</td><td><span class="pill p-green">A 2026通行确认</span> 公共景观公路，免费；弯急、信号弱、沿线补给少。狗只在安全停车带短绳下车，不进入牧场围栏</td><td><a class="lnk bk" href="https://xj.people.com.cn/n2/2026/0502/c186332-41570170.html" target="_blank" rel="noopener">人民网</a><a class="lnk" href="https://uri.amap.com/search?keyword=阿禾公路阿勒泰入口" target="_blank" rel="noopener">导航</a></td></tr>
       <tr><td><b>可可苏里 / 伊雷木湖外围</b></td><td>富蕴县 G216/S226 沿线 / 可可托海镇西南方向</td><td><span class="pill p-amber">B 公共道路玩法</span> 本行程只走公路观景点与湖区外围，不把“可可托海峡谷可带狗自驾”作为既定条件</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=可可苏里" target="_blank" rel="noopener">可可苏里</a><a class="lnk" href="https://uri.amap.com/search?keyword=伊雷木湖" target="_blank" rel="noopener">伊雷木湖</a></td></tr>
       <tr><td><b>世界魔鬼城外围 / 西部乌镇</b></td><td>克拉玛依市乌尔禾区龙脊路、扬州路一带</td><td><span class="pill p-amber">B 零门票替代</span> 不进入依赖观光车的核心区；只玩外围雅丹、白杨河方向与西部乌镇公开区域</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=西部乌镇乌尔禾" target="_blank" rel="noopener">导航·西部乌镇</a></td></tr>
-      <tr><td><b>唐布拉百里画廊 / 独库北段</b></td><td>尼勒克县S315与G217乔尔玛—那拉提入口段</td><td><span class="pill p-green">A 公共道路</span> S315主线免费；独库北段是否启用预约、入口及时段以出发前1-7天平台实际状态为准</td><td><a class="lnk bk" href="https://gat.xinjiang.gov.cn/gat/tzgg/202606/d023345a75834189a9b99c11390698d9.shtml" target="_blank" rel="noopener">新疆公安厅资料</a><a class="lnk" href="https://uri.amap.com/search?keyword=乔尔玛" target="_blank" rel="noopener">导航·乔尔玛</a></td></tr>
+      <tr><td><b>唐布拉百里画廊 / 独库北段</b></td><td>尼勒克县S315与G217乔尔玛—那拉提入口段</td><td><span class="pill p-green">A 正式通告</span> 独库北段预约制通告已于2026-07-02经公安厅厅长办公会审议通过；仍须在出发前1-7天完成预约并在前一晚核对开放、天气与施工状态</td><td><a class="lnk bk" href="https://gat.xinjiang.gov.cn/gat/tzgg/202607/d75de3d68abb43feb47d0defc201411e.shtml" target="_blank" rel="noopener">新疆公安厅正式公告</a><a class="lnk" href="https://uri.amap.com/search?keyword=乔尔玛" target="_blank" rel="noopener">导航·乔尔玛</a></td></tr>
       <tr><td colspan="4" class="small" style="color:var(--sub)">🗄️ 喀纳斯、天山天池等禁宠景区已移出行程，位置与票价信息归档在「不得不错过」页</td></tr>
     </tbody>
   </table></div>
@@ -319,6 +321,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <p style="margin-top:10px"><span class="pill p-green">V5 · 07-13</span> <b>事实核验与执行收敛</b>：删除无法证实的禾木夏季私家车依赖，修正独库、赛湖、床车、酒店、预算、动物A证和蜱虫处理口径，建立A/B/C证据台账。</p>
     <p style="margin-top:10px"><span class="pill p-teal">V6 · 07-13</span> <b>信息架构拆分</b>：主计划与更新日志分成独立页面，历史信息不再干扰现场执行。</p>
     <p style="margin-top:10px"><span class="pill p-blue">V7 · 07-13</span> <b>执行能力补齐</b>：增加确认中心、两处明确备用酒店、六个关键日决策触发、导航分组、移动端Hero、信息过期提示和逐日打印/PDF。</p>
+    <p style="margin-top:10px"><span class="pill p-teal">V8 · 07-16</span> <b>18天加入S240/S245并全面修复</b>：D3到敦煌、D4完整走S240/S245到哈密、D5经巴里坤直达江布拉克；补全充电三层冗余、正式独库政策、自动预算、地图筛选回归、无障碍与行程简报。</p>
   </div>
 
   <div class="note red">
@@ -329,7 +332,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
       <li style="padding:3px 0"><b>零寄养真正落地</b>：删除五彩滩/魔鬼城轮流进入、寄养预算和寄养时间线。</li>
       <li style="padding:3px 0"><b>赛湖渠道纠偏</b>：不再把票务技术支持网站称为政府官网；最终以「赛里木湖旅游 / 一部手机游赛湖」实时页面为准。</li>
       <li style="padding:3px 0"><b>两晚床车改为条件项</b>：只有指定营位明确允许两只边牧和普通私家车睡车才执行，否则住酒店。</li>
-      <li style="padding:3px 0"><b>独库信息降级</b>：公安厅公开页面仍是征求意见稿，预约时段可作预警，但名额和生效日期不能当最终事实。</li>
+      <li style="padding:3px 0"><b>独库信息已升级</b>：2026-07-02正式公告已经公安厅厅长办公会审议通过；执行时仍需完成预约并核对当日开放和天气。</li>
       <li style="padding:3px 0"><b>健康与证件修正</b>：动物A证按最长5天和属地电子申报准备；蜱虫稳定垂直拔出，不旋转、不猛拉。</li>
     </ul>
   </div>
@@ -372,19 +375,19 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <tbody>
       <tr><td>D1 北京→临河</td><td>呼和浩特·维多利摩尔城（新华东街62号B2层）/ 包头·香格里拉大酒店（民族东路66号B1层，V3 250kW×6，24h）/ 巴彦淖尔·维多利万悦城（临河区新华西街维多利广场）</td><td class="ok">特斯拉超充</td><td>临河万悦城是进无人区前<b>最后的特斯拉超充</b>；特斯拉App内搜站名导航</td></tr>
       <tr><td>D2 临白段无人区</td><td>乌力吉 / 苏宏图 / 雅干等服务区</td><td class="warn">国网/交投桩</td><td>930km 无人区，全程最大风险点，逢桩必充；额济纳县城公共桩过夜补满</td></tr>
-      <tr><td>D3 →哈密</td><td>白疙瘩 / 骆驼圈子服务区 → 哈密超充（站名「哈密华宇大酒店」，伊州区益寿路3号，<span class="pill p-green">✅特斯拉官网已确认</span>4桩最大119kW 24h开放，已去除"待核实"）</td><td class="warn">国网→特斯拉</td><td>白明段134km+明哈段178km，桩少，进段前满电</td></tr>
-      <tr><td>D4 →乌鲁木齐</td><td>大河服务区（G7梧木段）→ 乌市·德汇中心超充（奇台路658号德汇万达广场B2层）/ 万科生活广场超充（新市区东站路228号）</td><td class="ok">国网→特斯拉</td><td>G7新段36根桩已投用</td></tr>
-      <tr><td>D5-6 江布拉克/可可托海</td><td>奇台县城 / 恰库尔图服务区 / 富蕴县城</td><td class="warn">国网/e疆充</td><td>景区内无桩，进山前满电</td></tr>
+      <tr><td>D3 →敦煌</td><td>额济纳满电→金塔/酒泉/瓜州实时公共快充→敦煌太阳庄园酒店特斯拉超充</td><td class="warn">公共快充→特斯拉</td><td>约700km长途日，按车机实时路线在金塔、酒泉或瓜州至少完成一次有效补能</td></tr>
+      <tr><td>D4 S240＋S245 →哈密</td><td>敦煌太阳庄园酒店特斯拉超充＋敦煌城区公共快充双备份→哈密华宇大酒店特斯拉超充＋哈密城区公共快充</td><td class="warn">两端城市补能</td><td>主管部门资料未证明S240/S245沿线充电已投运；充至95%以上且车机预测抵达不少于20%才进入</td></tr>
+      <tr><td>D5-6 巴里坤/江布拉克/可可托海</td><td>哈密→巴里坤县城→奇台县城→恰库尔图→富蕴县城</td><td class="warn">特斯拉/公共快充</td><td>哈密直达江布拉克，取消先去乌鲁木齐再折返；进山前在奇台补足</td></tr>
       <tr><td>D7-8 布尔津/阿禾</td><td>布尔津与阿勒泰市区公共快充（以特斯拉/e疆充/高德实时站点为准）</td><td class="warn">第三方</td><td>不再声称民宿自带桩；D8布尔津满电、阿勒泰补满后进入阿禾公路，按预设返航电量折返</td></tr>
       <tr><td>D9 乌尔禾</td><td>檀程酒店充电车位 / 乌尔禾镇公共快充</td><td class="warn">第三方</td><td>平台只证明酒店有充电车位，不能推定特斯拉超充；到店前在车辆导航和充电App核对功率、开放与占用</td></tr>
       <tr><td>D10 →赛里木湖</td><td>奎屯/精河实时可用快充 → 赛湖周边公共桩</td><td class="warn">第三方公共桩</td><td>博州市场监管局2025年8月公开信息仅能确认赛里木湖、五台服务区等合计48台充电桩、96把充电枪完成检定；不能拆分推定赛湖单点数量，也不代表到达时可用，更不等于酒店或营位自有桩，须以车机/运营商App实时状态为准</td></tr>
       <tr><td>D11-12 伊宁/那拉提</td><td>伊宁市区（辰甲电）/ 尼勒克县城 / 那拉提度假酒店</td><td class="warn">第三方+目的地</td><td>伊犁河谷桩密集，无焦虑</td></tr>
-      <tr><td>D13 独库北段</td><td>巴音布鲁克飞驰自驾营地（每桩2×20kW）→ 独山子/奎屯快充</td><td class="warn">慢充+两端超充</td><td>〔2026核查更新〕核心段巴音布鲁克营地仍确认为20kW慢充；但<b>那拉提、独山子两端已升级为顺顺充华为600kW超充</b>，独库沿线桩距&lt;100km——<b>那拉提满电进山</b>，沿线只做补充；另需注意北段6/25-8/31预约限流，见「注意事项」页</td></tr>
+      <tr><td>D13 独库北段</td><td>那拉提镇实时公共快充→独山子/奎屯城区公共快充</td><td class="warn">两端城市快充</td><td>不对沿线固定桩距或功率作承诺；那拉提完成主备站核验并满电进山，乔尔玛只作路况与电量复核点</td></tr>
       <tr><td>D15-18 回程</td><td>鄯善/吐鲁番/哈密超充 → G7同去程 或 G30河西走廊超充线</td><td class="ok">特斯拉为主</td><td>G30「丝绸之路」27座超充站，站距100-300km</td></tr>
     </tbody>
   </table></div>
 
-  <div class="note red"><b>⚠️ G7 临白段风险预案</b>（2026-07-11核查：内蒙古交通部门已发布规划，目标2026年底前全区高速服务区充电设施100%全覆盖，整体趋势改善，但<b>未查到乌力吉/苏宏图/雅干具体路段近期实测故障数据</b>，风险仍需按最谨慎口径准备）：出发前 3 天用「e充电」App + 「e路畅通」小程序逐一核查乌力吉—雅干一带服务区桩况。若故障率高，去程改南线绕行：临河→银川→武威→张掖→酒泉→哈密（多约400km，但全程特斯拉超充+密集国网桩，几乎零焦虑）。回程同理。</div>
+  <div class="note red"><b>⚠️ G7 临白段风险预案</b>：规划目标不能当作每个服务区已经可用。出发前24小时和临河出发前分别用「e充电」App＋「e路畅通」核查乌力吉、苏宏图、雅干。单站排队或部分故障只切换沿线备选，不绕行；只有连续关键站均不可确认且车辆尚未进入无人区时，才在临河决定延迟出发或改走G30。进入后不得临时驶离铺装道路找桩或违法掉头。</div>
 
   <h2 class="sec">📲 必装 App / 小程序</h2>
   <div class="card">
@@ -455,8 +458,9 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <tbody>
       <tr><td>D1 / D17</td><td><b>云庭酒店（维多利摩尔城店）</b></td><td>临河区胜利北路巴运国际旅行社东南30米</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/112823609.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=云庭酒店巴彦淖尔维多利摩尔城店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-amber">B 平台可核</span> 2026近期携宠评价；仍需确认两只边牧</td></tr>
       <tr><td>D2 / D16</td><td><b>额济纳旗云朵酒店（博物馆店）</b></td><td>达来呼布镇居延名邸F段商服楼10号商铺</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/80911875.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=额济纳旗云朵酒店额济纳博物馆店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-amber">B 平台可核</span> 2026多条携宠评价，替换零点评农家小屋</td></tr>
-      <tr><td>D3 / D15</td><td><b>海逸酒店（哈密G312国道店）</b></td><td>伊州区火箭农场东疆中大道71号潞和大厦</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/122779043.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=海逸酒店哈密G312国道店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 政策明确</span> 允许携宠、需提前联系，每次入住30元</td></tr>
-      <tr><td>D4 / D14</td><td><b>乌鲁木齐县缘来如玉民宿</b></td><td>水西沟镇平西梁村A10-2号</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/110381323.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=缘来如玉民宿水西沟" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-red">C 电话确认</span> 地址与在营状态可核；两只大型犬仍需写入订单</td></tr>
+      <tr><td>D3</td><td><b>敦煌城堡酒店</b><br>备用：敦煌云亦酒店</td><td>主：敦煌七里镇景观大道12999号飞天酒业院内</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/106576328.html" target="_blank" rel="noopener">主酒店</a><a class="lnk bk" href="https://hotels.ctrip.com/hotels/111578814.html" target="_blank" rel="noopener">备用酒店</a><a class="lnk" href="https://uri.amap.com/search?keyword=敦煌城堡酒店景观大道12999号" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-amber">B/C</span> 两家平台均显示可携狗且需提前联系；两只15-20kg边牧必须书面确认</td></tr>
+      <tr><td>D4 / D15</td><td><b>海逸酒店（哈密G312国道店）</b></td><td>伊州区火箭农场东疆中大道71号潞和大厦</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/122779043.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=海逸酒店哈密G312国道店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 政策明确</span> 允许携宠、需提前联系，每次入住30元</td></tr>
+      <tr><td>D14</td><td><b>乌鲁木齐县缘来如玉民宿</b></td><td>水西沟镇平西梁村A10-2号</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/110381323.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=缘来如玉民宿水西沟" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-red">C 电话确认</span> 地址与在营状态可核；两只大型犬仍需写入订单</td></tr>
       <tr><td>D5</td><td>🚙 <b>江布拉克指定床车营位</b><br>备用：奇台金麦浪酒店（第一人民医院店）</td><td>营位：江布拉克景区指定露营区<br>备用：奇台南新区2区12丘188幢39号商铺3层</td><td><a class="lnk bk" href="https://piao.ctrip.com/dest/u-_-119707.html" target="_blank" rel="noopener">景区购票</a><a class="lnk bk" href="https://m.ctrip.com/html5/hotel/hoteldetail/116793188.html" target="_blank" rel="noopener">备用酒店</a><a class="lnk" href="https://uri.amap.com/search?keyword=奇台金麦浪酒店第一人民医院店奇台" target="_blank" rel="noopener">备用导航</a></td><td><span class="pill p-red">营地C</span> ☎0994-7325888确认四项；失败启用酒店。<span class="pill p-amber">酒店B/C</span> 狗/猫预约免费、☎0994-7374666；两只边牧须书面确认，酒店页无自有桩证据</td></tr>
       <tr><td>D6</td><td><b>可可托海牧恬园</b></td><td>可可托海镇和平路82号</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/104433912.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=可可托海牧恬园" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-amber">B 平台可核</span> 2026在营，近期携狗/携猫评价</td></tr>
       <tr><td>D7 / D8</td><td><b>布尔津静逸时光民宿</b></td><td>布尔津县别墅区神仙湾路11号</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/9571126.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=布尔津静逸时光民宿" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 政策明确</span> 狗/猫需预约、免费；☎15299386959；充电设施在住宿外部</td></tr>
@@ -476,8 +480,9 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
       <tr><td>呼和浩特（D1午饭）</td><td><b>老绥元烧麦（摩尔城店）</b>：新华东街与东影南路交汇处维多利摩尔城A座7层；纯羊肉烧麦按“两”点</td><td><a class="lnk bk" href="https://you.ctrip.com/food/ctripyouyoustar156/7467084.html" target="_blank" rel="noopener">餐饮页</a><a class="lnk" href="https://uri.amap.com/search?keyword=老绥元烧麦摩尔城店" target="_blank" rel="noopener">导航</a></td></tr>
       <tr><td>临河（D1/D17）</td><td><b>火车主题夜市</b>：曙光街，河套学院与巴彦淖尔职业技术学校之间；适合找河套硬菜、肉焙子与糖麻叶</td><td><a class="lnk bk" href="https://www.linhe.gov.cn/zfgb/2025-2/pdf/2025_2.pdf" target="_blank" rel="noopener">政府公报</a><a class="lnk" href="https://uri.amap.com/search?keyword=临河火车主题夜市" target="_blank" rel="noopener">导航</a></td></tr>
       <tr><td>额济纳旗（D2/D16）</td><td><b>达来呼布镇蒙餐片区</b>：浩融酒店北侧一带；到店前在地图核对当日营业，优先选有外摆位的蒙餐</td><td><a class="lnk bk" href="https://www.aiyoutravel.com/article/detail/1879382495100264448" target="_blank" rel="noopener">地址来源</a><a class="lnk" href="https://uri.amap.com/search?keyword=额济纳旗浩融酒店蒙餐" target="_blank" rel="noopener">导航</a></td></tr>
-      <tr><td>哈密（D3/D15）</td><td><b>青禹然特色焖饼</b>：广东路8号石油大厦2层；主点羊肉焖饼，价格和营业状态以到店为准</td><td><a class="lnk bk" href="https://www.csair.com/h5/cn/tourism_strategy/guonei_lvyougonglve/Hami2/1cgdt0o181qoc.shtml" target="_blank" rel="noopener">地址来源</a><a class="lnk" href="https://uri.amap.com/search?keyword=青禹然特色焖饼哈密" target="_blank" rel="noopener">导航</a></td></tr>
-      <tr><td>乌鲁木齐（D4/D14）</td><td><b>血站大盘鸡</b>：红庙子街道西北路2号；门店称谓较多，以地图实时营业门店为准</td><td><a class="lnk bk" href="https://gs.ctrip.com/html5/you/foods/Xinjiang100008/4926871.html" target="_blank" rel="noopener">餐饮页</a><a class="lnk" href="https://uri.amap.com/search?keyword=血站大盘鸡西北路2号乌鲁木齐" target="_blank" rel="noopener">导航</a></td></tr>
+      <tr><td>敦煌（D3）</td><td><b>敦煌城区驴肉黄面/烧烤</b>：长途抵达后以有外摆位或可打包门店为优先，不绑定未经核实的单店</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=敦煌驴肉黄面营业中" target="_blank" rel="noopener">实时搜索</a></td></tr>
+      <tr><td>哈密（D4/D15）</td><td><b>青禹然特色焖饼</b>：广东路8号石油大厦2层；主点羊肉焖饼，价格和营业状态以到店为准</td><td><a class="lnk bk" href="https://www.csair.com/h5/cn/tourism_strategy/guonei_lvyougonglve/Hami2/1cgdt0o181qoc.shtml" target="_blank" rel="noopener">地址来源</a><a class="lnk" href="https://uri.amap.com/search?keyword=青禹然特色焖饼哈密" target="_blank" rel="noopener">导航</a></td></tr>
+      <tr><td>乌鲁木齐（D14）</td><td><b>血站大盘鸡</b>：红庙子街道西北路2号；门店称谓较多，以地图实时营业门店为准</td><td><a class="lnk bk" href="https://gs.ctrip.com/html5/you/foods/Xinjiang100008/4926871.html" target="_blank" rel="noopener">餐饮页</a><a class="lnk" href="https://uri.amap.com/search?keyword=血站大盘鸡西北路2号乌鲁木齐" target="_blank" rel="noopener">导航</a></td></tr>
       <tr><td>奇台（D5）</td><td><b>老东门过油肉拌面片区</b>：奇台县老东门周边；具体门店营业易变，抵达县城后按高德“营业中＋近期评价”选择</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=奇台老东门过油肉拌面" target="_blank" rel="noopener">实时搜索</a></td></tr>
       <tr><td>布尔津（D7/D8）</td><td><b>河堤夜市</b>：卧龙湾路一带；烤狗鱼与格瓦斯，选露天摊位并先问两只狗能否在桌边</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=布尔津河堤夜市卧龙湾路" target="_blank" rel="noopener">导航</a></td></tr>
       <tr><td>伊宁（D11）</td><td><b>故乡烤肉总店</b>：斯大林东路12号；公开餐饮页曾显示营业状态不确定，必须以当日地图为准</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=故乡烤肉总店伊宁斯大林东路12号" target="_blank" rel="noopener">实时搜索</a></td></tr>
@@ -506,7 +511,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <ul style="list-style:none">
       <li style="padding:4px 0">📸 <b>区间测速极多</b>，且有「纸质限速条」：部分检查站发条，下一站核对到达时间——<b>提前到=超速</b>，宁可路边多歇会儿（伊犁河谷常见）</li>
       <li style="padding:4px 0">🚗 限速：高速一般100-120，部分路段严格限80（别侥幸）；国道普遍80，山区弯道60-80，特殊路段40</li>
-      <li style="padding:4px 0">⛰️ <span class="pill p-amber">2026草案口径</span> <b>独库北段预约信息不可当作最终公告</b>：自治区公安厅公开征求意见页写明乌苏驿—乔尔玛—那拉提约185km、入口为乌苏驿/乔尔玛/那拉提、社会车辆8:00-19:00、提前1-7天预约，但附件日期仍为“2026年6月X日”，且未写“每日约3000辆”。因此D13只把它作为预警：出发前在「新疆交警/平安天山」核对最终通告、开放状态和预约入口；无最终确认不进入。<a class="lnk bk" href="https://gat.xinjiang.gov.cn/gat/tzgg/202606/d023345a75834189a9b99c11390698d9.shtml" target="_blank" rel="noopener">公安厅原文</a></li>
+      <li style="padding:4px 0">⛰️ <span class="pill p-green">2026正式通告</span> <b>独库北段实行预约制</b>：自治区公安厅2026-07-02公告确认通告已经厅长办公会审议通过。D13仍需在出发前1-7天完成预约，并于前一晚核对开放、施工、落石和天气；未预约、未开放或路况不满足就不进入。<a class="lnk bk" href="https://gat.xinjiang.gov.cn/gat/tzgg/202607/d75de3d68abb43feb47d0defc201411e.shtml" target="_blank" rel="noopener">公安厅正式公告</a></li>
       <li style="padding:4px 0">🌙 <b>不夜驾</b>：新疆国道无路灯，夜间常有牲畜上路；遇畜群过路耐心等、不鸣笛</li>
       <li style="padding:4px 0">💨 G7 以强侧风著称：戈壁段双手握盘、与大车错峰超车；8月午后可能有沙尘</li>
       <li style="padding:4px 0">😴 单日≥600km 的赶路日：每2小时进服务区换驾/休息（顺便遛狗，节奏刚好）</li>
@@ -568,7 +573,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     ② 所有酒店下单前明确写入“两只边牧、体重、是否收费”，获得商家文字回复后再订；平台宠物标签不是无条件承诺。<br>
     ③ D5致电江布拉克☎0994-7325888，分别确认宠物、自驾、指定营位睡私家车、8月5日开放和费用；任一否定即住奇台。<br>
     ④ D10只以「赛里木湖旅游/一部手机游赛湖」当日产品为准；网页当前出现155元成人24小时自驾产品，但营位是否允许自带普通车睡车尚无公开证明，确认失败即住景区外。<br>
-    ⑤ D13先查新疆交警最终通告；现有自治区公安厅页面是公开征求意见稿，预约日期和名额不能当最终政策。<br>
+    ⑤ D13按公安厅正式通告完成预约，并在前一晚重新确认开放、天气、施工和入口时段。<br>
     ⑥ 阿禾、独库遇降雨、落石、临时封路或返航电量触发阈值，立即折返，不以“打卡完整路段”为目标。<br>
     ⑦ 住宿、餐饮、购票和证据链接已集中到<a class="lnk bk" href="信息核验记录.md" target="_blank" rel="noopener">《信息核验记录》</a>，无法在线确认的项目均标为C级待电话。
   </div>
@@ -725,7 +730,7 @@ const hero = document.getElementById('heroBox');
 hero.innerHTML = scene('alpine', 7, 1200, 340, true) + `
 <div class="hero-inner">
   <h1>北京 ⇄ 大北疆</h1>
-  <p class="sub">18天 · 约8,500km · 两人两边牧 · Model Y L 电车环线 · 2026年8月</p>
+  <p class="sub">18天 · 约<span data-total-km>8,600</span>km · 两人两边牧 · Model Y L 电车环线 · 2026年8月</p>
   <div class="chips">
     <span class="chip">🐾 每站带狗玩法</span><span class="chip">⚡ 逐日充电规划</span>
     <span class="chip">🚙 2晚条件营地</span><span class="chip">🏨 15晚住宿</span>
@@ -746,15 +751,15 @@ freshnessBanner.innerHTML = verifiedStale
 /* ====================== 路线示意图 ====================== */
 const NODES = [
   // [x, y, name, day, seg]  seg: 0去程 1环线 2回程
-  [905,415,'北京',1,0],[760,392,'临河 D1',1,0],[622,340,'额济纳 D2',2,0],[452,352,'哈密 D3',3,0],
-  [318,368,'乌鲁木齐 D4',4,0],
+  [905,415,'北京',1,0],[760,392,'临河 D1',1,0],[622,340,'额济纳 D2',2,0],[548,410,'敦煌 D3',3,0],[452,352,'哈密 D4',4,0],
+  [318,368,'乌鲁木齐 D14',14,1],
   [400,300,'江布拉克 D5 🚙',5,1],[420,190,'可可托海 D6',6,1],[300,108,'布尔津 D7',7,1],
   [378,66,'阿禾 D8',8,1],[218,170,'乌尔禾 D9',9,1],[80,300,'赛里木湖 D10 🚙',10,1],
   [58,382,'伊宁 D11',11,1],[168,420,'唐布拉→那拉提 D12',12,1],[238,330,'独库→奎屯 D13',13,1],
 ];
 const SEQ = [ // path order with segment colors
-  {pts:[[905,415],[760,392],[622,340],[452,352],[318,368]], c:'#c2670a', dash:false},
-  {pts:[[318,368],[400,300],[420,190],[378,66],[300,108],[218,170],[80,300],[58,382],[168,420],[238,330],[318,368]], c:'#0e7268', dash:false},
+  {pts:[[905,415],[760,392],[622,340],[548,410],[452,352],[400,300]], c:'#c2670a', dash:false},
+  {pts:[[400,300],[420,190],[378,66],[300,108],[218,170],[80,300],[58,382],[168,420],[238,330],[318,368]], c:'#0e7268', dash:false},
   {pts:[[318,368],[452,352],[622,340],[760,392],[905,415]], c:'#8d867a', dash:true},
 ];
 (function(){
@@ -794,30 +799,32 @@ stay:'额济纳旗云朵酒店（额济纳博物馆店）· 地址：达来呼�
 food:'额济纳烤羊排、驼肉特色',
 tips:['手机双卡互补（电信+移动），无信号段提前截图桩位分布','车上常备4L水×4、干粮；只白天赶路','⚠️ 全程最大充电风险日：任何时候保有到达「下下个」充电点的电量']},
 
-{d:3,date:'8月3日 · 周一',title:'额济纳 → 哈密（进疆）',km:650,hrs:'8–9h',tags:['drive'],theme:'desert',emoji:'🏜️',
-route:'G7 · 黑鹰山—白疙瘩—明水—骆驼圈子—哈密',
-charge:['额济纳满电出发','白疙瘩服务区（甘肃段）必充','骆驼圈子服务区（新疆段）补电','哈密特斯拉超充收尾'],
-play:['进疆第一顿烤肉犒劳全家','傍晚哈密河国家湿地公园外围遛狗（凉快）'],
-stay:'哈密·海逸酒店（G312国道店）· 地址：伊州区火箭农场东疆中大道71号（潞和大厦）· ~300 · ✅已核实在营4.8分，标签为「<b>收费</b>携带宠物」（可带但收费） <a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=122779043" target="_blank">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=海逸酒店哈密G312国道店" target="_blank">高德导航</a> 备选：麗枫（向阳东路107号光华大厦）<a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=75425994" target="_blank">携程</a>',
-food:'羊肉焖饼（青禹然，人均20）、产地哈密瓜、滨河路夜市烧烤',
-tips:['⚠️ 白山泉检查站：主动申报两只狗，出示狂犬疫苗证+《动物检疫合格证明》，配合登记消毒','身份证随手拿，进疆后检查站频繁']},
+{d:3,date:'8月3日 · 周一',title:'额济纳 → 敦煌',km:700,hrs:'9–10h',tags:['drive'],theme:'desert',emoji:'🏜️',
+route:'额济纳—金塔—酒泉—瓜州—敦煌；具体道路与管制以出发当天高德/交警提示为准',
+decision:'额济纳无法充满，或金塔/酒泉/瓜州均无法确认可用快充 → 延迟出发，不把700km长途日变成赌电量。',
+charge:['额济纳县城主站充至95%以上；同城另选两处公共快充作出发备选','在金塔、酒泉或瓜州至少完成一次有效快充，预计抵达敦煌低于20%时提前补','到敦煌后优先太阳庄园酒店特斯拉超充；拥堵则切敦煌城区公共快充'],
+play:['当天以赶路为主；每2.5小时在有人、有照明的正规停车点给狗补水短遛','抵达后只在党河风情线外围或酒店周边短绳散步，不加塞鸣沙山项目'],
+stay:'敦煌城堡酒店 · 地址：敦煌七里镇景观大道12999号飞天酒业院内 · 携程当前标注狗可携带、需提前联系且免费，两只边牧仍须书面确认 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/106576328.html" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=敦煌城堡酒店景观大道12999号" target="_blank" rel="noopener">高德导航</a>；备用：敦煌云亦酒店 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/111578814.html" target="_blank" rel="noopener">携程</a>',
+food:'抵达后在敦煌城区选择有外摆位的驴肉黄面或烧烤，优先打包回酒店',
+tips:['D4是无可靠沿线补能确认的S240/S245，今晚必须完成轮胎、玻璃水、离线地图和两端充电站核查','不安排莫高窟、鸣沙山等狗无法同行或耗时项目']},
 
-{d:4,date:'8月4日 · 周二',title:'哈密 → 乌鲁木齐（走北线巴里坤）',km:600,hrs:'7–8h',tags:['drive'],theme:'grass',emoji:'🌾',
-route:'G7 北线经巴里坤草原（凉爽）· 比 G30 吐鲁番线避开45°C酷热',
-charge:['哈密超充满电出发','大河服务区（G7梧木段）快充，该段36根桩已投用','乌鲁木齐·德汇中心/万科生活广场特斯拉超充'],
-play:['巴里坤草原路边停车遛狗——第一口「新疆味」，免费大草原','晚上酒店休整，为环线蓄力'],
-stay:'乌鲁木齐县·缘来如玉民宿 · 地址：水西沟镇平西梁村A10-2号 · 平台地址与在营状态可核，两只边牧仍须写入订单并取得商家回复 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/110381323.html" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=缘来如玉民宿水西沟" target="_blank" rel="noopener">高德导航</a>',
-food:'血站小李子大盘鸡（老字号）或米拉吉（拌面/烤肉/薄皮包子）',
-tips:['乌市大型犬管理严：肩高>35cm须戴嘴套、2m内牵引','今日采购：全程狗粮+驱虫备用+降温垫+冰袋','明天起进入玩乐模式！']},
+{d:4,date:'8月4日 · 周二',title:'敦煌 → S240＋S245 → 哈密（经典路段）',km:380,hrs:'6–7h＋休息',tags:['drive','fun'],theme:'gobi',emoji:'🛣️',
+route:'敦煌G215过境段→S240→方山口甘新界→S245→哈密二道湖互通；S240约164.8km、S245约186.187km',
+decision:'敦煌出发电量低于95%、车机预测抵达哈密低于20%，或两处敦煌出发站都无法确认 → 延迟出发；不改走别的路线冒险追行程。',
+charge:['主站：敦煌太阳庄园酒店特斯拉超充（4桩、最高119kW、24h）','备选A/B：在敦煌城区用车机、e充电或高德锁定两处不同运营商公共快充','S240/S245沿线未获主管部门或运营商充电投运确认，小白地、东南河只按收费/休息节点看待','到达哈密优先华宇大酒店特斯拉超充；排队超过20分钟切哈密城区公共快充'],
+play:['这一天就是经典公路本身：只在正规停车区短停拍戈壁、风电与省界公路景观','两只狗只在铺装停车区短绳下车，避开货车盲区和高温路面'],
+stay:'哈密·海逸酒店（G312国道店）· 地址：伊州区火箭农场东疆中大道71号（潞和大厦）· 平台允许携宠但收费，两只边牧仍须书面确认 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=122779043" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=海逸酒店哈密G312国道店" target="_blank" rel="noopener">高德导航</a>',
+food:'青禹然羊肉焖饼、哈密瓜；优先有外摆位或打包',
+tips:['S245设小白地、东南河两处主线收费站；9座以下客车两段MTC合计约46元，最终以现场/ETC账单为准','进疆检查主动申报两只狗，出示狂犬疫苗证与动物A证']},
 
-{d:5,date:'8月5日 · 周三',title:'乌鲁木齐 → 江布拉克 🚙睡车夜①',km:270,hrs:'3.5h',tags:['fun','car'],theme:'grass',emoji:'🌾',
-route:'G30—吉木萨尔—奇台—江布拉克（奇台县半截沟镇 · 门票旺季55/淡季25元每人+自驾车100/辆〔2026核查：原43元已过期〕）<a class="lnk bk" href="https://piao.ctrip.com/dest/u-_-119707.html" target="_blank">携程门票</a><a class="lnk" href="https://uri.amap.com/search?keyword=江布拉克景区" target="_blank">高德导航</a>',
+{d:5,date:'8月5日 · 周三',title:'哈密 → 巴里坤 → 江布拉克 🚙睡车夜①',km:520,hrs:'7–8h',tags:['fun','car'],theme:'grass',emoji:'🌾',
+route:'哈密—G575—巴里坤—G7木垒/奇台方向—江布拉克；不再先到乌鲁木齐后折返（江布拉克门票旺季55/人、自驾100/辆）<a class="lnk bk" href="https://piao.ctrip.com/dest/u-_-119707.html" target="_blank" rel="noopener">携程门票</a><a class="lnk" href="https://uri.amap.com/search?keyword=江布拉克景区" target="_blank" rel="noopener">高德导航</a>',
 decision:'宠物、自驾、床车营位、当日开放任一未确认 → 取消景区并住奇台金麦浪酒店。',
-charge:['乌市满电出发','奇台县城国网快充补满再进山（景区内无桩）'],
+charge:['哈密华宇大酒店超充满电出发；拥堵切哈密城区公共快充','巴里坤县城作为中途备选补能点，进段前查车机实时可用性','奇台县城公共快充补足再进江布拉克，景区内不预设可用桩'],
 play:['江布拉克官方已公布旺季门票55元、7座及以下自驾100元；宠物与床车规则须电话确认后执行','获准后只走规定自驾路线，万亩旱田与天山雪峰拍照；麦田、草场和未开放区域不进入','若未获准带狗，直接取消景区项目，在奇台周边公共道路休整'],
 stay:'🚙 条件营位：仅在☎0994-7325888明确确认“8月5日开放、两只边牧可入、普通私家车可睡、具体指定营位与费用”后执行；否则住<b>奇台金麦浪酒店（第一人民医院店）</b>，地址：奇台南新区2区12丘188幢39号商铺3层，☎0994-7374666；平台狗/猫预约免费，但两只边牧须书面确认 <a class="lnk bk" href="https://m.ctrip.com/html5/hotel/hoteldetail/116793188.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=奇台金麦浪酒店第一人民医院店奇台" target="_blank" rel="noopener">导航</a>',
-food:'奇台县城午饭：过油肉拌面；晚上营地卡式炉简餐/自热锅',
-tips:['景区运营通知明确不得随意露营，不能把停车场当营地','获准睡车时睡前电量≥60%；未获准不临场硬睡','后排放平+充气垫+睡袋，狗睡后备箱区铺垫']},
+food:'巴里坤或奇台县城午饭：过油肉拌面；晚上营地卡式炉简餐/自热锅',
+tips:['这是取消乌鲁木齐折返后换回的关键一天，途中不临时增加巴里坤景区项目','景区运营通知明确不得随意露营，不能把停车场当营地','获准睡车时睡前电量≥60%；未获准不临场硬睡','后排放平+充气垫+睡袋，狗睡后备箱区铺垫']},
 
 {d:6,date:'8月6日 · 周四',title:'江布拉克 → 卡拉麦里 → 可可托海',km:400,hrs:'5.5h',tags:['fun'],theme:'gobi',emoji:'🦌',
 route:'奇台—S228穿越卡拉麦里保护区—恰库尔图—富蕴—可可托海镇',
@@ -884,7 +891,7 @@ charge:['那拉提满电出发（今天最关键，那拉提端2026年已升级�
 play:['巩乃斯河谷晨游','巴音布鲁克景区禁宠不进：仅从公共道路经过，不把镇外非景区观景写成固定机位','独库北段在最终通告确认开放并完成预约后通行：乔尔玛→哈希勒根达坂→天山云杉路段；只在合法停车区短停 <a class="lnk" href="https://uri.amap.com/search?keyword=乔尔玛" target="_blank" rel="noopener">导航·乔尔玛</a>','独山子大峡谷宠物规则无正式证据，本次不作为行程项目；直接前往奎屯'],
 stay:'奎屯·上东湖大酒店（汇嘉时代店）· 地址：奎屯天北新区迎宾大道东湖公园东侧 · 近期携宠评价提到尿垫、湿巾与宠物门牌，仍需确认两只边牧 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/5376790.html" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=上东湖大酒店奎屯" target="_blank" rel="noopener">高德导航</a>',
 food:'独山子拌面（「拌面之乡」满街拌面馆）',
-tips:['现有公安厅页面为公开征求意见稿：支持8:00-19:00、提前1-7天预约的草案口径，但日期仍含占位符且无“每日3000辆”；必须以出发前最终通告为准','若未开放/未预约成功，走G218/G30等实时导航替代路线，不闯卡','垭口狗可能晕车或不适：少食多水，备兽医建议的晕车药；雨雪即降速或折返']},
+tips:['公安厅2026-07-02公告确认预约制通告已经审议通过；仍须在出发前1-7天完成实际预约并以前一晚开放状态为准','若未开放/未预约成功，走G218/G30等实时导航替代路线，不闯卡','垭口狗可能晕车或不适：少食多水，备兽医建议的晕车药；雨雪即降速或折返']},
 
 {d:14,date:'8月14日 · 周五',title:'奎屯 → 沙湾 → 乌鲁木齐（休整）',km:360,hrs:'4.5h',tags:['fun'],theme:'city',emoji:'🍗',
 route:'奎屯—（可选安集海大峡谷+60km）—沙湾—乌鲁木齐',
@@ -927,6 +934,12 @@ stay:'家 🏠',
 food:'呼市烧麦最后一顿仪式感',
 tips:['到家后3件事：给狗做一次全身蜱虫检查、洗澡、约体检','把这一路的照片整理成相册吧']}
 ];
+
+const computedTotalKm = DAYS.reduce((sum, day) => sum + day.km, 0);
+document.getElementById('totalKm').textContent = `≈${Math.round(computedTotalKm / 100) * 100}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+document.querySelectorAll('[data-total-km]').forEach(el => {
+  el.textContent = (Math.round(computedTotalKm / 100) * 100).toLocaleString('zh-CN');
+});
 
 /* ====================== 渲染每日卡片 ====================== */
 const listEl = document.getElementById('dayList');
@@ -1029,8 +1042,8 @@ const stayTask = (id,day,trip,title,due,href,phone='') => ({
 const CONFIRM_TASKS = [
   stayTask('stay-d01',1,'2026-08-01','临河云庭酒店','2026-07-18','https://hotels.ctrip.com/hotels/112823609.html'),
   stayTask('stay-d02',2,'2026-08-02','额济纳旗云朵酒店','2026-07-18','https://hotels.ctrip.com/hotels/80911875.html'),
-  stayTask('stay-d03',3,'2026-08-03','哈密海逸酒店','2026-07-18','https://hotels.ctrip.com/hotels/122779043.html'),
-  stayTask('stay-d04',4,'2026-08-04','乌鲁木齐县缘来如玉民宿','2026-07-18','https://hotels.ctrip.com/hotels/110381323.html'),
+  stayTask('stay-d03',3,'2026-08-03','敦煌城堡酒店','2026-07-18','https://hotels.ctrip.com/hotels/106576328.html'),
+  stayTask('stay-d04',4,'2026-08-04','哈密海逸酒店','2026-07-18','https://hotels.ctrip.com/hotels/122779043.html'),
   {id:'stay-d05',category:'景区与床车',title:'D5 江布拉克：两只边牧、自驾、床车营位与当日开放',tripDate:'2026-08-05',dueDate:'2026-07-22',recheckDate:'2026-08-04',sourceVerified:'2026-07-13',contacts:[{label:'0994-7325888',href:'tel:09947325888'},{label:'景区购票',href:'https://piao.ctrip.com/dest/u-_-119707.html'},{label:'备用酒店',href:'https://m.ctrip.com/html5/hotel/hoteldetail/116793188.html'}],fallback:'失败住奇台金麦浪酒店，并在备注记录订单号。'},
   stayTask('stay-d06',6,'2026-08-06','可可托海牧恬园','2026-07-18','https://hotels.ctrip.com/hotels/104433912.html'),
   stayTask('stay-d07',7,'2026-08-07','布尔津静逸时光民宿','2026-07-18','https://hotels.ctrip.com/hotels/9571126.html','15299386959'),
@@ -1046,7 +1059,8 @@ const CONFIRM_TASKS = [
   stayTask('stay-d17',17,'2026-08-17','临河云庭酒店','2026-07-18','https://hotels.ctrip.com/hotels/112823609.html'),
   {id:'g7-out',category:'道路与充电',title:'G7去程：乌力吉—雅干关键桩实时状态',tripDate:'2026-08-02',dueDate:'2026-07-29',recheckDate:'2026-08-01',sourceVerified:'2026-07-13',contacts:[{label:'e路畅通',text:'微信小程序'},{label:'e充电',text:'App'}],fallback:'关键站连续异常则走G30河西走廊。'},
   {id:'g7-back',category:'道路与充电',title:'G7返程：白疙瘩—乌力吉关键桩重新核查',tripDate:'2026-08-16',dueDate:'2026-08-13',recheckDate:'2026-08-15',sourceVerified:'2026-07-13',contacts:[{label:'e路畅通',text:'微信小程序'},{label:'e充电',text:'App'}],fallback:'不能复用去程结论；失败改G30并增加1天。'},
-  {id:'duku-book',category:'道路与充电',title:'独库北段：最终公告、开放状态与预约',tripDate:'2026-08-13',dueDate:'2026-08-06',recheckDate:'2026-08-12',sourceVerified:'2026-07-13',contacts:[{label:'公安厅资料',href:'https://gat.xinjiang.gov.cn/gat/tzgg/202606/d023345a75834189a9b99c11390698d9.shtml'},{label:'新疆交警',text:'公众号'}],fallback:'无最终公告、未开放或预约失败即改G218/G30。'},
+  {id:'s240-s245',category:'道路与充电',title:'D4 S240/S245：敦煌出发双备选、风况与抵达电量',tripDate:'2026-08-04',dueDate:'2026-08-03',recheckDate:'2026-08-04',sourceVerified:'2026-07-16',contacts:[{label:'S245收费批复',href:'https://jtyst.xinjiang.gov.cn/xjjtysj/tjgf/202411/d62f562572cb4855962ae00f799c9866.shtml'},{label:'Tesla App',text:'实时站点'}],fallback:'无法充至95%或预测抵达低于20%则延迟出发，不依赖未经确认的沿线桩。'},
+  {id:'duku-book',category:'道路与充电',title:'独库北段：正式通告、开放状态与预约',tripDate:'2026-08-13',dueDate:'2026-08-06',recheckDate:'2026-08-12',sourceVerified:'2026-07-16',contacts:[{label:'公安厅正式公告',href:'https://gat.xinjiang.gov.cn/gat/tzgg/202607/d75de3d68abb43feb47d0defc201411e.shtml'},{label:'新疆交警',text:'公众号'}],fallback:'未开放或预约失败即改G218/G30，不闯卡。'},
   {id:'cert-out',category:'证件与天气',title:'去程动物A证：出证有效期覆盖进疆检查点',tripDate:'2026-08-03',dueDate:'2026-07-29',recheckDate:'',sourceVerified:'2026-07-13',contacts:[{label:'材料要求',href:'https://www.suzhou.gov.cn/szsrmzf/snfwzsk/202602/18e141e9957d42baa3768ba8f028aa16.shtml'}]},
   {id:'cert-back',category:'证件与天气',title:'返程动物A证：乌鲁木齐属地受理与出证',tripDate:'2026-08-14',dueDate:'2026-08-11',recheckDate:'2026-08-13',sourceVerified:'2026-07-13',contacts:[{label:'乌市宠物医院搜索',href:'https://uri.amap.com/search?keyword=乌鲁木齐宠物医院'}]},
   {id:'ahe-weather',category:'证件与天气',title:'D8 阿禾：天气、道路管制、离线地图与返航电量',tripDate:'2026-08-08',dueDate:'2026-08-07',recheckDate:'2026-08-08',sourceVerified:'2026-07-13',contacts:[{label:'阿勒泰提醒',href:'https://www.aksxw.com/sy/rdxw/xj/202605/t20260511_34373389.html'}]},
