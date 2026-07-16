@@ -34,6 +34,9 @@ nav{position:sticky;top:0;z-index:50;background:rgba(250,247,240,.92);backdrop-f
 nav button{border:none;background:none;font:inherit;font-size:14px;font-weight:600;color:var(--sub);padding:8px 16px;border-radius:99px;cursor:pointer;white-space:nowrap;transition:.2s}
 nav button:hover{color:var(--ink);background:#f0ead9}
 nav button.on{background:var(--ink);color:#fff}
+.nav-mobile-hint{display:none;text-align:center;color:var(--sub);font-size:11px;padding:4px 10px;background:var(--paper);border-bottom:1px solid var(--line)}
+button:focus-visible,a:focus-visible,[role="button"]:focus-visible,[role="tab"]:focus-visible{outline:3px solid #f3a84f;outline-offset:3px}
+.node:focus-visible circle{stroke:#f3a84f;stroke-width:5}
 
 main{max-width:1020px;margin:0 auto;padding:28px 16px 80px}
 .tab{display:none;animation:fade .35s ease}
@@ -167,16 +170,21 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   .hero .chip{padding:5px 10px;font-size:12px}
   .hero .chip:nth-child(n+3){display:none}
   nav{justify-content:flex-start}
+  .nav-mobile-hint{display:block}
   .nav-label{display:none}
   .day-art{height:96px}
   .confirm-summary{grid-template-columns:repeat(2,1fr)}
   .confirm-grid{grid-template-columns:1fr}
   main{padding-top:18px}
 }
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
 @media print{
   @page{size:A4;margin:10mm}
   body{background:#fff;color:#000;font-size:10pt}
-  .hero,nav,footer,.filters,.freshness-banner,.no-print{display:none!important}
+  .hero,nav,.nav-mobile-hint,footer,.filters,.freshness-banner,.no-print{display:none!important}
   main{max-width:none;padding:0}
   .tab{display:none!important;animation:none}
   #tab-days{display:block!important}
@@ -199,31 +207,32 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 <!-- ================= HERO ================= -->
 <header class="hero" id="heroBox"></header>
 
-<nav id="nav" aria-label="攻略页面">
-  <div class="nav-group" aria-label="计划"><span class="nav-label">计划</span>
-    <button class="on" data-tab="overview">🗺️ 主计划</button>
-    <button data-tab="days">📅 逐日行程</button>
-    <button data-tab="prep">🎒 预算清单</button>
+<nav id="nav" role="tablist" aria-label="攻略页面栏目">
+  <div class="nav-group" role="presentation"><span class="nav-label">计划</span>
+    <button class="on" id="nav-overview" role="tab" aria-controls="tab-overview" aria-selected="true" tabindex="0" data-tab="overview">🗺️ 主计划</button>
+    <button id="nav-days" role="tab" aria-controls="tab-days" aria-selected="false" tabindex="-1" data-tab="days">📅 逐日行程</button>
+    <button id="nav-prep" role="tab" aria-controls="tab-prep" aria-selected="false" tabindex="-1" data-tab="prep">🎒 预算清单</button>
   </div>
-  <div class="nav-group" aria-label="执行"><span class="nav-label">执行</span>
-    <button data-tab="confirm">✅ 确认中心</button>
-    <button data-tab="charge">⚡ 充电补能</button>
-    <button data-tab="stay">🏨 住宿美食</button>
-    <button data-tab="dogs">🐾 宠物指南</button>
-    <button data-tab="warn">⚠️ 注意事项</button>
+  <div class="nav-group" role="presentation"><span class="nav-label">执行</span>
+    <button id="nav-confirm" role="tab" aria-controls="tab-confirm" aria-selected="false" tabindex="-1" data-tab="confirm">✅ 确认中心</button>
+    <button id="nav-charge" role="tab" aria-controls="tab-charge" aria-selected="false" tabindex="-1" data-tab="charge">⚡ 充电补能</button>
+    <button id="nav-stay" role="tab" aria-controls="tab-stay" aria-selected="false" tabindex="-1" data-tab="stay">🏨 住宿美食</button>
+    <button id="nav-dogs" role="tab" aria-controls="tab-dogs" aria-selected="false" tabindex="-1" data-tab="dogs">🐾 宠物指南</button>
+    <button id="nav-warn" role="tab" aria-controls="tab-warn" aria-selected="false" tabindex="-1" data-tab="warn">⚠️ 注意事项</button>
   </div>
-  <div class="nav-group" aria-label="记录"><span class="nav-label">记录</span>
-    <button data-tab="changelog">📝 更新日志</button>
-    <button data-tab="miss">🗄️ 不得不错过</button>
+  <div class="nav-group" role="presentation"><span class="nav-label">记录</span>
+    <button id="nav-changelog" role="tab" aria-controls="tab-changelog" aria-selected="false" tabindex="-1" data-tab="changelog">📝 更新日志</button>
+    <button id="nav-miss" role="tab" aria-controls="tab-miss" aria-selected="false" tabindex="-1" data-tab="miss">🗄️ 不得不错过</button>
   </div>
 </nav>
+<p class="nav-mobile-hint" aria-hidden="true">左右滑动可查看更多栏目 →</p>
 
 <main>
 
 <div id="freshnessBanner" class="freshness-banner" role="status" data-verified="2026-07-16" data-stale-after="7"></div>
 
 <!-- ================= 总览 ================= -->
-<section class="tab on" id="tab-overview">
+<section class="tab on" id="tab-overview" role="tabpanel" aria-labelledby="nav-overview" tabindex="0">
   <h2 class="sec">🧭 主计划总览</h2>
   <p class="lead">2026年8月 · 北京⇄大北疆环线 · 夫妻二人 + 两条成年边牧 · 特斯拉 Model Y L（CLTC 751km）· 全程自驾往返。基线 18 天，计划在江布拉克与赛里木湖各尝试一晚指定营地床车；两处都必须先确认当日开放、宠物与自带床车规则，未确认则启用页面中的酒店备选。点击地图节点可跳转到当天行程。</p>
 
@@ -287,7 +296,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 </section>
 
 <!-- ================= 确认中心 ================= -->
-<section class="tab" id="tab-confirm">
+<section class="tab" id="tab-confirm" role="tabpanel" aria-labelledby="nav-confirm" tabindex="0">
   <h2 class="sec">✅ 出发前确认中心</h2>
   <p class="lead">这里管理真正影响出发的动态事项。状态、最后确认日期和备注只保存在当前浏览器；“平台宠物友好”不能代替“两只15–20kg边牧”的书面确认。</p>
   <div id="confirmSaveWarning" class="confirm-save-warning" role="alert">⚠️ 当前修改未能保存到浏览器，请不要关闭页面。</div>
@@ -309,7 +318,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 </section>
 
 <!-- ================= 更新日志 ================= -->
-<section class="tab" id="tab-changelog">
+<section class="tab" id="tab-changelog" role="tabpanel" aria-labelledby="nav-changelog" tabindex="0">
   <h2 class="sec">📝 更新日志</h2>
   <p class="lead">这里记录方案为什么变化，不参与主计划执行。当前执行基线为 V7；旧版本中的价格、酒店和路线仅用于追溯，不应继续采用。</p>
 
@@ -347,7 +356,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 </section>
 
 <!-- ================= 逐日 ================= -->
-<section class="tab" id="tab-days">
+<section class="tab" id="tab-days" role="tabpanel" aria-labelledby="nav-days" tabindex="0">
   <h2 class="sec">📅 逐日行程</h2>
   <p class="lead">建议 8月1日（周六）出发、8月18日（周二）到家；日期可整体平移。每张卡片展开后是当天的「行 / 玩 / 住 / 吃 / 提醒」全细节。</p>
   <div class="filters" id="dayFilters">
@@ -362,7 +371,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 </section>
 
 <!-- ================= 充电 ================= -->
-<section class="tab" id="tab-charge">
+<section class="tab" id="tab-charge" role="tabpanel" aria-labelledby="nav-charge" tabindex="0">
   <h2 class="sec">⚡ Model Y L 充电总策略</h2>
   <div class="card">
     <p><b>车辆基准</b>：CLTC 751km，高速实际按 <b>500–550km</b> 估算；8月高温空调 + 戈壁侧风，按 <b>-20~30%</b> 预留；山区（果子沟、独库、阿禾）电耗再 +15~30%。</p>
@@ -389,7 +398,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 </section>
 
 <!-- ================= 宠物 ================= -->
-<section class="tab" id="tab-dogs">
+<section class="tab" id="tab-dogs" role="tabpanel" aria-labelledby="nav-dogs" tabindex="0">
   <h2 class="sec">🐾 景区宠物政策速查</h2>
   <p class="lead">核心规律：<b>凡强制换乘区间车的景区基本禁宠；凡允许自驾进入的景区基本狗友好。</b>标注「电话确认」的项目出发前务必核实——新疆景区政策执行口径随季节变动。</p>
   <div class="twrap"><table>
@@ -439,7 +448,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 </section>
 
 <!-- ================= 住宿 ================= -->
-<section class="tab" id="tab-stay">
+<section class="tab" id="tab-stay" role="tabpanel" aria-labelledby="nav-stay" tabindex="0">
   <h2 class="sec">🏨 全程住宿清单</h2>
   <p class="lead">舒适型 300-600元/晚。⚠️ 所有「宠物友好」都是线索性质——<b>每一晚都要提前电话确认「两只边牧」</b>，并让对方在订单备注确认，避免到店被拒。打电话话术：「两只边境牧羊犬、15-20kg、打过疫苗、不拆家、自备垫子和床单」。</p>
   <div class="twrap"><table>
@@ -484,7 +493,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 </section>
 
 <!-- ================= 注意事项 ================= -->
-<section class="tab" id="tab-warn">
+<section class="tab" id="tab-warn" role="tabpanel" aria-labelledby="nav-warn" tabindex="0">
   <h2 class="sec">🪪 检查站与证件</h2>
   <div class="card">
     <ul style="list-style:none">
@@ -569,7 +578,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 </section>
 
 <!-- ================= 不得不错过 ================= -->
-<section class="tab" id="tab-miss">
+<section class="tab" id="tab-miss" role="tabpanel" aria-labelledby="nav-miss" tabindex="0">
   <h2 class="sec">🗄️ 不得不错过</h2>
   <p class="lead">原则很简单：<b>狗不去的地方，我们也不去。</b>这一页归档了因此舍掉的地方——不是遗憾清单，是「下次专门再来」的种子清单。每一处都写清了为什么去不了、此行用什么代替了它、以及未来哪个季节来最值。</p>
 
@@ -577,21 +586,21 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <h4 style="font-size:16px;font-weight:800;margin-bottom:6px">🏔️ 喀纳斯主湖 + 观鱼台 <span class="pill p-red">官方禁宠·禁大型犬</span></h4>
     <p><b>为什么错过</b>：夏季私家车禁入，贾登峪强制换乘区间车（区间车禁宠），且景区明文禁止大型犬入园；全程游览 6-9 小时，狗无处安放（布尔津经复核无寄养门店）。</p>
     <p><b>此行的替代</b>：D8 阿禾公路阿勒泰端精华段往返——森林、峡谷、草甸连续出现，两只狗全程随车，只在安全停车带短绳活动。</p>
-    <p><b>未来补偿</b>：最佳窗口 <b>9月中下旬金秋</b>（白桦金黄+湖水蓝绿），两天一夜：湖区三湾徒步+观鱼台日出；旺季门票160/人+区间车一进70/二进110。冬季（10/16后）可自驾进入，是摄影淡季彩蛋。<a class="lnk" href="https://uri.amap.com/search?keyword=贾登峪停车场" target="_blank">导航·贾登峪</a></p>
+    <p><b>未来补偿</b>：最佳窗口 <b>9月中下旬金秋</b>（白桦金黄+湖水蓝绿），两天一夜：湖区三湾徒步+观鱼台日出；旺季门票160/人+区间车一进70/二进110。冬季（10/16后）可自驾进入，是摄影淡季彩蛋。<a class="lnk" href="https://uri.amap.com/search?keyword=贾登峪停车场" target="_blank" rel="noopener">导航·贾登峪</a></p>
   </div>
 
   <div class="card">
     <h4 style="font-size:16px;font-weight:800;margin-bottom:6px">💧 天山天池 <span class="pill p-red">官方禁宠</span></h4>
     <p><b>为什么错过</b>：游览须知明确谢绝宠物入园，区间车模式往返 4-6 小时，8月把狗留车里属危险操作。</p>
     <p><b>此行的替代</b>：赛里木湖——同为天山高山湖，可自驾环湖、狗能下地狂奔，此行体验上位替代。</p>
-    <p><b>未来补偿</b>：距乌鲁木齐仅90分钟，任何一次不带狗的乌市差旅顺路即可解决：门票旺季95/人（4/1-10/31）、冬春季45/人+区间车；地址：阜康市准噶尔路501号。冬季冰雪大典也值得一看。<a class="lnk" href="https://uri.amap.com/search?keyword=天山天池游客服务中心" target="_blank">导航</a></p>
+    <p><b>未来补偿</b>：距乌鲁木齐仅90分钟，任何一次不带狗的乌市差旅顺路即可解决：门票旺季95/人（4/1-10/31）、冬春季45/人+区间车；地址：阜康市准噶尔路501号。冬季冰雪大典也值得一看。<a class="lnk" href="https://uri.amap.com/search?keyword=天山天池游客服务中心" target="_blank" rel="noopener">导航</a></p>
   </div>
 
   <div class="card">
     <h4 style="font-size:16px;font-weight:800;margin-bottom:6px">🦢 巴音布鲁克·九曲十八弯 <span class="pill p-red">官方禁宠（天鹅保护区）</span></h4>
     <p><b>为什么错过</b>：为保护天鹅栖息地，景区明文禁宠且禁上区间车；门票65+区间车62，往返90km 车程加游览 4-6 小时起。</p>
     <p><b>此行的替代</b>：D13 镇外开都河非景区段远观「小九曲」+ 独库沿线高山草甸——落日下的开都河湾同样出片。</p>
-    <p><b>未来补偿</b>：<b>6月天鹅最多、9月日落最烈</b>；九曲十八弯的「九个太阳」日落是新疆摄影名场面，值得专程；注意2025年底曾闭园改造，行前查开园状态。<a class="lnk" href="https://uri.amap.com/search?keyword=巴音布鲁克景区" target="_blank">导航</a></p>
+    <p><b>未来补偿</b>：<b>6月天鹅最多、9月日落最烈</b>；九曲十八弯的「九个太阳」日落是新疆摄影名场面，值得专程；注意2025年底曾闭园改造，行前查开园状态。<a class="lnk" href="https://uri.amap.com/search?keyword=巴音布鲁克景区" target="_blank" rel="noopener">导航</a></p>
   </div>
 
   <div class="card">
@@ -626,7 +635,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 </section>
 
 <!-- ================= 预算清单 ================= -->
-<section class="tab" id="tab-prep">
+<section class="tab" id="tab-prep" role="tabpanel" aria-labelledby="nav-prep" tabindex="0">
   <h2 class="sec">💰 预算估算（两人两狗）</h2>
   <div class="twrap"><table>
     <thead><tr><th>项目</th><th>估算</th><th>说明</th></tr></thead>
@@ -635,6 +644,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   </table></div>
 
   <h2 class="sec">🎒 行前清单（可勾选，进度自动保存）</h2>
+  <div id="ckSaveWarning" class="confirm-save-warning" role="alert">浏览器未能保存清单，请截图或手工记录后再关闭页面。</div>
   <div class="cklist" id="checklists"></div>
 
   <h2 class="sec">⏰ 出发前时间线</h2>
@@ -766,7 +776,7 @@ const DAYS = [
 route:'G6→G7 · 张家口—乌兰察布—呼和浩特—包头—临河',
 charge:['出发前一晚家充满电，早6:30出发','呼和浩特·维多利摩尔城特斯拉超充（午饭档：老绥元烧麦）','包头·香格里拉超充视电量补','到店后临河市区/酒店桩充满，为明天无人区做准备'],
 play:['服务区每2.5小时停一次，遛狗10分钟+喂水','呼市午间高温，找树荫停车，别让狗踩晒烫的地面'],
-stay:'临河·云庭酒店（维多利摩尔城店，✅已核实：原"人民公园店"已更名，携程「可携带宠物」标签在，4.7分）· 地址：临河区胜利北路（巴运国际旅行社东南30米）· ~300-400，仍电话确认两只边牧 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=112823609" target="_blank">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=云庭酒店临河人民公园店" target="_blank">高德导航</a>',
+stay:'临河·云庭酒店（维多利摩尔城店，✅已核实：原"人民公园店"已更名，携程「可携带宠物」标签在，4.7分）· 地址：临河区胜利北路（巴运国际旅行社东南30米）· ~300-400，仍电话确认两只边牧 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=112823609" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=云庭酒店巴彦淖尔维多利摩尔城店" target="_blank" rel="noopener">高德导航</a>',
 food:'晚餐河套菜：猪肉烩酸菜、清蒸羊肉、肉焙子；饭后买华莱士蜜瓜',
 tips:['后排放平铺防滑垫，狗用安全带固定扣','今天检查：狗证件包（疫苗证+检疫证明+犬证）放手套箱']},
 
@@ -852,7 +862,7 @@ tips:['狗绝对不能追旱獭和天鹅','环湖草坪严禁私自驻车野营�
 route:'赛里木湖—果子沟大桥—伊宁',
 charge:['东门快充满电出湖','伊宁市区桩密集（辰甲电覆盖伊犁河谷），无焦虑'],
 play:['24h票二刷：清晨S弯人少光线好，狗在草坡撒最后一轮欢','果子沟大桥观景台路边停车拍桥','下午伊宁六星街：狗牵绳逛街边，轮流进店买酸奶粽子（6元）和手工冰淇淋','傍晚伊犁河大桥日落'],
-stay:'伊宁·安之若宿民宿 · 地址：伊犁河南岸新区东四路8排13号 · 2024年开业5.0分，宠物友好标注 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=122411377" target="_blank">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=安之若宿民宿伊宁" target="_blank">高德导航</a> 备选：迪阿斯民宿（六星街赛依拉木街4巷5号）<a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=109160257" target="_blank">携程</a>',
+stay:'伊宁·安之若宿民宿 · 地址：伊犁河南岸新区东四路8排13号 · 2024年开业5.0分，宠物友好标注 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=122411377" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=安之若宿民宿伊宁" target="_blank" rel="noopener">高德导航</a> 备选：迪阿斯民宿（六星街赛依拉木街4巷5号）<a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=109160257" target="_blank" rel="noopener">携程</a>',
 food:'伊犁馄汤（20-30元带免费奶茶）、故乡烤肉、汉人街烤包子',
 tips:['伊宁宠物医疗资源相对集中，可给狗洗澡并收藏最近的营业中宠物医院','湖区清晨偏冷：人穿薄羽绒，狗视体感加衣']},
 
@@ -860,7 +870,7 @@ tips:['伊宁宠物医疗资源相对集中，可给狗洗澡并收藏最近的�
 route:'伊宁—尼勒克—S315唐布拉（免费130km画廊）—那拉提镇',
 charge:['伊宁满电出发','尼勒克县城补电','那拉提度假酒店目的地桩/镇上桩过夜充'],
 play:['全天狗天堂：喀什河谷+云杉+草甸+毡房，S315随停随玩、不设售票口','仙女湖、温泉点位打卡','傍晚到那拉提镇周边免费草原——和景区本质是同一片天山草甸，不购票不排队'],
-stay:'那拉提·瑞兆居民宿（✅携程「宠物友好」标签已核实）· 地址：那拉提镇喀拉苏致富街11巷002号（⚠️距镇客运站约14.6km，非镇中心） <a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=120359623" target="_blank">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=瑞兆居民宿那拉提" target="_blank">高德导航</a> 备选：那一叶（振兴街13巷004号）<a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=120262579" target="_blank">携程</a> / 夕一夏（英加尔村十八巷2号·一亩草坪院）<a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=78872056" target="_blank">携程</a>',
+stay:'那拉提·瑞兆居民宿（✅携程「宠物友好」标签已核实）· 地址：那拉提镇喀拉苏致富街11巷002号（⚠️距镇客运站约14.6km，非镇中心） <a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=120359623" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=瑞兆居民宿那拉提" target="_blank" rel="noopener">高德导航</a> 备选：那一叶（振兴街13巷004号）<a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=120262579" target="_blank" rel="noopener">携程</a> / 夕一夏（英加尔村十八巷2号·一亩草坪院）<a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=78872056" target="_blank" rel="noopener">携程</a>',
 food:'纳仁、马肠子、哈萨克奶茶',
 tips:['⚠️ 蜱虫高发区：确认体外驱虫在效期，晚上摸遍耳后/腋下/趾缝','视野内有羊群/毡房必须上绳（牧羊犬冲突+追畜赔偿）']},
 
@@ -1030,6 +1040,13 @@ DAYS.forEach((D,idx)=>{
 });
 
 /* filters */
+function applyDayFilter(filter){
+  document.querySelectorAll('#dayFilters button[data-f]').forEach(button=>button.classList.toggle('on',button.dataset.f===filter));
+  document.querySelectorAll('.day').forEach(day=>day.classList.toggle('hidden',filter!=='all'&&!day.dataset.tags.includes(filter)));
+}
+function resetDayFilter(){
+  applyDayFilter('all');
+}
 document.getElementById('dayFilters').addEventListener('click',e=>{
   const b = e.target.closest('button'); if(!b) return;
   if(b.id==='btnPrint'){
@@ -1043,24 +1060,37 @@ document.getElementById('dayFilters').addEventListener('click',e=>{
     b.textContent = anyClosed ? '全部收起' : '全部展开';
     return;
   }
-  document.querySelectorAll('#dayFilters button[data-f]').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');
-  const f = b.dataset.f;
-  document.querySelectorAll('.day').forEach(d=>{
-    d.classList.toggle('hidden', f!=='all' && !d.dataset.tags.includes(f));
-  });
+  applyDayFilter(b.dataset.f);
 });
 
 /* ====================== Tabs ====================== */
 const nav = document.getElementById('nav');
 function goTab(name){
-  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on', b.dataset.tab===name));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.id==='tab-'+name));
+  document.querySelectorAll('nav button[role="tab"]').forEach(b=>{
+    const active=b.dataset.tab===name;
+    b.classList.toggle('on',active);
+    b.setAttribute('aria-selected',String(active));
+    b.tabIndex=active?0:-1;
+  });
+  document.querySelectorAll('.tab[role="tabpanel"]').forEach(t=>{
+    const active=t.id==='tab-'+name;
+    t.classList.toggle('on',active);
+    t.setAttribute('aria-hidden',String(!active));
+  });
   const active = nav.querySelector(`button[data-tab="${name}"]`);
   if(window.innerWidth<=640) active?.scrollIntoView({block:'nearest',inline:'center'});
   window.scrollTo({top:0});
 }
 nav.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b) goTab(b.dataset.tab); });
+nav.addEventListener('keydown',e=>{
+  const tabs=[...nav.querySelectorAll('button[role="tab"]')];
+  const current=tabs.indexOf(e.target.closest('button[role="tab"]'));
+  if(current<0||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return;
+  e.preventDefault();
+  const next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(current+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+  tabs[next].focus();
+  goTab(tabs[next].dataset.tab);
+});
 document.querySelector('main').addEventListener('click',e=>{
   const b=e.target.closest('[data-go-tab]');
   if(b) goTab(b.dataset.goTab);
@@ -1069,6 +1099,7 @@ document.querySelector('main').addEventListener('click',e=>{
 /* map node click/keyboard -> jump to day */
 function openMapDay(n){
   goTab('days');
+  resetDayFilter();
   const card = document.getElementById('day'+n.dataset.day);
   if(card){ card.classList.add('open'); card.querySelector('.day-head').setAttribute('aria-expanded','true'); setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),80); }
 }
@@ -1225,7 +1256,7 @@ const CK = [
 const ckWrap = document.getElementById('checklists');
 let saved = {};
 try { saved = JSON.parse(localStorage.getItem('xjtrip-ck')||'{}') || {}; }
-catch { localStorage.removeItem('xjtrip-ck'); }
+catch { try{ localStorage.removeItem('xjtrip-ck'); }catch{} saved={}; }
 CK.forEach((g,gi)=>{
   const card = document.createElement('div'); card.className='ckcard';
   let html = `<h4>${g.t}<span class="ckprog" id="prog${gi}"></span></h4>`;
@@ -1242,10 +1273,20 @@ function updProg(){
     document.getElementById('prog'+gi).textContent = done+'/'+boxes.length;
   });
 }
+function saveChecklistState(){
+  try{
+    localStorage.setItem('xjtrip-ck',JSON.stringify(saved));
+    document.getElementById('ckSaveWarning').classList.remove('on');
+    return true;
+  }catch{
+    document.getElementById('ckSaveWarning').classList.add('on');
+    return false;
+  }
+}
 ckWrap.addEventListener('change',e=>{
   const b = e.target; if(b.type!=='checkbox') return;
   saved[b.dataset.k] = b.checked;
-  localStorage.setItem('xjtrip-ck', JSON.stringify(saved));
+  saveChecklistState();
   b.closest('.ck').classList.toggle('done', b.checked);
   updProg();
 });
