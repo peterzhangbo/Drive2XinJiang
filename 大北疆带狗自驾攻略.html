@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>北京⇄大北疆 · 18天带双边牧电车自驾攻略</title>
+<title>北京⇄大北疆 · 27天带双边牧电车自驾攻略</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e7268'/%3E%3Cpath d='M18 48 32 14 46 48 32 39Z' fill='%23fff'/%3E%3C/svg%3E">
 <style>
 :root{
@@ -37,7 +37,7 @@ nav button:hover{color:var(--ink);background:#f0ead9}
 nav button.on{background:var(--ink);color:#fff}
 .nav-mobile-hint{display:none;text-align:center;color:var(--sub);font-size:11px;padding:4px 10px;background:var(--paper);border-bottom:1px solid var(--line)}
 button:focus-visible,a:focus-visible,[role="button"]:focus-visible,[role="tab"]:focus-visible{outline:3px solid #f3a84f;outline-offset:3px}
-.node:focus-visible circle{stroke:#f3a84f;stroke-width:5}
+.node:focus-visible circle.dot{stroke:#f3a84f;stroke-width:5}
 
 main{max-width:1020px;margin:0 auto;padding:28px 16px 80px}
 .tab{display:none;animation:fade .35s ease}
@@ -65,8 +65,16 @@ p.lead{color:var(--sub);margin-bottom:18px}
 .mapwrap{background:linear-gradient(160deg,#f3efe3,#e9f0ea);border:1px solid var(--line);border-radius:var(--radius);padding:10px;overflow-x:auto}
 .mapwrap svg{min-width:640px;width:100%;height:auto;display:block}
 .node{cursor:pointer}
-.node circle{transition:.2s}
-.node:hover circle{r:9}
+.node circle.dot{transition:r .18s ease, stroke-width .18s ease}
+.node:hover circle.dot{r:10}
+.node:hover .halo{opacity:.5}
+.node:focus-visible{outline:none}
+.route-line{transition:stroke-width .2s ease}
+@media (prefers-reduced-motion:reduce){
+  .node circle.dot,.node:hover circle.dot,.node:hover .halo,.route-line{transition:none}
+  .node:hover circle.dot{r:8.5}
+}
+.lk.dash{background-image:linear-gradient(90deg,currentColor 55%,transparent 0);background-size:8px 4px;background-color:transparent!important;border-radius:0}
 .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--sub);padding:8px 12px 4px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .lk{width:22px;height:4px;border-radius:2px;display:inline-block}
@@ -84,27 +92,47 @@ p.lead{color:var(--sub);margin-bottom:18px}
 .day-art svg{width:100%;height:100%;display:block}
 .day-art .dnum{position:absolute;left:18px;bottom:10px;color:#fff;font-size:26px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.4);letter-spacing:.04em}
 .day-art .demoji{position:absolute;right:16px;bottom:8px;font-size:34px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))}
-.day-head{padding:16px 20px 14px;cursor:pointer;user-select:none}
-.day-head .t{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.day-head h3{font-size:18px;font-weight:800}
-.day-head .date{color:var(--sub);font-size:13px;font-weight:600}
-.day-head .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
-.day-head .arrow{float:right;color:var(--sub);transition:.25s;font-size:13px;margin-top:4px}
+.day-head{padding:14px 20px 15px;cursor:pointer;user-select:none}
+.day-head .arrow{float:right;color:var(--sub);transition:transform .25s;font-size:12px;margin-top:5px}
 .day.open .arrow{transform:rotate(180deg)}
-.day-body{display:none;padding:0 20px 18px;border-top:1px dashed var(--line)}
+.day-head .t{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.day-head h3{font-size:18px;font-weight:800;line-height:1.35}
+.day-head .date{color:var(--sub);font-size:13px;font-weight:600}
+/* ---- 概况速览 glance ---- */
+.glance{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.g-km{display:flex;align-items:center;gap:9px;flex:1 1 190px;min-width:170px}
+.g-km .bar{flex:1;height:7px;border-radius:99px;background:var(--line);overflow:hidden}
+.g-km .bar i{display:block;height:100%;border-radius:99px;transition:width .4s ease}
+.g-km .bar i.s{background:var(--teal)}
+.g-km .bar i.m{background:var(--amber)}
+.g-km .bar i.l{background:var(--red)}
+.g-km .val{font-size:13px;font-weight:800;color:var(--ink);white-space:nowrap}
+.g-km .val small{color:var(--sub);font-weight:600;font-size:11.5px}
+.chip{display:inline-flex;align-items:center;gap:5px;min-width:0;max-width:230px;padding:3px 11px;border-radius:99px;font-size:12px;font-weight:600;background:var(--paper);border:1px solid var(--line);color:var(--sub);white-space:nowrap}
+.chip .ic{flex:none;font-size:12.5px;line-height:1}
+.chip b{font-weight:700;color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip.charge{background:var(--blue-l);border-color:var(--blue-l);color:var(--blue)} .chip.charge b{color:var(--blue)}
+.chip.stay{border-color:var(--line);color:var(--purple)} .chip.stay b{color:var(--purple)}
+.chip.depart{color:var(--amber)} .chip.depart b{color:var(--amber)}
+.chip.warn{background:var(--red-l);border-color:var(--red-l);color:var(--red)} .chip.warn b{color:var(--red)}
+/* ---- 展开态主体 ---- */
+.day-body{display:none;padding:2px 20px 20px;border-top:1px dashed var(--line)}
 .day.open .day-body{display:block}
-.seg{margin-top:15px}
-.seg .sh{font-size:13.5px;font-weight:800;letter-spacing:.05em;display:flex;align-items:center;gap:7px;margin-bottom:6px}
-.seg ul{list-style:none}
-.seg li{padding:3px 0 3px 20px;position:relative;color:#3d3a33;font-size:14.2px}
-.seg li::before{content:"";position:absolute;left:5px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--line)}
-.seg.charge .sh{color:var(--blue)} .seg.charge li::before{background:var(--blue)}
-.seg.play .sh{color:var(--green)} .seg.play li::before{background:var(--green)}
-.seg.stay .sh{color:var(--purple)} .seg.stay li::before{background:var(--purple)}
-.seg.food .sh{color:var(--amber)} .seg.food li::before{background:var(--amber)}
-.seg.tip .sh{color:var(--red)} .seg.tip li::before{background:var(--red)}
-.routeline{margin-top:12px;background:#f6f2e8;border-radius:10px;padding:9px 14px;font-size:13.5px;color:var(--sub);font-weight:600}
-.decision{margin-top:10px;padding:8px 11px;border-left:4px solid var(--red);border-radius:0 8px 8px 0;background:var(--red-l);color:#713129;font-size:13.5px}
+.routeline{margin-top:14px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:13.5px;color:var(--sub);font-weight:600;line-height:1.65}
+.routeline .ic{color:var(--teal)}
+.decision{margin-top:12px;padding:11px 15px;border-left:5px solid var(--red);border-radius:0 12px 12px 0;background:var(--red-l);color:#713129;font-size:13.6px;line-height:1.66}
+.decision .dh{display:flex;align-items:center;gap:6px;font-weight:800;color:var(--red);font-size:12.5px;letter-spacing:.05em;margin-bottom:3px}
+.seg{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:11px 14px}
+.seg .sh{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;letter-spacing:.04em;margin-bottom:7px}
+.seg .sh .ic{font-size:14px;line-height:1}
+.seg ul{list-style:none;display:grid;gap:5px}
+.seg li{position:relative;padding-left:16px;color:#3d3a33;font-size:14px;line-height:1.62}
+.seg li::before{content:"";position:absolute;left:3px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--line)}
+.seg.charge{background:var(--blue-l);border-color:var(--blue-l)} .seg.charge .sh{color:var(--blue)} .seg.charge li::before{background:var(--blue)}
+.seg.tip{background:var(--red-l);border-color:var(--red-l)} .seg.tip .sh{color:var(--red)} .seg.tip li::before{background:var(--red)}
+.seg.stay{background:var(--paper);border-color:var(--line);border-left:5px solid var(--purple);border-radius:0 12px 12px 0} .seg.stay .sh{color:var(--purple)} .seg.stay li::before{background:var(--purple)}
+.seg.play{background:var(--card)} .seg.play .sh{color:var(--green)} .seg.play li::before{background:var(--green)}
+.seg.food{background:var(--card)} .seg.food .sh{color:var(--amber)} .seg.food li::before{background:var(--amber)}
 
 /* tables */
 table{width:100%;border-collapse:collapse;font-size:13.8px;background:var(--card)}
@@ -200,6 +228,95 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   .seg{margin-top:2.5mm}
   .seg li{font-size:9pt;padding-top:1px;padding-bottom:1px}
   .lnk{background:none;color:#000;padding:0;margin:0 2mm 0 0}
+  .glance,.tl,.risk-panel{display:none!important}
+}
+
+/* ============ 27天总览行程条 ============ */
+.tl{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 18px 20px;margin:18px 0}
+.tl-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin-bottom:14px}
+.tl-title{font-size:17px;font-weight:700;letter-spacing:.02em}
+.tl-title small{font-weight:500;color:var(--sub);font-size:12px;margin-left:6px}
+.tl-legend{display:flex;flex-wrap:wrap;gap:6px 8px;margin-left:auto}
+.tl-chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--sub);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 9px;line-height:1}
+.tl-dot{width:9px;height:9px;border-radius:3px;flex:0 0 auto}
+.tl-dot.drive{background:var(--teal)} .tl-dot.fun{background:var(--green)} .tl-dot.rest{background:var(--purple)}
+.tl-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+.tl-track{display:flex;gap:14px;min-width:min-content;align-items:stretch}
+.tl-stage{display:flex;flex-direction:column;gap:8px}
+.tl-stage-hd{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;border-radius:999px;padding:4px 11px;white-space:nowrap;align-self:flex-start}
+.tl-stage-hd b{font-weight:700} .tl-stage-hd span{font-weight:500;opacity:.85}
+.tl-stage[data-s="go"]   .tl-stage-hd{background:var(--amber-l);color:var(--amber)}
+.tl-stage[data-s="loop"] .tl-stage-hd{background:var(--teal-l);color:var(--teal)}
+.tl-stage[data-s="back"] .tl-stage-hd{background:var(--blue-l);color:var(--blue)}
+.tl-days{display:flex;gap:8px}
+.tl-day{position:relative;width:66px;flex:0 0 66px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 6px 9px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;font-family:inherit;color:inherit;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.tl-day:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--sub)}
+.tl-day:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.tl-day-n{font-size:12px;font-weight:700;letter-spacing:.04em}
+.tl-day-n em{font-style:normal;color:var(--sub);font-weight:600;font-size:10px;margin-right:1px}
+.tl-bar{width:14px;height:78px;background:var(--line);border-radius:7px;display:flex;align-items:flex-end;overflow:hidden}
+.tl-bar i{display:block;width:100%;border-radius:7px;transition:height .4s ease}
+.tl-day[data-t="drive"] .tl-bar i{background:var(--teal)}
+.tl-day[data-t="fun"]   .tl-bar i{background:var(--green)}
+.tl-day[data-t="rest"]  .tl-bar i{background:var(--purple)}
+.tl-km{font-size:11px;font-weight:700} .tl-km em{font-style:normal;font-weight:500;color:var(--sub);font-size:9px}
+.tl-route{font-size:9.5px;color:var(--sub);line-height:1.25;min-height:24px;display:flex;align-items:center;justify-content:center}
+.tl-stay{font-size:14px;line-height:1}
+.tl-warn{position:absolute;top:-6px;right:-6px;font-size:12px;line-height:1;background:var(--red-l);border:1px solid var(--red);border-radius:999px;width:19px;height:19px;display:flex;align-items:center;justify-content:center}
+@media (prefers-reduced-motion:reduce){.tl-day,.tl-bar i{transition:none} .tl-day:hover{transform:none}}
+
+/* ============ 关键风险速览面板 ============ */
+.risk-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin:18px 0}
+.risk-head{display:flex;flex-wrap:wrap;gap:14px 18px;align-items:flex-end;justify-content:space-between;margin-bottom:6px}
+.risk-title{margin:0;font-size:18px;font-weight:800;letter-spacing:.3px;display:flex;align-items:center;gap:8px}
+.risk-title small{font-size:12.5px;font-weight:600;color:var(--sub)}
+.risk-cta{border:none;cursor:pointer;font:inherit;font-size:13.5px;font-weight:700;color:#fff;background:var(--teal);border-radius:99px;padding:9px 18px;display:inline-flex;align-items:center;gap:6px;transition:.2s;white-space:nowrap}
+.risk-cta:hover{background:#0b5d54}
+.risk-cta:focus-visible{outline:3px solid var(--teal-l);outline-offset:2px}
+.risk-stats{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}
+.risk-stat{flex:1 1 140px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:11px 14px;min-width:0}
+.risk-stat b{display:block;font-size:22px;font-weight:800;line-height:1.1}
+.risk-stat span{font-size:12px;font-weight:600;color:var(--sub)}
+.risk-stat.hi b{color:var(--red)}
+.risk-stat.mid b{color:var(--amber)}
+.risk-stat.due b{color:var(--ink);font-size:15px;padding-top:5px}
+.risk-group-h{display:flex;align-items:center;gap:8px;margin:18px 0 9px;font-size:13px;font-weight:800;letter-spacing:.4px;color:var(--sub)}
+.risk-group-h .dot{width:10px;height:10px;border-radius:50%}
+.risk-group-h.g-hi .dot{background:var(--red)}
+.risk-group-h.g-mid .dot{background:var(--amber)}
+.risk-group-h .cnt{font-weight:700;color:var(--sub)}
+.risk-list{display:flex;flex-direction:column;gap:9px;margin:0;padding:0;list-style:none}
+.risk-item{display:grid;grid-template-columns:auto 1fr;gap:12px;background:var(--card);border:1px solid var(--line);border-left-width:5px;border-radius:12px;padding:12px 14px;transition:.15s}
+.risk-item.hi{border-left-color:var(--red)}
+.risk-item.mid{border-left-color:var(--amber)}
+.risk-item:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+.risk-day{align-self:start;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:46px;padding:5px 4px;border-radius:10px;font-weight:800;line-height:1;text-align:center}
+.risk-day small{font-size:9.5px;font-weight:700;letter-spacing:1px;opacity:.75;margin-bottom:2px}
+.risk-day b{font-size:14px}
+.risk-item.hi .risk-day{background:var(--red-l);color:var(--red)}
+.risk-item.mid .risk-day{background:var(--amber-l);color:var(--amber)}
+.risk-body{min-width:0}
+.risk-row1{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-bottom:4px}
+.risk-name{font-size:14.5px;font-weight:700;line-height:1.35}
+.pill.cat-stay{background:#f0eaf6;color:var(--purple)}
+.pill.cat-road{background:var(--blue-l);color:var(--blue)}
+.pill.cat-scenic{background:var(--green-l);color:var(--green)}
+.pill.cat-doc{background:var(--teal-l);color:var(--teal)}
+.pill.urg-hi{background:var(--red);color:#fff}
+.pill.urg-mid{background:var(--amber-l);color:var(--amber)}
+.risk-due{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--sub);margin-bottom:4px}
+.risk-due::before{content:"⏱";font-size:12px}
+.risk-note{font-size:13px;line-height:1.5;color:var(--sub);margin:0}
+@media(max-width:560px){
+  .risk-head{align-items:flex-start}
+  .risk-cta{width:100%;justify-content:center}
+  .risk-item{grid-template-columns:1fr}
+  .risk-day{flex-direction:row;gap:5px;min-width:0;width:max-content;padding:4px 10px}
+  .risk-day small{margin:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .risk-item,.risk-cta{transition:none}
+  .risk-item:hover{transform:none}
 }
 </style>
 </head>
@@ -213,6 +330,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <button class="on" id="nav-overview" role="tab" aria-controls="tab-overview" aria-selected="true" tabindex="0" data-tab="overview">🗺️ 主计划</button>
     <button id="nav-days" role="tab" aria-controls="tab-days" aria-selected="false" tabindex="-1" data-tab="days">📅 逐日行程</button>
     <button id="nav-prep" role="tab" aria-controls="tab-prep" aria-selected="false" tabindex="-1" data-tab="prep">🎒 预算清单</button>
+    <button id="nav-budgetmethod" role="tab" aria-controls="tab-budgetmethod" aria-selected="false" tabindex="-1" data-tab="budgetmethod">💰 预算方法</button>
   </div>
   <div class="nav-group" role="presentation"><span class="nav-label">执行</span>
     <button id="nav-confirm" role="tab" aria-controls="tab-confirm" aria-selected="false" tabindex="-1" data-tab="confirm">✅ 确认中心</button>
@@ -230,49 +348,66 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 
 <main>
 
-<div id="freshnessBanner" class="freshness-banner" role="status" data-verified="2026-07-17" data-stale-after="7"></div>
+<div id="freshnessBanner" class="freshness-banner" role="status" data-verified="2026-07-18" data-stale-after="7"></div>
 
 <!-- ================= 总览 ================= -->
 <section class="tab on" id="tab-overview" role="tabpanel" aria-labelledby="nav-overview" tabindex="0">
   <h2 class="sec">🧭 主计划总览</h2>
-  <p class="lead">2026年8月 · 北京⇄大北疆环线 · 夫妻二人 + 两条成年边牧 · 特斯拉 Model Y L（CLTC 751km）· 全程自驾往返。基线18天不延长：D7禾木住一晚，D9住赛里木湖东门，D10东门进、南门出后到伊宁；D11经特克斯八卦城、库尔德宁到那拉提，D12深度游那拉提，D13住唐布拉蜜蜂小镇，D14再走独库北段到乌鲁木齐。全程17晚酒店/民宿，不安排睡车。点击地图节点可跳转到当天行程。</p>
+  <p class="lead">2026年8月 · 北京⇄大北疆环线 · 前15天夫妻二人＋两条成年边牧，D16妻子从乌鲁木齐飞回北京，送机结束后驾驶员立即带两只狗经天山胜利隧道前往库尔勒；此后走若羌、茫崖、G315、青海、成都、恩施、武汉返京。D1–D15住酒店/民宿；返程段西宁（D20）、成都（D22）、武汉（D25）三个长途抵达晚住酒店恢复，其余8晚只在经确认可过夜的汽车营地、房车营地或有管理停车区睡车，D27到家；不把公路边、自然保护区、充电位或无人区当营地。点击地图节点可跳转到当天行程。</p>
 
   <div class="note teal">
-    <b>当前执行版本：V12（2026-07-17）</b>。D11改走伊宁—特克斯八卦城—库尔德宁—那拉提，悠然民宿连住两晚；D13住唐布拉听泉别院，D14返回乔尔玛后走独库北段、独山子补电，再到乌鲁木齐。总天数仍为18天。
+    <b>当前执行版本：V15（2026-07-17）</b>。D16送机结束后直接经G0711和天山胜利隧道到库尔勒；返程走若羌、茫崖、水上雅丹、大柴旦、青海湖、西宁、陇南、成都、恩施、武汉，D27回北京。成都和武汉各留一整天休整并与朋友吃饭。V15关键调整：D11取消八卦城绕行改为伊宁—巩留直达库尔德宁；西宁、成都、武汉三个长途抵达晚改为宠物友好酒店；证件恢复全程方案（去程北京办＋返程D15乌鲁木齐办）；禾木进村交通落实为民宿可载犬出租车。推荐版共27天，其中18晚酒店/民宿、8晚床车。
     <a class="lnk bk" href="全程行程简报.md" target="_blank" rel="noopener">打开全程简报</a>
     <button class="lnk bk tab-link" data-go-tab="changelog">查看更新日志</button>
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="n">18天</div><div class="l">全程天数（纯带狗版·零寄养）</div></div>
+    <div class="stat"><div class="n">27天</div><div class="l">全程天数（纯带狗版·零寄养）</div></div>
     <div class="stat"><div class="n" id="totalKm">计算中</div><div class="l">逐日里程自动合计 km</div></div>
-    <div class="stat"><div class="n">0晚</div><div class="l">睡车 / 野营</div></div>
-    <div class="stat"><div class="n">17晚</div><div class="l">宠物友好酒店/民宿</div></div>
+    <div class="stat"><div class="n">8晚</div><div class="l">经确认营地 / 管理区睡车</div></div>
+    <div class="stat"><div class="n">18晚</div><div class="l">宠物友好酒店/民宿</div></div>
     <div class="stat"><div class="n" id="totalBudget">计算中</div><div class="l">含安全机动金（元）</div></div>
   </div>
 
+  <section class="tl" aria-label="27天总览行程条">
+    <div class="tl-head">
+      <div class="tl-title">📊 27天总览行程条<small>竖条高度＝当天里程强度 · 点日块跳到当天</small></div>
+      <div class="tl-legend" role="list" aria-label="图例">
+        <span class="tl-chip" role="listitem"><i class="tl-dot drive"></i>赶路</span>
+        <span class="tl-chip" role="listitem"><i class="tl-dot fun"></i>玩乐</span>
+        <span class="tl-chip" role="listitem"><i class="tl-dot rest"></i>休整</span>
+        <span class="tl-chip" role="listitem">🏨 酒店</span>
+        <span class="tl-chip" role="listitem">🚙 床车</span>
+      </div>
+    </div>
+    <div class="tl-scroll"><div class="tl-track" id="tlTrack"></div></div>
+  </section>
+
+  <section id="riskPanel" class="risk-panel" aria-labelledby="riskPanelTitle"></section>
+
   <div class="mapwrap">
     <div class="legend">
-      <span><i class="lk" style="background:#c2670a"></i>去程 G7＋S240/S245（D1–D5）</span>
-      <span><i class="lk" style="background:#0e7268"></i>大北疆环线（D5–D14）</span>
-      <span><i class="lk" style="background:#8d867a"></i>回程（D15–D18）</span>
+      <span><i class="lk" style="background:#c2670a"></i>去程（D1–D5 北京→木垒）</span>
+      <span><i class="lk" style="background:#0e7268"></i>大北疆环线（D6–D14 阿勒泰→乌鲁木齐）</span>
+      <span style="color:#8d867a"><i class="lk dash"></i><span style="color:var(--sub)">返程（D16–D27 库尔勒→北京）</span></span>
     </div>
     <div id="routeMap"></div>
   </div>
 
   <h2 class="sec">💡 这次规划的四条底层逻辑</h2>
   <div class="card">
-    <p><b>1. 「狗全程同行，交通方式逐项确认」</b>——公共道路仍优先；禾木因用户已向相关方确认两只边牧可以带入村，恢复为正式行程。私家车停景区外，人与狗换乘区间车，执行前必须保存确认凭证并落实狗乘坐客舱、行李舱或笼具的具体方式。</p>
+    <p><b>1. 「狗全程同行，交通方式逐项确认」</b>——公共道路仍优先；禾木因用户已向相关方确认两只边牧可以带入村，恢复为正式行程。私家车停景区外，人与狗乘民宿提供的可载犬出租车进村（区间车为备选），执行前必须保存确认凭证并与司机落实接送时间和乘坐方式。</p>
     <p style="margin-top:10px"><b>2. 补能结论必须分证据等级</b>——城市超充可以用运营商页面确认，但实时排队、故障和临时关闭只能在车机或运营商App核对。G7临白段与S240/S245都按风险路段管理：前者逐站复核，后者未找到主管部门或运营商对沿线充电投运的可靠确认，因此必须在敦煌完成双站备选和满电门槛后再进入。</p>
     <p style="margin-top:10px"><b>3. 8月戈壁段以避热和合法停车为先</b>——大海道正午以车内休整为主；S21只在服务区或驶出高速后的合法地点停车，不在应急车道拍照。狗的户外时间尽量放在早10点前、晚7点后。</p>
-    <p style="margin-top:10px"><b>4. 每晚住宿都要电话二次确认</b>——平台「宠物友好」标签 ≠ 收两只边牧（很多只收小型犬）。打电话时报「两只边境牧羊犬、约 15-20kg、不拆家、自备垫子」，把疫苗本拍照发过去，成功率大增。</p>
+    <p style="margin-top:10px"><b>4. 每晚落脚点都要电话二次确认</b>——酒店平台「宠物友好」标签 ≠ 收两只边牧，停车免费也 ≠ 允许睡车。D1–D15与西宁/成都/武汉三晚酒店确认两只边牧、停车和晚到保留；其余8个床车夜另确认普通小客车过夜、厕所、管理、夜间出入和最近快充。未确认就改住正规住宿。</p>
+    <p style="margin-top:10px"><b>5. 延误吃景点、不吃住宿序列</b>——27天住宿日期咬死、没有整段缓冲：所有酒店尽量订可免费取消，妻子D16机票买可改签；任何一天落后就砍当天景点保住宿，D12（那拉提）、D15（乌鲁木齐）、D23（成都）、D26（武汉）四个轻量日可临时压缩用来追回进度；D27不强求当日到家。</p>
   </div>
 
   <h2 class="sec">⭐ 行程高光（为狗设计的）</h2>
   <div class="card">
     <ul style="list-style:none">
       <li style="padding:5px 0">🛣️ <b>S240＋S245 敦煌—哈密经典公路</b>：D4完整行驶，两条主线合计约351km；官方可确认通车和收费，但未确认沿线可靠充电，按敦煌满电进入、哈密双站到达补能执行</li>
-      <li style="padding:5px 0">🏜️ <b>大海道全程穿越</b>：D5从哈密东门进入、北门驶出后住鄯善；通天洞列为核心目标，但只有景区当天确认主线开放且Model Y低底盘可安全通行时才执行全穿越</li>
+      <li style="padding:5px 0">🏜️ <b>大海道（哈密端往返）</b>：D5从哈密进入红柳滩铺装段观景后原路折返（到鄯善的全程穿越是四驱越野无人区，Model Y不走），当天走G7北线到木垒过夜；翼龙峡谷搓板段视现场路况量力，默认不进</li>
       <li style="padding:5px 0">🛣️ <b>S21阿乌高速＋乌伦古湖</b>：D6完整行驶后继续到阿勒泰市，克拉美丽服务区为主补能，五家渠与吉利湖为备选；只在服务区或合法驶出高速后观景</li>
       <li style="padding:5px 0">🌲 <b>禾木住一晚</b>：D7布尔津补足电后进禾木，D8看晨雾日出后取车，经布尔津补电直达乌尔禾；两只边牧可入村为用户已确认事项</li>
       <li style="padding:5px 0">🏆 <b>赛里木湖东门进、南门出</b>：D9住东门外，D10一早按景区当天导向环湖，南门出后经果子沟、霍城薰衣草园到伊宁；只在指定停车区下车</li>
@@ -288,9 +423,9 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <tbody>
       <tr><td><b>S240＋S245（D4）</b></td><td>敦煌G215过境段接S240，方山口甘新界接S245，至哈密二道湖互通</td><td><span class="pill p-green">A 官方通车/收费</span> S240约164.8km、S245约186.187km；S245设小白地、东南河两处主线收费站。收费站不等于充电站，沿线补能不得作确定承诺</td><td><a class="lnk bk" href="https://www.xinhuanet.com/photo/20241026/c095453c139f482f8b01de1ca6eba6a6/c.html" target="_blank" rel="noopener">新华社通车</a><a class="lnk bk" href="https://jtyst.xinjiang.gov.cn/xjjtysj/tjgf/202411/d62f562572cb4855962ae00f799c9866.shtml" target="_blank" rel="noopener">S245收费批复</a></td></tr>
       <tr><td><b>赛里木湖（D9东门住宿、D10环湖）</b></td><td>G30连霍高速赛里木湖东立交下，沿净海路至东门游客中心；D10按景区当天交通导向环湖，由南门驶出接果子沟、霍城和伊宁</td><td><span class="pill p-red">C 实时确认</span> 公开票务技术支持页当前显示24h成人自驾套票155/人，但它不是政府官网；最终价格、自驾入园时段、宠物规则及东进南出交通组织只认「赛里木湖旅游 / 一部手机游赛湖」实时页面和现场指引</td><td><a class="lnk bk" href="https://www.yujiansailimuhu.com/" target="_blank" rel="noopener">票务技术支持页</a><a class="lnk" href="https://uri.amap.com/search?keyword=赛里木湖游客服务中心" target="_blank" rel="noopener">导航·东门</a></td></tr>
-      <tr><td><b>大海道（D5）</b></td><td>哈密市伊州区，东门进入、北门驶出，全程官方穿越线路约130km</td><td><span class="pill p-amber">A路线＋C车况</span> 车辆必须按开放线路行驶，严禁驶离路基或进入未开放区域；Model Y能否走完整条主线和通天洞以出发前一天及东门现场答复为准</td><td><a class="lnk bk" href="https://www.hami.gov.cn/hami/c119999/202403/49033b966bf1450abed133d73f2e0994.shtml" target="_blank" rel="noopener">管理规定</a><a class="lnk" href="https://uri.amap.com/search?keyword=大海道景区东门游客中心" target="_blank" rel="noopener">导航·东门</a></td></tr>
+      <tr><td><b>大海道（D5）</b></td><td>哈密市伊州区，东门(五堡)进入；东门→红柳滩约76km铺装，往返折返</td><td><span class="pill p-amber">A路线＋C车况</span> 只走红柳滩铺装段往返，不做到鄯善的全程穿越（约320km四驱越野无人区，Model Y不适合）；翼龙峡谷方向约20km搓板路对低底盘有托底/爆胎风险，默认不进</td><td><a class="lnk bk" href="https://www.hami.gov.cn/hami/c119999/202403/49033b966bf1450abed133d73f2e0994.shtml" target="_blank" rel="noopener">管理规定</a><a class="lnk" href="https://uri.amap.com/search?keyword=大海道景区东门游客中心" target="_blank" rel="noopener">导航·东门</a></td></tr>
       <tr><td><b>S21阿乌高速（D6）</b></td><td>乌鲁木齐北郊至阿勒泰地区，全长约342.538km</td><td><span class="pill p-green">A 官方</span> 官方明确五家渠、克拉美丽、吉利湖服务区配置充电设施；黄花沟只作休息节点。高速禁止在应急车道或路边停车拍照</td><td><a class="lnk bk" href="https://jtyst.xinjiang.gov.cn/xjjtysj/jyta/202109/f846ce677d624c4dba1d8b8cdbebf56d.shtml" target="_blank" rel="noopener">服务区充电依据</a><a class="lnk" href="https://uri.amap.com/search?keyword=S21克拉美丽服务区" target="_blank" rel="noopener">导航·克拉美丽</a></td></tr>
-      <tr><td><b>禾木村（D7–D8）</b></td><td>阿勒泰地区布尔津县禾木喀纳斯蒙古族乡；私家车停外部停车场后换乘区间车进村</td><td><span class="pill p-red">C 用户已确认宠物可入村</span> 两只边牧可以带入村；仍须保存确认凭证，并确认区间车装载方式、笼具要求、末班时间及民宿接宠</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=禾木景区停车场" target="_blank" rel="noopener">导航·停车场</a></td></tr>
+      <tr><td><b>禾木村（D7–D8）</b></td><td>阿勒泰地区布尔津县禾木喀纳斯蒙古族乡；私家车停外部停车场后，乘民宿提供的可载犬出租车进村（区间车备选）</td><td><span class="pill p-red">C 用户已确认宠物可入村</span> 两只边牧可以带入村，民宿已提供可载犬出租车联系方式；仍须保存确认凭证，并与司机确认车费、接送时间及民宿接宠</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=禾木景区停车场" target="_blank" rel="noopener">导航·停车场</a></td></tr>
       <tr><td><b>世界魔鬼城外围 / 西部乌镇</b></td><td>克拉玛依市乌尔禾区龙脊路、扬州路一带</td><td><span class="pill p-amber">B 零门票替代</span> 不进入依赖观光车的核心区；只玩外围雅丹、白杨河方向与西部乌镇公开区域</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=西部乌镇乌尔禾" target="_blank" rel="noopener">导航·西部乌镇</a></td></tr>
       <tr><td><b>那拉提 / 唐布拉 / 独库北段</b></td><td>新源县那拉提镇、尼勒克县S315种蜂场—乔尔玛段、G217乔尔玛—独山子段</td><td><span class="pill p-green">A 道路与预约</span> 那拉提自驾票仅在“智游那拉提”线上预约；独库北段按乔尔玛入口预约时段执行。宠物能否进入那拉提、库尔德宁购票区仍属C级电话确认；仙女湖不能按车辆直达安排</td><td><a class="lnk bk" href="https://www.xjyl.gov.cn/xjylz/c112876/202605/f30d3b1beb464dd59228d130ee56d423.shtml" target="_blank" rel="noopener">那拉提自驾规则</a><a class="lnk bk" href="https://gat.xinjiang.gov.cn/gat/tzgg/202607/d75de3d68abb43feb47d0defc201411e.shtml" target="_blank" rel="noopener">独库正式公告</a><a class="lnk" href="https://uri.amap.com/search?keyword=乔尔玛" target="_blank" rel="noopener">导航·乔尔玛</a></td></tr>
       <tr><td colspan="4" class="small" style="color:var(--sub)">🗄️ 喀纳斯、天山天池等禁宠景区已移出行程，位置与票价信息归档在「不得不错过」页</td></tr>
@@ -323,7 +458,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 <!-- ================= 更新日志 ================= -->
 <section class="tab" id="tab-changelog" role="tabpanel" aria-labelledby="nav-changelog" tabindex="0">
   <h2 class="sec">📝 更新日志</h2>
-  <p class="lead">这里记录方案为什么变化，不参与主计划执行。当前执行基线为 V12；旧版本中的价格、酒店和路线仅用于追溯，不应继续采用。</p>
+  <p class="lead">这里记录方案为什么变化，不参与主计划执行。当前执行基线为 V14；旧版本中的价格、酒店和路线仅用于追溯，不应继续采用。</p>
 
   <div class="card">
     <p><span class="pill p-gray">V1 · 07-11</span> <b>基线计划</b>：建立18天G7去程、大北疆环线和返程结构，完成逐日行程、充电、住宿、宠物与预算模块。</p>
@@ -338,18 +473,22 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <p style="margin-top:10px"><span class="pill p-blue">V10 · 07-16</span> <b>D1–D7住宿资料落地</b>：核对酒店准确名称、地址、预订页、宠物、停车和充电线索；D5入住鄯善龙诚酒店，D6入住阿勒泰友谊宾馆，D7入住牧雅居民宿。因D6住宿位于阿勒泰市，路线终点由北屯顺延到阿勒泰，并同步调整D7起点、里程与充电节点。</p>
     <p style="margin-top:10px"><span class="pill p-teal">V11 · 07-16</span> <b>D8–D11改为酒店串联赛湖</b>：D8禾木晨雾后直达乌尔禾柏纳酒店，D9前往赛湖东门住赛官房，D10一早东门进、南门出，经霍城薰衣草园到伊宁栖云馆；原D11改为伊宁休整并在栖云馆连住。取消赛湖睡车，全程改为17晚住宿。</p>
     <p style="margin-top:10px"><span class="pill p-green">V12 · 07-17</span> <b>D11–D14重构为伊犁深玩＋两日独库收尾</b>：D11取消伊宁休整，改走八卦城、库尔德宁到那拉提；D11–D12住悠然民宿，D12深度游那拉提；D13沿乔尔玛进入唐布拉、住蜜蜂小镇听泉别院；D14返回乔尔玛后走独库北段到独山子，再经G30到乌鲁木齐。删除“仙女湖轿车直达”“那拉提/独山子必有特斯拉超充”和过于乐观的固定电量、时间承诺。</p>
+    <p style="margin-top:10px"><span class="pill p-blue">V13 · 07-17</span> <b>乌鲁木齐加住＋G315床车返京</b>：D15完整游乌鲁木齐并在缘来如玉续住；D16妻子从乌鲁木齐天山国际机场返京，驾驶员与两只边牧开始床车段。返程原走库尔勒、若羌、茫崖、水上雅丹、大柴旦、茶卡、青海湖、西宁、中卫、鄂尔多斯，D26到北京；该返程结构已被V14替代。</p>
+    <p style="margin-top:10px"><span class="pill p-green">V14 · 07-17</span> <b>送机直达库尔勒＋成都武汉会友</b>：D16送机结束立即走G0711到库尔勒；压缩柴达木段但保留水上雅丹，随后经西宁、陇南到成都，D23休整会友；D24–D25经恩施到武汉，D26休整会友，D27单日返京。全程改为27天、约12,800km、15晚住宿＋11晚床车；证件任务仅保留北京出发前去程准备，新增成都/武汉宠物友好用餐确认、武汉61cm肩高硬门槛和G4返京三段补能。</p>
+    <p style="margin-top:10px"><span class="pill p-teal">V15 · 07-18</span> <b>整体评审后按委托人11条反馈修正</b>：①西宁（D20）、成都（D22）、武汉（D25）三个长途抵达晚由床车改为宠物友好酒店（西宁青滨壹号、成都高新会展惠庭、武汉徐东惠庭，惠庭品牌明确每房2只犬），床车降为8晚；②D11取消特克斯八卦城绕行（省约140km/2.5h+，归档至「不得不错过」），改为伊宁—巩留直达库尔德宁（约350km，17:00前后到那拉提），库尔德宁核实为可自驾进入、60km单向环线不可折返；③把独库D14的账算清：S315约89km＋北段约140km＋独山子—水西沟约280km，07:00出发，封路备选确定为西线尼勒克—G577—精河—G30（约650–680km，G577通车状态为前提），东线G218因改扩建不作备选；④证件恢复全程方案：去程A证北京办＋返程A证D15乌鲁木齐办，有效期最长5天、川渝鄂段过期为已知残余风险；⑤禾木进村交通落实为民宿提供的可载犬出租车（区间车备选）；⑥新增「预算方法」独立页，公式与假设透明可复算；⑦补充狗鞋/湿热/无人区装备清单与D27“不强求当日到家”口径；⑧D5/D6重构:大海道确认为哈密端往返(到鄯善的全程穿越是约320km四驱越野无人区,低底盘Model Y不走),之后走G7京新北线到木垒过夜,D6经阜康接S21到阿勒泰,明确不走G30吐鲁番南线(8月盆地40℃+酷热、三十里风区、货车密集)。退掉鄯善龙诚酒店;木垒/奇台小县城线上查不到能确认收两只中大型犬的酒店,列为本段最高优先级电话待确认项。因大海道改往返,D5约850km、D6约690km(均为夫妻二人段可轮换),总里程约13,020km。</p>
+    <p style="margin-top:10px"><span class="pill p-blue">V16 · 07-18</span> <b>可视化升级(不改行程内容)</b>:总览页新增①「27天总览行程条」——按去程/环线/返程三段横排,竖条高度=当天里程强度,一眼看清节奏、住宿方式(🏨/🚙)和D5住宿⚠️;②「出发前关键风险速览」——把散在各天的硬门槛/待确认项按高/中紧迫度汇成面板,可跳转确认中心;③升级路线示意图为三段配色的大环(修正木垒方位、枢纽强调、标签描边防糊);逐日卡片折叠态改为「概况速览」(里程条+出发时间+主充电站+住宿类型+⚠️徽章)、展开态分区图标化并提升充电/住宿/决策的视觉权重。均为纯静态、无外部依赖、含无障碍与打印/减动效降级。</p>
   </div>
 
   <div class="note red">
     <b>V5 关键变更（出行前必读）：</b>
     <ul style="margin:8px 0 0 18px">
-      <li style="padding:3px 0"><b>V5禾木结论已被V9替代</b>：私家车仍不作为进村条件；用户已确认两只边牧可随人换乘进入村，执行前保存凭证并复核区间车装载方式。</li>
+      <li style="padding:3px 0"><b>V5禾木结论已被V9替代</b>：私家车仍不作为进村条件；用户已确认两只边牧可随人进入村，且民宿已提供可载犬出租车联系方式；执行前保存凭证并与司机复核接送安排。</li>
       <li style="padding:3px 0"><b>V5住宿替换为历史记录</b>：其中可可托海住宿已随V9路线移除；当前逐晚住宿只看“住宿清单”和确认中心。</li>
       <li style="padding:3px 0"><b>零寄养真正落地</b>：删除五彩滩/魔鬼城轮流进入、寄养预算和寄养时间线。</li>
       <li style="padding:3px 0"><b>赛湖渠道纠偏</b>：不再把票务技术支持网站称为政府官网；最终以「赛里木湖旅游 / 一部手机游赛湖」实时页面为准。</li>
-      <li style="padding:3px 0"><b>V12保持0晚睡车</b>：D10住伊宁，D11–D12住那拉提，D13住唐布拉，当前全程17晚都住酒店或民宿。</li>
+      <li style="padding:3px 0"><b>V15床车段</b>：D1–D15共15晚住酒店/民宿；返程西宁（D20）、成都（D22）、武汉（D25）三晚住酒店，其余8晚只在已确认允许小客车过夜、有人管理、有厕所且具备救援条件的地点驻车，D27到家。</li>
       <li style="padding:3px 0"><b>独库信息已升级</b>：2026-07-02正式公告已经公安厅厅长办公会审议通过；执行时仍需完成预约并核对当日开放和天气。</li>
-      <li style="padding:3px 0"><b>健康与证件修正</b>：动物A证按最长5天和属地电子申报准备；蜱虫稳定垂直拔出，不旋转、不猛拉。</li>
+      <li style="padding:3px 0"><b>证件口径</b>：当前执行版只保留北京出发前的去程动物A证准备；蜱虫稳定垂直拔出，不旋转、不猛拉。</li>
     </ul>
   </div>
 
@@ -365,9 +504,9 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 <!-- ================= 逐日 ================= -->
 <section class="tab" id="tab-days" role="tabpanel" aria-labelledby="nav-days" tabindex="0">
   <h2 class="sec">📅 逐日行程</h2>
-  <p class="lead">建议 8月1日（周六）出发、8月18日（周二）到家；日期可整体平移。每张卡片展开后是当天的「行 / 玩 / 住 / 吃 / 提醒」全细节。</p>
+  <p class="lead">建议 8月1日（周六）出发、8月27日（周四）到家；日期可整体平移。每张卡片展开后是当天的「行 / 玩 / 住 / 吃 / 提醒」全细节。</p>
   <div class="filters" id="dayFilters">
-    <button class="on" data-f="all">全部 18 天</button>
+    <button class="on" data-f="all">全部 27 天</button>
     <button data-f="fun">🐾 玩乐日</button>
     <button data-f="drive">🛣️ 赶路日</button>
     <button class="expand-all" id="btnExpand">全部展开</button>
@@ -411,8 +550,8 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <thead><tr><th>目的地</th><th>能否带狗</th><th>本攻略策略</th></tr></thead>
     <tbody>
       <tr><td><b>赛里木湖</b></td><td class="warn">C · 自驾与宠物实时确认</td><td>只有官方小程序显示可购买自驾票且客服确认宠物规则后进入；D10按当天导向从东门进、南门出，全程短绳，远离天鹅与旱獭</td></tr>
-      <tr><td><b>大海道</b></td><td class="warn">C · 当日确认</td><td>两只狗只在允许停车点短绳活动，不进入未开放区域；是否适合低底盘Model Y全穿越与通天洞支线，必须以景区现场路况答复为准</td></tr>
-      <tr><td><b>禾木村</b></td><td class="ok">C · 用户已确认可带入村</td><td>私家车停外部停车场，人与狗换乘区间车；出发前保存确认凭证，再确认客舱/行李舱/笼具要求和民宿接宠</td></tr>
+      <tr><td><b>大海道</b></td><td class="warn">C · 当日确认</td><td>只走哈密端红柳滩铺装段往返，两只狗只在允许停车点短绳活动；到鄯善的全程穿越是四驱越野无人区，Model Y不走；翼龙搓板段视现场路况量力，默认不进</td></tr>
+      <tr><td><b>禾木村</b></td><td class="ok">C · 用户已确认可带入村</td><td>私家车停外部停车场，人与狗乘民宿提供的可载犬出租车进村（区间车备选）；出发前保存确认凭证，并与司机确认车费、时间和笼具要求</td></tr>
       <tr><td><b>独库公路 / 唐布拉</b></td><td class="ok">A · 公共道路</td><td>主线免费；北段预约及时段以出发前平台为准。不再把独山子大峡谷带狗入园作为行程依赖</td></tr>
       <tr><td><b>五彩滩</b></td><td class="no">❌ 不作既定项目</td><td>D7以布尔津补电和准时进禾木为先；不安排夫妻轮流进入</td></tr>
       <tr><td><b>世界魔鬼城核心区</b></td><td class="no">❌ 已移出执行行程</td><td>只玩外围与西部乌镇公开区域，不安排一人快刷小火车</td></tr>
@@ -428,7 +567,8 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <div class="card">
     <ul style="list-style:none">
       <li style="padding:4px 0">1️⃣ <b>狂犬疫苗免疫证原件</b>：接种满21天、在1年有效期内（两只都要）</li>
-      <li style="padding:4px 0">2️⃣ <b>《动物检疫合格证明（动物A）》</b>：已推行电子出证——提前3天左右线上申报+预约现场查验，目的地写「新疆」，有效期最长5天；<b>返程需在乌鲁木齐重新办理</b>（D14 预留了提醒）。⚠️ 2026年口径：办证需<b>狂犬病抗体检测合格</b>——抗体采血送检通常要1-2周，<b>提前1个月启动</b></li>
+      <li style="padding:4px 0">2️⃣ <b>《动物检疫合格证明（动物A）》——全程两张</b>：已推行电子出证，提前3天左右线上申报+预约现场查验。<b>第一张北京出发前办</b>，目的地写「新疆」，有效期最长5天，覆盖D1–D5进疆检查点；<b>第二张D15乌鲁木齐休整日办</b>，目的地写「北京」，覆盖D16–D20出疆和进青海的检查段。⚠️ 2026年口径：办证需<b>狂犬病抗体检测合格</b>——抗体采血送检通常要1-2周，<b>提前1个月启动</b>，抗体报告有效期覆盖全程可两张共用</li>
+      <li style="padding:4px 0">⏳ <b>有效期账算清楚</b>：证有效期最长5天、行程27天，任何一张都不可能覆盖全程；D21以后川渝鄂高速常规查验概率低，但证过期属于已知残余风险——遇检查出示疫苗证、抗体报告并说明情况，必要时在成都休整日按属地流程补办</li>
       <li style="padding:4px 0">3️⃣ <b>犬证</b> + 所有证件拍照存手机（住宿、检查站都可能要看）</li>
       <li style="padding:4px 0">4️⃣ 自驾入疆走指定通道：G7 内蒙方向<b>白山泉站</b>、G30 甘肃方向<b>烟墩站</b>——过站时主动申报，接受登记消毒。政策主要针对畜禽运输，私家车宠物执行有弹性，但按最严口径准备最稳</li>
     </ul>
@@ -445,7 +585,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <div class="twrap"><table>
     <thead><tr><th>城市</th><th>用途</th><th>地址 / 链接</th></tr></thead>
     <tbody>
-      <tr><td>乌鲁木齐</td><td>全程最适合处理急诊、补药和返程动物A证咨询；出发前在高德收藏2家仍营业且可夜诊的医院</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=乌鲁木齐24小时宠物医院" target="_blank" rel="noopener">高德实时搜索</a></td></tr>
+      <tr><td>乌鲁木齐</td><td>全程最适合处理急诊、补药和床车段健康检查；出发前在高德收藏2家仍营业且可夜诊的医院</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=乌鲁木齐24小时宠物医院" target="_blank" rel="noopener">高德实时搜索</a></td></tr>
       <tr><td>伊宁</td><td>伊犁段补给与常规检查；不要把洗护店当成医疗机构</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=伊宁宠物医院" target="_blank" rel="noopener">高德实时搜索</a></td></tr>
       <tr><td>沿途县城</td><td>无夜诊承诺；出现中暑、外伤、误食或高反时先联系120/当地宠物医院，并向乌鲁木齐或伊宁转运</td><td><span class="addr">每天出发前在地图收藏当日最近医院；全程零寄养</span></td></tr>
     </tbody>
@@ -454,27 +594,27 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
 
 <!-- ================= 住宿 ================= -->
 <section class="tab" id="tab-stay" role="tabpanel" aria-labelledby="nav-stay" tabindex="0">
-  <h2 class="sec">🏨 全程住宿清单</h2>
-  <p class="lead">舒适型 300-600元/晚。⚠️ 所有「宠物友好」都是线索性质——<b>每一晚都要提前电话确认「两只边牧」</b>，并让对方在订单备注确认，避免到店被拒。打电话话术：「两只边境牧羊犬、15-20kg、打过疫苗、不拆家、自备垫子和床单」。</p>
+  <h2 class="sec">🏨 住宿清单（D1–D15 ＋ 返程西宁/成都/武汉三晚）</h2>
+  <p class="lead">前15晚住酒店/民宿；返程段西宁（D20）、成都（D22）、武汉（D25）三晚住酒店，其余8晚床车。⚠️ 所有「宠物友好」都是线索性质——<b>每一晚都要提前电话确认「两只边牧」</b>，并让对方在订单备注确认，避免到店被拒。床车点另在每日卡和确认中心逐晚核对，免费停车不能替代过夜许可。</p>
   <div class="twrap"><table>
     <thead><tr><th>晚</th><th>住宿</th><th>确切地址</th><th>预订 / 导航</th><th>要点</th></tr></thead>
     <tbody>
       <tr><td>D1</td><td><b>维也纳国际酒店（巴彦淖尔市高铁站市政府店）</b></td><td>临河区水源路中央公馆A座</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/97451438.html" target="_blank" rel="noopener">携程</a><a class="lnk bk" href="tel:04788259998">☎0478-8259998</a><a class="lnk" href="https://uri.amap.com/search?keyword=维也纳国际酒店巴彦淖尔市高铁站市政府店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 平台可核</span> 狗/猫需提前联系、免费；公共停车免费，但旺时晚到可能停远，两只边牧仍须写入订单</td></tr>
       <tr><td>D2</td><td><b>额济纳旗尚景酒店</b></td><td>达来呼布镇团结小区西门6号商服；旧星级名录登记为苏伯淖尔南路东侧，以订单定位为准</td><td><a class="lnk bk" href="https://m.ctrip.com/html5/hotel/hoteldetail/6085444.html" target="_blank" rel="noopener">携程</a><a class="lnk bk" href="tel:04836529358">☎0483-6529358</a><a class="lnk" href="https://uri.amap.com/search?keyword=额济纳旗尚景酒店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 平台可核</span> 平台显示宠物友好、免费停车；两只边牧和晚到保留仍须书面确认</td></tr>
-      <tr><td>D16</td><td><b>额济纳旗云朵酒店（博物馆店）</b></td><td>达来呼布镇居延名邸F段商服楼10号商铺</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/80911875.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=额济纳旗云朵酒店额济纳博物馆店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-amber">B 平台可核</span> 返程住宿保持不变；仍需确认两只边牧</td></tr>
-      <tr><td>D17</td><td><b>云庭酒店（维多利摩尔城店）</b></td><td>临河区胜利北路巴运国际旅行社东南30米</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/112823609.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=云庭酒店巴彦淖尔维多利摩尔城店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-amber">B 平台可核</span> 返程住宿保持不变；仍需确认两只边牧</td></tr>
       <tr><td>D3</td><td><b>敦煌家天下民宿（鸣沙山月牙泉景区店）</b><br>备用：敦煌城堡酒店</td><td>主店：月牙泉镇月牙泉村三组6号<br>备用：敦煌七里镇景观大道12999号</td><td><a class="lnk bk" href="https://m.ctrip.com/html5/hotel/hoteldetail/8476578.html" target="_blank" rel="noopener">携程</a><a class="lnk bk" href="tel:18437722550">☎用户联系人18437722550</a><a class="lnk bk" href="tel:17709370998">☎平台17709370998</a><a class="lnk" href="https://uri.amap.com/search?keyword=敦煌家天下民宿鸣沙山月牙泉景区店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 平台可核</span> 允许携宠但具体需咨询，免费停车；两只边牧、号码归属和晚到保留须确认</td></tr>
       <tr><td>D4</td><td><b>哈密星旺宾馆</b></td><td>伊州区石油基地中旺路24号</td><td><a class="lnk bk" href="https://in.trip.com/hotels/hami-hotel-detail-1197678/xing-wang-hotel/" target="_blank" rel="noopener">Trip.com</a><a class="lnk bk" href="tel:09026975888">☎0902-6975888</a><a class="lnk" href="https://uri.amap.com/search?keyword=哈密星旺宾馆石油基地中旺路24号" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 平台可核</span> 宠物友好、免费私人停车；注意不要误订电话为2370088的“星旺宾馆二店”</td></tr>
-      <tr><td>D15</td><td><b>海逸酒店（哈密G312国道店）</b></td><td>伊州区火箭农场东疆中大道71号潞和大厦</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/122779043.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=海逸酒店哈密G312国道店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 政策明确</span> 返程住宿保持不变；允许携宠、需提前联系，每次入住30元</td></tr>
-      <tr><td>D14</td><td><b>乌鲁木齐县缘来如玉民宿</b></td><td>水西沟镇平西梁村A10-2号</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/110381323.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=缘来如玉民宿水西沟" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-red">C 电话确认</span> 地址与在营状态可核；两只大型犬仍需写入订单</td></tr>
-      <tr><td>D5</td><td><b>鄯善龙诚酒店（新城东路盛世财富广场店）</b></td><td>鄯善县新城东路南侧盛世财富广场1幢1单元124号</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/28416200.html" target="_blank" rel="noopener">携程</a><a class="lnk bk" href="tel:09958326888">☎0995-8326888</a><a class="lnk" href="https://uri.amap.com/search?keyword=鄯善龙诚酒店新城东路盛世财富广场店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 政策明确</span> 平台登记名为“龙诚”而非“龙城”；宠物免费、公共停车免费、有充电车位。两只边牧及充电位占用仍须确认</td></tr>
+      <tr><td>D14–D15</td><td><b>乌鲁木齐县缘来如玉民宿 · 连住两晚</b></td><td>水西沟镇平西梁村A10-2号</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/110381323.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=缘来如玉民宿水西沟" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-red">C 电话确认</span> 地址与在营状态可核；须书面确认两只边牧、连续两晚、D14晚到和D16退房时间</td></tr>
+      <tr><td>D5</td><td><b>木垒县城宠物友好住宿</b><br>（待电话落实，无则往奇台）</td><td>木垒哈萨克自治县县城；哈密以西G7第一座县城</td><td><a class="lnk bk" href="https://m.ctrip.com/webapp/hotel/mulei21109" target="_blank" rel="noopener">携程木垒</a><a class="lnk" href="https://uri.amap.com/search?keyword=木垒县宠物友好酒店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-red">C 必须电话确认</span> ⚠️本段最高优先级：小县城平台普遍不写宠物政策、连锁多不接大型犬。筛“允许携带宠物”后优先独栋民宿/带院客栈，逐家电话确认“两只边牧共约35kg、费用、是否需笼”并写入订单备注；不能确认就往奇台找</td></tr>
       <tr><td>D6</td><td><b>阿勒泰友谊宾馆</b></td><td>阿勒泰市解放路1区128栋</td><td><a class="lnk bk" href="https://m.ctrip.com/html5/hotel/hoteldetail/42169237.html" target="_blank" rel="noopener">携程</a><a class="lnk bk" href="tel:09062315888">☎0906-2315888</a><a class="lnk" href="https://uri.amap.com/search?keyword=阿勒泰友谊宾馆解放路1区128栋" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-amber">B/C 需确认</span> 平台显示收费携宠、充电桩；住客评价可核免费停车。两只边牧费用、充电功率与车位必须电话确认</td></tr>
-      <tr><td>D7</td><td><b>牧雅居民宿（落日观景台店）</b></td><td>禾木喀纳斯蒙古族乡禾木村阿西麦里路34号</td><td><a class="lnk bk" href="https://hk.trip.com/hotels/burqin-hotel-detail-131303190/moya-villa/" target="_blank" rel="noopener">Trip.com</a><a class="lnk bk" href="tel:18126209839">☎用户联系人18126209839</a><a class="lnk bk" href="tel:17844447778">☎平台17844447778</a><a class="lnk" href="https://uri.amap.com/search?keyword=牧雅居民宿落日观景台店禾木" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 宠物明确</span> 狗/猫需申请、免费，2026有携宠评价；平台停车信息不代表游客私家车可进村，仍按外部停车＋区间车执行</td></tr>
+      <tr><td>D7</td><td><b>牧雅居民宿（落日观景台店）</b></td><td>禾木喀纳斯蒙古族乡禾木村阿西麦里路34号</td><td><a class="lnk bk" href="https://hk.trip.com/hotels/burqin-hotel-detail-131303190/moya-villa/" target="_blank" rel="noopener">Trip.com</a><a class="lnk bk" href="tel:18126209839">☎用户联系人18126209839</a><a class="lnk bk" href="tel:17844447778">☎平台17844447778</a><a class="lnk" href="https://uri.amap.com/search?keyword=牧雅居民宿落日观景台店禾木" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 宠物明确</span> 狗/猫需申请、免费，2026有携宠评价；平台停车信息不代表游客私家车可进村，按外部停车＋民宿可载犬出租车执行（区间车备选）</td></tr>
       <tr><td>D8</td><td><b>柏纳酒店（克拉玛依世界魔鬼城店）</b></td><td>克拉玛依市乌尔禾区扬州路与上海街交叉口北30米0区19栋</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/129264922.html" target="_blank" rel="noopener">携程</a><a class="lnk bk" href="tel:15009906218">☎15009906218</a><a class="lnk bk" href="tel:09907561820">☎0990-7561820</a><a class="lnk" href="https://uri.amap.com/search?keyword=柏纳酒店克拉玛依世界魔鬼城店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-amber">B/C 宠物收费</span> 免费公共停车；平台标示每只宠物每天100元，两只边牧合计200元/晚，必须让酒店确认体型、数量和最终收费</td></tr>
       <tr><td>D9</td><td><b>赛官房民宿（赛里木湖东门游客中心店）</b></td><td>博乐市赛里木湖景区净海路6号</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/129330711.html" target="_blank" rel="noopener">携程</a><a class="lnk bk" href="tel:09092222000">☎0909-2222000</a><a class="lnk" href="https://uri.amap.com/search?keyword=赛官房民宿赛里木湖东门游客中心店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 政策明确</span> 正式名称为“赛官房”而非“赛宫房”；狗/猫/其他宠物免费、停车免费，无早餐，押金100元；两只边牧仍须写入订单</td></tr>
       <tr><td>D10</td><td><b>栖云馆民宿（六星街店）</b></td><td>伊宁市西环路二巷2号</td><td><a class="lnk bk" href="https://m.ctrip.com/html5/hotel/hoteldetail/120273337.html" target="_blank" rel="noopener">携程</a><a class="lnk bk" href="tel:13899730840">☎13899730840</a><a class="lnk" href="https://uri.amap.com/search?keyword=栖云馆民宿六星街店伊宁" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 政策明确</span> 狗/猫免费、附近公共停车免费、无早餐；两只边牧和D11早出须书面确认</td></tr>
       <tr><td>D11–D12</td><td><b>那拉提悠然民宿（那拉提景区店）· 连住2晚</b></td><td>新源县那拉提镇天马街117号</td><td><a class="lnk bk" href="https://hk.trip.com/hotels/xinyuan-hotel-detail-2348909/nei-la-ti-you-ran-ke-zhan/" target="_blank" rel="noopener">Trip.com</a><a class="lnk bk" href="tel:15886986899">☎15886986899</a><a class="lnk" href="https://uri.amap.com/search?keyword=那拉提悠然民宿天马街117号" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 政策明确</span> 平台显示狗/猫可申请免费入住、免费私人停车、无早餐；两只边牧和连住两晚须写入订单</td></tr>
       <tr><td>D13</td><td><b>唐布拉听泉别院（喀什河店）</b><br>充电备选：得鹿梦鱼民宿</td><td>主店：尼勒克种蜂场恰特尔塔勒布拉克农业队喀什路二巷1号</td><td><a class="lnk bk" href="https://hotels.ctrip.com/hotels/110750412.html" target="_blank" rel="noopener">携程</a><a class="lnk bk" href="tel:19326665500">☎19326665500</a><a class="lnk" href="https://uri.amap.com/search?keyword=唐布拉听泉别院喀什河店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-amber">B/C 充电硬条件</span> 平台显示宠物友好、免费停车和充电车位；必须确认两只边牧、接口、功率、过夜开放和车位预留</td></tr>
+      <tr><td>D20</td><td><b>西宁青滨壹号酒店（北川万达店）</b><br>备选：东宝酒店（唐道637店）</td><td>主店：城北区济湟路北川万达广场三期万达中心B座1楼<br>备选：城西区五四西路71号安泰华庭</td><td><a class="lnk bk" href="https://us.trip.com/hotels/xining-hotel-detail-129118120/qingbin-no1-hotel/" target="_blank" rel="noopener">Trip.com</a><a class="lnk bk" href="tel:09718825555">☎备选0971-8825555</a><a class="lnk" href="https://uri.amap.com/search?keyword=西宁青滨壹号酒店北川万达" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-amber">B/C 需确认</span> 主店平台显示可带狗、约100元/只/天、免费停车，距城北吾悦超充约3km、次日上G6最顺；备选平台宠物免费、距索菲特超充约300m。两只边牧均须电话确认</td></tr>
+      <tr><td>D22</td><td><b>成都高新会展希尔顿惠庭酒店</b><br>备选：武侯祠希尔顿惠庭 / 盛捷江畔</td><td>主店：双流区梓州大道4111号灵冠国际城8栋</td><td><a class="lnk bk" href="https://www.trip.com/hotels/chengdu-hotel-detail-109177850/home2-suites-by-hilton-chengdu-high-tech-zone-exhibition" target="_blank" rel="noopener">Trip.com</a><a class="lnk bk" href="tel:02886088999">☎028-86088999</a><a class="lnk" href="https://uri.amap.com/search?keyword=成都高新会展希尔顿惠庭酒店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 品牌政策明确</span> 惠庭中国区统一政策每房最多2只猫/狗、约300元/次、免费停车；距Canpet犬岛约8–10km。仍须电话报“两只边牧15–20kg”并带疫苗证明</td></tr>
+      <tr><td>D25</td><td><b>武汉徐东希尔顿惠庭酒店</b><br>备选：汉口火车站希尔顿惠庭</td><td>主店：洪山区友谊大道661号万隆国际广场</td><td><a class="lnk bk" href="https://us.trip.com/hotels/wuhan-hotel-detail-92066559/home2-suites-by-hilton-wuhan-xudong/" target="_blank" rel="noopener">Trip.com</a><a class="lnk bk" href="tel:02759376999">☎027-59376999</a><a class="lnk" href="https://uri.amap.com/search?keyword=武汉徐东希尔顿惠庭酒店" target="_blank" rel="noopener">导航</a></td><td><span class="pill p-green">B 品牌政策明确</span> 每房最多2只猫/狗、约300元/次、免费停车，距武昌万象城约2–3km；备选店政策原文“2只/350元/1000元押金”最完整。进武汉前先实测肩高≤61cm</td></tr>
     </tbody>
   </table></div>
   <p class="small" style="margin:-8px 0 16px">💡 携程链接若跳转异常，在携程App直接搜酒店名即可；高德「导航」链接在手机上会拉起高德App。所有〔待核实〕地址以导航实际定位为准。</p>
@@ -484,12 +624,12 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <thead><tr><th>城市</th><th>餐饮与地址</th><th>链接</th></tr></thead>
     <tbody>
       <tr><td>呼和浩特（D1午饭）</td><td><b>老绥元烧麦（摩尔城店）</b>：新华东街与东影南路交汇处维多利摩尔城A座7层；纯羊肉烧麦按“两”点</td><td><a class="lnk bk" href="https://you.ctrip.com/food/ctripyouyoustar156/7467084.html" target="_blank" rel="noopener">餐饮页</a><a class="lnk" href="https://uri.amap.com/search?keyword=老绥元烧麦摩尔城店" target="_blank" rel="noopener">导航</a></td></tr>
-      <tr><td>临河（D1/D17）</td><td><b>火车主题夜市</b>：曙光街，河套学院与巴彦淖尔职业技术学校之间；适合找河套硬菜、肉焙子与糖麻叶</td><td><a class="lnk bk" href="https://www.linhe.gov.cn/zfgb/2025-2/pdf/2025_2.pdf" target="_blank" rel="noopener">政府公报</a><a class="lnk" href="https://uri.amap.com/search?keyword=临河火车主题夜市" target="_blank" rel="noopener">导航</a></td></tr>
-      <tr><td>额济纳旗（D2/D16）</td><td><b>达来呼布镇蒙餐片区</b>：浩融酒店北侧一带；到店前在地图核对当日营业，优先选有外摆位的蒙餐</td><td><a class="lnk bk" href="https://www.aiyoutravel.com/article/detail/1879382495100264448" target="_blank" rel="noopener">地址来源</a><a class="lnk" href="https://uri.amap.com/search?keyword=额济纳旗浩融酒店蒙餐" target="_blank" rel="noopener">导航</a></td></tr>
+      <tr><td>临河（D1）</td><td><b>火车主题夜市</b>：曙光街，河套学院与巴彦淖尔职业技术学校之间；适合找河套硬菜、肉焙子与糖麻叶</td><td><a class="lnk bk" href="https://www.linhe.gov.cn/zfgb/2025-2/pdf/2025_2.pdf" target="_blank" rel="noopener">政府公报</a><a class="lnk" href="https://uri.amap.com/search?keyword=临河火车主题夜市" target="_blank" rel="noopener">导航</a></td></tr>
+      <tr><td>额济纳旗（D2）</td><td><b>达来呼布镇蒙餐片区</b>：浩融酒店北侧一带；到店前在地图核对当日营业，优先选有外摆位的蒙餐</td><td><a class="lnk bk" href="https://www.aiyoutravel.com/article/detail/1879382495100264448" target="_blank" rel="noopener">地址来源</a><a class="lnk" href="https://uri.amap.com/search?keyword=额济纳旗浩融酒店蒙餐" target="_blank" rel="noopener">导航</a></td></tr>
       <tr><td>敦煌（D3）</td><td><b>敦煌城区驴肉黄面/烧烤</b>：长途抵达后以有外摆位或可打包门店为优先，不绑定未经核实的单店</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=敦煌驴肉黄面营业中" target="_blank" rel="noopener">实时搜索</a></td></tr>
-      <tr><td>哈密（D4/D15）</td><td><b>青禹然特色焖饼</b>：广东路8号石油大厦2层；主点羊肉焖饼，价格和营业状态以到店为准</td><td><a class="lnk bk" href="https://www.csair.com/h5/cn/tourism_strategy/guonei_lvyougonglve/Hami2/1cgdt0o181qoc.shtml" target="_blank" rel="noopener">地址来源</a><a class="lnk" href="https://uri.amap.com/search?keyword=青禹然特色焖饼哈密" target="_blank" rel="noopener">导航</a></td></tr>
+      <tr><td>哈密（D4）</td><td><b>青禹然特色焖饼</b>：广东路8号石油大厦2层；主点羊肉焖饼，价格和营业状态以到店为准</td><td><a class="lnk bk" href="https://www.csair.com/h5/cn/tourism_strategy/guonei_lvyougonglve/Hami2/1cgdt0o181qoc.shtml" target="_blank" rel="noopener">地址来源</a><a class="lnk" href="https://uri.amap.com/search?keyword=青禹然特色焖饼哈密" target="_blank" rel="noopener">导航</a></td></tr>
       <tr><td>乌鲁木齐（D14）</td><td><b>血站大盘鸡</b>：红庙子街道西北路2号；门店称谓较多，以地图实时营业门店为准</td><td><a class="lnk bk" href="https://gs.ctrip.com/html5/you/foods/Xinjiang100008/4926871.html" target="_blank" rel="noopener">餐饮页</a><a class="lnk" href="https://uri.amap.com/search?keyword=血站大盘鸡西北路2号乌鲁木齐" target="_blank" rel="noopener">导航</a></td></tr>
-      <tr><td>鄯善（D5）</td><td><b>县城夜宵/打包</b>：大海道晚出后不再进库木塔格，优先酒店附近仍营业且可打包的拌面、抓饭</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=鄯善县美食营业中" target="_blank" rel="noopener">实时搜索</a></td></tr>
+      <tr><td>木垒（D5）</td><td><b>县城夜宵/打包</b>：长途抵达后优先住宿附近仍营业、可打包的拌面、抓饭、烤肉</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=木垒县美食营业中" target="_blank" rel="noopener">实时搜索</a></td></tr>
       <tr><td>阿勒泰（D6）</td><td><b>市中心简餐/外摆</b>：友谊宾馆位于解放路，长途抵达后只选附近仍营业且可外摆/打包的门店</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=阿勒泰友谊宾馆附近美食营业中" target="_blank" rel="noopener">实时搜索</a></td></tr>
       <tr><td>禾木（D7）</td><td><b>老村晚餐</b>：图瓦土火锅、手抓羊肉或咸奶茶；先让民宿推荐可接待两只狗的院落/外摆餐厅</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=禾木老村餐厅" target="_blank" rel="noopener">实时搜索</a></td></tr>
       <tr><td>乌尔禾（D8）</td><td><b>柏纳酒店 / 西部乌镇餐饮区</b>：禾木长途抵达后优先酒店餐厅或附近仍营业的外摆门店</td><td><a class="lnk" href="https://uri.amap.com/search?keyword=柏纳酒店克拉玛依世界魔鬼城店附近美食" target="_blank" rel="noopener">实时搜索</a></td></tr>
@@ -510,7 +650,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <ul style="list-style:none">
       <li style="padding:4px 0">🆔 <b>身份证随手放</b>：进疆后检查站频繁查验人证；加油站需刷身份证（对同行油车而言，电车无感）</li>
       <li style="padding:4px 0">🐕 <b>入疆指定通道主动申报宠物</b>：G7 内蒙方向走<b>白山泉站</b>、G30 甘肃方向走<b>烟墩站</b>，出示狂犬疫苗证+《动物检疫合格证明（动物A）》，配合登记消毒。政策主要针对畜禽运输，私家车执行有弹性，但按最严口径准备</li>
-      <li style="padding:4px 0">📄 <span class="pill p-amber">2026核查有更新</span> <b>检疫证明有效期最长5天</b>（非"3-5天"模糊表述）：全国自2025年起推行<b>无纸化电子出证</b>，短信通知+电子证照可查，现场仍需临床检查，建议<b>提前3天线上预约</b>；<b>返程在乌鲁木齐重新办一张</b>（D14 预留了提醒），按线上申报+现场核验流程操作，而非"到监督所办理"纸质证</li>
+      <li style="padding:4px 0">📄 <span class="pill p-amber">2026核查有更新</span> <b>检疫证明有效期最长5天</b>（非"3-5天"模糊表述）：全国自2025年起推行<b>无纸化电子出证</b>，短信通知+电子证照可查，现场仍需临床检查，建议<b>提前3天线上预约</b>；<b>返程第二张在D15乌鲁木齐休整日办理</b>（确认中心已建条目），按线上申报+现场核验流程操作，而非"到监督所办理"纸质证；证过期后的川渝鄂段属已知残余风险，随车备齐疫苗证/抗体报告/两张A证照片</li>
       <li style="padding:4px 0">🛂 <span class="pill p-amber">2026核查有更新</span> <b>边防证已全面电子化</b>（自2026年4月15日起）：本行程（不含白哈巴/塔县）不需要；若临时加白哈巴/185团白沙湖，成人可用「移民局12367」App/小程序几十秒办好电子证，不必只依赖布尔津现场窗口（未成年人/涉外仍需现场办理）</li>
     </ul>
   </div>
@@ -531,7 +671,8 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <div class="card">
     <ul style="list-style:none">
       <li style="padding:4px 0">🔥 <b>任何情况不把狗单独留在关窗车内</b>；短暂离开必开特斯拉宠物模式（屏幕显示车内温度），并控制在30分钟内、留人视线可及最佳</li>
-      <li style="padding:4px 0">🐾 沥青/雅丹地表测温：手背贴地5秒，烫手就抱狗/换鞋套；雅丹午后地表可达60°C+</li>
+      <li style="padding:4px 0">🐾 沥青/雅丹地表测温：手背贴地5秒，烫手就抱狗/穿狗鞋；雅丹、大海道砾石午后地表可达60°C+，正午不安排任何下车徒步</li>
+      <li style="padding:4px 0">🌫️ <b>成都、武汉是另一种热</b>：8月湿热（桑拿天）狗蒸发散热效率大幅下降，比干热更容易中暑——D23/D26活动只选室内宠物友好空间或成片遮阴场地，柏油地面同样先测温，随时补水并观察喘气节奏</li>
       <li style="padding:4px 0">🥵 <b>中暑征兆</b>：狂喘、大量流涎、步态不稳、牙龈发红——立即阴凉处+少量多次喂水+湿毛巾敷脚垫和腹股沟（不要冰水激），就近宠物医院（伊宁/乌鲁木齐资源最全）</li>
       <li style="padding:4px 0">🕷️ 蜱虫：伊犁草原高发（那拉提/唐布拉），长效驱虫覆盖全程；每晚摸耳后、腋下、趾缝；发现蜱虫用细尖镊子贴近皮肤夹住口器，<b>稳定、均匀向上拉出，不旋转、不猛拽</b>；无法完整取出就就医。<a class="lnk bk" href="https://www.cdc.gov/ticks/after-a-tick-bite/index.html" target="_blank" rel="noopener">CDC步骤</a></li>
       <li style="padding:4px 0">🐑 <b>视野内有羊群/毡房必须上绳</b>：牧民护卫犬领地性极强，边牧天生想赶羊；追咬牲畜照价赔偿</li>
@@ -546,8 +687,10 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <ul style="list-style:none">
       <li style="padding:4px 0">⛔ <b>不在景区和公路沿线野营</b>：独库公路河谷草原、巴音布鲁克保护区域和赛里木湖环湖草坪都不作为夜宿点</li>
       <li style="padding:4px 0">🛃 <b>边境管理区夜宿限制</b>：哈巴河、布尔津北部、温泉县、霍尔果斯方向等边境县，留宿非本地人员须向边境派出所申报（正规酒店/营地会自动登记）——<b>边境县野外睡车风险最高，别干</b></li>
-      <li style="padding:4px 0">✅ <b>当前版本0晚睡车</b>：全程17晚均为酒店或民宿；D10住伊宁栖云馆，D11–D12住那拉提悠然民宿，D13住唐布拉听泉别院</li>
-      <li style="padding:4px 0">🔒 夜间车辆只停酒店、民宿或景区指定停车区域；贵重物品不留在可见位置，关闭不必要的高耗能待机设置</li>
+      <li style="padding:4px 0">✅ <b>当前版本8晚床车</b>：D16–D19、D21、D23、D24、D26只在电话确认允许小客车过夜、有人管理、有厕所、有照明/信号并具备基本救援条件的营地或管理区驻车；西宁、成都、武汉三个长途抵达晚住酒店；普通公共停车场、快充车位和路边不算营地</li>
+      <li style="padding:4px 0">🔋 <b>驻车电量红线</b>：到营位时必须由车机确认露营模式过夜后仍能抵达最近快充；高原/低温夜额外保守。Tesla未给出固定每小时耗电承诺，因此不写死百分比</li>
+      <li style="padding:4px 0">🔥 <b>车内绝不使用明火</b>：不使用燃气炉、酒精炉或炭火；快充完成立即移车，不占充电位过夜</li>
+      <li style="padding:4px 0">🔒 露营模式会停用哨兵和车辆警报；只选有人管理营位，贵重物品不外露，睡前确认前后排机械开门方式和逃生通道</li>
     </ul>
   </div>
 
@@ -556,7 +699,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <ul style="list-style:none">
       <li style="padding:4px 0">🚨 <b>G7临白段是最长连续补能风险段</b>——出发前3天用 e充电App + e路畅通小程序逐站核查乌力吉/苏宏图/雅干桩况；连续关键站异常就在安全城市延迟或改G30</li>
       <li style="padding:4px 0">🐢 D13必须在蜜蜂小镇完成过夜补能闭环；D14独库北段不依赖沿线固定功率或固定桩距，毛溜沟只作应急备选，独山子/奎屯才是稳定收尾城市</li>
-      <li style="padding:4px 0">🏜️ <b>大海道红线</b>：不把红柳滩或景区内任何桩当作必然可用；哈密95–98%出发，只有景区确认开放主线适合Model Y且车机预计北门离场后可安全到鄯善时才全穿越，否则东门浅游后原路退出</li>
+      <li style="padding:4px 0">🏜️ <b>大海道红线</b>：只走哈密端红柳滩铺装段往返，不做到鄯善的全程穿越（四驱越野无人区）；哈密满电出发，景区内不依赖任何充电桩；翼龙搓板段默认不进，之后走G7北线到木垒</li>
       <li style="padding:4px 0">🛣️ <b>S21红线</b>：主充克拉美丽，备选五家渠和吉利湖；黄花沟只休息。高速全程禁止路边/应急车道停车拍照，乌伦古湖只在服务区或合法驶出高速后观看</li>
       <li style="padding:4px 0">📉 电耗修正系数记牢：8月高温空调 +20-30%、山区（禾木/果子沟/独库）+15-30%、强侧风 +10%；任何时候保有到达「下下一个」充电点的电量</li>
       <li style="padding:4px 0">📵 无人区部分路段无信号：提前把当日桩位分布截图；手机双卡（电信+移动）互补</li>
@@ -582,10 +725,10 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <b>网络资料能证明地址、公开价格或平台标签，但不能替代当天营业、天气、道路和“两只大型犬”的人工确认：</b><br>
     ① 出发前3天用 e充电/e路畅通逐站核对G7临白段桩况；若连续关键站异常，启用G30河西走廊预案。<br>
     ② 所有酒店下单前明确写入“两只边牧、体重、是否收费”，获得商家文字回复后再订；平台宠物标签不是无条件承诺。<br>
-    ③ D5出发前一天及东门现场两次确认大海道主线、通天洞线路和Model Y低底盘通行条件；红柳滩充电不作为成立条件，无法确认即东门浅游后退出。<br>
+    ③ D5大海道只走哈密端红柳滩铺装段往返（到鄯善的全程穿越是四驱越野无人区，Model Y不走）；翼龙峡谷方向搓板路对低底盘有托底/爆胎风险，默认不进，仅现场确认路况良好才量力前探；哈密满电覆盖往返，之后走G7北线到木垒。<br>
     ④ D10只以「赛里木湖旅游/一部手机游赛湖」当日产品和现场交通组织为准；确认自驾、两只边牧及东门进南门出可执行后再入园。<br>
     ⑤ D14按公安厅正式通告预约乔尔玛入口08:00–10:00时段，并在D13晚、D14清晨重新确认开放、天气、施工和入口状态。<br>
-    ⑥ D6只在S21服务区或合法驶出高速后停车；D7保存“可带两只边牧入禾木村”的确认凭证，并落实区间车装载方式、笼具要求、末班时间和民宿接宠。<br>
+    ⑥ D6只在S21服务区或合法驶出高速后停车；D7保存“可带两只边牧入禾木村”的确认凭证，并与民宿提供的出租车司机落实接送时间、车费、笼具要求和民宿接宠（区间车为备选）。<br>
     ⑦ D11库尔德宁与D12那拉提必须分别确认两只边牧准入；未确认就执行公开道路替代，不把狗留车内换人游玩。<br>
     ⑧ D13听泉别院充电车位、蜜蜂小镇公共桩至少落实一主两备；无法形成D14安全余量就不在唐布拉过夜。<br>
     ⑨ 独库遇降雨、落石、临时封路或未预约成功，立即改线，不以“打卡完整路段”为目标。住宿、餐饮、购票和证据链接见<a class="lnk bk" href="信息核验记录.md" target="_blank" rel="noopener">《信息核验记录》</a>。
@@ -628,7 +771,7 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <div class="card">
     <h4 style="font-size:16px;font-weight:800;margin-bottom:6px">🍂 额济纳·胡杨林旅游区 <span class="pill p-amber">季节未到</span></h4>
     <p><b>为什么错过</b>：季节性开园（往年9月上旬），8月路过时未开园，且胡杨叶还是绿的。</p>
-    <p><b>此行的替代</b>：D2/D16 居延海日出芦苇+路边免费绿胡杨。</p>
+    <p><b>此行的替代</b>：D2 居延海日出芦苇+路边免费绿胡杨。</p>
     <p><b>未来补偿</b>：<b>9月底-10月中旬金秋</b>是它唯一的正确打开方式（门票240元/30天内不限次，含摆渡车）——正好走一次「金秋G7」短线：北京→额济纳 2天直达，胡杨+怪树林+黑城 3天，狗可同行玩外围（景区内政策行前确认）。</p>
   </div>
 
@@ -637,6 +780,13 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
     <p><b>为什么错过</b>：吐鲁番盆地8月 40°C+、沙面可达 70°C，对双层被毛的边牧是中暑+烫爪双重危险，主动跳过。</p>
     <p><b>此行的替代</b>：无（安全优先，不硬替）。</p>
     <p><b>未来补偿</b>：<b>4-5月或10月</b>清晨/黄昏进沙漠，人狗都舒服；它是全国离城市最近的沙漠（紧贴鄯善县城），G30 顺路性极好。</p>
+  </div>
+
+  <div class="card">
+    <h4 style="font-size:16px;font-weight:800;margin-bottom:6px">☯️ 特克斯八卦城 <span class="pill p-amber">V15主动取消（性价比不成立）</span></h4>
+    <p><b>为什么错过</b>：八卦格局只有登上观景塔俯瞰才成立，塔为室内设施、狗无法带入；不登塔在地面街道开车转与普通县城无异。为它从伊宁绕行特克斯三角形要多走约140km、2.5小时以上，正是把D11变成超载日的主因。</p>
+    <p><b>此行的替代</b>：D11改为伊宁—巩留直达库尔德宁，17:00前后即可到那拉提，行程从约490km降到约350km。</p>
+    <p><b>未来补偿</b>：不带狗时顺路登观景塔一次即可（约1小时），可与喀拉峻、琼库什台组合成专门的特克斯线。<a class="lnk" href="https://uri.amap.com/search?keyword=特克斯八卦城观景塔" target="_blank" rel="noopener">导航</a></p>
   </div>
 
   <div class="card">
@@ -666,17 +816,45 @@ footer{text-align:center;color:var(--sub);font-size:12.5px;padding:30px 16px;bor
   <div class="card">
     <ul style="list-style:none">
       <li style="padding:4px 0">📆 <b>提前1个月</b>：确认两狗狂犬疫苗在有效期（接种满21天）；启动狂犬病抗体检测（办A证前置）；锁定可免费取消酒店</li>
-      <li style="padding:4px 0">📆 <b>提前1-2周</b>：逐晚获得酒店接收“两只边牧”的文字确认；重点复核柏纳宠物费、赛官房无早餐、那拉提悠然民宿连住两晚、唐布拉听泉别院充电，以及鄯善龙诚、阿勒泰友谊宾馆与禾木牧雅居的订单；保存禾木可带狗入村的答复；做长效体外驱虫</li>
+      <li style="padding:4px 0">📆 <b>提前1-2周</b>：逐晚获得酒店接收“两只边牧”的文字确认；重点复核柏纳宠物费、赛官房无早餐、那拉提悠然民宿连住两晚、唐布拉听泉别院充电，以及阿勒泰友谊宾馆与禾木牧雅居的订单；⚠️木垒（D5）两只边牧住宿须逐家电话锁定、无则往奇台；保存禾木可带狗入村的答复；做长效体外驱虫</li>
       <li style="padding:4px 0">📆 <b>提前3-7天</b>：在「赛里木湖旅游/一部手机游赛湖」核对并购买实时自驾产品；用 e充电/e路畅通逐站核查 G7 临白段桩况，决定是否启用 G30 绕行预案</li>
-      <li style="padding:4px 0">📆 <b>提前3天</b>：线上申报《动物检疫合格证明（动物A）》电子出证（有效期最长5天，掐点办）；预约独库北段通行名额（游新疆一码游/平安独库）；家充满电；查独库当季管制通告</li>
+      <li style="padding:4px 0">📆 <b>提前3天</b>：按北京属地要求线上申报去程《动物检疫合格证明（动物A）》；预约独库北段通行名额（游新疆一码游/平安独库）；家充满电；查独库当季管制通告</li>
     </ul>
+  </div>
+</section>
+
+<!-- ================= 预算方法 ================= -->
+<section class="tab" id="tab-budgetmethod" role="tabpanel" aria-labelledby="nav-budgetmethod" tabindex="0">
+  <h2 class="sec">💰 预算是怎么估出来的</h2>
+  <p class="lead">这一页只讲方法：每个分项的单价假设、数量来源和计算公式。「预算清单」页的表格由这些公式得出并自动求和；天数或住宿结构再变时，按同一公式重算即可。所有金额都是<b>区间</b>而不是报价——下限按顺利执行，上限按旺季、宠物附加费和绕行都发生。</p>
+
+  <div class="note teal"><b>预算档演进</b>：V1立项时按18天确认「舒适型 2.5–3.5万」；V14扩到27天后升至约3.1–4.7万；V15把西宁、成都、武汉三晚床车改为酒店后为约3.1–4.8万。委托人2026-07-17确认：预算不是约束项，但评估方法必须透明可复算。</div>
+
+  <div class="twrap"><table>
+    <thead><tr><th>分项</th><th>计算公式</th><th>单价假设与依据</th><th>结果</th></tr></thead>
+    <tbody>
+      <tr><td><b>住宿18晚</b></td><td>15晚原计划实价区间 ＋ 新增3晚 ×（300–600元）</td><td>原15晚按已选酒店/民宿平台挂牌价300–600元档累计（禾木、赛湖旺季按上浮口径取上限）；柏纳两只宠物费200元/晚计入上限；西宁/成都/武汉按同档宠物友好酒店</td><td>¥7,100–11,800</td></tr>
+      <tr><td><b>营地/驻车8晚</b></td><td>8晚 ×（50–200元/晚）</td><td>合法汽车营地/管理停车区常见收费带；床车但不等于免费</td><td>¥500–1,600</td></tr>
+      <tr><td><b>充电</b></td><td>总里程 × 实际能耗 × 电价</td><td>约13,000km × 16–19kWh/100km（高速120巡航、8月空调、满载、山区/侧风上浮）≈ 2,050–2,400kWh；均价1.5–2.2元/kWh（超充与服务区峰时高、县城夜间低）；床车夜露营模式空调耗电已含在能耗上浮里</td><td>¥3,600–5,400</td></tr>
+      <tr><td><b>过路费</b></td><td>收费里程 × 单价</td><td>全程约13,000km中收费路段约10,000–10,800km × 0.45–0.6元/km（新疆省道偏低，G30/G4干线和隧道段偏高）；S245两站MTC约46元单列计入</td><td>¥4,700–6,500</td></tr>
+      <tr><td><b>门票与自驾/接驳</b></td><td>逐项累加</td><td>大海道（按当日产品）＋禾木门票与进村接驳＋赛湖自驾套票（观察价155/人×2）＋库尔德宁60/人×2＋那拉提自驾票（获准才发生）＋水上雅丹（条件项）；狗不进的点不买票</td><td>¥700–1,700</td></tr>
+      <tr><td><b>餐饮27天</b></td><td>两人段＋单人段＋聚餐</td><td>D1–D15两人 × 250–350元/天 ＋ D16–D27一人 × 120–200元/天 ＋ 成都、武汉聚餐各300–500元</td><td>¥8,000–11,500</td></tr>
+      <tr><td><b>狗证件与耗材</b></td><td>逐项累加</td><td>狂犬抗体检测约400–800元/只 × 2 ＋ 去程/返程两张动物A证（电子出证基本免费）＋ 长效驱虫、药品、清洁耗材；零寄养所以无寄养费</td><td>¥1,000–2,200</td></tr>
+      <tr><td><b>床车装备与补给</b></td><td>一次性购置</td><td>Model Y L床垫、遮光、保暖、便携厕所、应急水粮；已有装备不重复计</td><td>¥800–2,200</td></tr>
+      <tr><td><b>安全机动金</b></td><td>固定值</td><td>旺季房价跳涨、宠物附加费、救援、恶劣天气滞留的独立余量；不摊入任何分项</td><td>¥5,000</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="card">
+    <p><b>怎么自己复算</b>：① 改住宿/床车晚数 → 直接增减对应晚数×单价档；② 改路线里程 → 充电按「里程×0.16–0.19kWh/km×1.5–2.2元」、过路费按「收费里程×0.45–0.6元」重算；③ 砍掉条件景点 → 只影响门票项。「预算清单」页表格的合计由分项自动求和，改 BUDGET_ITEMS 数字即可联动。</p>
+    <p style="margin-top:10px"><b>三个最可能击穿上限的点</b>：禾木/赛湖8月旺季房价（可到800+/晚）、成都武汉聚餐升级、以及任何一次计划外住宿退出（床车夜改酒店按300–600元/晚计）。机动金5,000元就是为这三类准备的。</p>
   </div>
 </section>
 
 </main>
 
 <footer>
-  为 Saul 和两位边牧定制 · 2026年8月 北京⇄大北疆 · 2026-07-17完成V12 D11–D14伊犁与独库重构 · 关键政策、花期、房态与桩况仍以确认中心的出发前复核为准 🐾
+  为 Saul 和两位边牧定制 · 2026年8月 北京⇄大北疆 · 2026-07-18完成V15整体评审修正（返程三晚住店、D11瘦身、独库时间账、全程证件与预算方法）· 关键政策、营地、天气与桩况仍以确认中心的出发前复核为准 🐾
 </footer>
 
 <script>
@@ -735,10 +913,10 @@ const hero = document.getElementById('heroBox');
 hero.innerHTML = scene('alpine', 7, 1200, 340, true) + `
 <div class="hero-inner">
   <h1>北京 ⇄ 大北疆</h1>
-  <p class="sub">18天 · 约<span data-total-km>8,850</span>km · 两人两边牧 · Model Y L 电车环线 · 2026年8月</p>
+  <p class="sub">27天 · 约<span data-total-km>13,000</span>km · 前段夫妻同行 / 后段一人两边牧床车 · 2026年8月</p>
   <div class="chips">
     <span class="chip">🐾 每站带狗玩法</span><span class="chip">⚡ 逐日充电规划</span>
-    <span class="chip">🚙 0晚睡车</span><span class="chip">🏨 17晚住宿</span>
+    <span class="chip">🚙 8晚管理营地睡车</span><span class="chip">🏨 18晚住宿</span>
   </div>
 </div>`;
 
@@ -754,34 +932,74 @@ freshnessBanner.innerHTML = verifiedStale
   : `<b>动态信息最后核验：${verifiedDate}</b> · 距核验${verifiedAge}天；动态信息仍须在出发前24小时确认。`;
 
 /* ====================== 路线示意图 ====================== */
-const NODES = [
-  // [x, y, name, day, seg]  seg: 0去程 1环线 2回程
-  [905,415,'北京',1,0],[760,392,'临河 D1',1,0],[622,340,'额济纳 D2',2,0],[548,410,'敦煌 D3',3,0],[452,352,'哈密 D4',4,0],
-  [318,368,'乌鲁木齐 D14',14,1],
-  [400,300,'鄯善 D5',5,1],[420,190,'阿勒泰 D6',6,1],[300,108,'禾木 D7',7,1],
-  [218,170,'乌尔禾 D8',8,1],[80,300,'赛湖东门 D9',9,1],
-  [58,382,'伊宁 D10',10,1],[110,438,'特克斯/库尔德宁 D11',11,1],[168,420,'那拉提 D11–D12',12,1],[205,370,'唐布拉 D13',13,1],[238,330,'独库北段 D14',14,1],
-];
-const SEQ = [ // path order with segment colors
-  {pts:[[905,415],[760,392],[622,340],[548,410],[452,352],[400,300]], c:'#c2670a', dash:false},
-  {pts:[[400,300],[420,190],[300,108],[218,170],[80,300],[58,382],[110,438],[168,420],[205,370],[238,330],[318,368]], c:'#0e7268', dash:false},
-  {pts:[[318,368],[452,352],[622,340],[760,392],[905,415]], c:'#8d867a', dash:true},
-];
 (function(){
-  let s = `<svg viewBox="0 0 960 470" xmlns="http://www.w3.org/2000/svg">`;
+  const SEG_COL = ['#c2670a','#0e7268','#8d867a']; // 0去程 1环线 2返程
+  const START_COL = '#292723';                     // 北京=去程起+返程终
+
+  const N = [
+    {x:895,y:300,name:'北京',    day:1, dl:'D1',      seg:0, hub:'start', a:'end',    lx:-15, ly:5},
+    {x:772,y:248,name:'临河',    day:1, dl:'D1',      seg:0,             a:'middle', lx:0,   ly:-16},
+    {x:650,y:200,name:'额济纳',  day:2, dl:'D2',      seg:0,             a:'middle', lx:0,   ly:-16},
+    {x:545,y:232,name:'敦煌',    day:3, dl:'D3',      seg:0,             a:'middle', lx:0,   ly:25},
+    {x:448,y:200,name:'哈密',    day:4, dl:'D4',      seg:0, hub:1,      a:'middle', lx:0,   ly:-16},
+    {x:376,y:236,name:'木垒',    day:5, dl:'D5',      seg:1,             a:'start',  lx:13,  ly:5},
+
+    {x:352,y:108,name:'阿勒泰',  day:6, dl:'D6',      seg:1,             a:'start',  lx:13,  ly:5},
+    {x:298,y:58, name:'禾木',    day:7, dl:'D7',      seg:1,             a:'middle', lx:0,   ly:25},
+    {x:228,y:118,name:'乌尔禾',  day:8, dl:'D8',      seg:1,             a:'middle', lx:0,   ly:-16},
+    {x:92, y:172,name:'赛里木湖',day:9, dl:'D9',      seg:1,             a:'start',  lx:12,  ly:5},
+    {x:78, y:252,name:'伊宁',    day:10,dl:'D10',     seg:1,             a:'start',  lx:12,  ly:5},
+    {x:185,y:292,name:'那拉提',  day:11,dl:'D11–D12', seg:1,             a:'middle', lx:0,   ly:27},
+    {x:248,y:260,name:'唐布拉',  day:13,dl:'D13',     seg:1,             a:'middle', lx:0,   ly:-14},
+    {x:300,y:276,name:'独库北段',day:14,dl:'D14',     seg:1,             a:'middle', lx:8,   ly:27},
+    {x:358,y:308,name:'乌鲁木齐',day:14,dl:'D14',     seg:1, hub:1,      a:'start',  lx:14,  ly:4},
+
+    {x:332,y:398,name:'库尔勒',  day:16,dl:'D16',     seg:2,             a:'end',    lx:-13, ly:5},
+    {x:432,y:458,name:'若羌',    day:17,dl:'D17',     seg:2,             a:'middle', lx:0,   ly:27},
+    {x:528,y:472,name:'茫崖',    day:18,dl:'D18',     seg:2,             a:'middle', lx:0,   ly:27},
+    {x:612,y:456,name:'大柴旦',  day:19,dl:'D19',     seg:2,             a:'middle', lx:0,   ly:27},
+    {x:688,y:450,name:'西宁',    day:20,dl:'D20',     seg:2,             a:'middle', lx:0,   ly:-14},
+    {x:730,y:505,name:'陇南',    day:21,dl:'D21',     seg:2,             a:'start',  lx:12,  ly:5},
+    {x:702,y:560,name:'成都',    day:22,dl:'D22–D23', seg:2,             a:'middle', lx:0,   ly:27},
+    {x:802,y:546,name:'恩施',    day:24,dl:'D24',     seg:2,             a:'middle', lx:0,   ly:27},
+    {x:886,y:506,name:'武汉',    day:25,dl:'D25–D26', seg:2,             a:'end',    lx:8,   ly:27},
+  ];
+  const at = name => N.find(n=>n.name===name);
+  const P  = name => { const n=at(name); return [n.x,n.y]; };
+
+  const SEQ = [
+    {seg:0, w:4,   dash:'', names:['北京','临河','额济纳','敦煌','哈密','木垒']},
+    {seg:1, w:4.5, dash:'', names:['木垒','阿勒泰','禾木','乌尔禾','赛里木湖','伊宁','那拉提','唐布拉','独库北段','乌鲁木齐']},
+    {seg:2, w:3.5, dash:'2 8', names:['乌鲁木齐','库尔勒','若羌','茫崖','大柴旦','西宁','陇南','成都','恩施','武汉','北京']},
+  ];
+
+  let s = `<svg viewBox="0 0 960 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="北京至大北疆自驾总览路线示意图">`;
+
+  s += `<g opacity=".55" fill="var(--sub)" stroke="var(--sub)">
+    <line x1="38" y1="58" x2="38" y2="26" stroke-width="1.6"/>
+    <path d="M38 22 L33 34 L38 30 L43 34 Z" stroke="none" fill="var(--sub)"/>
+    <text x="38" y="74" text-anchor="middle" font-size="12" stroke="none" fill="var(--sub)">北</text></g>`;
+
   SEQ.forEach(seg=>{
-    const d = seg.pts.map((p,i)=>(i?'L':'M')+p[0]+' '+p[1]).join(' ');
-    s += `<path d="${d}" fill="none" stroke="${seg.c}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" ${seg.dash?'stroke-dasharray="3 9"':''} opacity=".85"/>`;
+    const d = seg.names.map((nm,i)=>(i?'L':'M')+P(nm).join(' ')).join(' ');
+    const col = SEG_COL[seg.seg];
+    s += `<path d="${d}" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width="${seg.w+3}" stroke-linecap="round" stroke-linejoin="round"/>`;
+    s += `<path class="route-line" d="${d}" fill="none" stroke="${col}" stroke-width="${seg.w}" stroke-linecap="round" stroke-linejoin="round" ${seg.dash?`stroke-dasharray="${seg.dash}"`:''} opacity=".9"/>`;
   });
-  NODES.forEach(n=>{
-    const col = n[4]===0?'#c2670a':(n[4]===2?'#8d867a':'#0e7268');
-    const anchor = n[0]>820?'end':(n[0]<90?'start':'middle');
-    const dy = n[1]<100? 30 : -14;
-    s += `<g class="node" data-day="${n[3]}" role="button" tabindex="0" aria-label="查看第${n[3]}天：${n[2]}">
-      <circle cx="${n[0]}" cy="${n[1]}" r="7" fill="${col}" stroke="#fff" stroke-width="2.5"/>
-      <text x="${n[0]}" y="${n[1]+dy}" text-anchor="${anchor}" font-size="13.5" font-weight="700" fill="#3d3a33">${n[2]}</text></g>`;
+
+  N.forEach(n=>{
+    const col = n.hub==='start' ? START_COL : SEG_COL[n.seg];
+    const isHub = !!n.hub, r = isHub ? 8.5 : 6.5;
+    const lx = n.x + (n.lx||0), ly = n.y + (n.ly||0);
+    s += `<g class="node" data-day="${n.day}" role="button" tabindex="0" aria-label="查看第${n.day}天:${n.name}">`;
+    if(isHub) s += `<circle class="halo" cx="${n.x}" cy="${n.y}" r="13" fill="none" stroke="${col}" stroke-width="2" opacity=".28"/>`;
+    s += `<circle class="dot" cx="${n.x}" cy="${n.y}" r="${r}" fill="${col}" stroke="#fff" stroke-width="2.5"/>`;
+    s += `<text x="${lx}" y="${ly}" text-anchor="${n.a}" font-size="${isHub?14.5:13.5}" font-weight="${isHub?800:700}" fill="var(--ink)" paint-order="stroke" stroke="#faf7f0" stroke-width="3" stroke-linejoin="round">${n.name}<tspan dx="5" font-size="11.5" font-weight="600" fill="var(--sub)" stroke="#faf7f0" stroke-width="3">${n.dl}</tspan></text>`;
+    s += `</g>`;
   });
-  s += `<text x="478" y="455" text-anchor="middle" font-size="12" fill="#8d867a">示意图（非精确地理位置）· 点击节点跳到当天行程 · D14由唐布拉返回乔尔玛后走独库北段到乌鲁木齐</text></svg>`;
+
+  s += `<text x="480" y="618" text-anchor="middle" font-size="12" fill="var(--sub)">示意图（非精确地理）· 去程—大北疆环线—返程三段，节点按顺序连接</text>`;
+  s += `</svg>`;
   document.getElementById('routeMap').innerHTML = s;
 })();
 
@@ -822,38 +1040,38 @@ stay:'哈密星旺宾馆 · 地址：伊州区石油基地中旺路24号 · ☎<
 food:'青禹然羊肉焖饼、哈密瓜；优先有外摆位或打包',
 tips:['S245设小白地、东南河两处主线收费站；9座以下客车两段MTC合计约46元，最终以现场/ETC账单为准','进疆检查主动申报两只狗，出示狂犬疫苗证与动物A证']},
 
-{d:5,date:'8月5日 · 周三',title:'哈密 → 大海道全程穿越 → 鄯善',km:430,hrs:'约12–14h（含游玩）',tags:['drive','fun'],theme:'gobi',emoji:'🏜️',
-route:'哈密—大海道东门—官方开放主线约130km—北门—鄯善；全程只走景区开放道路，不驶离路基或进入未开放区域 <a class="lnk bk" href="https://www.hami.gov.cn/hami/c119999/202403/49033b966bf1450abed133d73f2e0994.shtml" target="_blank" rel="noopener">管理规定</a><a class="lnk" href="https://uri.amap.com/search?keyword=大海道景区东门游客中心" target="_blank" rel="noopener">导航·东门</a>',
-decision:'出发前一天或东门现场无法明确确认“当日主线开放、Model Y低底盘可通行、北门可出”任一项 → 改为东门浅游后原路退出，再走铺装道路去鄯善；不为通天洞冒险托底。',
-charge:['哈密特斯拉超充主站充至95–98%；拥堵时切哈密城区两处不同运营商公共快充','不把红柳滩或景区内任何充电桩视为已确认节点；有桩且可用仅作额外补能','北门驶出后以车机预测到鄯善不低于20%为红线；不足则在离开景区前执行已确认补能或取消全穿越','抵达鄯善用车机/Tesla App/e充电选择主站，另保留同城两个公共快充备选，为D6充至95–98%'],
-play:['06:30左右从哈密出发；东段只做76号公路、瀚海神龟、艾斯开霞尔古堡等顺路短停，正午在允许区域车内休整','西段以翼龙大峡谷与通天洞为重点；通天洞是核心目标，但服从当日开放线路和底盘安全条件','砂石搓板段按现场限速低速通过，通常控制30–40km/h；轮胎压力按车门铭牌与车辆提示，不照搬固定数值','两只狗只在允许停车点短绳下车，40℃高温时不在戈壁长时间徒步'],
-stay:'鄯善龙诚酒店（新城东路盛世财富广场店）· 地址：鄯善县新城东路南侧盛世财富广场1幢1单元124号 · ☎<a class="lnk bk" href="tel:09958326888">0995-8326888</a> · 平台正式名称为“龙诚”；宠物免费、公共停车免费、有充电车位，两只边牧、晚到保留和充电位占用须确认 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/28416200.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=鄯善龙诚酒店新城东路盛世财富广场店" target="_blank" rel="noopener">导航</a>',
-food:'自备午餐与足量人狗饮水；晚到鄯善后以酒店附近仍营业、可打包门店为主',
-tips:['大海道管理规定要求按线路和指定区域活动，严禁驶离路基','不承诺精确到每个景点的剩余电量，现场以车机预测和北门离场红线决策','天黑前驶完全部非铺装路；若时间落后，压缩景点停留而不是夜间赶砂石路']},
+{d:5,date:'8月5日 · 周三',title:'哈密 → 大海道（哈密端往返） → G7 → 木垒',km:850,hrs:'约13–14h（含大海道往返，两人轮换）',tags:['drive','fun'],theme:'gobi',emoji:'🏜️',
+route:'哈密—大海道东门(五堡)—红柳滩铺装段往返—原路回哈密—G7京新高速—木垒县城；大海道到鄯善的全程穿越是约320km四驱越野无人区，Model Y不走，改哈密端往返后走G7北线（不走G30吐鲁番南线） <a class="lnk bk" href="https://www.hami.gov.cn/hami/c119999/202403/49033b966bf1450abed133d73f2e0994.shtml" target="_blank" rel="noopener">管理规定</a><a class="lnk" href="https://uri.amap.com/search?keyword=大海道景区东门游客中心" target="_blank" rel="noopener">导航·东门</a>',
+decision:'大海道只走到红柳滩铺装段(约76km)就折返；红柳滩以北及翼龙峡谷方向约20km搓板路对低底盘Model Y有托底/爆胎风险，默认不进，只有现场确认路况良好且轮胎状态好才量力前探。若大海道耗时超预期、13:30前回不到哈密上G7，进一步压缩景点，确保天黑(约21:15)前到木垒；木垒住宿两只边牧准入未电话确认前不出发。',
+charge:['哈密特斯拉超充/城区公共快充满电出发——哈密→木垒515km全程G7戈壁无人区，只有服务区没有县城','大海道景区内不依赖任何充电桩，红柳滩往返用出发满电覆盖','G7梧木段6对服务区(下马崖/盐池/大河/骆驼井子/下老坝/大石头)均有120–240kW国网快充，途中补一次电留足空调/逆风余量','木垒县城公共快充过夜补至90%以上，为D6约690km长日准备'],
+play:['06:30–07:00从哈密出发，约8:15到东门、9:45到红柳滩；红柳滩铺装段观景拍摄1.5–2h后折返，13:30–14:00回哈密上G7','大海道门票45元/人＋车辆通行费100元/车，以现场为准；两只狗只在允许停车点短绳下车，正午戈壁不长时间徒步','G7戈壁段每2小时进服务区换驾、遛狗、补水；正午暴晒无遮荫，放风快进快出','木垒一带海拔高、8月白天约26–33℃，比吐鲁番盆地凉快得多，对两只边牧友好'],
+stay:'木垒县城宠物友好住宿（⚠️待电话落实，本段最高优先级）· 木垒是哈密以西G7第一座县城，平台普遍不写宠物政策、主流连锁多不接大型犬；出发前在携程筛“允许携带宠物”，优先独栋民宿/带院自驾客栈，逐家电话确认“两只边牧共约35kg、费用、是否需笼”，口头承诺让对方写进订单备注并截图；确认不了就往奇台（多约85km、县城选择更多）找 <a class="lnk bk" href="https://m.ctrip.com/webapp/hotel/mulei21109" target="_blank" rel="noopener">携程木垒住宿</a><a class="lnk" href="https://uri.amap.com/search?keyword=木垒县宠物友好酒店" target="_blank" rel="noopener">导航</a>',
+food:'自备大海道午餐与足量人狗饮水；木垒县城晚到后选仍营业、可打包门店',
+tips:['⚠️ 木垒/奇台两只边牧住宿准入是本段最大不确定项，务必出发前电话锁定，不能确认就调整过夜点，不带狗到店碰运气','大海道带补胎套装＋电动打气泵（无备胎是主要残余风险），并向景区报备行程；天黑前驶完非铺装路','D5是玩＋长途转场的重日（含大海道往返约850km），好在是夫妻二人段可轮换；早出、砍掉搓板段是控制强度的关键']},
 
-{d:6,date:'8月6日 · 周四',title:'鄯善 → S21阿乌高速全程 → 阿勒泰',km:750,hrs:'约11–13h（含休息）',tags:['drive','fun'],theme:'desert',emoji:'🛣️',
-route:'鄯善—乌鲁木齐北郊—S21阿乌高速—阿勒泰市；S21官方全长约342.538km，驶出高速后继续到阿勒泰友谊宾馆',
-decision:'鄯善出发未充至95%以上，或五家渠、克拉美丽、吉利湖三个官方配置充电设施的服务区均无法确认 → 延迟进入S21；不把黄花沟当充电点。',
-charge:['鄯善主站95–98%出发；同城保留两个不同运营商公共快充备选','五家渠服务区为备选A，可提前补电或避开后方拥堵','克拉美丽服务区为主充电节点，充至约85–90%；排队超过20分钟或不可用桩过半即切备选','吉利湖服务区为备选B兼最后补能节点；黄花沟仅午餐/休息，不预设有桩','抵达阿勒泰优先核对友谊宾馆充电桩；不可用、功率不足或被占用时，立即切阿勒泰市区两个不同运营商公共快充，补至90%以上'],
-play:['克拉美丽服务区沙漠公园是合法停留点；沙漠、风车只在服务区拍摄','吉利湖服务区短停观景；乌伦古湖如要下到湖边，只能从合法互通驶出，导航到确认开放的停车点后再返回高速','不得在应急车道、导流线或普通路肩停车拍照；若时间晚，取消湖边绕出但保留S21全程'],
+{d:6,date:'8月6日 · 周四',title:'木垒 → 阜康 → S21阿乌高速 → 阿勒泰',km:690,hrs:'约8–9h（含休息，两人轮换）',tags:['drive','fun'],theme:'desert',emoji:'🛣️',
+route:'木垒—G7/吐乌大高速—阜康—绕乌鲁木齐西/五家渠—S21阿乌高速—阿勒泰市；S21官方全长约342.538km，驶出高速后继续到阿勒泰友谊宾馆',
+decision:'木垒未充至90%以上，或S21五家渠、克拉美丽、吉利湖服务区均无法确认 → 先在上S21前（阜康/乌市/五家渠一带补能最充裕）补足；不把黄花沟当充电点。若木垒出发晚或途中拥堵预计22:00后到阿勒泰，取消乌伦古湖绕出，优先不疲劳夜驾。',
+charge:['木垒90%以上出发；木垒→阜康约207km，阜康或乌鲁木齐/五家渠上S21前充至90%+（这一带补能最充裕，是全天关键补能点）','S21五家渠服务区为备选A','克拉美丽服务区为主补能节点，充至约85–90%；排队超20分钟或不可用桩过半即切备选','吉利湖服务区为备选B兼最后补能；黄花沟仅午餐/休息，不预设有桩','抵达阿勒泰优先核对友谊宾馆充电桩；不可用即切市区两个不同运营商公共快充补至90%以上'],
+play:['木垒/奇台清晨凉爽，上高速前让两只狗短绳活动；江布拉克景区已放弃，其外围（奇台半截沟方向）高山草原公开道路凉快，时间富余可短停但不进景区','克拉美丽服务区沙漠公园是合法停留点，沙漠、风车只在服务区拍摄','乌伦古湖如要下到湖边，只能从合法互通驶出到确认开放的停车点再返回高速；不在应急车道、路肩停车拍照'],
 stay:'阿勒泰友谊宾馆 · 地址：阿勒泰市解放路1区128栋 · ☎<a class="lnk bk" href="tel:09062315888">0906-2315888</a> · 平台显示收费携宠和充电桩，住客评价可核免费停车；两只边牧费用、晚到保留、充电功率和车位须电话确认 <a class="lnk bk" href="https://m.ctrip.com/html5/hotel/hoteldetail/42169237.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=阿勒泰友谊宾馆解放路1区128栋" target="_blank" rel="noopener">导航</a>',
-food:'黄花沟或其他服务区午餐；抵达阿勒泰后只选友谊宾馆附近仍营业、可外摆或打包的简餐',
-tips:['终点由北屯顺延至阿勒泰后，这是全程强度很高的一天，不是“松弛日”；至少每2小时换驾或休息一次','S21服务区充电设施为官方历史配置，实时开放、占用和功率仍以当天车机/App为准','如乌伦古湖停留导致预计晚于22:00到阿勒泰，取消湖边驶出停留，优先保证不疲劳夜驾']},
+food:'服务区午餐；抵达阿勒泰后只选友谊宾馆附近仍营业、可外摆或打包的简餐',
+tips:['D6约690km是一整天驾驶，夫妻二人每2小时换驾或休息一次','为什么不走G30：G30吐鲁番段8月盆地常态40℃+、极端45℃，对两只边牧和电池热管理都不利，三十里风区阵性侧风叠加运煤货车密集；G7北线里程仅多约50km但全程凉快、货车少、补能无死角','S21服务区充电为官方配置，实时开放/占用/功率仍以当天车机/App为准','如乌伦古湖停留导致预计晚于22:00到阿勒泰，取消湖边驶出，优先不疲劳夜驾']},
 
-{d:7,date:'8月7日 · 周五',title:'阿勒泰 → 布尔津补电 → 禾木住一晚',km:300,hrs:'约5h行车＋1h区间车',tags:['fun'],theme:'forest',emoji:'🌲',
-route:'阿勒泰—布尔津—禾木景区外部停车场—区间车进禾木老村',
-decision:'布尔津无法充至95%以上、车机预测D8返回布尔津低于20%，或未落实两只狗的区间车运输方式/民宿接宠 → 暂缓进禾木，在布尔津处理完再出发。',
+{d:7,date:'8月7日 · 周五',title:'阿勒泰 → 布尔津补电 → 禾木住一晚',km:300,hrs:'约5h行车＋接驳进村',tags:['fun'],theme:'forest',emoji:'🌲',
+route:'阿勒泰—布尔津—禾木景区外部停车场—民宿安排的可载犬出租车进禾木老村（区间车备选）',
+decision:'布尔津无法充至95%以上、车机预测D8返回布尔津低于20%，或未与出租车司机确认当日接送 → 暂缓进禾木，在布尔津处理完再出发；进村交通以民宿提供的可载犬出租车为主，区间车为备选。',
 charge:['阿勒泰出发前检查电量；友谊宾馆桩不可用时先到阿勒泰市区公共快充，确保到布尔津仍有安全余量','布尔津特斯拉超充为进禾木前主站，补至95–98%；另备布尔津两处不同运营商公共快充','不依赖禾木停车场或村内快充；目前没有可靠实时证据支持把它们写成必用节点','车辆停景区外时关闭高耗能待机设置，D8返回布尔津后再充电'],
-play:['用户已确认两只边牧可以带入禾木村；私家车仍停外部停车场，人与狗换乘区间车','15:00左右入住后走禾木桥与白桦林，傍晚上哈登观景台；全程短绳并避让游客、马匹和牲畜','夏季日落时间晚，具体以当天日落和区间车/民宿接驳时间为准，不使用未经当天确认的固定末班时刻'],
-stay:'牧雅居民宿（落日观景台店）· 地址：禾木喀纳斯蒙古族乡禾木村阿西麦里路34号 · 用户联系人☎<a class="lnk bk" href="tel:18126209839">18126209839</a>，平台☎<a class="lnk bk" href="tel:17844447778">17844447778</a> · 平台显示狗/猫需申请且免费；用户已确认狗可入村，仍须让民宿书面确认两只边牧、区间车装载方式和晚到接应 <a class="lnk bk" href="https://hk.trip.com/hotels/burqin-hotel-detail-131303190/moya-villa/" target="_blank" rel="noopener">Trip.com</a><a class="lnk" href="https://uri.amap.com/search?keyword=牧雅居民宿落日观景台店禾木" target="_blank" rel="noopener">导航</a>',
+play:['用户已确认两只边牧可以带入禾木村；私家车停外部停车场后，人与狗乘民宿提供的可载犬出租车进村（联系方式已由民宿给出），区间车只作备选','15:00左右入住后走禾木桥与白桦林，傍晚上哈登观景台；全程短绳并避让游客、马匹和牲畜','夏季日落时间晚，具体以当天日落和出租车/民宿接驳时间为准，不使用未经当天确认的固定末班时刻'],
+stay:'牧雅居民宿（落日观景台店）· 地址：禾木喀纳斯蒙古族乡禾木村阿西麦里路34号 · 用户联系人☎<a class="lnk bk" href="tel:18126209839">18126209839</a>，平台☎<a class="lnk bk" href="tel:17844447778">17844447778</a> · 平台显示狗/猫需申请且免费；民宿已提供可载两只狗进村的出租车联系方式，出发前再确认车费、发车点、D8返程接送和晚到接应 <a class="lnk bk" href="https://hk.trip.com/hotels/burqin-hotel-detail-131303190/moya-villa/" target="_blank" rel="noopener">Trip.com</a><a class="lnk" href="https://uri.amap.com/search?keyword=牧雅居民宿落日观景台店禾木" target="_blank" rel="noopener">导航</a>',
 food:'禾木老村图瓦土火锅、手抓羊肉或咸奶茶；优先民宿推荐的院落/外摆餐厅',
-tips:['把可带狗入村的聊天截图、录音或联系人姓名保存在离线文件夹','准备航空箱/软笼、嘴套和尿垫，以景区最终要求为准','山区夜间约10℃上下，人与狗都带保暖层']},
+tips:['把可带狗入村的答复和出租车司机联系方式保存在离线文件夹，前一晚与司机直接确认接送时间','准备航空箱/软笼、嘴套和尿垫，以景区和司机最终要求为准','山区夜间约10℃上下，人与狗都带保暖层']},
 
-{d:8,date:'8月8日 · 周六',title:'禾木晨雾日出 → 布尔津补电 → 乌尔禾',km:410,hrs:'约6–7h行车＋区间车',tags:['drive','fun'],theme:'canyon',emoji:'🌄',
-route:'禾木老村—区间车出景区—外部停车场取车—布尔津—北屯/福海方向—乌尔禾',
+{d:8,date:'8月8日 · 周六',title:'禾木晨雾日出 → 布尔津补电 → 乌尔禾',km:410,hrs:'约6–7h行车＋接驳出村',tags:['drive','fun'],theme:'canyon',emoji:'🌄',
+route:'禾木老村—可载犬出租车出景区（区间车备选）—外部停车场取车—布尔津—北屯/福海方向—乌尔禾',
 decision:'取车后预测到布尔津低于20%，或布尔津无法形成到乌尔禾的安全余量 → 先补能并压缩晨间停留；不带低电量进入后续长途。',
 charge:['D7进入禾木前预留返程电量，不依赖禾木停车场或村内快充','取车后先查实际电量与车机预测，抵达布尔津保持不低于20%','布尔津特斯拉超充为主站，补至90%左右；拥堵切县城两处不同运营商公共快充','乌尔禾镇公共快充为到达备选；柏纳酒店未核实自有充电桩，不把住宿当补能节点'],
-play:['05:40前后视天气看哈登观景台晨雾日出；天气不佳或出村班次紧张就改村内慢走','早餐和退房后按已确认班次出村，两只边牧继续按确认方式乘区间车','当日以转场为主；抵达较早可在西部乌镇公开区域短绳散步，不加塞魔鬼城核心区'],
+play:['05:40前后视天气看哈登观景台晨雾日出；天气不佳或出村班次紧张就改村内慢走','早餐和退房后按前一晚与司机约定的时间乘可载犬出租车出村取车；司机爽约时改乘区间车并按现场要求装载','当日以转场为主；抵达较早可在西部乌镇公开区域短绳散步，不加塞魔鬼城核心区'],
 stay:'柏纳酒店（克拉玛依世界魔鬼城店）· 地址：克拉玛依市乌尔禾区扬州路与上海街交叉口北30米0区19栋 · 用户电话☎<a class="lnk bk" href="tel:15009906218">15009906218</a>，平台电话☎<a class="lnk bk" href="tel:09907561820">0990-7561820</a> · 免费公共停车；平台标示每只宠物每天100元，两只边牧合计约200元/晚，须书面确认体型、数量和最终收费 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/129264922.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=柏纳酒店克拉玛依世界魔鬼城店" target="_blank" rel="noopener">导航</a>',
 food:'长途抵达后优先柏纳酒店附近或西部乌镇仍营业、可外摆或打包的餐饮',
 tips:['这是禾木晨景叠加约410km转场的强度日，日出后不要继续在村内加项目','柏纳位于乌尔禾区，不是克拉玛依中心城区；预订时核对“世界魔鬼城店”','确认D9赛官房晚到保留、两只边牧、押金和停车位置']},
@@ -876,14 +1094,14 @@ stay:'栖云馆民宿（六星街店）· 地址：伊宁市西环路二巷2号 
 food:'早餐和路餐由D9提前准备；抵达伊宁后在六星街周边选外摆或打包的烤肉、馄汤',
 tips:['湖区早晨偏冷，人与狗备保暖层；午后霍城可能炎热，先测地温','8月薰衣草属于季节性风险项目，前一天确认花况、营业时间与宠物规则','到伊宁后先完成D11长途所需补能、轮胎检查和补给，次日不在市区耽搁']},
 
-{d:11,date:'8月11日 · 周二',title:'伊宁 → 特克斯八卦城 → 库尔德宁 → 那拉提',km:480,hrs:'约8–10h驾驶＋短游',tags:['drive','fun'],theme:'forest',emoji:'🌲',
-route:'伊宁—G577—特克斯县城—巩留库尔德宁—那拉提镇；八卦城只短停，库尔德宁控制在2–3小时',
-decision:'库尔德宁未书面确认两只边牧可入、当日交通管制导致游玩不足，或14:00仍未开始返程 → 不进入核心区，改走公开道路观景并直接前往那拉提；不把D11拖成疲劳夜驾。',
-charge:['D10抵达伊宁后优先绿发洲际酒店特斯拉超充；拥堵切伊宁市区两处不同运营商公共快充，D11以90%以上出发','特克斯县城和巩留县城各锁定一处实时公共快充，任一站预测到那拉提低于20%即补电','抵达那拉提前用车机/e充电锁定镇区两处不同运营商公共快充，为D12和D13形成安全余量'],
-play:['07:00左右离开伊宁；八卦城只安排约45–60分钟街区与观景短停，不加喀拉峻等支线','库尔德宁是世界自然遗产森林景观，但现行管理办法未公开写明宠物规则；提前拨打0999-7758580或0999-7758590确认两只边牧、车辆入园和当天线路后再进入','若获准入园，只走景区当天开放路线和正规停车区；全程短绳，远离野生动物、牛羊和保护区植被','该日约480km且山路较多，不承诺“松弛”；最迟16:00离开库尔德宁，目标20:00前抵达那拉提'],
+{d:11,date:'8月11日 · 周二',title:'伊宁 → 巩留 → 库尔德宁 → 那拉提',km:350,hrs:'约6–6.5h驾驶＋2.5–3h游玩',tags:['drive','fun'],theme:'forest',emoji:'🌲',
+route:'伊宁—G218墩麻扎方向—巩留县城—S316/X373—库尔德宁—那拉提镇；已取消特克斯八卦城绕行（省约140km、2.5h以上），库尔德宁按2.5–3小时预算',
+decision:'库尔德宁未电话确认两只边牧可随车入园、当日管制，或13:30仍未进入景区环线 → 放弃库尔德宁，改走墩那高速直达那拉提（伊宁—那拉提全程高速约240km）；景区内约60km为单向环线、中途不可折返，进入前必须确认时间和电量足够走完。',
+charge:['D10抵达伊宁后优先绿发洲际酒店特斯拉超充；拥堵切伊宁市区两处不同运营商公共快充，D11以90%以上出发','巩留县城锁定一处实时公共快充，预测到那拉提低于20%即补电','抵达那拉提前用车机/e充电锁定镇区两处不同运营商公共快充，为D12和D13形成安全余量'],
+play:['08:00左右离开伊宁，约1.5–2h到巩留；库尔德宁自驾票约60元/人，可自驾进入、区间车为可选项，仅限7座及以下车辆','库尔德宁现行管理办法未公开写明宠物规则；提前拨打0999-7758580或0999-7758590确认两只边牧随车入园、下车观景规则和当天线路后再进入','景区环线约60km、中沟进东沟出且单向不可折返，纯行驶2h以上；只在正规停车区下车，全程短绳，远离野生动物、牛羊和保护区植被','东沟出口经乡道约2.5–3h到那拉提镇；目标17:00前后到店，比原“八卦城＋库尔德宁”方案提前约3小时'],
 stay:'那拉提悠然民宿（那拉提景区店）· 连住第1晚 · 地址：新源县那拉提镇天马街117号 · ☎<a class="lnk bk" href="tel:15886986899">15886986899</a> · 平台显示狗/猫可申请免费入住、免费私人停车、无早餐；两只15–20kg边牧和连住两晚仍须书面确认 <a class="lnk bk" href="https://hk.trip.com/hotels/xinyuan-hotel-detail-2348909/nei-la-ti-you-ran-ke-zhan/" target="_blank" rel="noopener">Trip.com</a><a class="lnk" href="https://uri.amap.com/search?keyword=那拉提悠然民宿天马街117号" target="_blank" rel="noopener">导航</a>',
-food:'八卦城早午餐从简；库尔德宁以自备路餐为主，晚餐到那拉提镇解决',
-tips:['D11是全程较强的一天，两人轮换驾驶；若八卦城堵车就压缩到30分钟','库尔德宁现行官方管理办法强调生态保护和规范停车，但没有公开给出宠物准入结论，电话答复优先','到店后核对D12那拉提自驾票和D13唐布拉住宿充电']},
+food:'巩留早午餐从简；库尔德宁以自备路餐为主，晚餐到那拉提镇解决',
+tips:['取消八卦城后D11从超载日回到正常日；不登观景塔（狗不能进）时地面看不出八卦格局，绕行140km不值，归档见「不得不错过」','库尔德宁现行官方管理办法强调生态保护和规范停车，但没有公开给出宠物准入结论，电话答复优先；被拒就执行墩那高速直达','到店后核对D12那拉提自驾票和D13唐布拉住宿充电']},
 
 {d:12,date:'8月12日 · 周三',title:'那拉提草原深度游（悠然民宿连住）',km:80,hrs:'全天游玩',tags:['fun'],theme:'grass',emoji:'🐎',
 route:'那拉提镇—那拉提景区或镇外巩乃斯河谷公开道路—那拉提镇；不增加长途转场',
@@ -904,46 +1122,130 @@ food:'沿途牧家乐只选有院落、能让狗短绳停留的门店；晚餐�
 tips:['唐布拉公开公路免费不等于所有草场和支线可随意进入','住宿院子不能默认放绳，只有确认围栏封闭且店家允许时才短时活动','晚上完成D14乔尔玛08:00–10:00预约时段、天气、落石和桩况复核']},
 
 {d:14,date:'8月14日 · 周五',title:'唐布拉 → 乔尔玛 → 独库北段 → 独山子 → 乌鲁木齐',km:520,hrs:'约8–9h驾驶＋3–4h观景/充电',tags:['drive','fun'],theme:'alpine',emoji:'⛰️',
-route:'蜜蜂小镇—S315返回乔尔玛—G217哈希勒根达坂—毛溜沟/乌苏驿方向—独山子—G30—乌鲁木齐',
-decision:'未预约乔尔玛入口08:00–10:00时段、独库未开放、遇雨雪/落石，或唐布拉出发预测到独山子低于20% → 不进入独库；按交警和车机给出的G218/G30替代路线执行。若15:30仍未抵达独山子，取消沿途非必要停留，避免把G30转场拖至深夜。',
+route:'蜜蜂小镇—S315约89km返回乔尔玛—G217北段约140km翻哈希勒根达坂—独山子—G30约280km—乌鲁木齐水西沟',
+decision:'两个决策点：①D14清晨06:30查平安天山/新疆路网/12122，已发布北段管制就直接改走西线备选（S315回尼勒克县城—G577精伊公路—精河—G30，约650–680km、8.5–9.5h，20:30前可到水西沟）；②08:30前后到乔尔玛卡口，临时封闭立即原路折返走同一西线，只损失约1.5小时。东线G218那拉提—巴仑台正在改扩建（2027年完工）且处于预约管控区内，不作为备选。未预约、雨雪/落石或出发预测到独山子低于20%，同样不进独库。',
 charge:['D13夜间在听泉别院或蜜蜂小镇公共桩充至90%以上；出发前再次核对车机预测','毛溜沟服务区已有充电设施官方线索，只作应急备选A，不把单一山中站当主计划','抵达独山子后选择实时公共快充为主站；不可用即切奎屯城区不同运营商公共快充为备选B','独山子/奎屯补至能抵达乌鲁木齐且保留20%以上；乌鲁木齐万科生活广场特斯拉超充为落地备选'],
-play:['06:30左右离开蜜蜂小镇，目标08:00前后回到乔尔玛并按预约入口核验；2026社会车辆北段主要通行时段为08:00–19:00，19:00后不再驶入','只在官方停车区短停哈希勒根达坂、融雪瀑布和峡谷森林等景观；“老虎口”“守望天山”等网络点名不作为必须停车任务，现场禁停就直接通过','垭口海拔高、气温低，两只狗短时下车、穿防风层并避免奔跑；落石路段不下车','独山子到乌鲁木齐走G30约250–270km、通常3小时以上，原稿“150km/1小时50分”不采用；预计19:00–21:00抵达更现实'],
+play:['07:00出发（最晚08:00），S315约89km、1.5h到乔尔玛，08:30–09:00按预约入口核验进入；2026社会车辆通行时段08:00–19:00分五档预约，19:00–次日08:00施工封闭，未按预约通行罚200元记1分','乔尔玛→独山子实际约140km（网传“250km/5–6小时”是把独山子—那拉提全程230km误标到乔尔玛，不采信），含检查站排队按3.5–4h预算，约12:30到独山子午餐补电','只在官方停车区短停哈希勒根达坂、融雪瀑布和峡谷森林等景观；“老虎口”落石区不停车，隧道段服从单向放行；山区午后易起雨，尽量14:00前驶出达坂','垭口海拔高、气温低，两只狗短时下车、穿防风层并避免奔跑','独山子到水西沟约280km、3.5h；预计17:00–18:00抵达，比日落早3小时以上'],
 stay:'乌鲁木齐县·缘来如玉民宿 · 地址：水西沟镇平西梁村A10-2号 · 两只边牧和晚到保留须写入订单并取得商家回复 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/110381323.html" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=缘来如玉民宿水西沟" target="_blank" rel="noopener">高德导航</a>',
 food:'乔尔玛自备早餐/路餐；独山子补电时吃拌面，晚到乌鲁木齐后从简',
-tips:['独库北段预约出发前1–7天办理，D14选乔尔玛入口08:00–10:00时段；前一晚和当日清晨各复核一次','D14仍是全程高强度日，但山路集中在白天，独山子后转高速；两人轮换驾驶','返程动物A证应提前联系乌鲁木齐属地受理点，不把长途抵达后的当晚作为唯一办理窗口']},
+tips:['独库北段预约出发前7天内在“游新疆一码游”办理，D14选乔尔玛入口08:00–10:00时段（每日配额3000辆，可提前24h改签，注意平台爽约规则）；前一晚和当日清晨各复核一次','D13晚必须确认：G577精伊公路实际通车状态（2026-06-30通车口径，西线备选的成立前提）、次日乔尔玛/独山子天气；G577未通车时西线退化为经伊宁—果子沟约850km，须09:00前决策折返','8月北段因短时强降雨/泥石流临时管制的概率粗估每天5–15%（雨后次日最高），备选线G30/G577夏季基本不受天气封路影响','抵达乌鲁木齐后先完成D15–D27床车物资、轮胎和应急装备总检查']},
 
-{d:15,date:'8月15日 · 周六',title:'乌鲁木齐 → 哈密（G30）',km:600,hrs:'7h',tags:['drive'],theme:'desert',emoji:'🌪️',
-route:'G30 · 达坂城—吐鲁番—鄯善—哈密',
-charge:['乌市满电出发','鄯善/吐鲁番特斯拉超充','哈密超充收尾'],
-play:['达坂城风车海拍照（车内/路边快拍）','吐鲁番段45°C：狗只在服务区阴凉处快遛2分钟'],
-stay:'哈密·海逸酒店（G312国道店，返程保持不变）· 地址：伊州区火箭农场东疆中大道71号（潞和大厦）· 两只边牧仍须书面确认 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/detail/?hotelId=122779043" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=海逸酒店哈密G312国道店" target="_blank" rel="noopener">高德导航</a>',
-food:'哈密宾馆大盘鸡（口碑正宗）',
-tips:['全天高温：空调不停，电耗按+20-30%规划','正午绝不让狗踩沥青；车内备冰袋']},
+{d:15,date:'8月15日 · 周六',title:'乌鲁木齐带狗深度休整 · 续住一晚',km:100,hrs:'约2–3h市郊驾驶',tags:['fun'],theme:'city',emoji:'🌆',
+route:'水西沟—南山大道/S116公开道路—乌鲁木齐市区补给—返回水西沟；不进入明确禁犬的城市公园、博物馆和候机楼',
+decision:'乌鲁木齐市公园依法禁止携犬入园，博物馆、餐饮室内和公共交通同样禁犬；因此“深度游”按南山公开道路、城市风貌车览、本地餐饮打包和旅行整备执行，不把两只狗留在车内换取景点。',
+charge:['上午在乌鲁木齐万科生活广场特斯拉超充或同城公共快充补电','晚间充至90%以上，D16送机前按航班时刻再补至90–95%','核对G0711、永丰服务区和库尔勒城区两个不同运营商备选'],
+play:['睡到自然醒后整理照片、洗衣和车辆内务；把妻子返京行李与床车物资彻底分区','上午完成返程《动物检疫合格证明（动物A）》线上申报和现场核验（目的地北京，有效期最长5天，覆盖出疆—青海检查段）；狂犬疫苗证与抗体报告随车','午后沿南山大道、水西沟周边公开道路慢游，只在正规停车区让两只狗短绳散步；不进入设有禁犬标识的公园或景区','傍晚进城补给：采购12天人狗食品、饮水、垃圾袋、湿巾、便携厕所用品和应急药；新疆博物馆、红山公园等留作以后不带狗再看','完成Model Y L第二、三排放平和床垫实装，确认一人睡眠区、两只狗各自固定区、夜间逃生通道都能使用'],
+stay:'乌鲁木齐县·缘来如玉民宿第2晚 · 地址：水西沟镇平西梁村A10-2号 · 与D14同一订单续住，必须让商家确认两只边牧、连续两晚和D16退房时间 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/110381323.html" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=缘来如玉民宿水西沟" target="_blank" rel="noopener">高德导航</a>',
+food:'中午和晚餐优先可打包的抓饭、大盘鸡或烤肉，回民宿院内或允许携宠的室外区域吃',
+tips:['乌鲁木齐携犬外出：2米内牵引，肩高超过35cm必须戴嘴套，即时清理排泄物','D16机场候机室禁止犬只进入；驾驶员只在落客区交接行李，妻子独立办理值机','今晚睡足；D16送机后直接走约430km，不再安排乌鲁木齐床车验证夜']},
 
-{d:16,date:'8月16日 · 周日',title:'哈密 → 额济纳旗',km:650,hrs:'8–9h',tags:['drive'],theme:'gobi',emoji:'🐫',
-route:'G7 反向 · 骆驼圈子—明水—白疙瘩—额济纳（去程已实测桩况，心里有底）',
-decision:'去程已证明临白段桩况不可靠，或返程复核失败 → 改走G30河西走廊并增加1天。',
-charge:['哈密超充满电出发','骆驼圈子/白疙瘩服务区补电','额济纳县城过夜充满'],
-play:['服务区遛狗节奏同去程','傍晚居延海再看一次日落（胡杨林景区8月仍未开园）'],
-stay:'额济纳旗·云朵酒店（额济纳博物馆店，返程保持原方案）· 地址：达来呼布镇居延名邸F段商服楼10号商铺；两只边牧仍须书面确认 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/80911875.html" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=额济纳旗云朵酒店额济纳博物馆店" target="_blank" rel="noopener">高德导航</a>',
-food:'额济纳羊肉',
-tips:['若去程发现临白段桩况差：改走G30河西走廊回（哈密→酒泉→张掖→武威→银川→北京，多1天但全程超充）']},
+{d:16,date:'8月16日 · 周日',title:'乌鲁木齐送机 → 天山胜利隧道 → 库尔勒',km:430,hrs:'约5–6h驾驶＋送机/补能',tags:['drive','car','fun'],theme:'alpine',emoji:'✈️',
+route:'缘来如玉民宿—乌鲁木齐天山国际机场落客区—G0711乌尉高速—永丰服务区—天山胜利隧道—库尔勒',
+decision:'按用户决定，送机结束直接前往库尔勒。离开机场前必须同时满足驾驶员状态正常、车机预测可到永丰且余量≥20%、G0711正常通行；若航班严重延误导致预计23:00后才能到库尔勒，或出现明显疲劳/恶劣天气，只启用沿线合法住宿安全退出，不为压缩一天夜间硬撑。',
+charge:['D15晚或D16送机前在乌鲁木齐充至90–95%；机场落客区不占道整备','永丰服务区为主补能和人狗休息点，官方可核有充电、餐饮、超市、卫生间和热水；排队超过20分钟或可用桩不足一半时按车机切沿线/库尔勒备选','库尔勒城区第一处可启动公共快充为落地主站；第二、第三处不同运营商快充互备，驻车前补至90%以上'],
+play:['机场候机室禁止犬只进入：两只狗留在驾驶员身边，妻子从落客区独立进楼办理值机','永丰服务区安排20–30分钟午餐、补水和短绳遛狗；隧道内不停车、不拍摄','抵达库尔勒后只在公开道路或明确允许犬只的河岸区域短散步，城市公园见禁犬标识即不进入'],
+stay:'床车第1晚：库尔勒城区已确认汽车营地或有管理停车区，要求24h出入、厕所、照明、手机信号和距快充不超过30km <a class="lnk" href="https://uri.amap.com/search?keyword=库尔勒汽车露营地" target="_blank" rel="noopener">高德搜索</a>；未获许可改住正规住宿',
+food:'永丰服务区午餐；库尔勒晚餐吃拌面、烤肉或香梨，吃完再进营地',
+tips:['驾驶辅助只减轻操作负担，不替代持续观察；每2小时必须停车活动','露营模式只在P挡和安全电量下使用；充电完成后移车，不把快充位当营位']},
 
-{d:17,date:'8月17日 · 周一',title:'额济纳 → 临河',km:580,hrs:'7–8h',tags:['drive'],theme:'gobi',emoji:'🌇',
-route:'G7 临白段反向 · 雅干—苏宏图—乌力吉—临河',
-charge:['额济纳满电出发','逢桩必充原则不变（乌力吉必充）','临河维多利万悦城超充/酒店桩'],
-play:['傍晚到临河早休息，人狗都恢复体力'],
-stay:'临河·云庭酒店（维多利摩尔城店，返程保持原方案）· 地址：胜利北路巴运国际旅行社东南30米；两只边牧仍须书面确认 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/112823609.html" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=云庭酒店巴彦淖尔维多利摩尔城店" target="_blank" rel="noopener">高德导航</a>',
-food:'河套菜再吃一顿；打包糖麻叶当明天路餐',
-tips:['明天最后一天810km：今晚把电充满、早点睡']},
+{d:17,date:'8月17日 · 周一',title:'库尔勒 → 尉犁 → 若羌',km:430,hrs:'约5–6h驾驶＋补能',tags:['drive','car'],theme:'desert',emoji:'🌵',
+route:'库尔勒—G0711/G218—尉犁—塔克拉玛干东缘—若羌县城',
+decision:'若羌县政府可核县城已有28个充电终端，但不能据此承诺具体桩实时可用。库尔勒出发前必须在车机/e充电中锁定若羌主站和两个不同运营商备选；三处均不可确认时不进入长距离荒漠段。',
+charge:['库尔勒90–95%出发，尉犁或沿线服务区只作实时备选','若羌县城当天可启动的高功率公共快充为主站','备选A/B：楼兰印象、楼兰名苑或铁乡农贸市场对面公共停车场等政府披露区域中的不同运营商终端，名称仅作检索线索','抵达后充至95%以上，为D18若羌—依吞布拉克—茫崖长段做准备'],
+play:['沿途只在服务区和正规停车区休息，不驶离铺装道路追沙漠机位','若羌不进入罗布泊、阿尔金山非开放区域；不擅自穿越、不野外露营、不驶入无人区','抵达较早可在若羌县城公开道路看楼兰城市风貌，两只狗全程短绳'],
+stay:'床车第2晚：若羌县城内已确认自驾营地或有管理收费停车区，必须位于城区、有人值守、有厕所和手机信号 <a class="lnk" href="https://uri.amap.com/search?keyword=若羌自驾车营地" target="_blank" rel="noopener">高德搜索</a>；严禁去罗布泊、阿尔金山或矿区便道过夜',
+food:'若羌县城吃热饭并补足至少两天人狗饮水和冷食',
+tips:['下载若羌—依吞布拉克—花土沟离线地图和救援电话','依吞布拉克至米兰段未设置服务区和加油站，不能把高速等同于完善补给线']},
 
-{d:18,date:'8月18日 · 周二',title:'临河 → 北京 · 到家 🎉',km:810,hrs:'9–10h',tags:['drive'],theme:'night',emoji:'🌃',
-route:'G7→G6 · 包头—呼和浩特—乌兰察布—张家口—北京',
-charge:['临河满电出发','呼和浩特超充（午饭：烧麦收尾）','乌兰察布服务区视电量补'],
-play:['服务区遛狗节奏保持','晚上到家：狗子们看到小区门口会疯掉'],
+{d:18,date:'8月18日 · 周二',title:'若羌 → 依吞布拉克 → 茫崖花土沟',km:440,hrs:'约6–7h驾驶＋检查站/补能',tags:['drive','car'],theme:'gobi',emoji:'🪨',
+route:'G0612/G315—米兰—依吞布拉克检查站—青新界—茫崖花土沟镇',
+decision:'这是返程最大补能风险段。若羌95%以上出发，且必须同时满足：道路开放、无强沙尘/横风、花土沟至少两处公共快充可在运营商App确认、车机预测到花土沟仍≥20%。任一不满足就留在若羌。',
+charge:['若羌95–100%出发；不依赖依吞布拉克至米兰段服务区','依吞布拉克只作为检查/应急节点，发现可用桩可补但不写入主计划','花土沟镇公共停车场可启动快充为主站；同城第二处不同运营商快充为备选A，营地附近或镇内第三处快充为备选B','到达后充至95%左右，为D19约600km长日做准备'],
+play:['全程保持在开放国道/高速内，不进入阿尔金山保护区支线、矿区便道或无人区','检查站耗时不可控，不安排追日落项目；见正规停车区再下车','两只狗每2小时在有管理节点短遛，不靠近野骆驼、藏野驴等野生动物'],
+stay:'床车第3晚：首选茫崖月球星空房车营地（花土沟镇创业路与G315交汇处北侧），提前确认两只边牧、床车营位、厕所、夜间开放和充电 <a class="lnk bk" href="https://m.ctrip.com/html5/hotel/hoteldetail/79123315.html" target="_blank" rel="noopener">营地资料</a><a class="lnk" href="https://uri.amap.com/search?keyword=茫崖月球星空房车营地" target="_blank" rel="noopener">导航</a>；失败则改镇内正规住宿',
+food:'花土沟镇解决热食；进营地前补水、清理垃圾',
+tips:['高海拔与干燥叠加，狗出现持续喘、呕吐、步态异常就停止上升并联系兽医','今晚核对水上雅丹准入、G315施工和大柴旦三处补能']},
+
+{d:19,date:'8月19日 · 周三',title:'茫崖 → 水上雅丹 → 大柴旦',km:600,hrs:'约8–9h驾驶＋1.5–2h游玩',tags:['drive','car','fun'],theme:'gobi',emoji:'🌌',
+route:'花土沟—G315—西台/东台方向—乌素特水上雅丹—G315/德小高速连接线—大柴旦镇',
+decision:'06:30左右出发，水上雅丹只保留1.5–2小时。必须在14:30前离开景区，且车机预测到大柴旦≥20%；若宠物不准入、G315施工/沙尘导致延误或大柴旦补能无法确认，就跳过景区直接进大柴旦，不把压缩计划建立在夜间施工路或路边露营上。',
+charge:['花土沟95%左右出发；沿线桩只作临时加分项，不作为主计划','水上雅丹不承担必充任务；停车期间持续看车机到大柴旦预测','大柴旦怡景大酒店特斯拉超充为落地主站；同镇第一、第二处不同运营商公共快充为备选A/B','抵达后补至95%，为D20青海长日准备；快充结束立即移车'],
+play:['G315只在正式观景区、服务驿站或驶出国道后的合法停车区停留，严禁在U型公路路面和路肩拍照','水上雅丹须先确认两只边牧可进入；不能带狗就执行“狗不去＝我不去”，只在合法服务节点休息','景区内以地面短线观景为主，不长距离暴晒；14:30硬离场'],
+stay:'床车第4晚：大柴旦镇内已确认汽车营地或有管理停车区，优先靠近城区而非盐湖野外 <a class="lnk" href="https://uri.amap.com/search?keyword=大柴旦汽车露营地" target="_blank" rel="noopener">高德搜索</a>；未获许可改正规住宿',
+food:'自带午餐；大柴旦吃热饭并补充高原保暖食品、饮水',
+tips:['G315小柴旦湖至老茫崖段施工组织以当天交警/导航为准','若21:00仍未到大柴旦或疲劳明显，立即在最近合法城镇/营地退出，不在国道路边睡车']},
+
+{d:20,date:'8月20日 · 周四',title:'大柴旦 → 德令哈 → 茶卡 → 青海湖合法点 → 西宁',km:730,hrs:'约10–11h驾驶/充电＋短观景',tags:['drive','fun'],theme:'lake',emoji:'🌊',
+route:'大柴旦—德令哈—茶卡—G109青海湖南线许可开放点—湟源—西宁',
+decision:'这是高原超长日，06:00出发。茶卡只作补能和20–30分钟休息，青海湖只选一个正规开放点停30–45分钟；若18:00前仍未抵达合法观景点、宠物不准入或天气变差，取消观景直接去西宁。绝不在环湖公路两侧停车或露营。',
+charge:['大柴旦95%出发','德令哈城区当天可启动快充为主补能；同城另一运营商为备选A','茶卡镇/共和方向快充为第二补能；任何一站异常即缩短观景并直奔下一安全城市','西宁中惠万达、城北吾悦、新华联索菲特三处Tesla站实时择一主充，另两处互备；到达后补至90%以上'],
+play:['德令哈补能时午餐和遛狗；茶卡盐湖核心区不作为必进项目','青海湖只去二郎剑、仙女湾或当天明确开放且有正规停车场的一个点；宠物未获准只车览','两只狗短绳远离普氏原羚、候鸟和牧群，不投喂野生动物'],
+stay:'西宁青滨壹号酒店（北川万达店）· V15起改为住店：730km长日结束、次日又是730km，这一晚是返程最需要真床的恢复夜 · 地址：城北区济湟路北川万达广场三期万达中心B座1楼 · 平台显示可带狗、约100元/只/天、免费停车；两只边牧须电话确认 · 距城北吾悦超充约3km，城北位置次日上G6东出最顺 <a class="lnk bk" href="https://us.trip.com/hotels/xining-hotel-detail-129118120/qingbin-no1-hotel/" target="_blank" rel="noopener">Trip.com</a><a class="lnk" href="https://uri.amap.com/search?keyword=西宁青滨壹号酒店北川万达" target="_blank" rel="noopener">导航</a>；备选：东宝酒店（唐道637店）☎0971-8825555，平台宠物免费、距新华联索菲特超充约300m <a class="lnk bk" href="https://us.trip.com/hotels/xining-hotel-detail-21787902/towo-premium-hotel/" target="_blank" rel="noopener">Trip.com</a>',
+food:'德令哈午餐；西宁晚到吃面片、手抓或可打包热食',
+tips:['若人或狗出现持续头痛、呕吐、无法进食、步态不稳，立即向低海拔方向撤离并就医','青海湖管理部门明确禁止路边露营和进入私设旅游通道']},
+
+{d:21,date:'8月21日 · 周五',title:'西宁 → 兰州外围 → 临洮/岷县方向 → 陇南',km:730,hrs:'约9–10h驾驶＋补能',tags:['drive','car'],theme:'canyon',emoji:'🛣️',
+route:'西宁—G6/兰州外围—G75兰海高速—太石服务区—岷县/宕昌方向—陇南；以车机实时路线为准',
+decision:'甘肃山地高速弯道、隧道和大车多，不为省几十公里切无补给的低等级山路。若兰州周边拥堵或G75天气/施工导致预计22:00后到陇南，取消所有观景，必要时在临洮、岷县或宕昌正规住宿安全退出。',
+charge:['西宁90–95%出发','兰州外围或临洮方向当天可启动快充为第一主补能；另一城市不同运营商为备选A','太石服务区作为正式休息/补能候选，实时异常切岷县、宕昌或沿线服务区备选','陇南城区第一处公共快充为落地主站，另存两个不同运营商备选，驻车前形成D22安全余量'],
+play:['太石服务区可作20–30分钟人狗休息点；只在服务区管理范围内短绳活动','沿G75看洮河、岷山和峡谷公路景观，不增加收费景区','每2小时停车，人和两只狗共同补水；连续隧道段提前关闭车内强反光'],
+stay:'床车第5晚：陇南城区已确认汽车营地或有人管理停车区，要求厕所、照明、信号和夜间出入 <a class="lnk" href="https://uri.amap.com/search?keyword=陇南汽车露营地" target="_blank" rel="noopener">高德搜索</a>；未获许可改正规住宿',
+food:'太石/岷县服务节点简餐；陇南晚餐吃面食或热菜',
+tips:['甘肃高速已有较广服务区充电覆盖，但仍以车机和运营商App实时状态为准','长下坡优先用动能回收控制车速，遇雨雾降低辅助驾驶依赖']},
+
+{d:22,date:'8月22日 · 周六',title:'陇南 → 广元 → 剑门蜀道走廊 → 成都',km:500,hrs:'约6–7h驾驶＋补能',tags:['drive','fun'],theme:'forest',emoji:'🌳',
+route:'陇南—G75—广元—G5京昆高速—绵阳—成都',
+decision:'今天目标是下午到成都，为次日休整留足睡眠。若剑门蜀道周边堵车或宠物规则不明，不进入剑门关核心景区；只在广元/昭化公开道路或正规服务区短停，不以景点换夜驾。',
+charge:['陇南90%以上出发','广元城区或G5服务区可启动快充为主补能；绵阳方向为备选A','成都到达后Tesla/公共快充实时择一，另备两个不同运营商站；驻车前补至足够露营模式和D23市内活动的电量','四川交通部门披露高速服务区已实现充电设施覆盖，但节假日排队仍按20分钟阈值切换'],
+play:['嘉陵江峡谷和剑门蜀道以公路景观为主','若时间早且现场明确允许犬只，可在昭化古城外围公开街区或嘉陵江公开道路停30–45分钟；否则直接进成都','抵达后先洗衣、补给、清理车内和检查两只狗脚垫'],
+stay:'成都高新会展希尔顿惠庭酒店 · V15起改为住店：8月成都夜间湿热，长途抵达当晚用真床和空调恢复，D23休整夜再转营地 · 地址：双流区梓州大道4111号灵冠国际城8栋 · ☎028-86088999 · 惠庭品牌统一政策每房最多2只猫/狗、约300元/次、免费停车；距Canpet犬岛约8–10km、双流萌宠乐园约20km，从广元方向走绕城直达城南不穿核心城区 <a class="lnk bk" href="https://www.trip.com/hotels/chengdu-hotel-detail-109177850/home2-suites-by-hilton-chengdu-high-tech-zone-exhibition" target="_blank" rel="noopener">Trip.com</a><a class="lnk" href="https://uri.amap.com/search?keyword=成都高新会展希尔顿惠庭酒店" target="_blank" rel="noopener">导航</a>；备选：武侯祠希尔顿惠庭☎028-60729999 / 盛捷江畔服务公寓☎028-61816888（宠物约100元/次）',
+food:'广元补能时简餐；成都晚餐从简，为D23和朋友聚餐留胃口',
+tips:['进入成都前复核当地最新养犬规定和住宿/营地所在区要求','任何时候都不把两只狗单独留在高温车内']},
+
+{d:23,date:'8月23日 · 周日',title:'成都带狗休整＋与朋友吃饭',km:100,hrs:'全天休整/市内短途',tags:['car','fun'],theme:'city',emoji:'🥘',
+route:'成都酒店退房—双流萌宠乐园或Canpet犬岛公园—洗车/补给—朋友会面餐厅—已确认营地',
+decision:'成都普通市政公园并不等于允许宠物。本日只选公开报道列明的宠物友好空间，并在前一天确认营业、两只边牧和大型犬时段。与朋友吃饭不预设具体餐厅：必须选带遮阴外摆、独立院落或明确接受两只边牧的店；未确认就让朋友到营地附近打包会面，绝不把狗留在车里。',
+charge:['上午用成都Tesla或公共快充补电，充至日常活动所需即可；快充完成移车','晚间在不同运营商站补至90–95%，为D24约720km准备','主站排队超过20分钟、不可用桩超过一半或商场停车规则不适合床车高度时，切同城备选A/B'],
+play:['上午睡足、洗澡、洗衣、车辆和床车整理','下午二选一：双流萌宠乐园或Canpet犬岛公园；到场仍按分区、牵引和疫苗规则执行，不默认可以放绳','傍晚与朋友吃饭；预订时明确“两只成年边牧、需要外摆/院落、停车方便、可随时补水”，高温时优先室外有风扇/喷雾或靠近营地的方案'],
+stay:'床车第6晚：成都已确认营地/管理驻车点（前一晚酒店休整后转入），优先有淋浴、洗衣、遮阴和夜间管理；人或狗状态不佳就直接续住前一晚酒店 <a class="lnk" href="https://uri.amap.com/search?keyword=成都汽车露营地宠物友好" target="_blank" rel="noopener">高德搜索</a>',
+food:'与成都朋友吃一顿；具体店由朋友和你共同确认宠物条件后锁定，不虚构门店',
+tips:['成都8月湿热，午后减少地面活动，先测地温','餐厅只承诺“区域方案”，具体门店营业和携宠规则必须当天确认']},
+
+{d:24,date:'8月24日 · 周一',title:'成都 → 遂宁/南充 → 重庆北 → 恩施',km:720,hrs:'约9–10h驾驶＋补能',tags:['drive','car'],theme:'canyon',emoji:'🌉',
+route:'成都—G42/G50方向—遂宁/南充—广安—重庆北侧—石柱—利川—恩施；以车机实时避堵为准',
+decision:'这是山地长途日，只做转场。重庆绕城、沪渝高速隧道群或暴雨导致预计22:00后到恩施时，优先在石柱或利川正规住宿/营地退出；不加塞市区景点，不进入陌生县道抄近路。',
+charge:['成都95%出发','南充或广安方向服务区/城区快充为第一主补能，另一城市不同运营商为备选A','石柱或利川为第二补能和晚餐节点；恩施城区为落地备选B','四川高速服务区已有快充覆盖，湖北沿线站点仍按车机/e充电实时选；任何一段预测到下一安全城市低于20%就提前补'],
+play:['每2小时在正规服务区短绳遛狗、补水和检查脚垫','沿途看嘉陵江、川东丘陵和武陵山高速景观，不额外下高速追景点','隧道群和长下坡保持人工监控，雨天降低车速'],
+stay:'床车第7晚：恩施城区或近郊已确认汽车营地/管理停车区，要求24h出入、厕所、照明、信号和距快充不超过30km <a class="lnk" href="https://uri.amap.com/search?keyword=恩施汽车露营地" target="_blank" rel="noopener">高德搜索</a>',
+food:'南充/广安服务节点简餐；石柱或利川吃热饭后再进恩施',
+tips:['辅助驾驶不能替代对隧道、施工、大车和雨雾的持续观察','连续长日后优先睡眠，不安排恩施夜景']},
+
+{d:25,date:'8月25日 · 周二',title:'恩施 → 宜昌 → 荆州 → 武汉',km:520,hrs:'约7–8h驾驶＋补能',tags:['drive','fun'],theme:'canyon',emoji:'🌊',
+route:'恩施—G50沪渝高速—宜昌—荆州—武汉',
+decision:'上午只在恩施公开河岸道路短散步，不进入宠物规则不明的核心景区。G50山区遇暴雨、团雾或事故拥堵时延后出发或在宜昌退出；目标傍晚前到武汉，为D26完整休整。',
+charge:['恩施城区90%以上出发','宜昌服务区/城区当天可启动快充为主补能；荆州方向为备选A','武汉城区Tesla或公共快充为落地主站，另存两个不同运营商备选B','湖北高速充电网络持续扩容，但服务区实时排队仍按20分钟阈值切换'],
+play:['清晨在公开道路让两只狗活动30分钟再上高速','沿清江/长江走廊看峡谷到江汉平原的地貌变化，只在正规服务区停留','若16:00前到武汉，可先到营地洗车、淋浴和休息，不加塞夜游'],
+stay:'武汉徐东希尔顿惠庭酒店 · V15起改为住店：520km抵达当晚真床休整，D26休整夜再转营地 · 地址：洪山区友谊大道661号万隆国际广场 · ☎027-59376999 · 惠庭品牌每房最多2只猫/狗、约300元/次、免费停车；距武昌万象城约2–3km，进城前先完成肩高实测 <a class="lnk bk" href="https://us.trip.com/hotels/wuhan-hotel-detail-92066559/home2-suites-by-hilton-wuhan-xudong/" target="_blank" rel="noopener">Trip.com</a><a class="lnk" href="https://uri.amap.com/search?keyword=武汉徐东希尔顿惠庭酒店" target="_blank" rel="noopener">导航</a>；备选：汉口火车站希尔顿惠庭（政策最明确：每房2只/350元/次/1000元可退押金）<a class="lnk bk" href="https://us.trip.com/hotels/wuhan-hotel-detail-104588797/wuhan-hankou-railway-station-hilton-huiting-hotel/" target="_blank" rel="noopener">Trip.com</a>',
+food:'宜昌补能时午餐；武汉晚餐打包或营地附近解决',
+tips:['进入武汉前实测两只狗成年站立肩高；任一超过61cm，不携犬进入武汉行政区内公共活动安排，并改在外围合法路线休整','边牧不在官方35种品种名录中，但体型标准独立适用']},
+
+{d:26,date:'8月26日 · 周三',title:'武汉带狗休整＋与朋友吃饭',km:100,hrs:'全天休整/市内短途',tags:['car','fun'],theme:'city',emoji:'🍲',
+route:'武汉酒店退房—武昌万象城牧野公园或KIC PARK—朋友会面餐厅—充电—已确认营地',
+decision:'武汉2026新规按“体型＋品种”双重判定：成年犬肩高超过61cm全域禁养，必须先实测。两只狗均不超标时，优先选武昌万象城牧野公园或KIC PARK等官方报道的宠物友好空间；具体商户仍需确认大型犬。任一超标则取消城市携犬活动和聚餐入场，改为朋友到行政区外合法停靠点会面/打包。',
+charge:['白天在武汉Tesla/公共快充完成车辆检查和常规补能','晚间充至95–100%，为D27约1180km返京准备；主站异常切同城两个不同运营商备选','充电期间完成轮胎、玻璃水、雨刮、胎压和明日G4三段补能点检查'],
+play:['上午睡足、洗澡、洗衣和整理车内；两只狗做低强度活动','合规时二选一：武昌万象城牧野公园（官方称全场景宠物友好MALL）或KIC PARK公园式宠物友好空间；按现场牵绳、嘴套、分区和卫生要求执行','傍晚与武汉朋友吃一顿；优先选上述宠物友好商业区的外摆/公园街区餐厅，预订时明确两只成年边牧，不能确认就打包到营地会面'],
+stay:'床车第8晚：武汉已确认营地/管理驻车点（前一晚酒店休整后转入）；22:00前结束聚餐，保证D27至少7小时睡眠；状态不佳就续住前一晚酒店 <a class="lnk" href="https://uri.amap.com/search?keyword=武汉汽车露营地宠物友好" target="_blank" rel="noopener">高德搜索</a>',
+food:'与武汉朋友吃一顿；具体餐厅由朋友确认大型犬、外摆、停车和营业后锁定',
+tips:['D27是全程最长单日，今晚不饮酒、不熬夜','若两只狗肩高或武汉携犬规则不能闭环，城市活动全部取消，不现场争执']},
+
+{d:27,date:'8月27日 · 周四',title:'武汉 → 北京 · 到家 🎉',km:1180,hrs:'约13–15h驾驶＋3次补能/遛狗',tags:['drive'],theme:'night',emoji:'🏠',
+route:'武汉—G4京港澳高速—信阳—驻马店—郑州/新乡—石家庄—保定—北京',
+decision:'05:00左右出发，能开多远开多远、不强求当日到家。驾驶辅助不改变单人连续驾驶风险：每2–2.5小时必须停车。石家庄是硬决策点：到达晚于19:00、出现连续打哈欠/注意力漂移、恶劣天气或车机预计午夜后到家，立即在石家庄/保定正规住宿退出，D28再回；拆成两天不算计划失败。',
+charge:['武汉95–100%出发','第一段在信阳/驻马店方向G4服务区按车机选主站，前后相邻服务区互为备选A；同时遛狗20分钟','第二段在郑州/新乡方向G4服务区选主站，河南已开通高速服务区充电设施覆盖；仍以实时可启动为准','第三段在石家庄/保定方向服务区选主站，前后相邻服务区为备选B；北京高速服务区已有超充覆盖线索，但不把入京后补电作为唯一方案','每次补至车机建议或约80–90%即可，优先保持下一站20%以上余量'],
+play:['不安排景点；三次正式充电休息叠加两次10分钟人狗活动，每次都在服务区管理范围内短绳进行','午餐在郑州前后服务区，晚餐视到达时间在河北服务区解决','进入北京前检查限行、实时拥堵和住宅充电条件'],
 stay:'家 🏠',
-food:'呼市烧麦最后一顿仪式感',
-tips:['到家后3件事：给狗做一次全身蜱虫检查、洗澡、约体检','把这一路的照片整理成相册吧']}
+food:'服务区简餐；最后一天不为指定餐厅下高速绕行',
+tips:['到家后检查两只狗脚垫、蜱虫、食欲和精神状态，安排洗澡与体检','车辆检查轮胎、底盘和空调滤芯；整理充电账单、营地确认和旅程记录']}
 ];
 
 const computedTotalKm = DAYS.reduce((sum, day) => sum + day.km, 0);
@@ -957,19 +1259,26 @@ const CHARGE_SEGMENTS = [
   {id:'d2-g7-linbai',days:'D2',route:'临河→额济纳（G7临白段）',primary:'乌力吉服务区实时可用快充',backupA:'苏宏图服务区实时可用快充',backupB:'雅干服务区/额济纳县城公共快充',channels:'e充电、e路畅通、车机',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'临河满电后、进入无人区前',fallback:'单站异常继续用沿线备选；连续关键站不可确认且尚未进入时延迟出发或改G30',evidence:'服务区名称可核，实时可用性未作静态承诺',verified:'2026-07-16'},
   {id:'d3-ejina-dunhuang',days:'D3',route:'额济纳→敦煌',primary:'额济纳县城实时公共快充',backupA:'金塔/酒泉城区实时公共快充',backupB:'瓜州城区公共快充或敦煌太阳庄园特斯拉超充',channels:'车机、e充电、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'额济纳出发前；金塔/酒泉补能后',fallback:'无法形成至少一次中途有效补能则延迟出发，不赌700km长途',evidence:'城市站点按运营商App实时选定',verified:'2026-07-16'},
   {id:'d4-s240-s245',days:'D4',route:'敦煌→S240→S245→哈密',primary:'敦煌太阳庄园酒店特斯拉超充',backupA:'敦煌城区第一处不同运营商公共快充',backupB:'敦煌城区第二处不同运营商公共快充',channels:'Tesla App、车机、e充电、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'敦煌城区，进入S240前',fallback:'未充至95%或预测抵达哈密低于20%就延迟出发；未获官方确认沿线充电，不把收费站当充电点',evidence:'官方仅确认通车、里程与收费；沿线充电未获官方确认',verified:'2026-07-16'},
-  {id:'d5-hami-dahaidao-shanshan',days:'D5',route:'哈密→大海道→鄯善',primary:'哈密华宇大酒店特斯拉超充',backupA:'哈密城区第一处不同运营商公共快充',backupB:'哈密城区第二处不同运营商公共快充',channels:'Tesla App、车机、e充电、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测北门至鄯善低于20%',decisionPoint:'哈密出发前；大海道东门',fallback:'不依赖红柳滩充电；主线/车型/北门离场余量任一不满足即东门浅游后退出，走铺装道路到鄯善',evidence:'官方确认约130km穿越线路及按开放路线行驶；景区内实时充电未作静态承诺',verified:'2026-07-16'},
-  {id:'d6-shanshan-s21-altay',days:'D6',route:'鄯善→S21→阿勒泰',primary:'克拉美丽服务区充电设施',backupA:'五家渠服务区充电设施',backupB:'吉利湖服务区充电设施',channels:'车机、e充电、e疆充、新疆路网',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'鄯善离城前；五家渠服务区；吉利湖离站前',fallback:'黄花沟只休息不作为充电点；三处官方配置站均无法确认时不进入S21长段；到阿勒泰后酒店桩不可用即切市区两个不同运营商公共快充',evidence:'自治区交通运输厅明确五家渠、克拉美丽、吉利湖配置充电设施；友谊宾馆平台仅能证明有充电设施线索，实时功率与占用需App或电话确认',verified:'2026-07-16'},
-  {id:'d7-altay-hemb',days:'D7',route:'阿勒泰→布尔津→禾木',primary:'布尔津特斯拉超级充电站',backupA:'布尔津县城第一处不同运营商公共快充',backupB:'布尔津县城第二处不同运营商公共快充',channels:'Tesla App、车机、e疆充、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测D8返回布尔津低于20%',decisionPoint:'阿勒泰离城前；布尔津离城前',fallback:'阿勒泰出发电量不足先在市区公共快充补能；无法在布尔津形成禾木往返安全余量，或狗的区间车运输方式未落实，就留在布尔津处理，不进入景区',evidence:'布尔津Tesla官方站可核；不承诺禾木停车场或村内快充',verified:'2026-07-16'},
+  {id:'d5-hami-dahaidao-mulei',days:'D5',route:'哈密→大海道往返→G7→木垒',primary:'哈密特斯拉超充/城区公共快充满电出发',backupA:'G7梧木段服务区国网快充（下马崖/盐池/大河/骆驼井子/下老坝/大石头）',backupB:'木垒县城公共快充',channels:'Tesla App、车机、e充电、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到下一服务区低于20%',decisionPoint:'哈密出发前满电；大海道东门；G7中途服务区',fallback:'大海道不依赖景区内充电，红柳滩往返用出发满电覆盖；哈密→木垒515km戈壁无人区只有服务区没有县城，途中在G7一个服务区补一次电',evidence:'官方确认大海道景区段及按开放路线行驶；G7梧木段6对服务区已配120–240kW国网快充（人民网/新疆交通厅可核）；木垒无特斯拉超充但国标桩通用',verified:'2026-07-18'},
+  {id:'d6-mulei-s21-altay',days:'D6',route:'木垒→阜康→S21→阿勒泰',primary:'阜康/乌鲁木齐/五家渠上S21前公共快充',backupA:'S21克拉美丽服务区充电设施',backupB:'S21五家渠/吉利湖服务区充电设施',channels:'Tesla App、车机、e充电、e疆充、新疆路网',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'木垒离城前90%+；上S21前（阜康/乌市/五家渠）；克拉美丽离站前',fallback:'黄花沟只休息不作为充电点；上S21前一带补能最充裕，必在此充满；到阿勒泰后友谊宾馆桩不可用即切市区两个不同运营商公共快充',evidence:'走G7北线不走G30南线（避风区/酷热，用户确认）；S21五家渠、克拉美丽、吉利湖配置充电设施（自治区交通运输厅可核）；木垒→阿勒泰约690km需上S21前充满',verified:'2026-07-18'},
+  {id:'d7-altay-hemb',days:'D7',route:'阿勒泰→布尔津→禾木',primary:'布尔津特斯拉超级充电站',backupA:'布尔津县城第一处不同运营商公共快充',backupB:'布尔津县城第二处不同运营商公共快充',channels:'Tesla App、车机、e疆充、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测D8返回布尔津低于20%',decisionPoint:'阿勒泰离城前；布尔津离城前',fallback:'阿勒泰出发电量不足先在市区公共快充补能；无法在布尔津形成禾木往返安全余量，或进村出租车接送未与司机确认，就留在布尔津处理，不进入景区',evidence:'布尔津Tesla官方站可核；不承诺禾木停车场或村内快充',verified:'2026-07-16'},
   {id:'d8-hemb-wuerhe',days:'D8',route:'禾木→布尔津→乌尔禾',primary:'布尔津特斯拉超级充电站',backupA:'布尔津县城不同运营商公共快充',backupB:'乌尔禾镇实时公共快充',channels:'Tesla App、车机、e疆充、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或取车后预测到布尔津低于20%',decisionPoint:'禾木外部停车场取车时；布尔津离城前',fallback:'低温或异常掉电先在安全位置处理；布尔津不能形成到乌尔禾的安全余量就继续补能并压缩游玩，不把柏纳酒店当作充电站',evidence:'返程电量依靠D7布尔津充足预留；布尔津Tesla官方站可核，柏纳酒店无已核实自有充电桩',verified:'2026-07-16'},
   {id:'d9-wuerhe-sailimu',days:'D9',route:'乌尔禾→赛里木湖东门',primary:'克拉玛依/奎屯实时公共快充',backupA:'精河县城实时公共快充',backupB:'五台服务区或赛湖东门周边实时公共快充',channels:'车机、e充电、顺顺充、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'乌尔禾离城前；精河县城；五台/东门入住前',fallback:'当晚先形成次日环湖至南门的安全余量；赛官房无已核实自有充电桩，不把补能问题留到D10清晨',evidence:'公开检定信息不能推出赛湖单点数量或实时可用；住宿平台未提供可靠自有快充证据',verified:'2026-07-16'},
   {id:'d10-sailimu-yining',days:'D10',route:'赛湖东门→南门→霍城→伊宁',primary:'赛湖东门/五台周边实时公共快充',backupA:'清水河或霍城县城实时公共快充',backupB:'伊宁绿发洲际酒店特斯拉超充',channels:'车机、Tesla App、e充电、顺顺充',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到下一安全城镇低于20%',decisionPoint:'赛湖东门入园前；南门驶出时；霍城离开前',fallback:'入园电量不能覆盖环湖和南门驶出就先补能；南门后余量不足先在清水河/霍城补电，不在果子沟临时找桩；到伊宁后完成D11长途所需补能',evidence:'伊宁超充有Tesla官方页；赛湖、清水河与霍城站点均需实时确认',verified:'2026-07-17'},
-  {id:'d11-yining-kurdening-nalati',days:'D11',route:'伊宁→特克斯→库尔德宁→那拉提',primary:'伊宁绿发洲际酒店特斯拉超充',backupA:'特克斯县城实时公共快充',backupB:'巩留县城或那拉提镇实时公共快充',channels:'Tesla App、车机、e充电、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到那拉提低于20%',decisionPoint:'D10伊宁入住后；特克斯离城前；巩留离开前',fallback:'不能形成到那拉提安全余量就先补电；时间落后优先缩短八卦城或库尔德宁，不以夜驾换游玩',evidence:'伊宁Tesla官方固定站可核，特克斯、巩留和那拉提按运营商App实时选定',verified:'2026-07-17'},
+  {id:'d11-yining-kurdening-nalati',days:'D11',route:'伊宁→巩留→库尔德宁→那拉提',primary:'伊宁绿发洲际酒店特斯拉超充',backupA:'巩留县城实时公共快充',backupB:'那拉提镇实时公共快充',channels:'Tesla App、车机、e充电、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到那拉提低于20%',decisionPoint:'D10伊宁入住后；巩留离开前；库尔德宁环线进入前',fallback:'不能形成到那拉提安全余量就先补电；库尔德宁单向环线不可折返，时间或电量不足就直接走墩那高速去那拉提，不以夜驾换游玩',evidence:'伊宁Tesla官方固定站可核，巩留和那拉提按运营商App实时选定；库尔德宁自驾与环线信息来自2025–26公开攻略，宠物规则需电话确认',verified:'2026-07-17'},
   {id:'d12-nalati-local',days:'D12',route:'那拉提草原深度游',primary:'那拉提镇第一处实时公共快充',backupA:'那拉提镇第二处不同运营商公共快充',backupB:'新源县城实时公共快充',channels:'车机、e充电、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或D13到蜜蜂小镇预测低于25%',decisionPoint:'D12上午；D13离开那拉提前',fallback:'镇内两处均不能形成D13安全余量时前往新源县城补能或推迟出发；不虚构那拉提特斯拉超充',evidence:'那拉提公开资料可核自驾规则，固定Tesla站未获官方证据；公共站需实时确认',verified:'2026-07-17'},
   {id:'d13-nalati-tangbula',days:'D13',route:'那拉提→乔尔玛→唐布拉蜜蜂小镇',primary:'听泉别院已预约充电车位',backupA:'特来电尼勒克种蜂场客运站',backupB:'星星充电尼勒克蜂巢酒店二号桩群/驴充充蜜居民宿',channels:'车机、e充电、特来电、星星充电、高德',trigger:'住宿不能确认接口和过夜权限、公共桩无法启动、不可用桩超过一半或D14预测到独山子低于20%',decisionPoint:'D13离开那拉提前；蜜蜂小镇入住后立即',fallback:'先切蜜蜂小镇公共桩或得鹿梦鱼等带充电住宿；仍不能形成D14余量则不在唐布拉过夜，缩短游玩并返回安全补能点',evidence:'携程可核听泉别院充电车位；地图可检索三处公共桩，但实时功率、占用和开放必须App确认',verified:'2026-07-17'},
-  {id:'d14-duku-urumqi',days:'D14',route:'唐布拉→乔尔玛→独库北段→独山子→乌鲁木齐',primary:'独山子城区实时公共快充',backupA:'毛溜沟服务区应急充电设施',backupB:'奎屯城区公共快充/乌鲁木齐万科特斯拉超充',channels:'车机、Tesla App、e充电、新疆路网、新疆交警',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放、未预约或预测到独山子低于20%',decisionPoint:'蜜蜂小镇出发前；乔尔玛入口；毛溜沟；独山子离城前',fallback:'唐布拉未充足、独库未预约/未开放或天气不满足就不进独库，按交警和实时导航改线；独山子站异常切奎屯，不赌单一山中桩',evidence:'独库预约为正式政策；交通部门可核沿线服务设施，固定功率和实时可用不作承诺',verified:'2026-07-17'},
-  {id:'d15-urumqi-hami',days:'D15',route:'乌鲁木齐→哈密（G30）',primary:'乌鲁木齐万科生活广场特斯拉超充',backupA:'吐鲁番/鄯善城区实时快充',backupB:'哈密华宇大酒店特斯拉超充',channels:'Tesla App、车机、e充电',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'乌鲁木齐离城前；鄯善',fallback:'大风或站点异常时在吐鲁番/鄯善等待，不带低电量穿风区',evidence:'两端Tesla固定站可核，中途站实时确认',verified:'2026-07-16'},
-  {id:'d16-hami-ejina',days:'D16',route:'哈密→额济纳（G7）',primary:'哈密华宇大酒店特斯拉超充',backupA:'骆驼圈子/白疙瘩服务区实时快充',backupB:'额济纳县城实时公共快充',channels:'Tesla App、车机、e充电、e路畅通',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'哈密离城前；骆驼圈子',fallback:'不能复用去程桩况；连续关键站不可确认且尚未进入时延迟或改G30',evidence:'固定城市站可核，G7实时状态必须重新检查',verified:'2026-07-16'},
-  {id:'d17-d18-home',days:'D17–D18',route:'额济纳→临河→北京',primary:'额济纳县城实时公共快充',backupA:'乌力吉服务区实时快充',backupB:'巴彦淖尔/呼和浩特特斯拉超充',channels:'车机、Tesla App、e充电、e路畅通',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到站低于20%',decisionPoint:'额济纳离城前；临河离城前',fallback:'G7关键站异常时在安全城市等待或切同城备选，不在无人区临时改线',evidence:'城市固定站与沿线实时核验结合',verified:'2026-07-16'}
+  {id:'d14-duku-urumqi',days:'D14',route:'唐布拉→乔尔玛→独库北段→独山子→乌鲁木齐',primary:'独山子城区实时公共快充',backupA:'毛溜沟服务区应急充电设施',backupB:'奎屯城区公共快充/乌鲁木齐万科特斯拉超充',channels:'车机、Tesla App、e充电、新疆路网、新疆交警',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放、未预约或预测到独山子低于20%',decisionPoint:'蜜蜂小镇出发前；乔尔玛入口；毛溜沟；独山子离城前',fallback:'唐布拉未充足、独库未预约/未开放或天气不满足就不进独库，改走西线尼勒克—G577—精河—G30（尼勒克、精河县城及G30服务区有公共桩，乌苏有特斯拉超充）；独山子站异常切奎屯，不赌单一山中桩',evidence:'独库预约为正式政策（每日3000辆、五档时段、19:00后封闭）；乔尔玛—独山子约140km经多源交叉验证；G577备选以2026年6月底通车口径为准，执行前须确认',verified:'2026-07-17'},
+  {id:'d15-d16-urumqi-korla',days:'D15–D16',route:'乌鲁木齐休整/送机→G0711→库尔勒',primary:'乌鲁木齐万科生活广场特斯拉超充＋永丰服务区充电设施',backupA:'乌鲁木齐城区不同运营商公共快充',backupB:'库尔勒城区两个不同运营商公共快充',channels:'Tesla App、车机、e充电、新疆路网、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到下一节点低于20%',decisionPoint:'D15晚；D16机场离开前；永丰服务区',fallback:'先在乌鲁木齐形成到永丰的安全余量；隧道路况、天气或驾驶员状态不满足时在沿线合法住宿退出，不低电量进入天山隧道群',evidence:'自治区交通运输厅公告可核G0711试运营及永丰服务区提供充电等服务；乌鲁木齐Tesla固定站可核',verified:'2026-07-17'},
+  {id:'d17-korla-ruoqiang',days:'D17',route:'库尔勒→尉犁→若羌',primary:'若羌县城当天可启动公共快充',backupA:'楼兰印象/楼兰名苑片区不同运营商公共终端',backupB:'铁乡农贸市场对面公共停车场或若羌同城第三处快充',channels:'车机、e充电、高德、运营商App',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到若羌低于20%',decisionPoint:'库尔勒离城前；尉犁进入荒漠长段前',fallback:'三处若羌终端均不可确认就不进入长段；到达后充至95%以上',evidence:'若羌县政府2025年披露县城累计布局28个充电终端，实时可用仍须App确认',verified:'2026-07-17'},
+  {id:'d18-ruoqiang-mangya',days:'D18',route:'若羌→依吞布拉克→茫崖花土沟',primary:'花土沟镇公共停车场可启动快充',backupA:'花土沟镇第二处不同运营商公共快充',backupB:'茫崖月球星空房车营地或镇内第三处充电线索',channels:'车机、e充电、高德、运营商App、新疆/青海路网',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放、强沙尘横风或预测到花土沟低于20%',decisionPoint:'若羌满电后；米兰/依吞布拉克进入无服务区长段前',fallback:'道路、天气、花土沟双站和到达余量任一不满足就留在若羌；不依赖依吞布拉克至米兰段服务区',evidence:'新疆交通部门明确依吞布拉克至米兰段未设服务区和加油站；茫崖2025年可核花土沟与冷湖共64个公共充电桩投运',verified:'2026-07-17'},
+  {id:'d19-mangya-yadan-dachaidan',days:'D19',route:'茫崖→水上雅丹→大柴旦',primary:'花土沟镇出发主站＋大柴旦怡景大酒店Tesla落地主站',backupA:'花土沟镇第二处不同运营商公共快充',backupB:'大柴旦镇两处不同运营商公共快充',channels:'Tesla App、车机、e充电、高德、青海路网',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放、14:30未离开水上雅丹或预测到大柴旦低于20%',decisionPoint:'花土沟离城前；水上雅丹入园前和离场时',fallback:'宠物、道路、时间或余量不满足就跳过水上雅丹直达大柴旦；不在G315路边驻车',evidence:'水上雅丹官方可核景区与房车营地；Tesla官方可核大柴旦站；G315施工与禁停要求均有主管部门依据',verified:'2026-07-17'},
+  {id:'d20-dachaidan-xining',days:'D20',route:'大柴旦→德令哈→茶卡→青海湖→西宁',primary:'德令哈当天可启动快充',backupA:'茶卡镇/共和方向公共快充',backupB:'西宁中惠万达/城北吾悦/新华联索菲特Tesla超充',channels:'Tesla App、车机、e充电、青海高速App/公众号',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到下一安全城市低于20%',decisionPoint:'大柴旦离城前；德令哈；茶卡；青海湖观景点前',fallback:'沿线站异常就缩短或取消茶卡/青海湖观景并直达西宁；不依赖景区桩，不在环湖路边驻车',evidence:'西宁三处Tesla固定站可核；青海湖禁止路边露营，沿线实时桩况以App为准',verified:'2026-07-17'},
+  {id:'d21-xining-longnan',days:'D21',route:'西宁→兰州外围→G75→陇南',primary:'兰州外围/临洮当天可启动快充',backupA:'太石服务区充电设施',backupB:'岷县/宕昌/陇南不同运营商公共快充',channels:'车机、e充电、甘肃高速、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或预测到下一安全城市低于20%',decisionPoint:'西宁离城前；兰州外围；太石服务区',fallback:'G75天气、施工或拥堵导致晚到时取消停留，在临洮、岷县或宕昌合法住宿退出；不钻低等级山路',evidence:'甘肃交通部门披露高速服务区充电覆盖持续完善，太石服务区有交旅融合设施；实时可用仍须App确认',verified:'2026-07-17'},
+  {id:'d22-d23-chengdu',days:'D22–D23',route:'陇南→广元→成都＋成都休整',primary:'广元城区/G5服务区快充',backupA:'绵阳方向服务区或城区快充',backupB:'成都Tesla及两个不同运营商公共快充',channels:'Tesla App、车机、e充电、四川高速、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或D24出发前未形成95%电量',decisionPoint:'陇南离城前；广元；成都驻车前；D23晚',fallback:'沿线异常就缩短昭化短停；成都同城切站，不占快充位过夜，D23晚完成D24长途所需电量',evidence:'交通运输部披露四川高速服务区充电设施覆盖；具体站点、排队与功率以实时App为准',verified:'2026-07-17'},
+  {id:'d24-chengdu-enshi',days:'D24',route:'成都→南充/广安→重庆北→恩施',primary:'南充或广安方向服务区/城区快充',backupA:'石柱或利川公共快充',backupB:'恩施城区两个不同运营商公共快充',channels:'车机、e充电、四川/重庆/湖北高速、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放、暴雨或预测到下一安全城市低于20%',decisionPoint:'成都离城前；南充/广安；石柱/利川',fallback:'山地高速拥堵、暴雨或疲劳时在石柱/利川退出，不走陌生县道抄近路',evidence:'四川、湖北高速充电网络均有主管部门公开依据；跨省段实时状态以车机和运营商App为准',verified:'2026-07-17'},
+  {id:'d25-d26-wuhan',days:'D25–D26',route:'恩施→宜昌→武汉＋武汉休整',primary:'宜昌服务区/城区快充',backupA:'荆州方向服务区或城区快充',backupB:'武汉Tesla及两个不同运营商公共快充',channels:'Tesla App、车机、e充电、湖北高速、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放或D27出发前未形成95%电量',decisionPoint:'恩施离城前；宜昌；武汉驻车前；D26晚',fallback:'山区暴雨或团雾时在宜昌退出；武汉同城切站并在D26晚充足，不占充电位睡车',evidence:'湖北省公开高速服务区充电网络扩容信息；实时排队和故障仍须App确认',verified:'2026-07-17'},
+  {id:'d27-wuhan-beijing',days:'D27',route:'武汉→G4→北京',primary:'信阳/驻马店方向G4服务区快充',backupA:'郑州/新乡方向G4服务区快充',backupB:'石家庄/保定方向G4服务区快充',channels:'车机、e充电、河南/河北/北京高速、高德',trigger:'预计排队超过20分钟、不可用桩超过一半、无法确认开放、预测到下一服务区低于20%或驾驶员疲劳',decisionPoint:'武汉离城前；每个补能服务区；石家庄',fallback:'前后相邻服务区互备；到石家庄晚于19:00、明显疲劳或预计午夜后到家即在石家庄/保定正规住宿退出',evidence:'河南已开通高速服务区充电设施覆盖，G4沿线服务区可核；河北、北京高速充电持续扩容，实时状态以车机为准',verified:'2026-07-17'}
 ];
 
 const chargeRows = document.getElementById('chargeRows');
@@ -993,12 +1302,14 @@ CHARGE_SEGMENTS.forEach(segment => {
 });
 
 const BUDGET_ITEMS = [
-  {name:'住宿17晚',min:6800,max:10800,note:'按酒店/民宿逐晚估算；禾木和赛湖旺季房价、柏纳两只宠物约200元费用需重点确认'},
-  {name:'充电',min:2300,max:3300,note:'按约8,850km、高温、非铺装和山路损耗及运营商价差估算'},
-  {name:'过路费',min:3400,max:4500,note:'包含S245收费段与S21长距离高速；以ETC账单和实时路线为准'},
-  {name:'门票与自驾/区间车',min:700,max:1600,note:'主要为大海道、禾木与赛湖；以当日官方产品为准'},
-  {name:'餐饮18天',min:7200,max:9000,note:'两人400–500元/天，含特色餐与打包'},
-  {name:'狗证件与耗材',min:1000,max:2000,note:'抗体检测、驱虫、药品与清洁耗材；零寄养'},
+  {name:'住宿18晚',min:7100,max:11800,note:'含V15新增的西宁、成都、武汉三晚酒店；禾木、赛湖旺季房价和柏纳两只宠物费用需重点确认'},
+  {name:'营地/驻车8晚',min:500,max:1600,note:'只计合法营地或有管理驻车点；免费停车不等于允许睡车'},
+  {name:'充电',min:3600,max:5400,note:'按约13,000km、高温、非铺装、山路、高原驻车空调和运营商价差估算'},
+  {name:'过路费',min:4700,max:6500,note:'包含S245、S21、G0711、G315连接线、G75、G50与G4等；以ETC账单和实时路线为准'},
+  {name:'门票与自驾/接驳',min:700,max:1700,note:'主要为大海道、禾木进村接驳、赛湖、库尔德宁及水上雅丹条件项目；以当日官方产品为准'},
+  {name:'餐饮27天',min:8000,max:11500,note:'D1–D15两人，D16–D27一人；含成都、武汉各一次朋友聚餐的弹性'},
+  {name:'狗证件与耗材',min:1000,max:2200,note:'抗体检测、去程与返程两张动物A证（电子出证基本免费）、驱虫、药品与清洁耗材；零寄养'},
+  {name:'床车装备与补给',min:800,max:2200,note:'Model Y L床垫、遮光、保暖、便携厕所和应急储备；不含已有装备'},
   {name:'安全机动金',min:5000,max:5000,note:'旺季房价、宠物附加费、救援或天气等待的独立余量'}
 ];
 
@@ -1023,32 +1334,66 @@ const listEl = document.getElementById('dayList');
 function segHtml(cls, icon, title, items){
   if(!items || !items.length) return '';
   const lis = (Array.isArray(items)?items:[items]).map(i=>`<li>${i}</li>`).join('');
-  return `<div class="seg ${cls}"><div class="sh">${icon} ${title}</div><ul>${lis}</ul></div>`;
+  return `<div class="seg ${cls}"><div class="sh"><span class="ic">${icon}</span>${title}</div><ul>${lis}</ul></div>`;
+}
+/* ---- 概况速览 glance ---- */
+const stripTags = s => (s||'').replace(/<[^>]+>/g,'');
+function kmClass(km){ return km>=900 ? 'l' : (km>=500 ? 'm' : 's'); }
+function kmPct(km){ return Math.max(6, Math.min(100, Math.round(km/1200*100))); }
+function shortHrs(D){ return (D.hrs||'').split('（')[0].trim(); }
+function departTime(D){
+  const hay = [D.route, D.decision||'', ...(D.charge||[]), ...(D.play||[])].map(stripTags).join(' ');
+  const m = hay.match(/(\d{1,2}[:：]\d{2})(?=[^，。；、]{0,10}出发)/);
+  return m ? m[1].replace('：',':') : '';
+}
+function chargeKey(D){
+  if(!D.charge || !D.charge.length) return '';
+  let t = stripTags(D.charge[0]).split(/[／/—－·,，（(；;、]/)[0].trim();
+  return t.length>14 ? t.slice(0,13)+'…' : t;
+}
+function stayInfo(D){
+  const raw = stripTags(D.stay||''), car = D.tags.includes('car');
+  const warn = /待确认|待电话|待落实|⚠️/.test(raw);
+  let name = raw.split(/ · |·|（|\(/)[0].trim();
+  if(!name) name = car ? '床车夜' : '住宿';
+  if(name.length>11) name = name.slice(0,10)+'…';
+  return { name, warn, icon: car ? '🚙' : '🏨' };
+}
+function chip(cls, ic, val){ return `<span class="chip ${cls}"><span class="ic">${ic}</span><b>${val}</b></span>`; }
+function glanceHtml(D){
+  const st = stayInfo(D), dep = departTime(D);
+  const warn = !!D.decision || st.warn;
+  const warnLabel = st.warn ? '住宿待落实' : '今日有决策';
+  return `<div class="glance">
+    <div class="g-km">
+      <div class="bar"><i class="${kmClass(D.km)}" style="width:${kmPct(D.km)}%"></i></div>
+      <span class="val">${D.km}<small> km</small></span>
+    </div>
+    ${chip('', '⏱️', shortHrs(D))}
+    ${dep ? chip('depart', '🕐', dep+' 出发') : ''}
+    ${chargeKey(D) ? chip('charge', '⚡', chargeKey(D)) : ''}
+    ${chip('stay', st.icon, st.name)}
+    ${warn ? chip('warn', '⚠️', warnLabel) : ''}
+  </div>`;
 }
 DAYS.forEach((D,idx)=>{
   const el = document.createElement('div');
   el.className = 'day' + (idx===0?' open':'');
   el.dataset.tags = D.tags.join(' ');
   el.id = 'day'+D.d;
-  const badges = [
-    `<span class="pill p-blue">🛣️ ${D.km} km</span>`,
-    `<span class="pill p-gray">⏱️ ${D.hrs}</span>`,
-    D.tags.includes('car') ? `<span class="pill p-amber">🚙 睡车夜</span>` : '',
-    D.tags.includes('fun') ? `<span class="pill p-green">🐾 玩乐日</span>` : `<span class="pill p-gray">赶路日</span>`,
-  ].join('');
   el.innerHTML = `
     <div class="day-art">${scene(D.theme, D.d*13+5, 900, 160)}<div class="dnum">DAY ${D.d}</div><div class="demoji">${D.emoji}</div></div>
     <div class="day-head" role="button" tabindex="0" aria-expanded="${idx===0?'true':'false'}" aria-controls="daybody${D.d}">
       <span class="arrow">▼</span>
       <div class="t"><h3>${D.title}</h3><span class="date">${D.date}</span></div>
-      <div class="meta">${badges}</div>
+      ${glanceHtml(D)}
     </div>
     <div class="day-body" id="daybody${D.d}">
-      <div class="routeline">📍 ${D.route}</div>
-      ${D.decision ? `<div class="decision"><b>今日决策：</b>${D.decision}</div>` : ''}
+      <div class="routeline"><span class="ic">📍</span> ${D.route}</div>
+      ${D.decision ? `<div class="decision"><div class="dh">⚠️ 今日决策</div>${D.decision}</div>` : ''}
       ${segHtml('charge','⚡','充电 & 行车', D.charge)}
-      ${segHtml('play','🐾','玩什么（带狗视角）', D.play)}
       ${segHtml('stay','🏨','住宿', D.stay)}
+      ${segHtml('play','🐾','玩什么（带狗视角）', D.play)}
       ${segHtml('food','🍜','吃什么', D.food)}
       ${segHtml('tip','⚠️','提醒', D.tips)}
     </div>`;
@@ -1142,20 +1487,23 @@ const CONFIRM_TASKS = [
   stayTask('stay-d02',2,'2026-08-02','额济纳旗尚景酒店','2026-07-18','https://m.ctrip.com/html5/hotel/hoteldetail/6085444.html','0483-6529358','2026-07-16'),
   stayTask('stay-d03',3,'2026-08-03','敦煌家天下民宿（鸣沙山月牙泉景区店）','2026-07-18','https://m.ctrip.com/html5/hotel/hoteldetail/8476578.html','18437722550','2026-07-16'),
   stayTask('stay-d04',4,'2026-08-04','哈密星旺宾馆（石油基地中旺路24号）','2026-07-18','https://in.trip.com/hotels/hami-hotel-detail-1197678/xing-wang-hotel/','0902-6975888','2026-07-16'),
-  stayTask('stay-d05',5,'2026-08-05','鄯善龙诚酒店（新城东路盛世财富广场店）','2026-07-19','https://hotels.ctrip.com/hotels/28416200.html','0995-8326888','2026-07-16'),
+  {id:'stay-d05',category:'住宿',title:'⚠️ D5 木垒县城住宿：逐家电话确认两只边牧准入（本段最高优先级）',tripDate:'2026-08-05',dueDate:'2026-07-25',recheckDate:'2026-08-04',sourceVerified:'2026-07-18',contacts:[{label:'携程木垒住宿',href:'https://m.ctrip.com/webapp/hotel/mulei21109'},{label:'木垒宠物友好搜索',href:'https://uri.amap.com/search?keyword=木垒县宠物友好酒店'}],fallback:'小县城平台不写宠物政策、连锁多不接大型犬；筛“允许携带宠物”后逐家电话确认“两只边牧共约35kg、费用、是否需笼”并写入订单；确认不了就往奇台（多约85km）找，绝不带狗到店碰运气。'},
   stayTask('stay-d06',6,'2026-08-06','阿勒泰友谊宾馆','2026-07-19','https://m.ctrip.com/html5/hotel/hoteldetail/42169237.html','0906-2315888','2026-07-16'),
-  {id:'stay-d07',category:'住宿',title:'D7 牧雅居民宿：两只边牧、区间车运输与书面确认',tripDate:'2026-08-07',dueDate:'2026-07-19',recheckDate:'2026-08-06',sourceVerified:'2026-07-16',contacts:[{label:'Trip.com预订页',href:'https://hk.trip.com/hotels/burqin-hotel-detail-131303190/moya-villa/'},{label:'用户联系人18126209839',href:'tel:18126209839'},{label:'平台电话17844447778',href:'tel:17844447778'},{label:'景区咨询',href:'tel:4001110906'}],fallback:'未落实民宿或区间车运输方式就留在布尔津，不带狗到门口碰运气。'},
+  {id:'stay-d07',category:'住宿',title:'D7 牧雅居民宿：两只边牧、可载犬出租车进村与书面确认',tripDate:'2026-08-07',dueDate:'2026-07-19',recheckDate:'2026-08-06',sourceVerified:'2026-07-16',contacts:[{label:'Trip.com预订页',href:'https://hk.trip.com/hotels/burqin-hotel-detail-131303190/moya-villa/'},{label:'用户联系人18126209839',href:'tel:18126209839'},{label:'平台电话17844447778',href:'tel:17844447778'},{label:'景区咨询',href:'tel:4001110906'}],fallback:'未落实民宿或可载犬出租车接送就留在布尔津，不带狗到门口碰运气。'},
   {id:'stay-d08',category:'住宿',title:'D8 柏纳酒店：两只边牧、约200元宠物费与晚到保留',tripDate:'2026-08-08',dueDate:'2026-07-18',recheckDate:'2026-08-07',sourceVerified:'2026-07-16',contacts:[{label:'携程预订页',href:'https://hotels.ctrip.com/hotels/129264922.html'},{label:'用户电话15009906218',href:'tel:15009906218'},{label:'平台电话0990-7561820',href:'tel:09907561820'}],fallback:'费用或大型犬条件不能接受时，在乌尔禾另选已书面确认接收两只边牧的住宿。'},
   stayTask('stay-d09',9,'2026-08-09','赛官房民宿（赛里木湖东门游客中心店）','2026-07-18','https://hotels.ctrip.com/hotels/129330711.html','0909-2222000','2026-07-16'),
   stayTask('stay-d10',10,'2026-08-10','栖云馆民宿（六星街店）','2026-07-18','https://m.ctrip.com/html5/hotel/hoteldetail/120273337.html','13899730840','2026-07-17'),
   {id:'sailimu-entry',category:'景区与行程',title:'D10 赛里木湖：自驾产品、两只边牧与东门进南门出',tripDate:'2026-08-10',dueDate:'2026-08-03',recheckDate:'2026-08-09',sourceVerified:'2026-07-16',contacts:[{label:'票务观察页',href:'https://www.yujiansailimuhu.com/'},{label:'景区咨询400-0919188',href:'tel:4000919188'}],fallback:'按景区当日允许的入园方式和交通组织调整，不预设顺逆时针，不在入口争执或违规逆行。'},
   {id:'lavender-bloom',category:'景区与行程',title:'D10 霍城薰衣草：花况、营业时间与宠物规则',tripDate:'2026-08-10',dueDate:'2026-08-03',recheckDate:'2026-08-09',sourceVerified:'2026-07-16',contacts:[{label:'霍城县政府花期依据',href:'https://www.xjhc.gov.cn/xjhc/xyctbgz/202606/e87de01228da40f4abd023d360aea2b4.shtml'},{label:'高德实时搜索',href:'https://uri.amap.com/search?keyword=霍城薰衣草园'}],fallback:'8月花田已收割或闭园时，改选仍开放的薰衣草产业园、博物馆、香草园或彩色花田，不为花海绕远。'},
   {id:'stay-d11-d12',category:'住宿',title:'D11–D12 那拉提悠然民宿：两只边牧、连住两晚与晚到保留',tripDate:'2026-08-11',dueDate:'2026-07-18',recheckDate:'2026-08-10',sourceVerified:'2026-07-17',contacts:[{label:'Trip.com预订页',href:'https://hk.trip.com/hotels/xinyuan-hotel-detail-2348909/nei-la-ti-you-ran-ke-zhan/'},{label:'15886986899',href:'tel:15886986899'}],fallback:'未确认两只边牧或D11晚到保留时，改订那拉提镇已书面确认接宠的住宿，不带狗到店碰运气。'},
+  {id:'stay-d20-xining',category:'住宿',title:'D20 西宁青滨壹号（北川万达店）：两只边牧、宠物费与晚到保留',tripDate:'2026-08-20',dueDate:'2026-07-25',recheckDate:'2026-08-19',sourceVerified:'2026-07-17',contacts:[{label:'Trip.com预订页',href:'https://us.trip.com/hotels/xining-hotel-detail-129118120/qingbin-no1-hotel/'}],fallback:'主店拒两只中大型犬就切东宝酒店（唐道637店）0971-8825555；均失败按床车规则回退到已确认营地。'},
+  {id:'stay-d22-chengdu',category:'住宿',title:'D22 成都高新会展希尔顿惠庭：两只边牧15–20kg、疫苗材料与停车',tripDate:'2026-08-22',dueDate:'2026-07-25',recheckDate:'2026-08-21',sourceVerified:'2026-07-17',contacts:[{label:'028-86088999',href:'tel:02886088999'},{label:'Trip.com预订页',href:'https://www.trip.com/hotels/chengdu-hotel-detail-109177850/home2-suites-by-hilton-chengdu-high-tech-zone-exhibition'}],fallback:'切武侯祠惠庭028-60729999或盛捷江畔028-61816888；均失败回退床车营地。'},
+  {id:'stay-d25-wuhan',category:'住宿',title:'D25 武汉徐东希尔顿惠庭：两只边牧、宠物费/押金与停车',tripDate:'2026-08-25',dueDate:'2026-07-25',recheckDate:'2026-08-24',sourceVerified:'2026-07-17',contacts:[{label:'027-59376999',href:'tel:02759376999'},{label:'Trip.com预订页',href:'https://us.trip.com/hotels/wuhan-hotel-detail-92066559/home2-suites-by-hilton-wuhan-xudong/'}],fallback:'切汉口火车站希尔顿惠庭（明确2只/350元/1000元押金）；均失败回退床车营地并取消市内活动依赖。'},
   {id:'stay-d13',category:'住宿',title:'D13 唐布拉听泉别院：两只边牧＋充电接口、功率、过夜权限和车位预留',tripDate:'2026-08-13',dueDate:'2026-07-18',recheckDate:'2026-08-12',sourceVerified:'2026-07-17',contacts:[{label:'携程预订页',href:'https://hotels.ctrip.com/hotels/110750412.html'},{label:'19326665500',href:'tel:19326665500'},{label:'充电备选得鹿梦鱼19309999199',href:'tel:19309999199'}],fallback:'听泉别院充电不可落实时切得鹿梦鱼或蜜蜂小镇公共桩；仍无法形成D14安全余量则缩短唐布拉并返回安全补能点。'},
-  stayTask('stay-d14',14,'2026-08-14','乌鲁木齐县缘来如玉民宿','2026-07-18','https://hotels.ctrip.com/hotels/110381323.html'),
-  stayTask('stay-d15',15,'2026-08-15','哈密海逸酒店','2026-07-18','https://hotels.ctrip.com/hotels/122779043.html'),
-  stayTask('stay-d16',16,'2026-08-16','额济纳旗云朵酒店','2026-07-18','https://hotels.ctrip.com/hotels/80911875.html'),
-  stayTask('stay-d17',17,'2026-08-17','临河云庭酒店','2026-07-18','https://hotels.ctrip.com/hotels/112823609.html'),
+  {id:'stay-d14-d15',category:'住宿',title:'D14–D15 乌鲁木齐缘来如玉民宿：两只边牧、连住两晚、晚到与D16退房',tripDate:'2026-08-14',dueDate:'2026-07-18',recheckDate:'2026-08-13',sourceVerified:'2026-07-17',contacts:[{label:'携程预订页',href:'https://hotels.ctrip.com/hotels/110381323.html'}],fallback:'无法确认两只边牧或连住两晚时，改订乌鲁木齐县已书面确认接宠且便于D16送机的住宿。'},
+  {id:'camp-d16-d18',category:'住宿',title:'D16–D18 库尔勒、若羌、茫崖床车点：过夜许可＋管理＋厕所＋信号',tripDate:'2026-08-16',dueDate:'2026-08-09',recheckDate:'2026-08-15',sourceVerified:'2026-07-17',contacts:[{label:'库尔勒营地搜索',href:'https://uri.amap.com/search?keyword=库尔勒汽车露营地'},{label:'若羌营地搜索',href:'https://uri.amap.com/search?keyword=若羌自驾车营地'},{label:'茫崖月球星空资料',href:'https://m.ctrip.com/html5/hotel/hoteldetail/79123315.html'}],fallback:'任一城市未落实合法驻车点就改住正规住宿；不在公共停车场、快充车位或无人区过夜。'},
+  {id:'camp-d19-d21',category:'住宿',title:'D19/D21 大柴旦、陇南床车点：合法过夜＋厕所＋夜间管理（D20西宁已改住店）',tripDate:'2026-08-19',dueDate:'2026-08-12',recheckDate:'2026-08-18',sourceVerified:'2026-07-17',contacts:[{label:'大柴旦营地搜索',href:'https://uri.amap.com/search?keyword=大柴旦汽车露营地'},{label:'陇南营地搜索',href:'https://uri.amap.com/search?keyword=陇南汽车露营地'}],fallback:'未获得普通小客车过夜许可就改住正规住宿；青海湖沿线禁止路边露营，快充后必须移车。'},
+  {id:'camp-d22-d26',category:'住宿',title:'D23/D24/D26 成都、恩施、武汉床车点（D22/D25已改住店）：过夜许可、淋浴洗衣与充电分离',tripDate:'2026-08-23',dueDate:'2026-08-15',recheckDate:'2026-08-22',sourceVerified:'2026-07-17',contacts:[{label:'成都营地搜索',href:'https://uri.amap.com/search?keyword=成都汽车露营地宠物友好'},{label:'恩施营地搜索',href:'https://uri.amap.com/search?keyword=恩施汽车露营地'},{label:'武汉营地搜索',href:'https://uri.amap.com/search?keyword=武汉汽车露营地宠物友好'}],fallback:'成都和武汉休整夜优先选择有淋浴、洗衣和夜间管理的营地；未获许可或休息质量下降就续住前一晚酒店。'},
   ...CHARGE_SEGMENTS.map(segment=>{
     const day=Number(segment.days.match(/\d+/)?.[0]||1);
     const tripDate=`2026-08-${String(day).padStart(2,'0')}`;
@@ -1165,11 +1513,16 @@ const CONFIRM_TASKS = [
   {id:'nalati-dogs-selfdrive',category:'景区与行程',title:'D12 那拉提：两只边牧准入＋智游那拉提自驾票',tripDate:'2026-08-12',dueDate:'2026-08-05',recheckDate:'2026-08-11',sourceVerified:'2026-07-17',contacts:[{label:'自驾规则',href:'https://www.xjyl.gov.cn/xjylz/c112876/202605/f30d3b1beb464dd59228d130ee56d423.shtml'},{label:'景区咨询0999-5291888',href:'tel:09995291888'}],fallback:'两只边牧未获准就不进入购票核心区，改玩镇外公开道路与巩乃斯河谷。'},
   {id:'duku-book',category:'道路与充电',title:'D14 独库北段：乔尔玛入口08:00–10:00预约、开放状态与天气',tripDate:'2026-08-14',dueDate:'2026-08-07',recheckDate:'2026-08-13',sourceVerified:'2026-07-17',contacts:[{label:'公安厅正式公告',href:'https://gat.xinjiang.gov.cn/gat/tzgg/202607/d75de3d68abb43feb47d0defc201411e.shtml'},{label:'新疆交警',text:'公众号'}],fallback:'未开放、未预约或天气不满足即按交警和实时导航改线，不闯卡。'},
   {id:'cert-out',category:'证件与天气',title:'去程动物A证：出证有效期覆盖进疆检查点',tripDate:'2026-08-03',dueDate:'2026-07-29',recheckDate:'',sourceVerified:'2026-07-13',contacts:[{label:'材料要求',href:'https://www.suzhou.gov.cn/szsrmzf/snfwzsk/202602/18e141e9957d42baa3768ba8f028aa16.shtml'}]},
-  {id:'cert-back',category:'证件与天气',title:'返程动物A证：乌鲁木齐属地受理与出证',tripDate:'2026-08-14',dueDate:'2026-08-11',recheckDate:'2026-08-13',sourceVerified:'2026-07-13',contacts:[{label:'乌市宠物医院搜索',href:'https://uri.amap.com/search?keyword=乌鲁木齐宠物医院'}]},
-  {id:'dahaidao-road',category:'证件与天气',title:'D5 大海道：主线开放、Model Y通行、通天洞线路与天气',tripDate:'2026-08-05',dueDate:'2026-08-04',recheckDate:'2026-08-05',sourceVerified:'2026-07-16',contacts:[{label:'管理规定',href:'https://www.hami.gov.cn/hami/c119999/202403/49033b966bf1450abed133d73f2e0994.shtml'}],fallback:'任一项不能明确确认就执行东门浅游后退出。'},
+  {id:'cert-return',category:'证件与天气',title:'返程动物A证：D15在乌鲁木齐线上申报，覆盖出疆—青海检查段',tripDate:'2026-08-15',dueDate:'2026-08-14',recheckDate:'2026-08-15',sourceVerified:'2026-07-17',contacts:[{label:'办理方式',text:'当地电子出证小程序/12316，提前一天预约现场核验'}],fallback:'当日未能出证，随车携带狂犬疫苗证、犬证、抗体报告和去程证明照片，遇检查主动说明并配合登记。'},
+  {id:'g315-road',category:'证件与天气',title:'D17–D20 G315：施工、沙尘、若羌至茫崖补能与水上雅丹限时',tripDate:'2026-08-17',dueDate:'2026-08-16',recheckDate:'2026-08-17',sourceVerified:'2026-07-17',contacts:[{label:'新疆路网',text:'公众号'},{label:'青海高速',text:'公众号'},{label:'若羌非开放区域倡议',href:'https://www.xjrq.gov.cn/rqxrmzf/c108617/202605/201b471b06854e1982425ef9953f323c.shtml'}],fallback:'道路、天气、花土沟双站或大柴旦落地补能任一不闭环就留在安全城市；D19不能14:30前离开水上雅丹就跳过。'},
+  {id:'qinghai-lake-camp',category:'证件与天气',title:'D20 青海湖：合法停车、景点携宠与禁止路边露营',tripDate:'2026-08-20',dueDate:'2026-08-19',recheckDate:'2026-08-20',sourceVerified:'2026-07-17',contacts:[{label:'青海湖管理通告',href:'https://www.gonghe.gov.cn/xwdt/tzgg/content_1013648235'}],fallback:'宠物未获准就只走公共道路车览；18:00前未到合法点就取消，不进私设通道、不在环湖路边睡车。'},
+  {id:'chengdu-friend-meal',category:'景区与行程',title:'D23 成都：宠物友好活动点＋与朋友吃饭外摆/院落确认',tripDate:'2026-08-23',dueDate:'2026-08-20',recheckDate:'2026-08-22',sourceVerified:'2026-07-17',contacts:[{label:'成都宠物友好点依据',href:'https://sc.people.com.cn/n2/2026/0423/c345167-41560790.html'},{label:'双流萌宠乐园搜索',href:'https://uri.amap.com/search?keyword=双流萌宠乐园'},{label:'Canpet犬岛公园搜索',href:'https://uri.amap.com/search?keyword=Canpet犬岛公园成都'}],fallback:'具体餐厅不能确认两只边牧、遮阴外摆/院落和停车时，让朋友到营地附近打包会面；不把狗留在车内。'},
+  {id:'wuhan-dog-height-meal',category:'景区与行程',title:'D25–D26 武汉：实测肩高≤61cm＋宠物友好空间＋朋友聚餐',tripDate:'2026-08-25',dueDate:'2026-08-22',recheckDate:'2026-08-24',sourceVerified:'2026-07-17',contacts:[{label:'武汉禁养犬新规',href:'https://www.wuhan.gov.cn/zwgk/tzgg/202606/t20260608_2774274.shtml'},{label:'武昌万象城牧野公园',href:'https://sw.wuhan.gov.cn/xwdt/gzdt/202504/t20250418_2568906.shtml'},{label:'KIC PARK宠物空间',href:'https://sw.wuhan.gov.cn/xwdt/mtbd/202510/t20251011_2657860.shtml'}],fallback:'任一犬肩高超过61cm或商户不接大型犬，取消武汉城市携犬活动；朋友改到行政区外合法停靠点会面或打包。'},
+  {id:'g4-home-fatigue',category:'证件与天气',title:'D27 G4返京：三段主备充电、天气与石家庄疲劳退出',tripDate:'2026-08-27',dueDate:'2026-08-26',recheckDate:'2026-08-27',sourceVerified:'2026-07-17',contacts:[{label:'河南高速充电覆盖依据',href:'https://jtyst.henan.gov.cn/2024/03-05/2957528.html'},{label:'北京高速充电覆盖依据',href:'https://www.mot.gov.cn/xinwen/jiaotongyaowen/202602/t20260206_4199818.html'}],fallback:'到石家庄晚于19:00、明显疲劳、恶劣天气或预计午夜后到家，改住石家庄/保定正规住宿，D28再回。'},
+  {id:'dahaidao-road',category:'证件与天气',title:'D5 大海道：哈密端红柳滩铺装段路况、开放与天气（不做全程穿越）',tripDate:'2026-08-05',dueDate:'2026-08-04',recheckDate:'2026-08-05',sourceVerified:'2026-07-18',contacts:[{label:'管理规定',href:'https://www.hami.gov.cn/hami/c119999/202403/49033b966bf1450abed133d73f2e0994.shtml'}],fallback:'只走红柳滩铺装段往返；翼龙搓板段路况不明就不进；哈密满电覆盖往返，之后走G7北线到木垒。'},
   {id:'s21-road',category:'证件与天气',title:'D6 S21：服务区充电、风沙天气与乌伦古湖合法停车点',tripDate:'2026-08-06',dueDate:'2026-08-05',recheckDate:'2026-08-06',sourceVerified:'2026-07-16',contacts:[{label:'充电配置依据',href:'https://jtyst.xinjiang.gov.cn/xjjtysj/jyta/202109/f846ce677d624c4dba1d8b8cdbebf56d.shtml'}],fallback:'三处充电节点均无法确认则不进入S21长段；不在高速路边停车。'},
-  {id:'hemu-dogs',category:'证件与天气',title:'D7 禾木：保存可带两只边牧入村凭证并确认区间车装载',tripDate:'2026-08-07',dueDate:'2026-07-19',recheckDate:'2026-08-06',sourceVerified:'2026-07-16',contacts:[{label:'景区咨询',href:'tel:4001110906'}],fallback:'没有可出示凭证、运输方式或民宿确认就留在布尔津。'},
-  {id:'duku-weather',category:'证件与天气',title:'D14 独库：天气、落石、封路与替代路线',tripDate:'2026-08-14',dueDate:'2026-08-13',recheckDate:'2026-08-14',sourceVerified:'2026-07-17',contacts:[{label:'新疆交警',text:'公众号'},{label:'新疆路网',text:'公众号'}]}
+  {id:'hemu-dogs',category:'证件与天气',title:'D7 禾木：保存可带两只边牧入村凭证并与民宿出租车司机确认接送',tripDate:'2026-08-07',dueDate:'2026-07-19',recheckDate:'2026-08-06',sourceVerified:'2026-07-16',contacts:[{label:'景区咨询',href:'tel:4001110906'}],fallback:'没有可出示凭证、运输方式或民宿确认就留在布尔津。'},
+  {id:'duku-weather',category:'证件与天气',title:'D14 独库：天气、落石、封路与G577西线备选通车确认',tripDate:'2026-08-14',dueDate:'2026-08-13',recheckDate:'2026-08-14',sourceVerified:'2026-07-17',contacts:[{label:'新疆交警',text:'公众号'},{label:'新疆路网',text:'公众号/12122'}],fallback:'封路即走西线尼勒克—G577—精河—G30约650–680km；G577未通车则经伊宁—果子沟约850km，09:00前必须决策折返。'}
 ];
 let confirmSaved = {schemaVersion:1,items:{}};
 try{
@@ -1273,10 +1626,10 @@ renderConfirmCenter();
 
 /* ====================== 清单 ====================== */
 const CK = [
- {t:'🐕 狗的证件与健康', items:['狂犬疫苗证原件×2（满21天、1年内）','狂犬病抗体检测合格报告（办A证前置，提前1个月送检）','《动物检疫合格证明（动物A）》电子申报（提前3天，有效期最长5天）','犬证×2 + 全部证件拍照存手机','长效体外驱虫（覆盖18天+）','晕车药、益生菌、宠物常用药']},
- {t:'🐾 狗的装备', items:['嘴套×2（乌市硬要求）','2m牵引绳×2 + 备用长绳','折叠水碗/食盆×2','狗粮18天量+1周余量（乌市可补）','降温垫 + 冰袋','狗衣（垭口/湖边夜里冷）','拾便袋、毛巾、安全带固定扣','车内防滑垫/宠物垫']},
- {t:'🚗 车辆与应急', items:['补胎液 + 充气泵 + 拖车绳','遮阳挡（前后侧窗）','卡式炉 + 炊具 + 自热食品若干','4L饮用水×4 + 保温壶','车载冰箱（可选）','双运营商手机卡（电信+移动）']},
- {t:'📲 出发前操作', items:['每晚酒店已获得接收两只边牧的文字确认','柏纳酒店两只宠物费用和赛官房无早餐已确认','栖云馆D10早出、悠然民宿D11–D12连住、听泉别院D13充电均已确认','大海道：主线开放+Model Y通行+通天洞线路已双重确认','S21：五家渠/克拉美丽/吉利湖实时桩况已核查','禾木：可带狗入村凭证、区间车装载方式和民宿接宠已落实','赛里木湖官方小程序：自驾+宠物+东门进南门出已确认','霍城薰衣草园：8月10日花况、营业和宠物规则已确认','库尔德宁和那拉提：两只边牧准入、车辆规则与替代方案已确认','唐布拉：听泉别院充电车位与蜜蜂小镇公共桩一主两备已落实','独库：乔尔玛入口08:00–10:00预约、开放、天气与落石状态已查','e充电/e路畅通：G7临白段桩况已核查','大海道/S21/禾木/赛湖/独库离线地图已下载','家充满电、胎压按车门铭牌/车辆提示检查，玻璃水已补']},
+ {t:'🐕 狗的证件与健康', items:['狂犬疫苗证原件×2（满21天、1年内）','狂犬病抗体检测合格报告（办A证前置，提前1个月送检，两张共用）','北京出发前按属地要求办理去程《动物检疫合格证明（动物A）》','D15乌鲁木齐办第二张返程A证（线上申报+现场核验，目的地北京）','犬证×2 + 全部证件拍照存手机（含两张A证电子版）','长效体外驱虫（覆盖27天+）','晕车药、益生菌、宠物常用药','软尺：D25进武汉前实测两犬成年站立肩高']},
+ {t:'🐾 狗的装备', items:['嘴套×2（乌市硬要求，城市密集区备用）','2m牵引绳×2 + 备用长绳','折叠水碗/食盆×2','狗粮27天量+1周余量（乌市D15补货）','降温垫 + 冰袋','狗鞋×2套（大海道/戈壁砾石午后60℃+烫爪，成都武汉柏油同理）','狗衣（垭口/青海高原夜里冷）','拾便袋、毛巾、安全带固定扣','车内防滑垫/宠物垫']},
+ {t:'🚗 车辆与应急（无人区段委托人确认自备）', items:['补胎套装 + 充气泵 + 拖车绳（电车救援需平板拖车，App一键呼叫）','卫星通信手段（手机卫星消息/北斗盒子，大海道与若羌—茫崖段无信号）','遮阳挡（前后侧窗）','卡式炉 + 炊具 + 自热食品若干（只在车外使用）','饮用水≥20L（进入大海道、若羌—茫崖前补满）','保温壶、车载冰箱（可选）','双运营商手机卡（电信+移动）']},
+ {t:'📲 出发前操作', items:['每晚酒店已获得接收两只边牧的文字确认','柏纳酒店两只宠物费用和赛官房无早餐已确认','栖云馆D10早出、悠然民宿D11–D12连住、听泉别院D13充电均已确认','大海道：哈密端红柳滩铺装段路况已确认（不做全程穿越）','⚠️木垒（D5，无则奇台）两只边牧住宿已电话锁定','S21：五家渠/克拉美丽/吉利湖实时桩况已核查','禾木：可带狗入村凭证、民宿出租车接送（区间车备选）和民宿接宠已落实','赛里木湖官方小程序：自驾+宠物+东门进南门出已确认','霍城薰衣草园：8月10日花况、营业和宠物规则已确认','库尔德宁和那拉提：两只边牧准入、车辆规则与替代方案已确认','唐布拉：听泉别院充电车位与蜜蜂小镇公共桩一主两备已落实','独库：乔尔玛入口08:00–10:00预约、开放、天气与落石状态已查','e充电/e路畅通：G7临白段桩况已核查','大海道/S21/禾木/赛湖/独库离线地图已下载','家充满电、胎压按车门铭牌/车辆提示检查，玻璃水已补']},
 ];
 const ckWrap = document.getElementById('checklists');
 let saved = {};
@@ -1316,6 +1669,137 @@ ckWrap.addEventListener('change',e=>{
   updProg();
 });
 updProg();
+
+/* ====================== 27天总览行程条 ====================== */
+const TL_DAYS = [
+  {d:1, from:"北京",to:"临河",   km:810, raw:"赶路",   stay:"🏨"},
+  {d:2, from:"临河",to:"额济纳", km:580, raw:"赶路",   stay:"🏨"},
+  {d:3, from:"额济纳",to:"敦煌", km:700, raw:"赶路",   stay:"🏨"},
+  {d:4, from:"敦煌",to:"哈密",   km:380, raw:"赶路+玩",stay:"🏨"},
+  {d:5, from:"哈密",to:"木垒",   km:850, raw:"赶路+玩",stay:"🏨", warn:"木垒住宿待电话确认"},
+  {d:6, from:"木垒",to:"阿勒泰", km:690, raw:"赶路+玩",stay:"🏨"},
+  {d:7, from:"阿勒泰",to:"禾木", km:300, raw:"玩",     stay:"🏨"},
+  {d:8, from:"禾木",to:"乌尔禾", km:410, raw:"赶路+玩",stay:"🏨"},
+  {d:9, from:"乌尔禾",to:"赛里木湖",km:420,raw:"赶路", stay:"🏨"},
+  {d:10,from:"赛湖",to:"伊宁",   km:170, raw:"玩",     stay:"🏨"},
+  {d:11,from:"伊宁",to:"那拉提", km:350, raw:"赶路+玩",stay:"🏨"},
+  {d:12,from:"那拉提",to:"深度游",km:80, raw:"玩",     stay:"🏨"},
+  {d:13,from:"那拉提",to:"唐布拉",km:180,raw:"玩",     stay:"🏨"},
+  {d:14,from:"唐布拉",to:"乌鲁木齐",km:520,raw:"赶路+玩",stay:"🏨"},
+  {d:15,from:"乌鲁木齐",to:"休整",km:100,raw:"玩休整", stay:"🏨"},
+  {d:16,from:"送机",to:"库尔勒", km:430, raw:"赶路",   stay:"🚙"},
+  {d:17,from:"库尔勒",to:"若羌", km:430, raw:"赶路",   stay:"🚙"},
+  {d:18,from:"若羌",to:"茫崖",   km:440, raw:"赶路",   stay:"🚙"},
+  {d:19,from:"茫崖",to:"大柴旦", km:600, raw:"赶路+玩",stay:"🚙"},
+  {d:20,from:"大柴旦",to:"西宁", km:730, raw:"赶路+玩",stay:"🏨"},
+  {d:21,from:"西宁",to:"陇南",   km:730, raw:"赶路",   stay:"🚙"},
+  {d:22,from:"陇南",to:"成都",   km:500, raw:"赶路+玩",stay:"🏨"},
+  {d:23,from:"成都",to:"会友",   km:100, raw:"玩休整", stay:"🚙"},
+  {d:24,from:"成都",to:"恩施",   km:720, raw:"赶路",   stay:"🚙"},
+  {d:25,from:"恩施",to:"武汉",   km:520, raw:"赶路+玩",stay:"🏨"},
+  {d:26,from:"武汉",to:"会友",   km:100, raw:"玩休整", stay:"🚙"},
+  {d:27,from:"武汉",to:"北京",   km:1180,raw:"赶路",   stay:"🏠"}
+];
+const TL_STAGES = [
+  {key:"go",   name:"去程",     range:"D1–D6",   sub:"北京→木垒",   from:1, to:6},
+  {key:"loop", name:"大北疆环线",range:"D7–D15",  sub:"阿勒泰→乌鲁木齐",from:7, to:15},
+  {key:"back", name:"返程",     range:"D16–D27", sub:"库尔勒→北京",  from:16,to:27}
+];
+function renderTimeline(rootId, days, stages, onDay){
+  const KM_MIN=80, KM_MAX=1180, H_MIN=12, H_MAX=100;
+  function typeOf(raw){
+    if(raw.indexOf("休整")>=0) return {t:"rest",  label:"休整"};
+    if(raw.indexOf("玩")>=0)   return {t:"fun",   label:"玩乐"};
+    return {t:"drive", label:"赶路"};
+  }
+  const fill = km => Math.round(H_MIN+((km-KM_MIN)/(KM_MAX-KM_MIN))*(H_MAX-H_MIN));
+  function jump(n){
+    if(typeof onDay==="function"){ onDay(n); return; }
+    if(typeof goTab==="function") goTab('days');
+    const el=document.getElementById('day'+n);
+    if(el){ if(!el.classList.contains('open')) el.querySelector('.day-head')?.click(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  }
+  const track=document.getElementById(rootId); if(!track) return;
+  track.textContent="";
+  stages.forEach(function(st){
+    const col=document.createElement('div');
+    col.className='tl-stage'; col.setAttribute('data-s',st.key);
+    const hd=document.createElement('div');
+    hd.className='tl-stage-hd';
+    hd.innerHTML='<b>'+st.name+'</b><span>'+st.range+' · '+st.sub+'</span>';
+    col.appendChild(hd);
+    const row=document.createElement('div'); row.className='tl-days';
+    days.filter(x=>x.d>=st.from&&x.d<=st.to).forEach(function(x){
+      const ti=typeOf(x.raw);
+      const stayName=({'🏨':'酒店','🚙':'床车','🏠':'到家'})[x.stay]||'住宿';
+      const b=document.createElement('button');
+      b.type='button'; b.className='tl-day'; b.setAttribute('data-t',ti.t);
+      b.setAttribute('aria-label','第'+x.d+'天，'+x.from+'到'+x.to+'，里程'+x.km+'公里，'+ti.label+'，住'+stayName+(x.warn?('，注意：'+x.warn):''));
+      b.innerHTML=(x.warn?'<span class="tl-warn" aria-hidden="true">⚠️</span>':'')+
+        '<span class="tl-day-n"><em>DAY</em>'+x.d+'</span>'+
+        '<span class="tl-bar" aria-hidden="true"><i style="height:'+fill(x.km)+'%"></i></span>'+
+        '<span class="tl-km">'+x.km+'<em> km</em></span>'+
+        '<span class="tl-route">'+x.from+'<br>→'+x.to+'</span>'+
+        '<span class="tl-stay" aria-hidden="true">'+x.stay+'</span>';
+      b.addEventListener('click',()=>jump(x.d));
+      row.appendChild(b);
+    });
+    col.appendChild(row); track.appendChild(col);
+  });
+}
+renderTimeline('tlTrack', TL_DAYS, TL_STAGES);
+
+/* ====================== 出发前关键风险速览 ====================== */
+const RISK_ITEMS = [
+  {day:"D5", urg:"高", cat:"住宿",     due:"出发前2–3周", title:"木垒/奇台两只边牧住宿",
+   note:"小县城线上查不到能收两只中大型犬的酒店，逐家电话锁定，不能确认就调整过夜点（本段最大不确定项）"},
+  {day:"D18",urg:"高", cat:"道路充电", due:"出发前 / 当天", title:"花土沟双站补能",
+   note:"若羌95–100%出发，依吞布拉克—米兰无服务区，花土沟至少两处快充可App确认才进长段"},
+  {day:"D14",urg:"高", cat:"道路充电", due:"提前7天预约 + D13晚", title:"独库北段预约 + G577西线",
+   note:"乔尔玛入口08:00–10:00预约；封路走G577西线，D13晚必须确认G577是否通车"},
+  {day:"D26",urg:"高", cat:"证件天气", due:"进城前实测", title:"武汉两犬肩高≤61cm",
+   note:"任一超61cm取消武汉行政区携犬活动"},
+  {day:"D19",urg:"高", cat:"景区",     due:"前一晚", title:"水上雅丹两只边牧准入 + 14:30硬离场",
+   note:"不准入或超时就跳过直达大柴旦"},
+  {day:"D1/D15",urg:"中", cat:"证件天气", due:"去程北京办 / 返程D15乌鲁木齐办；抗体检测提前1个月", title:"全程两张动物A证",
+   note:"证有效期最长5天短于行程，川渝鄂段过期为已知残余风险"},
+  {day:"D7", urg:"中", cat:"住宿",     due:"出发前", title:"禾木可载犬出租车进村",
+   note:"保存可入村凭证并与司机确认接送（区间车备选）"},
+  {day:"D10",urg:"中", cat:"景区",     due:"前一天", title:"赛里木湖自驾 + 宠物 + 东进南出",
+   note:"官方小程序当日产品确认后再入园"},
+  {day:"D11",urg:"中", cat:"景区",     due:"前一天", title:"库尔德宁两只边牧随车入园",
+   note:"电话确认，被拒走墩那高速直达那拉提"},
+  {day:"D2", urg:"中", cat:"道路充电", due:"出发前3天", title:"G7临白段桩况（乌力吉/苏宏图/雅干）",
+   note:"连续关键站异常则改G30或延迟"},
+  {day:"D16–D26",urg:"中", cat:"住宿", due:"逐晚", title:"8个床车夜合法过夜许可",
+   note:"电话确认小客车过夜 / 有人管理 / 厕所 / 信号 / 距快充≤30km"},
+  {day:"—", urg:"中", cat:"证件天气", due:"出发前", title:"无人区应急装备",
+   note:"大海道、若羌—茫崖：卫星通信、20L水、补胎套装、拖车绳、狗鞋"},
+];
+function renderRiskPanel(el, items){
+  if(!el) return;
+  const CAT={"住宿":{cls:"cat-stay",icon:"🏨"},"道路充电":{cls:"cat-road",icon:"⚡"},"景区":{cls:"cat-scenic",icon:"🏞"},"证件天气":{cls:"cat-doc",icon:"📄"}};
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const hi=items.filter(i=>i.urg==="高"), mid=items.filter(i=>i.urg==="中");
+  const earliest=(items.find(i=>/2–3周/.test(i.due))||items[0]);
+  const itemHtml=it=>{
+    const c=CAT[it.cat]||{cls:"cat-doc",icon:"•"}, u=it.urg==="高"?"hi":"mid";
+    return `<li class="risk-item ${u}"><span class="risk-day" aria-hidden="true"><small>DAY</small><b>${esc(it.day)}</b></span>`+
+      `<div class="risk-body"><div class="risk-row1"><span class="pill urg-${u}">${it.urg==="高"?"高紧迫":"中紧迫"}</span>`+
+      `<span class="pill ${c.cls}">${c.icon} ${esc(it.cat)}</span><span class="risk-name">${esc(it.day)} · ${esc(it.title)}</span></div>`+
+      `<div class="risk-due">截止：${esc(it.due)}</div><p class="risk-note">${esc(it.note)}</p></div></li>`;
+  };
+  const groupHtml=(list,key,label)=>list.length?`<h4 class="risk-group-h g-${key}"><span class="dot" aria-hidden="true"></span>${label}<span class="cnt">（${list.length} 项）</span></h4><ul class="risk-list" aria-label="${label}">${list.map(itemHtml).join("")}</ul>`:"";
+  el.innerHTML=`<div class="risk-head"><h3 class="risk-title" id="riskPanelTitle">⚠️ 出发前关键风险 &amp; 待确认速览<small>按紧迫度排序 · 只读汇总</small></h3>`+
+    `<button type="button" class="risk-cta" id="riskOpenConfirm" aria-label="打开确认中心，查看并逐项处理">打开确认中心 →</button></div>`+
+    `<div class="risk-stats" role="group" aria-label="风险统计"><div class="risk-stat"><b>${items.length}</b><span>关键待确认项</span></div>`+
+    `<div class="risk-stat hi"><b>${hi.length}</b><span>高紧迫（红）</span></div><div class="risk-stat mid"><b>${mid.length}</b><span>中紧迫（琥珀）</span></div>`+
+    `<div class="risk-stat due"><b>${esc(earliest.due)}</b><span>最早截止 · ${esc(earliest.day)} ${esc(earliest.title)}</span></div></div>`+
+    groupHtml(hi,"hi","高紧迫度 · 硬门槛，出发前必须锁定")+groupHtml(mid,"mid","中紧迫度 · 提前确认，留好备选方案");
+  const btn=el.querySelector("#riskOpenConfirm");
+  if(btn) btn.addEventListener("click",()=>{ if(typeof goTab==="function") goTab('confirm'); });
+}
+renderRiskPanel(document.getElementById('riskPanel'), RISK_ITEMS);
 </script>
 </body>
 </html>
