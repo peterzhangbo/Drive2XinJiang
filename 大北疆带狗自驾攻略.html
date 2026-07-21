@@ -551,9 +551,67 @@ tr:hover td{background:#f4f8f4}
   .skip-link,.mission-grid,.mission-seal{display:none!important}
   .day{display:block}.day.open .day-body{display:block}.day-body>.seg{margin-top:2.5mm}
 }
+
+/* ===== 访问密码遮罩（纯前端拦截，仅防随手点开，不是安全机制） ===== */
+#pwGate{position:fixed;inset:0;z-index:9999;background:var(--ink);display:flex;align-items:center;justify-content:center;padding:24px}
+#pwGate.hidden{display:none}
+.pwgate-card{background:var(--card);color:var(--ink);border-radius:var(--radius);padding:32px 28px;max-width:340px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.pwgate-card h2{font-size:19px;font-weight:800;margin-bottom:8px}
+.pwgate-card p{color:var(--sub);font-size:13.5px;margin-bottom:18px}
+.pwgate-card input{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:18px;margin-bottom:12px;text-align:center;letter-spacing:.4em;font-family:inherit}
+.pwgate-card input:focus-visible{outline:3px solid #f3a84f;outline-offset:2px}
+.pwgate-card button{width:100%;padding:11px 14px;border:none;border-radius:10px;background:var(--teal);color:#fff;font-size:15px;font-weight:700;cursor:pointer}
+.pwgate-card button:hover{opacity:.9}
+.pwgate-error{color:var(--red);font-size:13px;margin-top:12px}
+body.pwgate-locked{overflow:hidden}
 </style>
 </head>
 <body>
+
+<div id="pwGate" role="dialog" aria-modal="true" aria-label="访问密码">
+  <div class="pwgate-card">
+    <h2>🔒 输入访问密码</h2>
+    <p>本行程为私人定制内容，请输入密码查看。</p>
+    <input id="pwInput" type="password" inputmode="numeric" autocomplete="off" placeholder="密码" aria-label="密码">
+    <button id="pwSubmit" type="button">进入</button>
+    <p class="pwgate-error" id="pwError" hidden>密码错误，请重试</p>
+  </div>
+</div>
+<script>
+(function(){
+  var PASS = '2580';
+  var KEY = 'trip-pw-ok';
+  var gate = document.getElementById('pwGate');
+  var main = document.getElementById('mainContent');
+  function setLocked(locked){
+    document.body.classList.toggle('pwgate-locked', locked);
+    if (main) main.setAttribute('aria-hidden', locked ? 'true' : 'false');
+  }
+  function unlock(){
+    gate.classList.add('hidden');
+    setLocked(false);
+  }
+  if (sessionStorage.getItem(KEY) === '1') { unlock(); }
+  else {
+    setLocked(true);
+    var input = document.getElementById('pwInput');
+    var err = document.getElementById('pwError');
+    function tryUnlock(){
+      if (input.value === PASS) {
+        sessionStorage.setItem(KEY, '1');
+        unlock();
+      } else {
+        err.hidden = false;
+        input.value = '';
+        input.focus();
+      }
+    }
+    document.getElementById('pwSubmit').addEventListener('click', tryUnlock);
+    input.addEventListener('keydown', function(e){ if (e.key === 'Enter') tryUnlock(); });
+    setTimeout(function(){ input.focus(); }, 50);
+  }
+})();
+</script>
 
 <a class="skip-link" href="#mainContent">跳到主要内容</a>
 
