@@ -762,11 +762,12 @@ body.pwgate-locked{overflow:hidden}
 
   <div class="note red">
     <b>⏰ 必须提前预约（有抢票窗口 / 罚则）</b> —— 下面每条后面的倒计时是打开本页当天自动算出来的，不用你自己算日期：
+    <p class="small" style="margin:6px 0 0;color:var(--sub)">赛里木湖/那拉提/独库已核实到具体放号<b>时刻</b>（下面倒计时精确到秒，可据此定闹钟）；库尔德宁官方未公开具体放号时刻，只精确到天，建议开窗当天全天多次尝试。</p>
     <ul style="margin:8px 0 0 18px" id="ticketWindowList">
-      <li style="padding:3px 0" data-open="2026-08-02" data-close="2026-08-06" data-visit="2026-08-09"><b>D9–D10 赛里木湖自驾套票</b>：提前 <b>3–7 天</b>，旺季常约满，<b>每日 10:00 放票</b>准点抢；小程序「一部手机游赛湖」/公众号「赛里木湖旅游」，实名分时；未约会被劝返。<span class="ticket-countdown"></span></li>
-      <li style="padding:3px 0" data-open="2026-08-05" data-close="2026-08-11" data-visit="2026-08-12"><b>D12 那拉提自驾</b>：提前<b>最多 7 日</b>（每日 0:00–0:30 停票外可约）；小程序「智游那拉提」，<b>线下窗口 2026 已全关</b>；7 座及以下、定制自驾驾龄满 3 年。<span class="ticket-countdown"></span></li>
-      <li style="padding:3px 0" data-open="2026-08-07" data-close="2026-08-13" data-visit="2026-08-14"><b>D14 独库公路北段</b>：提前 <b>1–7 天</b>选时段；小程序「游新疆一码游」/公众号「平安天山·新疆交警」；免费，<b>未约直行罚 200 记 1 分，年内爽约>3 次取消当年资格</b>；乔尔玛入口选 08:00–10:00。<span class="ticket-countdown"></span></li>
-      <li style="padding:3px 0" data-open="2026-08-08" data-close="2026-08-10" data-visit="2026-08-11"><b>D11 库尔德宁自驾</b>：提前 <b>1–3 天或当天</b>小程序预约（名额动态调控）；单向环线不可折返，<b>务必先电话确认两只边牧可随车入园</b>再约。<span class="ticket-countdown"></span></li>
+      <li style="padding:3px 0" data-open="2026-08-02T10:00:00" data-close="2026-08-06" data-visit="2026-08-09"><b>D9–D10 赛里木湖自驾套票</b>：提前 <b>3–7 天</b>，旺季常约满，<b>每日 10:00:00 放票</b>准点抢；小程序「一部手机游赛湖」/公众号「赛里木湖旅游」，实名分时；未约会被劝返；窗口期内（8/2–8/6）建议每天10:00都去试，不止试第一天。<span class="ticket-countdown"></span></li>
+      <li style="padding:3px 0" data-open="2026-08-05T20:00:00" data-close="2026-08-11" data-visit="2026-08-12"><b>D12 那拉提自驾</b>：提前预约名额<b>每日20:00:00准时放未来第7天库存</b>（500个名额，旺季常1小时内约满）；另有当日名额每日7:40开放但仅限周边80km游客，不适用本行程；小程序「智游那拉提」；7座及以下、定制自驾驾龄满3年。<span class="ticket-countdown"></span></li>
+      <li style="padding:3px 0" data-open="2026-08-07T00:00:00" data-close="2026-08-13" data-visit="2026-08-14"><b>D14 独库公路北段</b>：<b>每日0:00:00放出第7天名额</b>，旺季10–12点等热门时段1小时内约满；小程序「游新疆一码游」/公众号「平安天山·新疆交警」；免费，<b>未约直行罚200记1分，年内爽约>3次取消当年资格</b>；乔尔玛入口选08:00–10:00时段。<span class="ticket-countdown"></span></li>
+      <li style="padding:3px 0" data-open="2026-08-08" data-close="2026-08-10" data-visit="2026-08-11"><b>D11 库尔德宁自驾</b>：提前 <b>1–3 天或当天</b>小程序预约（名额动态调控，具体放号时刻未公开核实）；单向环线不可折返，<b>务必先电话确认两只边牧可随车入园</b>再约。<span class="ticket-countdown"></span></li>
       <li style="padding:3px 0"><b>禾木官方套票</b>：无抢票窗口限制，携程/喀纳斯官方OTA随时可买，不受本倒计时管理；但先电话确认民宿可载犬出租车是否替代区间车，再决定只买门票还是买套票（见下方门票表备注）。</li>
       <li style="padding:3px 0"><b>水上雅丹</b>：V25已因G315长距离施工、货车/路面评价与补能不闭环移出执行路线，不再预约。</li>
     </ul>
@@ -1419,33 +1420,52 @@ freshnessBanner.innerHTML = verifiedStale
   ? `<b>动态信息最后核验：${verifiedDate}</b> · 已过${verifiedAge}天，视为需复核；路况、天气、房态和桩况请在出发前24小时再次确认。`
   : `<b>动态信息最后核验：${verifiedDate}</b> · 距核验${verifiedAge}天；动态信息仍须在出发前24小时确认。`;
 
-/* ====================== 抢票开窗倒计时（按打开页面当天日期自动算，纯前端） ====================== */
+/* ====================== 抢票开窗倒计时（按打开页面当下时间自动算，纯前端，精确到秒的项每秒刷新） ====================== */
 (function(){
   const dayMs = 86400000;
-  const parseLocal = s => Date.parse(s+'T00:00:00+08:00');
-  document.querySelectorAll('#ticketWindowList li[data-open]').forEach(li => {
-    const openTs = parseLocal(li.dataset.open);
-    const closeTs = parseLocal(li.dataset.close);
-    const visitTs = parseLocal(li.dataset.visit);
-    const span = li.querySelector('.ticket-countdown');
-    if (!span) return;
-    const toOpen = Math.ceil((openTs - Date.now()) / dayMs);
-    const toClose = Math.ceil((closeTs - Date.now()) / dayMs);
-    let html;
-    if (Date.now() > visitTs + dayMs) {
-      html = `<span class="pill p-gray">行程日期已过</span>`;
-    } else if (toOpen > 0) {
-      html = `<span class="pill p-amber">⏳ 还有${toOpen}天开抢</span> · ${li.dataset.open}起可约`;
-    } else if (toClose > 0) {
-      html = `<span class="pill p-red">🔴 开抢中，还剩${toClose}天窗口</span>`;
-    } else if (toClose === 0) {
-      html = `<span class="pill p-red">🔴 开抢中，今天是常规窗口最后一天</span>`;
-    } else {
-      html = `<span class="pill p-amber">⚠️ 常规窗口已过，立即电话/现场问候补</span>`;
-    }
-    span.style.marginLeft = '8px';
-    span.innerHTML = html;
-  });
+  const parseLocal = s => Date.parse((s.indexOf('T') === -1 ? s+'T00:00:00' : s) + '+08:00');
+  const pad2 = n => String(n).padStart(2,'0');
+  function fmtCountdown(ms){
+    const totalSec = Math.max(0, Math.floor(ms/1000));
+    const d = Math.floor(totalSec/86400);
+    const h = Math.floor((totalSec%86400)/3600);
+    const m = Math.floor((totalSec%3600)/60);
+    const s = totalSec%60;
+    return d > 0 ? `${d}天${pad2(h)}:${pad2(m)}:${pad2(s)}` : `${pad2(h)}:${pad2(m)}:${pad2(s)}`;
+  }
+  const rows = Array.from(document.querySelectorAll('#ticketWindowList li[data-open]')).map(li => ({
+    li, span: li.querySelector('.ticket-countdown'),
+    hasTime: li.dataset.open.indexOf('T') !== -1,
+    openTs: parseLocal(li.dataset.open),
+    closeEndTs: parseLocal(li.dataset.close) + dayMs - 1000,
+    visitTs: parseLocal(li.dataset.visit)
+  })).filter(r => r.span);
+  function tick(){
+    const now = Date.now();
+    rows.forEach(r => {
+      let html;
+      if (now > r.visitTs + dayMs) {
+        html = `<span class="pill p-gray">行程日期已过</span>`;
+      } else if (now < r.openTs) {
+        const remain = r.openTs - now;
+        if (r.hasTime) {
+          html = `<span class="pill p-amber">⏳ 倒计时 ${fmtCountdown(remain)} 开抢</span> · ${r.li.dataset.open.replace('T',' ')}（北京时间）`;
+        } else {
+          html = `<span class="pill p-amber">⏳ 还有${Math.ceil(remain/dayMs)}天开抢</span> · ${r.li.dataset.open}起可约（放号时刻未核实到秒）`;
+        }
+      } else if (now <= r.closeEndTs) {
+        html = r.hasTime
+          ? `<span class="pill p-red">🔴 开抢中，还剩约${Math.max(1,Math.ceil((r.closeEndTs-now)/dayMs))}天常规窗口</span>`
+          : `<span class="pill p-red">🔴 开抢中，还剩约${Math.max(1,Math.ceil((r.closeEndTs-now)/dayMs))}天窗口</span>`;
+      } else {
+        html = `<span class="pill p-amber">⚠️ 常规窗口已过，立即电话/现场问候补</span>`;
+      }
+      r.span.style.marginLeft = '8px';
+      r.span.innerHTML = html;
+    });
+  }
+  tick();
+  setInterval(tick, 1000);
 })();
 
 /* ====================== 路线示意图 ====================== */
