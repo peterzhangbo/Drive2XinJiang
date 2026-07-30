@@ -761,12 +761,13 @@ body.pwgate-locked{overflow:hidden}
   <p class="lead">很多点是「现场买票即可」，但有<b>5 个必须提前线上预约</b>，约满或未约会被劝返/罚款——先看下面的预约时间线，再看逐点门票。宠物准入除禾木外多数景区无官方明文，需另行电话确认。</p>
 
   <div class="note red">
-    <b>⏰ 必须提前预约（有抢票窗口 / 罚则）：</b>
-    <ul style="margin:8px 0 0 18px">
-      <li style="padding:3px 0"><b>D9–D10 赛里木湖自驾套票</b>：提前 <b>3–7 天</b>，旺季常约满，<b>每日 10:00 放票</b>准点抢；小程序「一部手机游赛湖」/公众号「赛里木湖旅游」，实名分时；未约会被劝返。</li>
-      <li style="padding:3px 0"><b>D12 那拉提自驾</b>：提前<b>最多 7 日</b>（每日 0:00–0:30 停票外可约）；小程序「智游那拉提」，<b>线下窗口 2026 已全关</b>；7 座及以下、定制自驾驾龄满 3 年。</li>
-      <li style="padding:3px 0"><b>D14 独库公路北段</b>：提前 <b>1–7 天</b>选时段；小程序「游新疆一码游」/公众号「平安天山·新疆交警」；免费，<b>未约直行罚 200 记 1 分，年内爽约>3 次取消当年资格</b>；乔尔玛入口选 08:00–10:00。</li>
-      <li style="padding:3px 0"><b>D11 库尔德宁自驾</b>：提前 <b>1–3 天或当天</b>小程序预约（名额动态调控）；单向环线不可折返，<b>务必先电话确认两只边牧可随车入园</b>再约。</li>
+    <b>⏰ 必须提前预约（有抢票窗口 / 罚则）</b> —— 下面每条后面的倒计时是打开本页当天自动算出来的，不用你自己算日期：
+    <ul style="margin:8px 0 0 18px" id="ticketWindowList">
+      <li style="padding:3px 0" data-open="2026-08-02" data-close="2026-08-06" data-visit="2026-08-09"><b>D9–D10 赛里木湖自驾套票</b>：提前 <b>3–7 天</b>，旺季常约满，<b>每日 10:00 放票</b>准点抢；小程序「一部手机游赛湖」/公众号「赛里木湖旅游」，实名分时；未约会被劝返。<span class="ticket-countdown"></span></li>
+      <li style="padding:3px 0" data-open="2026-08-05" data-close="2026-08-11" data-visit="2026-08-12"><b>D12 那拉提自驾</b>：提前<b>最多 7 日</b>（每日 0:00–0:30 停票外可约）；小程序「智游那拉提」，<b>线下窗口 2026 已全关</b>；7 座及以下、定制自驾驾龄满 3 年。<span class="ticket-countdown"></span></li>
+      <li style="padding:3px 0" data-open="2026-08-07" data-close="2026-08-13" data-visit="2026-08-14"><b>D14 独库公路北段</b>：提前 <b>1–7 天</b>选时段；小程序「游新疆一码游」/公众号「平安天山·新疆交警」；免费，<b>未约直行罚 200 记 1 分，年内爽约>3 次取消当年资格</b>；乔尔玛入口选 08:00–10:00。<span class="ticket-countdown"></span></li>
+      <li style="padding:3px 0" data-open="2026-08-08" data-close="2026-08-10" data-visit="2026-08-11"><b>D11 库尔德宁自驾</b>：提前 <b>1–3 天或当天</b>小程序预约（名额动态调控）；单向环线不可折返，<b>务必先电话确认两只边牧可随车入园</b>再约。<span class="ticket-countdown"></span></li>
+      <li style="padding:3px 0"><b>禾木官方套票</b>：无抢票窗口限制，携程/喀纳斯官方OTA随时可买，不受本倒计时管理；但先电话确认民宿可载犬出租车是否替代区间车，再决定只买门票还是买套票（见下方门票表备注）。</li>
       <li style="padding:3px 0"><b>水上雅丹</b>：V25已因G315长距离施工、货车/路面评价与补能不闭环移出执行路线，不再预约。</li>
     </ul>
   </div>
@@ -776,7 +777,7 @@ body.pwgate-locked{overflow:hidden}
     <tbody>
       <tr><td><b>D2 居延海</b></td><td>门票约60 + 观光车约10/人</td><td><span class="pill p-green">现场购</span> 未见强制线上预约；8月非胡杨旺季客流小</td><td><span class="pill p-red">C</span> 宠物需电话/当天确认</td></tr>
       <tr><td><b>D5 大海道（哈密端）</b></td><td>门票45/人 + 车100/车</td><td><span class="pill p-green">现场购</span> 自驾多为现场；遇管控/直通车才提前1天，出发前1天电话核实开放与天气</td><td><span class="pill p-red">C</span> 只走红柳滩铺装段往返；宠物随车需确认</td></tr>
-      <tr><td><b>D7–D8 禾木村</b></td><td>官方套票102/人（门票50+区间车往返52）</td><td><span class="pill p-amber">建议提前1–2天网购</span> 喀纳斯官方渠道/OTA；旺季私家车禁入换乘</td><td><span class="pill p-amber">B/C</span> 用户已确认可入村，民宿可载犬出租车进村；区间车对宠物接受度再与民宿确认</td></tr>
+      <tr><td><b>D7–D8 禾木村</b></td><td>官方套票102/人（门票50+区间车往返52），门票与区间车可分开单买</td><td><span class="pill p-green">无抢票窗口，随时可买</span> 喀纳斯官方渠道/OTA不限提前量；但下单前先打电话确认下一条备注</td><td><span class="pill p-amber">B/C</span> 景区规定核心区禁外来私家车/出租车，游客通常须换乘官方区间车；民宿的“可载犬出租车”大概率是本地已备案的接送车而非绕开购票——务必先电话（18126209839/17844447778）问清楚：这辆车走不走门票站，狗能不能上区间车，从而确定只买门票还是买整套102元票，不要凭经验直接下单</td></tr>
       <tr><td><b>D9–D10 赛里木湖</b></td><td>24h套票145/人；48h套票190/人（含门票+车）</td><td><span class="pill p-red">须预约</span> 一部手机游赛湖，提前3–7天、每日10:00放票；东门进南门出</td><td><span class="pill p-red">C</span> 宠物无明文需确认</td></tr>
       <tr><td><b>D10 霍城薰衣草园</b></td><td>各园约30–50/人</td><td><span class="pill p-gray">条件项·现场</span> 主花期6/10–7/25，8月基本谢，观赏价值低；去前电话确认花况营业</td><td><span class="pill p-red">C</span> 宠物需当天确认</td></tr>
       <tr><td><b>D11 库尔德宁</b></td><td>自驾门票约60/人 + 区间车往返约30</td><td><span class="pill p-red">须预约</span> 景区官方小程序，提前1–3天或当天；名额动态调控</td><td><span class="pill p-red">C</span> 单向环线不可折返，先确认两只边牧随车入园</td></tr>
@@ -1417,6 +1418,35 @@ freshnessBanner.classList.toggle('stale', verifiedStale);
 freshnessBanner.innerHTML = verifiedStale
   ? `<b>动态信息最后核验：${verifiedDate}</b> · 已过${verifiedAge}天，视为需复核；路况、天气、房态和桩况请在出发前24小时再次确认。`
   : `<b>动态信息最后核验：${verifiedDate}</b> · 距核验${verifiedAge}天；动态信息仍须在出发前24小时确认。`;
+
+/* ====================== 抢票开窗倒计时（按打开页面当天日期自动算，纯前端） ====================== */
+(function(){
+  const dayMs = 86400000;
+  const parseLocal = s => Date.parse(s+'T00:00:00+08:00');
+  document.querySelectorAll('#ticketWindowList li[data-open]').forEach(li => {
+    const openTs = parseLocal(li.dataset.open);
+    const closeTs = parseLocal(li.dataset.close);
+    const visitTs = parseLocal(li.dataset.visit);
+    const span = li.querySelector('.ticket-countdown');
+    if (!span) return;
+    const toOpen = Math.ceil((openTs - Date.now()) / dayMs);
+    const toClose = Math.ceil((closeTs - Date.now()) / dayMs);
+    let html;
+    if (Date.now() > visitTs + dayMs) {
+      html = `<span class="pill p-gray">行程日期已过</span>`;
+    } else if (toOpen > 0) {
+      html = `<span class="pill p-amber">⏳ 还有${toOpen}天开抢</span> · ${li.dataset.open}起可约`;
+    } else if (toClose > 0) {
+      html = `<span class="pill p-red">🔴 开抢中，还剩${toClose}天窗口</span>`;
+    } else if (toClose === 0) {
+      html = `<span class="pill p-red">🔴 开抢中，今天是常规窗口最后一天</span>`;
+    } else {
+      html = `<span class="pill p-amber">⚠️ 常规窗口已过，立即电话/现场问候补</span>`;
+    }
+    span.style.marginLeft = '8px';
+    span.innerHTML = html;
+  });
+})();
 
 /* ====================== 路线示意图 ====================== */
 (function(){
@@ -2325,7 +2355,7 @@ const CONFIRM_TASKS = [
   stayTask('stay-d04',4,'2026-08-04','哈密星旺宾馆（石油基地中旺路24号）','2026-07-18','https://in.trip.com/hotels/hami-hotel-detail-1197678/xing-wang-hotel/','0902-6975888','2026-07-16'),
   {id:'stay-d05',category:'住宿',title:'D5 郭府农家院（巴里坤县西黑沟附近）：已电话确认接收两只边牧',tripDate:'2026-08-05',dueDate:'2026-07-25',recheckDate:'2026-08-04',sourceVerified:'2026-07-25',contacts:[{label:'☎13649903222',href:'tel:13649903222'},{label:'导航',href:'https://uri.amap.com/search?keyword=巴里坤郭府农家院'}],fallback:'2026-07-25已电话确认接收两只边牧；出发前24小时按惯例再核实入住时间、费用与晚到保留。'},
   stayTask('stay-d06',6,'2026-08-06','阿勒泰友谊宾馆','2026-07-19','https://m.ctrip.com/html5/hotel/hoteldetail/42169237.html','0906-2315888','2026-07-16'),
-  {id:'stay-d07',category:'住宿',title:'D7 牧雅居民宿：两只边牧、可载犬出租车进村与书面确认',tripDate:'2026-08-07',dueDate:'2026-07-19',recheckDate:'2026-08-06',sourceVerified:'2026-07-16',contacts:[{label:'Trip.com预订页',href:'https://hk.trip.com/hotels/burqin-hotel-detail-131303190/moya-villa/'},{label:'用户联系人18126209839',href:'tel:18126209839'},{label:'平台电话17844447778',href:'tel:17844447778'},{label:'景区咨询',href:'tel:4001110906'}],fallback:'未落实民宿或可载犬出租车接送就留在布尔津，不带狗到门口碰运气。'},
+  {id:'stay-d07',category:'住宿',title:'D7 牧雅居民宿：两只边牧、可载犬出租车进村与书面确认',tripDate:'2026-08-07',dueDate:'2026-07-19',recheckDate:'2026-08-06',sourceVerified:'2026-07-16',contacts:[{label:'Trip.com预订页',href:'https://hk.trip.com/hotels/burqin-hotel-detail-131303190/moya-villa/'},{label:'用户联系人18126209839',href:'tel:18126209839'},{label:'平台电话17844447778',href:'tel:17844447778'},{label:'景区咨询',href:'tel:4001110906'}],fallback:'未落实民宿或可载犬出租车接送就留在布尔津，不带狗到门口碰运气；电话确认这辆车走不走门票站、狗能否替代区间车，再决定买门票还是买整套102元票。'},
   {id:'stay-d08',category:'住宿',title:'D8 柏纳酒店：两只边牧、约200元宠物费与晚到保留',tripDate:'2026-08-08',dueDate:'2026-07-18',recheckDate:'2026-08-07',sourceVerified:'2026-07-16',contacts:[{label:'携程预订页',href:'https://hotels.ctrip.com/hotels/129264922.html'},{label:'用户电话15009906218',href:'tel:15009906218'},{label:'平台电话0990-7561820',href:'tel:09907561820'}],fallback:'费用或大型犬条件不能接受时，在乌尔禾另选已书面确认接收两只边牧的住宿。'},
   stayTask('stay-d09',9,'2026-08-09','赛官房民宿（赛里木湖东门游客中心店）','2026-07-18','https://hotels.ctrip.com/hotels/129330711.html','0909-2222000','2026-07-16'),
   stayTask('stay-d10',10,'2026-08-10','栖云馆民宿（六星街店）','2026-07-18','https://m.ctrip.com/html5/hotel/hoteldetail/120273337.html','13899730840','2026-07-17'),
