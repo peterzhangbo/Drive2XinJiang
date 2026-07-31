@@ -1433,12 +1433,12 @@ freshnessBanner.innerHTML = verifiedStale
     const s = totalSec%60;
     return d > 0 ? `${d}天${pad2(h)}:${pad2(m)}:${pad2(s)}` : `${pad2(h)}:${pad2(m)}:${pad2(s)}`;
   }
-  const rows = Array.from(document.querySelectorAll('#ticketWindowList li[data-open]')).map(li => ({
-    li, span: li.querySelector('.ticket-countdown'),
-    hasTime: li.dataset.open.indexOf('T') !== -1,
-    openTs: parseLocal(li.dataset.open),
-    closeEndTs: parseLocal(li.dataset.close) + dayMs - 1000,
-    visitTs: parseLocal(li.dataset.visit)
+  const rows = Array.from(document.querySelectorAll('[data-open]')).map(el => ({
+    el, span: el.classList.contains('ticket-countdown') ? el : el.querySelector('.ticket-countdown'),
+    hasTime: el.dataset.open.indexOf('T') !== -1,
+    openTs: parseLocal(el.dataset.open),
+    closeEndTs: parseLocal(el.dataset.close) + dayMs - 1000,
+    visitTs: parseLocal(el.dataset.visit)
   })).filter(r => r.span);
   function tick(){
     const now = Date.now();
@@ -1449,9 +1449,9 @@ freshnessBanner.innerHTML = verifiedStale
       } else if (now < r.openTs) {
         const remain = r.openTs - now;
         if (r.hasTime) {
-          html = `<span class="pill p-amber">⏳ 倒计时 ${fmtCountdown(remain)} 开抢</span> · ${r.li.dataset.open.replace('T',' ')}（北京时间）`;
+          html = `<span class="pill p-amber">⏳ 倒计时 ${fmtCountdown(remain)} 开抢</span> · ${r.el.dataset.open.replace('T',' ')}（北京时间）`;
         } else {
-          html = `<span class="pill p-amber">⏳ 还有${Math.ceil(remain/dayMs)}天开抢</span> · ${r.li.dataset.open}起可约（放号时刻未核实到秒）`;
+          html = `<span class="pill p-amber">⏳ 还有${Math.ceil(remain/dayMs)}天开抢</span> · ${r.el.dataset.open}起可约（放号时刻未核实到秒）`;
         }
       } else if (now <= r.closeEndTs) {
         html = r.hasTime
@@ -1622,7 +1622,7 @@ charge:['乌尔禾镇实时公共快充补至95%后出发；酒店无已核实�
 play:['当天以准时到达东门住宿为主，世界魔鬼城核心区不加塞','抵达后只在东门小镇和允许开放区域短绳散步，提前查看D10入园入口与交通提示','民宿无早餐，前一晚备好人狗早餐、饮水和环湖路餐'],
 stay:'赛官房民宿（赛里木湖东门游客中心店）· 地址：博乐市赛里木湖景区净海路6号 · ☎<a class="lnk bk" href="tel:09092222000">0909-2222000</a> · 平台显示狗/猫/其他宠物免费、停车免费，无早餐，押金100元；两只边牧与晚到保留须写入订单 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/129330711.html" target="_blank" rel="noopener">携程</a><a class="lnk" href="https://uri.amap.com/search?keyword=赛官房民宿赛里木湖东门游客中心店" target="_blank" rel="noopener">导航</a>',
 food:'净海路或东门小镇解决晚餐，并采购D10早餐、饮水与便携午餐',
-tips:['正式名称为“赛官房”而非“赛宫房”','部分住客评价提到隔音一般，建议带耳塞并确认安静房','D10必须确认自驾产品、宠物和东门进南门出当天可执行']},
+tips:['正式名称为“赛官房”而非“赛宫房”','部分住客评价提到隔音一般，建议带耳塞并确认安静房','D10必须确认自驾产品、宠物和东门进南门出当天可执行 <span class="ticket-countdown" data-open="2026-08-02T10:00:00" data-close="2026-08-06" data-visit="2026-08-09"></span>（第三方攻略口径每日10:00放票，非官方确认，详见「门票与预约速查」）']},
 
 {d:10,date:'8月10日 · 周一',title:'赛里木湖东门进 → 南门出 → 霍城薰衣草园 → 伊宁',km:170,hrs:'约4–6h环湖＋3h转场/游玩',tags:['fun'],theme:'lake',emoji:'🌉',
 route:'赛里木湖东门—按景区当天导向环湖—赛里木湖南门—果子沟—清水河/霍城薰衣草园—伊宁',
@@ -1640,7 +1640,7 @@ charge:['D10抵达伊宁后优先绿发洲际酒店特斯拉超充；拥堵切�
 play:['08:00左右离开伊宁，约1.5–2h到巩留；库尔德宁自驾票约60元/人，可自驾进入、区间车为可选项，仅限7座及以下车辆','库尔德宁现行管理办法未公开写明宠物规则；提前拨打0999-7758580或0999-7758590确认两只边牧随车入园、下车观景规则和当天线路后再进入','景区环线约60km、中沟进东沟出且单向不可折返，纯行驶2h以上；只在正规停车区下车，全程短绳，远离野生动物、牛羊和保护区植被','东沟出口经乡道约2.5–3h到那拉提镇；目标17:00前后到店，比原“八卦城＋库尔德宁”方案提前约3小时'],
 stay:'那拉提悠然民宿（那拉提景区店）· 连住第1晚 · 地址：新源县那拉提镇天马街117号 · ☎<a class="lnk bk" href="tel:15886986899">15886986899</a> · 平台显示狗/猫可申请免费入住、免费私人停车、无早餐；两只15–20kg边牧和连住两晚仍须书面确认 <a class="lnk bk" href="https://hk.trip.com/hotels/xinyuan-hotel-detail-2348909/nei-la-ti-you-ran-ke-zhan/" target="_blank" rel="noopener">Trip.com</a><a class="lnk" href="https://uri.amap.com/search?keyword=那拉提悠然民宿天马街117号" target="_blank" rel="noopener">导航</a>',
 food:'巩留早午餐从简；库尔德宁以自备路餐为主，晚餐到那拉提镇解决',
-tips:['取消八卦城后D11从超载日回到正常日；不登观景塔（狗不能进）时地面看不出八卦格局，绕行140km不值，归档见「不得不错过」','库尔德宁现行官方管理办法强调生态保护和规范停车，但没有公开给出宠物准入结论，电话答复优先；被拒就执行墩那高速直达','到店后核对D12那拉提自驾票和D13唐布拉住宿充电']},
+tips:['取消八卦城后D11从超载日回到正常日；不登观景塔（狗不能进）时地面看不出八卦格局，绕行140km不值，归档见「不得不错过」','库尔德宁现行官方管理办法强调生态保护和规范停车，但没有公开给出宠物准入结论，电话答复优先；被拒就执行墩那高速直达 <span class="ticket-countdown" data-open="2026-08-08" data-close="2026-08-10" data-visit="2026-08-11"></span>（放号时刻未公开核实，只精确到天）','到店后核对D12那拉提自驾票和D13唐布拉住宿充电']},
 
 {d:12,date:'8月12日 · 周三',title:'那拉提草原深度游（悠然民宿连住）',km:80,hrs:'全天游玩',tags:['fun'],theme:'grass',emoji:'🐎',
 route:'那拉提镇—那拉提景区或镇外巩乃斯河谷公开道路—那拉提镇；不增加长途转场',
@@ -1649,7 +1649,7 @@ charge:['早晨先检查D13到唐布拉后的车机预测；那拉提镇第一�
 play:['若景区确认两只边牧可随车进入：须提前7日内在“智游那拉提”预约自驾票；仅7座以下车辆、司机驾龄满3年可办理，按预约路线深玩空中草原/河谷草原当天开放区域','若宠物未获准：上午走那拉提镇与巩乃斯河谷公开路段，下午在允许停车、不占草场和牧道的位置慢游；不把狗留在车里换人进景区','不追羊群、不靠近旱獭和牧民护卫犬；8月正午减少草地暴晒，活动集中在上午和傍晚'],
 stay:'那拉提悠然民宿（那拉提景区店）· 连住第2晚 · ☎<a class="lnk bk" href="tel:15886986899">15886986899</a> · 地址与预订链接同D11；无早餐，提前备好D13早餐和路餐',
 food:'那拉提镇纳仁、马肠子、哈萨克奶茶；优先院落外摆或打包',
-tips:['那拉提自驾预约官方咨询0999-5291888；自驾资格不等于宠物资格，必须分开确认','D13进入山区前下载离线地图、检查轮胎和玻璃水','蜱虫高发，晚上检查耳后、腋下和趾缝']},
+tips:['那拉提自驾预约官方咨询0999-5291888；自驾资格不等于宠物资格，必须分开确认 <span class="ticket-countdown" data-open="2026-08-05T20:00:00" data-close="2026-08-11" data-visit="2026-08-12"></span>（第三方攻略口径每日20:00放号，仅单篇报道未交叉印证，非官方确认）','D13进入山区前下载离线地图、检查轮胎和玻璃水','蜱虫高发，晚上检查耳后、腋下和趾缝']},
 
 {d:13,date:'8月13日 · 周四',title:'那拉提 → 乔尔玛 → 唐布拉百里画廊 → 蜜蜂小镇',km:180,hrs:'约4h驾驶＋全天边走边玩',tags:['fun'],theme:'grass',emoji:'🏞️',
 route:'那拉提镇—G217北行—乔尔玛—S315唐布拉百里画廊—尼勒克种蜂场/蜜蜂小镇',
@@ -1667,7 +1667,7 @@ charge:['D13夜间在听泉别院或蜜蜂小镇公共桩充至90%以上；出�
 play:['07:00出发（最晚08:00），S315约89km、1.5h到乔尔玛，08:30–09:00按预约入口核验进入；2026社会车辆通行时段08:00–19:00分五档预约，19:00–次日08:00施工封闭，未按预约通行罚200元记1分','乔尔玛→独山子实际约140km（网传“250km/5–6小时”是把独山子—那拉提全程230km误标到乔尔玛，不采信），含检查站排队按3.5–4h预算，约12:30到独山子午餐补电','只在官方停车区短停哈希勒根达坂、融雪瀑布和峡谷森林等景观；“老虎口”落石区不停车，隧道段服从单向放行；山区午后易起雨，尽量14:00前驶出达坂','垭口海拔高、气温低，两只狗短时下车、穿防风层并避免奔跑','独山子到水西沟约280km、3.5h；预计17:00–18:00抵达，比日落早3小时以上'],
 stay:'乌鲁木齐县·缘来如玉民宿 · 地址：水西沟镇平西梁村A10-2号 · 两只边牧和晚到保留须写入订单并取得商家回复 <a class="lnk bk" href="https://hotels.ctrip.com/hotels/110381323.html" target="_blank" rel="noopener">携程预订</a><a class="lnk" href="https://uri.amap.com/search?keyword=缘来如玉民宿水西沟" target="_blank" rel="noopener">高德导航</a>',
 food:'乔尔玛自备早餐/路餐；独山子补电时吃拌面，晚到乌鲁木齐后从简',
-tips:['独库北段预约出发前7天内在“游新疆一码游”办理，D14选乔尔玛入口08:00–10:00时段（每日配额3000辆，可提前24h改签，注意平台爽约规则）；前一晚和当日清晨各复核一次','D13晚必须确认：G577精伊公路实际通车状态（2026-06-30通车口径，西线备选的成立前提）、次日乔尔玛/独山子天气；G577未通车时西线退化为经伊宁—果子沟约850km，须09:00前决策折返','8月北段因短时强降雨/泥石流临时管制的概率粗估每天5–15%（雨后次日最高），备选线G30/G577夏季基本不受天气封路影响','抵达乌鲁木齐后先完成D15–D28床车物资、轮胎和应急装备总检查']},
+tips:['独库北段预约出发前7天内在“游新疆一码游”办理，D14选乔尔玛入口08:00–10:00时段（每日配额3000辆，可提前24h改签，注意平台爽约规则）<span class="ticket-countdown" data-open="2026-08-07T00:00:00" data-close="2026-08-13" data-visit="2026-08-14"></span>（第三方攻略口径每日0点放号，官方通告原文未写明，且原链接已404，现用同网站征求意见稿链接）；前一晚和当日清晨各复核一次','D13晚必须确认：G577精伊公路实际通车状态（2026-06-30通车口径，西线备选的成立前提）、次日乔尔玛/独山子天气；G577未通车时西线退化为经伊宁—果子沟约850km，须09:00前决策折返','8月北段因短时强降雨/泥石流临时管制的概率粗估每天5–15%（雨后次日最高），备选线G30/G577夏季基本不受天气封路影响','抵达乌鲁木齐后先完成D15–D28床车物资、轮胎和应急装备总检查']},
 
 {d:15,date:'8月15日 · 周六',title:'乌鲁木齐带狗深度休整 · 续住一晚',km:100,hrs:'约2–3h市郊驾驶',tags:['fun'],theme:'city',emoji:'🌆',
 route:'水西沟—南山大道/S116公开道路—乌鲁木齐市区补给—返回水西沟；不进入明确禁犬的城市公园、博物馆和候机楼',
