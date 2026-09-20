@@ -1,0 +1,188 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e14]:
+      - heading "北京 ⇄ 大北疆" [level=1] [ref=e15]
+      - paragraph [ref=e16]: 18天 · 8,400km · 两人两边牧 · Model Y L 电车环线 · 2026年8月
+      - generic [ref=e17]:
+        - generic [ref=e18]: 🐾 每站带狗玩法
+        - generic [ref=e19]: ⚡ 逐日充电规划
+        - generic [ref=e20]: 🚙 2晚营地睡车
+        - generic [ref=e21]: 🏨 16晚宠物友好住宿
+  - navigation [ref=e22]:
+    - button "🗺️ 总览" [ref=e23] [cursor=pointer]
+    - button "📅 逐日行程" [ref=e24] [cursor=pointer]
+    - button "⚡ 充电补能" [ref=e25] [cursor=pointer]
+    - button "🐾 宠物指南" [ref=e26] [cursor=pointer]
+    - button "🏨 住宿美食" [ref=e27] [cursor=pointer]
+    - button "⚠️ 注意事项" [ref=e28] [cursor=pointer]
+    - button "🗄️ 不得不错过" [ref=e29] [cursor=pointer]
+    - button "🎒 预算清单" [ref=e30] [cursor=pointer]
+  - main [ref=e31]:
+    - generic [ref=e32]:
+      - heading "🧭 一图看懂这次旅行" [level=2] [ref=e33]
+      - paragraph [ref=e34]: 2026年8月 · 北京⇄大北疆环线 · 夫妻二人 + 两条成年边牧 · 特斯拉 Model Y L（CLTC 751km）· 全程自驾往返。基线 18 天，含 2 晚睡车（江布拉克营地 + 赛里木湖点将台营地，都是景区露营地、8月夜里凉爽）。点击地图节点可跳转到当天行程。
+      - generic [ref=e35]:
+        - text: 🔍 2026-07-11 全网核查更新（出行前必读，已发现多处与原方案不符）：
+        - list [ref=e36]:
+          - listitem [ref=e37]: 独库公路北段新增预约制：2026年6月25日-8月31日，乌苏驿—乔尔玛—那拉提段（D13途经）每日限流约3000辆，需提前1-7天线上预约（渠道名以当季公告为准：「游新疆一码游」「平安独库」小程序/「平安天山」「新疆交警」公众号均有入口），否则无法进入；实际通行时间为乌苏驿-库如力段每日8:00-19:00（此前文档写的21:00-09:00禁行口径不准确），库如力—那拉提入口段视流量可弹性延至21:00——D13早出发、18:00前出山
+          - listitem [ref=e38]: 禾木自驾进村（二次复核已找到现行流程）：本地宝2025年10月口径——自驾进村在禾木游客服务中心（或72公里售票处）现场通过「原行网」小程序申请，材料：村内住宿订单+车牌+身份证+驾驶证，获批后车只能停民宿指定区域；未获批则停游客中心停车场换免费区间车（区间车不带狗）。名额与审核口径随季节变动，务必提前请所订民宿协助确认当日名额；门票60/人，区间车往返100/人（获批自驾可免）
+          - listitem [ref=e39]: D9 乌尔禾住宿信息不符：「和一丽呈华廷酒店」携程当前门店名为「(世界魔鬼城店)」而非「(温泉)」，页面未见宠物友好/特斯拉超充标签，三项特色均需电话重新确认
+          - listitem [ref=e40]: 边防证已电子化：自2026年4月15日起可用「移民局12367」App/小程序几十秒办好电子证，不必只依赖布尔津现场窗口
+          - listitem [ref=e41]: 动物检疫合格证明已无纸化：全国自2025年起推行电子出证，有效期最长5天（非"3-5天"模糊表述），建议提前3天线上申报+预约现场查验，而非"到监督所办理"
+          - listitem [ref=e42]: 价格/时间更正：江布拉克门票旺季55元/淡季25元（2025年7月起，非43元），区间车往返30元；世界魔鬼城总价62元=门票42+区间小火车20（不是62+20），2026年6月起营业时间延长为08:30-21:00；喀纳斯门票160元/人+区间车另计〔以景区小程序为准〕；赛里木湖环湖自驾为按人头套票145元/人（门票70+自驾费75，24h有效；两日票190）；点将台营位（自带车/帐篷）物价备案约200-400元/晚含水电，星空房/房车房约800-1280元起——两类别混淆过，订时说清「自带床车要营位」
+          - listitem [ref=e43]: 赛湖露营风险：2025年8月15日景区曾突然关闭全部露营区及预约通道，2026年8月中旬出行正撞同一时间窗——D10睡车夜出发前一周致电400-0919188确认；若关闭改住博乐希尔顿惠庭（北京南路6号）
+          - listitem [ref=e44]: 额济纳更正：胡杨林旅游区为季节性开园（往年9月上旬开园，8月未开园且叶是绿的）；D2/D16改看居延海（门票60+观光车10，常年开放，日出芦苇+鸥鸟）与路边免费胡杨
+          - listitem [ref=e45]: 充电设施整体改善：赛里木湖东门新增「顺顺充」华为600kW液冷超充站；独库公路那拉提/独山子两端已升级为超充，仅巴音布鲁克营地仍为20kW慢充；G7临白段服务区内蒙古计划2026年内全覆盖，但暂无近期实测故障数据，仍需App实时核查
+        - paragraph [ref=e46]:
+          - text: 以下正文中标注
+          - generic [ref=e47]: ✅已核实
+          - text: /
+          - generic [ref=e48]: ⚠️有变化
+          - text: /
+          - generic [ref=e49]: ❗存疑需电话确认
+          - text: 的地方对应本次核查结论；未特别标注的信息未发现明显变化，但政策类信息仍建议出发前电话/App二次确认。
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e52]: 18天
+          - generic [ref=e53]: 全程天数（纯带狗版·零寄养）
+        - generic [ref=e54]:
+          - generic [ref=e55]: ≈8,400
+          - generic [ref=e56]: 总里程 km
+        - generic [ref=e57]:
+          - generic [ref=e58]: 2晚
+          - generic [ref=e59]: 睡车（营地）
+        - generic [ref=e60]:
+          - generic [ref=e61]: 16晚
+          - generic [ref=e62]: 宠物友好酒店/民宿
+        - generic [ref=e63]:
+          - generic [ref=e64]: ≈2.2万
+          - generic [ref=e65]: 预估总花费（元）
+      - generic [ref=e66]:
+        - generic [ref=e67]:
+          - generic [ref=e68]: 去程 G7 京新高速（D1–D4）
+          - generic [ref=e70]: 大北疆环线（D5–D14）
+          - generic [ref=e72]: 回程（D15–D18）
+        - img [ref=e75]:
+          - generic [ref=e79] [cursor=pointer]: 北京
+          - generic [ref=e82] [cursor=pointer]: 临河 D1
+          - generic [ref=e85] [cursor=pointer]: 额济纳 D2
+          - generic [ref=e88] [cursor=pointer]: 哈密 D3
+          - generic [ref=e91] [cursor=pointer]: 乌鲁木齐 D4
+          - generic [ref=e94] [cursor=pointer]: 江布拉克 D5 🚙
+          - generic [ref=e97] [cursor=pointer]: 可可托海 D6
+          - generic [ref=e100] [cursor=pointer]: 布尔津 D7
+          - generic [ref=e103] [cursor=pointer]: 禾木 D8
+          - generic [ref=e106] [cursor=pointer]: 乌尔禾 D9
+          - generic [ref=e109] [cursor=pointer]: 赛里木湖 D10 🚙
+          - generic [ref=e112] [cursor=pointer]: 伊宁 D11
+          - generic [ref=e115] [cursor=pointer]: 唐布拉→那拉提 D12
+          - generic [ref=e118] [cursor=pointer]: 独库→奎屯 D13
+          - generic [ref=e121]: 示意图（非精确地理位置）· 点击节点跳到当天行程 · 环线内圈：D14 奎屯→沙湾→乌鲁木齐
+      - heading "💡 这次规划的四条底层逻辑" [level=2] [ref=e122]
+      - generic [ref=e123]:
+        - paragraph [ref=e124]: 1. 「区间车 ≈ 禁狗，自驾进 ≈ 狗友好」——这一条规律解释了新疆 90% 景区的宠物政策。所以行程把权重全部压在可自驾进入的地方：赛里木湖环湖公路、江布拉克、独库公路、唐布拉百里画廊、禾木（凭民宿订单申请自驾进村）。喀纳斯主湖、天山天池、巴音布鲁克九曲明确禁宠，已全部移出行程——狗不去的地方我们也不去，归档见「🗄️ 不得不错过」页，留给未来不带狗的旅行。
+        - paragraph [ref=e125]: 2. 电车走新疆已经不是冒险——新疆 105 对高速服务区充电全覆盖，赛里木湖东门有 24 个快充桩（含特斯拉），独库公路沿线桩距<100km。唯一硬风险是去程 G7 临白段 930km 无人区：策略是「满电进、逢桩必充、保留到达下下站的电量」，并准备 G30 绕行预案。
+        - paragraph [ref=e126]: 3. 8月 = 避热跑北线——行程刻意绕开吐鲁番/沙漠白天活动，把狗的户外时间放在早10点前、晚7点后（新疆9点半才天黑）；睡车两晚都选在海拔 1700m+ 的凉爽营地，露营模式整夜空调只耗 10–20 度电。
+        - paragraph [ref=e127]: 4. 每晚住宿都要电话二次确认——平台「宠物友好」标签 ≠ 收两只边牧（很多只收小型犬）。打电话时报「两只边境牧羊犬、约 15-20kg、不拆家、自备垫子」，把疫苗本拍照发过去，成功率大增。
+      - heading "⭐ 行程高光（为狗设计的）" [level=2] [ref=e128]
+      - list [ref=e130]:
+        - listitem [ref=e131]: 🏆 赛里木湖自驾环湖 + 营地睡车：买自驾票开进环湖公路，南岸无名草坡=雪山+湖水+边牧狂奔；24小时票可看日落+日出两轮（D10-11）
+        - listitem [ref=e132]: 🥈 独库公路北段 + 唐布拉百里画廊：全程免费自驾，垭口雪山、云杉峡谷、喀什河草甸随停随玩（D12-13）
+        - listitem [ref=e133]: 🥉 江布拉克麦浪睡车夜：明确「可自驾+可带宠+可露营」的景区，万亩麦浪配天山雪峰，夜里银河肉眼可见（D5）
+        - listitem [ref=e134]: 🌲 禾木自驾进村：凭民宿订单在「原行网」小程序申请自驾进村，带狗看晨雾炊烟——办成了就是全程高光（D8-9）
+        - listitem [ref=e135]: 🐕 可选模块：仅剩安集海大峡谷（D14顺路50分钟，免费）；喀纳斯/天池等禁宠景区已全部移出，归档见「🗄️ 不得不错过」页
+      - heading "📍 景区位置与购票速查" [level=2] [ref=e136]
+      - paragraph [ref=e137]: 点「导航」直接打开高德搜索定位；门票能线上订的都给了渠道。价格为2025-26年口径，以购票页为准。
+      - table [ref=e139]:
+        - rowgroup [ref=e140]:
+          - row [ref=e141]:
+            - columnheader "景点" [ref=e142]
+            - columnheader "确切位置" [ref=e143]
+            - columnheader "门票" [ref=e144]
+            - columnheader "购票 / 导航" [ref=e145]
+        - rowgroup [ref=e146]:
+          - row [ref=e147]:
+            - cell "赛里木湖（东门游客中心）" [ref=e148]
+            - cell "G30连霍高速133出口（赛里木湖东立交）下，沿净海路至新游客中心；点将台营地在环湖公路旁" [ref=e149]
+            - cell "⚠️有变化 官方口径为自驾环湖套票145/人（含门票+自驾权限），另有渠道显示70/人+自驾车票150/车分开计价，两种表述并存，24h多次进出，旺季限量每日约3000辆" [ref=e150]:
+              - generic [ref=e151]: ⚠️有变化
+              - text: 官方口径为自驾环湖套票145/人（含门票+自驾权限），另有渠道显示70/人+自驾车票150/车分开计价，两种表述并存，24h多次进出，旺季限量每日约3000辆
+            - cell [ref=e152]:
+              - link "官网·遇见赛里木湖" [ref=e153] [cursor=pointer]:
+                - /url: https://www.yujiansailimuhu.com/
+              - link "导航" [ref=e154] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=赛里木湖游客服务中心
+              - text: 或微信公众号「赛里木湖旅游」／小程序「一部手机游赛湖」；营地同渠道预约，以下单页实时价为准
+          - row [ref=e155]:
+            - cell "江布拉克" [ref=e156]
+            - cell "昌吉州奇台县半截沟镇南部山区" [ref=e157]
+            - cell "⚠️有变化 官方核定价为旺季55/人、淡季25/人（原43元已过期）+ 自驾车100/辆（7座以下，房车300/辆），区间车单程15/往返30；须18:00前驶离核心区" [ref=e158]:
+              - generic [ref=e159]: ⚠️有变化
+              - text: 官方核定价为旺季55/人、淡季25/人（原43元已过期）+ 自驾车100/辆（7座以下，房车300/辆），区间车单程15/往返30；须18:00前驶离核心区
+            - cell [ref=e160]:
+              - link "携程门票搜「江布拉克」" [ref=e161] [cursor=pointer]:
+                - /url: https://piao.ctrip.com/dest/u-_-119707.html
+              - link "导航" [ref=e162] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=江布拉克景区
+          - row [ref=e163]:
+            - cell "禾木村（门票站）" [ref=e164]
+            - cell "布尔津县贾登峪—禾木公路上的禾木景区门票站（免费大停车场）；璟至民宿在禾木新村146号" [ref=e165]
+            - cell "60/人 + 区间车往返100/人（获批自驾进村免区间车）" [ref=e166]
+            - cell "「原行网」小程序购票；自驾进村（2025年10月本地宝口径）：在禾木游客服务中心或72公里售票处现场经「原行网」申请，材料＝民宿订单+车牌+身份证+驾驶证——名额与口径随季节变动，行前请民宿协助确认，并备好未获批的B方案（狗不进村，改布尔津连住，一人区间车快刷禾木） 导航" [ref=e167]:
+              - generic [ref=e168]: 「原行网」小程序购票；自驾进村（2025年10月本地宝口径）：在禾木游客服务中心或72公里售票处现场经「原行网」申请，材料＝民宿订单+车牌+身份证+驾驶证——名额与口径随季节变动，行前请民宿协助确认，并备好未获批的B方案（狗不进村，改布尔津连住，一人区间车快刷禾木）
+              - link "导航" [ref=e169] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=禾木景区门票站
+          - row [ref=e170]:
+            - cell "五彩滩" [ref=e171]
+            - cell "布尔津县 S227 省道旁，县城西北约24km（额尔齐斯河北岸）" [ref=e172]
+            - cell "✅已核实 45-50/人，官方明确不可携带宠物" [ref=e173]:
+              - generic [ref=e174]: ✅已核实
+              - text: 45-50/人，官方明确不可携带宠物
+            - cell [ref=e175]:
+              - link "携程门票页" [ref=e176] [cursor=pointer]:
+                - /url: https://you.ctrip.com/sight/burqin1010/25331.html
+              - link "导航" [ref=e177] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=五彩滩景区布尔津
+          - row [ref=e178]:
+            - cell "世界魔鬼城" [ref=e179]
+            - cell "克拉玛依市乌尔禾区龙脊路200号" [ref=e180]
+            - cell "⚠️有变化 总价62元 = 门票42 + 区间小火车20（政府公告口径，不可徒步/自驾进核心区）；营业时间2026年6月起延长为08:30-21:00；票务☎0990-6964701" [ref=e181]:
+              - generic [ref=e182]: ⚠️有变化
+              - text: 总价62元 = 门票42 + 区间小火车20（政府公告口径，不可徒步/自驾进核心区）；营业时间2026年6月起延长为08:30-21:00；票务☎0990-6964701
+            - cell [ref=e183]:
+              - link "导航（现场/携程购票）" [ref=e184] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=世界魔鬼城景区
+          - row [ref=e185]:
+            - cell "独山子大峡谷" [ref=e186]
+            - cell "克拉玛依市独山子区 X250 县道东侧（城区以南约28km）" [ref=e187]
+            - cell "❗存疑 30/人（玻璃桥套票100）；☎ 0992-7258800（已核实有效）；10:00-19:30；\"可牵狗进\"缺乏官方/近期实测依据，务必现场或电话确认" [ref=e188]:
+              - generic [ref=e189]: ❗存疑
+              - text: 30/人（玻璃桥套票100）；☎ 0992-7258800（已核实有效）；10:00-19:30；"可牵狗进"缺乏官方/近期实测依据，务必现场或电话确认
+            - cell [ref=e190]:
+              - link "携程/去哪儿搜「独山子大峡谷」" [ref=e191] [cursor=pointer]:
+                - /url: https://piao.ctrip.com/
+              - link "导航" [ref=e192] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=独山子大峡谷
+          - row [ref=e193]:
+            - cell "可可苏里 / 伊雷木湖" [ref=e194]
+            - cell "富蕴县 G216/S226 沿线（距县城约23km）/ 可可托海镇西南约4km" [ref=e195]
+            - cell "✅已核实 伊雷木湖路边免费观景；可可苏里若进入景区内部（非路边远眺）需另核实门票" [ref=e196]:
+              - generic [ref=e197]: ✅已核实
+              - text: 伊雷木湖路边免费观景；可可苏里若进入景区内部（非路边远眺）需另核实门票
+            - cell [ref=e198]:
+              - link "导航·可可苏里" [ref=e199] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=可可苏里
+              - link "导航·伊雷木湖" [ref=e200] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=伊雷木湖
+          - row [ref=e201]:
+            - cell "唐布拉百里画廊" [ref=e202]
+            - cell "尼勒克县 S315 沿线；东端起点乔尔玛（G217×S315 交汇），向西约100-130km" [ref=e203]
+            - cell "✅已核实 道路免费通行（沿线「孟克特古道」若单独进入需200/车预约，与主干道免费不冲突）" [ref=e204]:
+              - generic [ref=e205]: ✅已核实
+              - text: 道路免费通行（沿线「孟克特古道」若单独进入需200/车预约，与主干道免费不冲突）
+            - cell [ref=e206]:
+              - link "导航·乔尔玛起点" [ref=e207] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=乔尔玛
+          - row [ref=e208]:
+            - cell "🗄️ 喀纳斯、天山天池等禁宠景区已移出行程，位置与票价信息归档在「不得不错过」页" [ref=e209]
+  - contentinfo [ref=e210]: 为 Saul 和两位边牧定制 · 2026年8月 北京⇄大北疆 · 已于2026-07-12完成三轮全网复核（充电站/景区政策/住宿逐项核实，冲突信息已调和标注）· 关键政策/桩况仍请以出发前电话与官方小程序核实为准 🐾

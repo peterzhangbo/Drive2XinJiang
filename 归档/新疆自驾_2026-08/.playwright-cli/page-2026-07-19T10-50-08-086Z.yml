@@ -1,0 +1,845 @@
+- generic [active] [ref=e1]:
+  - link "跳到主要内容" [ref=e2] [cursor=pointer]:
+    - /url: "#mainContent"
+  - banner [ref=e3]:
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]: ELECTRIC EXPEDITION · AUG 2026
+        - heading "北京出发 穿越大北疆" [level=1] [ref=e18]:
+          - text: 北京出发
+          - generic [ref=e19]: 穿越大北疆
+        - paragraph [ref=e20]: 28天 · 约12,900km · 前段夫妻与双边牧同行，后段一人两犬完成东疆—青海—成都—武汉返京大环线
+        - generic [ref=e21]:
+          - generic [ref=e22]: 全程双边牧同行
+          - generic [ref=e29]: 逐段三层补能
+          - generic [ref=e32]: 9晚管理点床车
+          - generic [ref=e36]: 18晚住宿恢复
+      - generic [ref=e39]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: 13K
+          - generic [ref=e44]: KILOMETERS
+        - generic [ref=e45]: 北京
+        - generic [ref=e46]: 禾木
+        - generic [ref=e47]: 成都
+  - tablist "攻略页面栏目" [ref=e48]:
+    - generic [ref=e49]: 计划
+    - tab "主计划" [selected] [ref=e50] [cursor=pointer]
+    - tab "逐日行程" [ref=e54] [cursor=pointer]
+    - tab "预算与清单" [ref=e58] [cursor=pointer]
+    - generic [ref=e62]: 执行
+    - tab "确认中心" [ref=e63] [cursor=pointer]
+    - tab "充电补能" [ref=e67] [cursor=pointer]
+    - tab "住宿美食" [ref=e70] [cursor=pointer]
+    - tab "宠物指南" [ref=e73] [cursor=pointer]
+    - tab "注意事项" [ref=e80] [cursor=pointer]
+    - generic [ref=e84]: 记录
+    - tab "更新日志" [ref=e85] [cursor=pointer]
+    - tab "不得不错过" [ref=e89] [cursor=pointer]
+  - main [ref=e92]:
+    - status [ref=e93]: 动态信息最后核验：2026-07-19 · 距核验0天；动态信息仍须在出发前24小时确认。
+    - tabpanel "主计划" [ref=e94]:
+      - generic [ref=e95]:
+        - generic [ref=e96]:
+          - generic [ref=e97]: EXPEDITION CONTROL / V25
+          - heading "主计划总览" [level=2] [ref=e98]
+          - paragraph [ref=e102]: 2026年8月 · 北京⇄大北疆环线 · 前15天夫妻二人＋两条成年边牧，D16妻子从乌鲁木齐飞回北京，送机结束后驾驶员立即带两只狗经天山胜利隧道前往库尔勒；此后走若羌、茫崖、S318格茫公路、格尔木、茶卡、西宁、成都、恩施、武汉返京。D1–D15住酒店/民宿；返程段西宁（D21）、成都（D23）、武汉（D26）三个长途抵达晚住酒店恢复，其余9晚只在经确认可过夜的汽车营地、房车营地或有管理停车区睡车，D28到家；不把公路边、自然保护区、充电位或无人区当营地。
+        - generic "行程已规划28天，最新核验日期2026年7月19日" [ref=e103]:
+          - generic [ref=e104]:
+            - generic [ref=e105]: "28"
+            - generic [ref=e106]: DAYS
+          - generic [ref=e107]:
+            - generic [ref=e108]: 路线已成型
+            - generic [ref=e109]: 最后核验 · 07/19
+      - generic [ref=e110]:
+        - text: V15 当前执行版本：V25（2026-07-19）。去程D3不再绕金塔、酒泉，改由额济纳经G7—G215直连瓜州，G30只保留约72km；返程D19退出施工中的G315水上雅丹长廊，改走S318到格尔木，D20住茶卡，D21再到西宁；成都东行走G5013—G5001—G5021—G50，绕开暑期全封闭的G42谭家沟—二洞桥段。成都和武汉各留一整天休整并与朋友吃饭。推荐版共28天，其中18晚酒店/民宿、9晚床车。
+        - link "打开全程简报" [ref=e111] [cursor=pointer]:
+          - /url: 全程行程简报.md
+        - button "查看更新日志" [ref=e112] [cursor=pointer]
+      - generic "行程核心指标" [ref=e113]:
+        - generic [ref=e114]:
+          - generic [ref=e119]: 28天
+          - generic [ref=e120]: 纯带狗版 · 零寄养
+        - generic [ref=e121]:
+          - generic [ref=e127]: ≈12,900
+          - generic [ref=e128]: 逐日里程自动合计 · km
+        - generic [ref=e129]:
+          - generic [ref=e134]: 9晚
+          - generic [ref=e135]: 合法营地 / 管理区床车
+        - generic [ref=e136]:
+          - generic [ref=e140]: 18晚
+          - generic [ref=e141]: 宠物友好酒店 / 民宿
+        - generic [ref=e142]:
+          - generic [ref=e147]: 3.1–4.8万
+          - generic [ref=e148]: 预算区间 · 含安全机动金
+      - region "行程数据仪表盘" [ref=e149]:
+        - article [ref=e150]:
+          - generic [ref=e151]:
+            - generic [ref=e152]:
+              - generic [ref=e153]: ROUTE PHASES
+              - heading "三阶段里程分布" [level=3] [ref=e154]
+            - generic [ref=e155]: 约 12,900 km
+          - generic [ref=e156]:
+            - generic [ref=e157]:
+              - generic [ref=e158]:
+                - generic [ref=e159]: 去程
+                - generic [ref=e160]: D1–D6 · 北京→木垒
+              - generic [ref=e163]:
+                - generic [ref=e164]: 3,970 km
+                - text: 30.9%
+            - generic [ref=e165]:
+              - generic [ref=e166]:
+                - generic [ref=e167]: 大北疆环线
+                - generic [ref=e168]: D7–D15 · 阿勒泰→乌鲁木齐
+              - generic [ref=e171]:
+                - generic [ref=e172]: 2,530 km
+                - text: 19.7%
+            - generic [ref=e173]:
+              - generic [ref=e174]:
+                - generic [ref=e175]: 返程
+                - generic [ref=e176]: D16–D28 · 库尔勒→北京
+              - generic [ref=e179]:
+                - generic [ref=e180]: 6,355 km
+                - text: 49.4%
+        - article [ref=e181]:
+          - generic [ref=e183]:
+            - generic [ref=e184]: NIGHT MIX
+            - heading "27个夜晚怎么住" [level=3] [ref=e185]
+          - generic [ref=e186]:
+            - img "18晚酒店民宿、9晚床车" [ref=e187]:
+              - generic [ref=e188]:
+                - generic [ref=e189]: "27"
+                - generic [ref=e190]: 晚落脚
+            - generic [ref=e191]:
+              - generic [ref=e192]:
+                - generic [ref=e194]: 18晚
+                - text: 酒店 / 民宿
+              - generic [ref=e195]:
+                - generic [ref=e197]: 9晚
+                - text: 管理点床车
+              - generic [ref=e198]:
+                - generic [ref=e200]: D28
+                - text: 回到北京
+        - article [ref=e201]:
+          - generic [ref=e202]:
+            - generic [ref=e203]:
+              - generic [ref=e204]: DAILY LOAD
+              - heading "每日驾驶强度脉冲" [level=3] [ref=e205]
+            - generic [ref=e206]: 700km以上为高负荷
+          - generic "28天逐日里程趋势图" [ref=e207]:
+            - img [ref=e208]:
+              - generic [ref=e211]: D1 · 810
+              - generic [ref=e214]: D5 · 810
+              - generic [ref=e217]: D28 · 1180
+              - generic [ref=e220]: D1
+              - generic [ref=e221]: D14
+              - generic [ref=e222]: D28
+      - region "28天总览行程条" [ref=e223]:
+        - generic [ref=e224]:
+          - generic [ref=e225]:
+            - text: 28天可点击行程条
+            - generic [ref=e229]: 竖条高度＝当天里程强度 · 点日块跳到当天
+          - list "图例" [ref=e230]:
+            - listitem [ref=e231]: 赶路
+            - listitem [ref=e233]: 玩乐
+            - listitem [ref=e235]: 休整
+            - listitem [ref=e237]: 酒店
+            - listitem [ref=e241]: 床车
+        - generic [ref=e247]:
+          - generic [ref=e248]:
+            - generic [ref=e249]:
+              - generic [ref=e250]: 去程
+              - generic [ref=e251]: D1–D6 · 北京→木垒
+            - generic [ref=e252]:
+              - button "第1天，北京到临河，里程810公里，赶路，住酒店" [ref=e253] [cursor=pointer]:
+                - generic [ref=e254]:
+                  - emphasis [ref=e255]: DAY
+                  - text: "1"
+                - generic [ref=e258]:
+                  - text: "810"
+                  - emphasis [ref=e259]: km
+                - generic [ref=e260]: 北京→临河
+              - button "第2天，临河到额济纳，里程580公里，赶路，住酒店" [ref=e264] [cursor=pointer]:
+                - generic [ref=e265]:
+                  - emphasis [ref=e266]: DAY
+                  - text: "2"
+                - generic [ref=e269]:
+                  - text: "580"
+                  - emphasis [ref=e270]: km
+                - generic [ref=e271]: 临河→额济纳
+              - button "第3天，额济纳到敦煌，里程700公里，赶路，住酒店" [ref=e275] [cursor=pointer]:
+                - generic [ref=e276]:
+                  - emphasis [ref=e277]: DAY
+                  - text: "3"
+                - generic [ref=e280]:
+                  - text: "700"
+                  - emphasis [ref=e281]: km
+                - generic [ref=e282]: 额济纳→敦煌
+              - button "第4天，敦煌到哈密，里程380公里，玩乐，住酒店" [ref=e286] [cursor=pointer]:
+                - generic [ref=e287]:
+                  - emphasis [ref=e288]: DAY
+                  - text: "4"
+                - generic [ref=e291]:
+                  - text: "380"
+                  - emphasis [ref=e292]: km
+                - generic [ref=e293]: 敦煌→哈密
+              - button "第5天，哈密到木垒，里程810公里，玩乐，住酒店，注意：木垒住宿待电话确认" [ref=e297] [cursor=pointer]:
+                - generic [ref=e298]: "!"
+                - generic [ref=e299]:
+                  - emphasis [ref=e300]: DAY
+                  - text: "5"
+                - generic [ref=e303]:
+                  - text: "810"
+                  - emphasis [ref=e304]: km
+                - generic [ref=e305]: 哈密→木垒
+              - button "第6天，木垒到阿勒泰，里程690公里，玩乐，住酒店" [ref=e309] [cursor=pointer]:
+                - generic [ref=e310]:
+                  - emphasis [ref=e311]: DAY
+                  - text: "6"
+                - generic [ref=e314]:
+                  - text: "690"
+                  - emphasis [ref=e315]: km
+                - generic [ref=e316]: 木垒→阿勒泰
+          - generic [ref=e320]:
+            - generic [ref=e321]:
+              - generic [ref=e322]: 大北疆环线
+              - generic [ref=e323]: D7–D15 · 阿勒泰→乌鲁木齐
+            - generic [ref=e324]:
+              - button "第7天，阿勒泰到禾木，里程300公里，玩乐，住酒店" [ref=e325] [cursor=pointer]:
+                - generic [ref=e326]:
+                  - emphasis [ref=e327]: DAY
+                  - text: "7"
+                - generic [ref=e330]:
+                  - text: "300"
+                  - emphasis [ref=e331]: km
+                - generic [ref=e332]: 阿勒泰→禾木
+              - button "第8天，禾木到乌尔禾，里程410公里，玩乐，住酒店" [ref=e336] [cursor=pointer]:
+                - generic [ref=e337]:
+                  - emphasis [ref=e338]: DAY
+                  - text: "8"
+                - generic [ref=e341]:
+                  - text: "410"
+                  - emphasis [ref=e342]: km
+                - generic [ref=e343]: 禾木→乌尔禾
+              - button "第9天，乌尔禾到赛里木湖，里程420公里，赶路，住酒店" [ref=e347] [cursor=pointer]:
+                - generic [ref=e348]:
+                  - emphasis [ref=e349]: DAY
+                  - text: "9"
+                - generic [ref=e352]:
+                  - text: "420"
+                  - emphasis [ref=e353]: km
+                - generic [ref=e354]: 乌尔禾→赛里木湖
+              - button "第10天，赛湖到伊宁，里程170公里，玩乐，住酒店" [ref=e358] [cursor=pointer]:
+                - generic [ref=e359]:
+                  - emphasis [ref=e360]: DAY
+                  - text: "10"
+                - generic [ref=e363]:
+                  - text: "170"
+                  - emphasis [ref=e364]: km
+                - generic [ref=e365]: 赛湖→伊宁
+              - button "第11天，伊宁到那拉提，里程350公里，玩乐，住酒店" [ref=e369] [cursor=pointer]:
+                - generic [ref=e370]:
+                  - emphasis [ref=e371]: DAY
+                  - text: "11"
+                - generic [ref=e374]:
+                  - text: "350"
+                  - emphasis [ref=e375]: km
+                - generic [ref=e376]: 伊宁→那拉提
+              - button "第12天，那拉提到深度游，里程80公里，玩乐，住酒店" [ref=e380] [cursor=pointer]:
+                - generic [ref=e381]:
+                  - emphasis [ref=e382]: DAY
+                  - text: "12"
+                - generic [ref=e385]:
+                  - text: "80"
+                  - emphasis [ref=e386]: km
+                - generic [ref=e387]: 那拉提→深度游
+              - button "第13天，那拉提到唐布拉，里程180公里，玩乐，住酒店" [ref=e391] [cursor=pointer]:
+                - generic [ref=e392]:
+                  - emphasis [ref=e393]: DAY
+                  - text: "13"
+                - generic [ref=e396]:
+                  - text: "180"
+                  - emphasis [ref=e397]: km
+                - generic [ref=e398]: 那拉提→唐布拉
+              - button "第14天，唐布拉到乌鲁木齐，里程520公里，玩乐，住酒店" [ref=e402] [cursor=pointer]:
+                - generic [ref=e403]:
+                  - emphasis [ref=e404]: DAY
+                  - text: "14"
+                - generic [ref=e407]:
+                  - text: "520"
+                  - emphasis [ref=e408]: km
+                - generic [ref=e409]: 唐布拉→乌鲁木齐
+              - button "第15天，乌鲁木齐到休整，里程100公里，休整，住酒店" [ref=e413] [cursor=pointer]:
+                - generic [ref=e414]:
+                  - emphasis [ref=e415]: DAY
+                  - text: "15"
+                - generic [ref=e418]:
+                  - text: "100"
+                  - emphasis [ref=e419]: km
+                - generic [ref=e420]: 乌鲁木齐→休整
+          - generic [ref=e424]:
+            - generic [ref=e425]:
+              - generic [ref=e426]: 返程
+              - generic [ref=e427]: D16–D28 · 库尔勒→北京
+            - generic [ref=e428]:
+              - button "第16天，送机到库尔勒，里程430公里，赶路，住床车" [ref=e429] [cursor=pointer]:
+                - generic [ref=e430]:
+                  - emphasis [ref=e431]: DAY
+                  - text: "16"
+                - generic [ref=e434]:
+                  - text: "430"
+                  - emphasis [ref=e435]: km
+                - generic [ref=e436]: 送机→库尔勒
+              - button "第17天，库尔勒到若羌，里程430公里，赶路，住床车" [ref=e441] [cursor=pointer]:
+                - generic [ref=e442]:
+                  - emphasis [ref=e443]: DAY
+                  - text: "17"
+                - generic [ref=e446]:
+                  - text: "430"
+                  - emphasis [ref=e447]: km
+                - generic [ref=e448]: 库尔勒→若羌
+              - button "第18天，若羌到茫崖，里程440公里，赶路，住床车" [ref=e453] [cursor=pointer]:
+                - generic [ref=e454]:
+                  - emphasis [ref=e455]: DAY
+                  - text: "18"
+                - generic [ref=e458]:
+                  - text: "440"
+                  - emphasis [ref=e459]: km
+                - generic [ref=e460]: 若羌→茫崖
+              - button "第19天，茫崖到格尔木，里程455公里，赶路，住床车" [ref=e465] [cursor=pointer]:
+                - generic [ref=e466]:
+                  - emphasis [ref=e467]: DAY
+                  - text: "19"
+                - generic [ref=e470]:
+                  - text: "455"
+                  - emphasis [ref=e471]: km
+                - generic [ref=e472]: 茫崖→格尔木
+              - button "第20天，格尔木到茶卡，里程480公里，赶路，住床车" [ref=e477] [cursor=pointer]:
+                - generic [ref=e478]:
+                  - emphasis [ref=e479]: DAY
+                  - text: "20"
+                - generic [ref=e482]:
+                  - text: "480"
+                  - emphasis [ref=e483]: km
+                - generic [ref=e484]: 格尔木→茶卡
+              - button "第21天，茶卡到西宁，里程310公里，玩乐，住酒店" [ref=e489] [cursor=pointer]:
+                - generic [ref=e490]:
+                  - emphasis [ref=e491]: DAY
+                  - text: "21"
+                - generic [ref=e494]:
+                  - text: "310"
+                  - emphasis [ref=e495]: km
+                - generic [ref=e496]: 茶卡→西宁
+              - button "第22天，西宁到陇南，里程730公里，赶路，住床车" [ref=e500] [cursor=pointer]:
+                - generic [ref=e501]:
+                  - emphasis [ref=e502]: DAY
+                  - text: "22"
+                - generic [ref=e505]:
+                  - text: "730"
+                  - emphasis [ref=e506]: km
+                - generic [ref=e507]: 西宁→陇南
+              - button "第23天，陇南到成都，里程500公里，玩乐，住酒店" [ref=e512] [cursor=pointer]:
+                - generic [ref=e513]:
+                  - emphasis [ref=e514]: DAY
+                  - text: "23"
+                - generic [ref=e517]:
+                  - text: "500"
+                  - emphasis [ref=e518]: km
+                - generic [ref=e519]: 陇南→成都
+              - button "第24天，成都到会友，里程100公里，休整，住床车" [ref=e523] [cursor=pointer]:
+                - generic [ref=e524]:
+                  - emphasis [ref=e525]: DAY
+                  - text: "24"
+                - generic [ref=e528]:
+                  - text: "100"
+                  - emphasis [ref=e529]: km
+                - generic [ref=e530]: 成都→会友
+              - button "第25天，成都到恩施，里程680公里，赶路，住床车" [ref=e535] [cursor=pointer]:
+                - generic [ref=e536]:
+                  - emphasis [ref=e537]: DAY
+                  - text: "25"
+                - generic [ref=e540]:
+                  - text: "680"
+                  - emphasis [ref=e541]: km
+                - generic [ref=e542]: 成都→恩施
+              - button "第26天，恩施到武汉，里程520公里，玩乐，住酒店" [ref=e547] [cursor=pointer]:
+                - generic [ref=e548]:
+                  - emphasis [ref=e549]: DAY
+                  - text: "26"
+                - generic [ref=e552]:
+                  - text: "520"
+                  - emphasis [ref=e553]: km
+                - generic [ref=e554]: 恩施→武汉
+              - button "第27天，武汉到会友，里程100公里，休整，住床车" [ref=e558] [cursor=pointer]:
+                - generic [ref=e559]:
+                  - emphasis [ref=e560]: DAY
+                  - text: "27"
+                - generic [ref=e563]:
+                  - text: "100"
+                  - emphasis [ref=e564]: km
+                - generic [ref=e565]: 武汉→会友
+              - button "第28天，武汉到北京，里程1180公里，赶路，住到家" [ref=e570] [cursor=pointer]:
+                - generic [ref=e571]:
+                  - emphasis [ref=e572]: DAY
+                  - text: "28"
+                - generic [ref=e575]:
+                  - text: "1180"
+                  - emphasis [ref=e576]: km
+                - generic [ref=e577]: 武汉→北京
+      - generic [ref=e582]:
+        - region [ref=e583]:
+          - generic [ref=e584]:
+            - generic [ref=e585]:
+              - generic [ref=e586]: ROUTE ATLAS
+              - heading "全程路线图" [level=3] [ref=e587]
+            - generic [ref=e588]: 点击节点直达当天
+          - generic [ref=e589]:
+            - generic [ref=e590]:
+              - generic [ref=e591]: 去程
+              - generic [ref=e593]: 大北疆环线
+              - generic [ref=e595]: 返程
+            - img "北京至大北疆自驾总览路线示意图" [ref=e598]:
+              - generic [ref=e599]: 北
+              - button "查看第1天:北京" [ref=e608] [cursor=pointer]:
+                - generic [ref=e611]: 北京D1
+              - button "查看第1天:临河" [ref=e612] [cursor=pointer]:
+                - generic [ref=e614]: 临河D1
+              - button "查看第2天:额济纳" [ref=e615] [cursor=pointer]:
+                - generic [ref=e617]: 额济纳D2
+              - button "查看第3天:敦煌" [ref=e618] [cursor=pointer]:
+                - generic [ref=e620]: 敦煌D3
+              - button "查看第4天:哈密" [ref=e621] [cursor=pointer]:
+                - generic [ref=e624]: 哈密D4
+              - button "查看第5天:木垒" [ref=e625] [cursor=pointer]:
+                - generic [ref=e627]: 木垒D5
+              - button "查看第6天:阿勒泰" [ref=e628] [cursor=pointer]:
+                - generic [ref=e630]: 阿勒泰D6
+              - button "查看第7天:禾木" [ref=e631] [cursor=pointer]:
+                - generic [ref=e633]: 禾木D7
+              - button "查看第8天:乌尔禾" [ref=e634] [cursor=pointer]:
+                - generic [ref=e636]: 乌尔禾D8
+              - button "查看第9天:赛里木湖" [ref=e637] [cursor=pointer]:
+                - generic [ref=e639]: 赛里木湖D9
+              - button "查看第10天:伊宁" [ref=e640] [cursor=pointer]:
+                - generic [ref=e642]: 伊宁D10
+              - button "查看第11天:那拉提" [ref=e643] [cursor=pointer]:
+                - generic [ref=e645]: 那拉提D11–D12
+              - button "查看第13天:唐布拉" [ref=e646] [cursor=pointer]:
+                - generic [ref=e648]: 唐布拉D13
+              - button "查看第14天:独库北段" [ref=e649] [cursor=pointer]:
+                - generic [ref=e651]: 独库北段D14
+              - button "查看第14天:乌鲁木齐" [ref=e652] [cursor=pointer]:
+                - generic [ref=e655]: 乌鲁木齐D14
+              - button "查看第16天:库尔勒" [ref=e656] [cursor=pointer]:
+                - generic [ref=e658]: 库尔勒D16
+              - button "查看第17天:若羌" [ref=e659] [cursor=pointer]:
+                - generic [ref=e661]: 若羌D17
+              - button "查看第18天:茫崖" [ref=e662] [cursor=pointer]:
+                - generic [ref=e664]: 茫崖D18
+              - button "查看第19天:格尔木" [ref=e665] [cursor=pointer]:
+                - generic [ref=e667]: 格尔木D19
+              - button "查看第20天:茶卡" [ref=e668] [cursor=pointer]:
+                - generic [ref=e670]: 茶卡D20
+              - button "查看第21天:西宁" [ref=e671] [cursor=pointer]:
+                - generic [ref=e673]: 西宁D21
+              - button "查看第22天:陇南" [ref=e674] [cursor=pointer]:
+                - generic [ref=e676]: 陇南D22
+              - button "查看第23天:成都" [ref=e677] [cursor=pointer]:
+                - generic [ref=e679]: 成都D23–D24
+              - button "查看第25天:恩施" [ref=e680] [cursor=pointer]:
+                - generic [ref=e682]: 恩施D25
+              - button "查看第26天:武汉" [ref=e683] [cursor=pointer]:
+                - generic [ref=e685]: 武汉D26–D27
+              - generic [ref=e686]: 示意图（非精确地理）· 去程—大北疆环线—返程三段，节点按顺序连接
+        - region [ref=e687]:
+          - generic [ref=e688]:
+            - heading "出发前关键风险 高紧迫项直接展开 · 中紧迫项按需查看" [level=3] [ref=e689]:
+              - text: 出发前关键风险
+              - generic [ref=e693]: 高紧迫项直接展开 · 中紧迫项按需查看
+            - button "打开确认中心，查看并逐项处理" [ref=e694] [cursor=pointer]: 打开确认中心 →
+          - group "风险统计" [ref=e695]:
+            - generic [ref=e696]:
+              - generic [ref=e697]: "14"
+              - text: 关键待确认项
+            - generic [ref=e698]:
+              - generic [ref=e699]: "6"
+              - text: 高紧迫（红）
+            - generic [ref=e700]:
+              - generic [ref=e701]: "8"
+              - text: 中紧迫（琥珀）
+            - generic [ref=e702]:
+              - generic [ref=e703]: 出发前2–3周
+              - text: 最早截止 · D5 木垒/奇台两只边牧住宿
+          - heading "高紧迫度 · 出发前必须锁定 （6 项）" [level=4] [ref=e704]:
+            - text: 高紧迫度 · 出发前必须锁定
+            - generic [ref=e706]: （6 项）
+          - list "高紧迫度 · 出发前必须锁定" [ref=e707]:
+            - listitem [ref=e708]:
+              - generic [ref=e709]:
+                - generic [ref=e710]: DAY
+                - generic [ref=e711]: D5
+              - generic [ref=e712]:
+                - generic [ref=e713]:
+                  - generic [ref=e714]: 高紧迫
+                  - generic [ref=e715]: 住宿
+                  - generic [ref=e718]: D5 · 木垒/奇台两只边牧住宿
+                - generic [ref=e719]: 截止：出发前2–3周
+                - paragraph [ref=e720]: 小县城线上查不到能收两只中大型犬的酒店，逐家电话锁定，不能确认就调整过夜点（本段最大不确定项）
+            - listitem [ref=e721]:
+              - generic [ref=e722]:
+                - generic [ref=e723]: DAY
+                - generic [ref=e724]: D18
+              - generic [ref=e725]:
+                - generic [ref=e726]:
+                  - generic [ref=e727]: 高紧迫
+                  - generic [ref=e728]: 道路充电
+                  - generic [ref=e731]: D18 · 花土沟双站补能
+                - generic [ref=e732]: 截止：出发前 / 当天
+                - paragraph [ref=e733]: 若羌95–100%出发，依吞布拉克—米兰无服务区，花土沟至少两处快充可App确认才进长段
+            - listitem [ref=e734]:
+              - generic [ref=e735]:
+                - generic [ref=e736]: DAY
+                - generic [ref=e737]: D14
+              - generic [ref=e738]:
+                - generic [ref=e739]:
+                  - generic [ref=e740]: 高紧迫
+                  - generic [ref=e741]: 道路充电
+                  - generic [ref=e744]: D14 · 独库北段预约 + G577西线
+                - generic [ref=e745]: 截止：提前7天预约 + D13晚
+                - paragraph [ref=e746]: 乔尔玛入口08:00–10:00预约；封路走G577西线，D13晚必须确认G577是否通车
+            - listitem [ref=e747]:
+              - generic [ref=e748]:
+                - generic [ref=e749]: DAY
+                - generic [ref=e750]: D27
+              - generic [ref=e751]:
+                - generic [ref=e752]:
+                  - generic [ref=e753]: 高紧迫
+                  - generic [ref=e754]: 证件天气
+                  - generic [ref=e758]: D27 · 武汉两犬肩高≤61cm
+                - generic [ref=e759]: 截止：进城前实测
+                - paragraph [ref=e760]: 任一超61cm取消武汉行政区携犬活动
+            - listitem [ref=e761]:
+              - generic [ref=e762]:
+                - generic [ref=e763]: DAY
+                - generic [ref=e764]: D19
+              - generic [ref=e765]:
+                - generic [ref=e766]:
+                  - generic [ref=e767]: 高紧迫
+                  - generic [ref=e768]: 道路充电
+                  - generic [ref=e771]: D19 · S318开放＋风沙＋格尔木三终端
+                - generic [ref=e772]: 截止：前一晚
+                - paragraph [ref=e773]: 任一不闭环留花土沟，不回切G315水上雅丹施工长廊
+            - listitem [ref=e774]:
+              - generic [ref=e775]:
+                - generic [ref=e776]: DAY
+                - generic [ref=e777]: D9–D10
+              - generic [ref=e778]:
+                - generic [ref=e779]:
+                  - generic [ref=e780]: 高紧迫
+                  - generic [ref=e781]: 景区
+                  - generic [ref=e784]: D9–D10 · 赛里木湖自驾套票预约
+                - generic [ref=e785]: 截止：提前3–7天 · 每日10:00放票
+                - paragraph [ref=e786]: 小程序「一部手机游赛湖」，旺季常约满、未约会被劝返；东门进南门出
+          - group [ref=e787]:
+            - generic "展开 8 项中紧迫事项 ＋" [ref=e788] [cursor=pointer]
+      - heading "这次规划的五条底层逻辑" [level=2] [ref=e789]
+      - generic [ref=e792]:
+        - paragraph [ref=e793]: 1. 「狗全程同行，交通方式逐项确认」——公共道路仍优先；禾木因用户已向相关方确认两只边牧可以带入村，恢复为正式行程。私家车停景区外，人与狗乘民宿提供的可载犬出租车进村（区间车为备选），执行前必须保存确认凭证并与司机落实接送时间和乘坐方式。
+        - paragraph [ref=e794]: 2. 补能结论必须分证据等级——城市超充可以用运营商页面确认，但实时排队、故障和临时关闭只能在车机或运营商App核对。G7临白段与S240/S245都按风险路段管理：前者逐站复核，后者未找到主管部门或运营商对沿线充电投运的可靠确认，因此必须在敦煌完成双站备选和满电门槛后再进入。
+        - paragraph [ref=e795]: 3. 8月戈壁段以避热和合法停车为先——大海道正午以车内休整为主；S21只在服务区或驶出高速后的合法地点停车，不在应急车道拍照。狗的户外时间尽量放在早10点前、晚7点后。
+        - paragraph [ref=e796]: 4. 每晚落脚点都要电话二次确认——酒店平台「宠物友好」标签 ≠ 收两只边牧，停车免费也 ≠ 允许睡车。D1–D15与西宁/成都/武汉三晚酒店确认两只边牧、停车和晚到保留；其余9个床车夜另确认普通小客车过夜、厕所、管理、夜间出入和最近快充。未确认就改住正规住宿。
+        - paragraph [ref=e797]: 5. 延误吃景点、不吃住宿序列——28天住宿日期咬死、没有整段缓冲：所有酒店尽量订可免费取消，妻子D16机票买可改签；任何一天落后就砍当天景点保住宿，D12（那拉提）、D15（乌鲁木齐）、D24（成都）、D27（武汉）四个轻量日可临时压缩用来追回进度；D28不强求当日到家。
+      - heading "为狗设计的核心取舍" [level=2] [ref=e798]
+      - list [ref=e802]:
+        - listitem [ref=e803]: 🐕 狗不去＝我们不去：喀纳斯主湖、天池、巴音布鲁克等禁宠景区全部放弃（归档在「不得不错过」），不做任何寄养妥协。
+        - listitem [ref=e804]: 🛣️ 玩公路而非景区：S240/S245、大海道哈密端、S21、唐布拉百里画廊、独库北段——这些是狗能同行、又出片的公开道路景观；每段的行/充/停细节看逐日卡片。
+        - listitem [ref=e805]: 🎫 条件模块看确认：禾木、赛里木湖、库尔德宁、那拉提购票区都以「两只边牧获准同行」为前提，未确认即改公开道路替代；仙女湖不是驾车直达点，默认不安排骑马/陡坡徒步。
+        - listitem [ref=e806]: 🌡️ 避热为先：8月戈壁/吐鲁番酷热，去阿勒泰走G7北线绕开吐鲁番；狗户外只放早10点前、晚7点后，正午车内休整。
+      - heading "全程道路风险对照" [level=2] [ref=e807]
+      - paragraph [ref=e812]: 按“货车暴露、施工/路面、横风沙尘、补能与替代价值”逐段对照。货车多不自动等于换路：分隔式高速通常仍比施工中的普通道路可控；只有替代线能同时降低多个风险时才改。
+      - table [ref=e814]:
+        - rowgroup [ref=e815]:
+          - row [ref=e816]:
+            - columnheader "路段" [ref=e817]
+            - columnheader "位置" [ref=e818]
+            - columnheader "要点" [ref=e819]
+            - columnheader "官方依据 / 导航" [ref=e820]
+        - rowgroup [ref=e821]:
+          - row [ref=e822]:
+            - cell "G6/G7北京—额济纳（D1–D2）" [ref=e823]
+            - cell "北京—临河—乌力吉—额济纳" [ref=e824]
+            - cell "中高 · 保留 G7是煤炭等资源运输走廊，近期乌力吉有百吨级货车争议，不能再写“货车少”；但G331甘新边界段同样大车密集且服务更弱。保留G6/G7，避开大车盲区并用服务区强制休息" [ref=e825]:
+              - generic [ref=e826]: 中高 · 保留
+              - text: G7是煤炭等资源运输走廊，近期乌力吉有百吨级货车争议，不能再写“货车少”；但G331甘新边界段同样大车密集且服务更弱。保留G6/G7，避开大车盲区并用服务区强制休息
+            - cell [ref=e827]:
+              - link "乌力吉货车报道" [ref=e828] [cursor=pointer]:
+                - /url: https://news.sina.com.cn/c/2026-06-28/doc-iniexucy3164498.shtml
+              - link "新疆暑期路网提示" [ref=e829] [cursor=pointer]:
+                - /url: https://wlmq.bendibao.com/xiuxian/2026525/68101.shtm
+          - row [ref=e830]:
+            - cell "G7—G215—G30短段（D3）" [ref=e831]
+            - cell "额济纳—马鬃山—瓜州—敦煌" [ref=e832]
+            - cell "已优化 G215一级公路把G7与G30直接连接，G30只约72km；避免金塔、酒泉穿城。风险转为马鬃山称重排队和资源货车，出发前查路网；封闭才退回酒泉旧线" [ref=e833]:
+              - generic [ref=e834]: 已优化
+              - text: G215一级公路把G7与G30直接连接，G30只约72km；避免金塔、酒泉穿城。风险转为马鬃山称重排队和资源货车，出发前查路网；封闭才退回酒泉旧线
+            - cell [ref=e835]:
+              - link "G215项目依据" [ref=e836] [cursor=pointer]:
+                - /url: https://www.gsei.com.cn/html/1336/2023-03-21/content-419677.html
+              - link "马鬃山拥堵治理" [ref=e837] [cursor=pointer]:
+                - /url: https://gs.people.com.cn/n2/2025/0705/c183348-41282338.html
+          - row [ref=e838]:
+            - cell "S240/S245（D4）" [ref=e839]
+            - cell "敦煌—哈密" [ref=e840]
+            - cell "中 · 保留经典段 2026近期车主反馈铺装良好、双向两车道、限速80；官方数据中客车占总交通量较低，说明货运属性明显。只在正规节点停车，面对来车不压中心线超越" [ref=e841]:
+              - generic [ref=e842]: 中 · 保留经典段
+              - text: 2026近期车主反馈铺装良好、双向两车道、限速80；官方数据中客车占总交通量较低，说明货运属性明显。只在正规节点停车，面对来车不压中心线超越
+            - cell [ref=e843]:
+              - link "2026交通量与保通" [ref=e844] [cursor=pointer]:
+                - /url: https://www.xj.chinanews.com.cn/dizhou/2026-05-11/detail-ihfemyzy4216855.shtml
+              - link "近期车主路况" [ref=e845] [cursor=pointer]:
+                - /url: https://www.sina.cn/news/detail/5315045328161485.html
+          - row [ref=e846]:
+            - cell "S21阿乌高速（D6）" [ref=e847]
+            - cell "乌鲁木齐北郊至阿勒泰地区，全长约342.538km" [ref=e848]
+            - cell "A 官方 官方明确五家渠、克拉美丽、吉利湖服务区配置充电设施；黄花沟只作休息节点。高速禁止在应急车道或路边停车拍照" [ref=e849]:
+              - generic [ref=e850]: A 官方
+              - text: 官方明确五家渠、克拉美丽、吉利湖服务区配置充电设施；黄花沟只作休息节点。高速禁止在应急车道或路边停车拍照
+            - cell [ref=e851]:
+              - link "服务区充电依据" [ref=e852] [cursor=pointer]:
+                - /url: https://jtyst.xinjiang.gov.cn/xjjtysj/jyta/202109/f846ce677d624c4dba1d8b8cdbebf56d.shtml
+              - link "导航·克拉美丽" [ref=e853] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=S21克拉美丽服务区
+          - row [ref=e854]:
+            - cell "G30奎屯—赛湖/乌市（D9/D14）" [ref=e855]
+            - cell "北疆东西向主干线" [ref=e856]
+            - cell "中高 · 保留 货车与旅游车混行，奎屯—乌市10:00–14:00、17:00–21:00易拥堵；没有等价的高等级替代线。D9早出，D14从独山子接入后只在服务区停" [ref=e857]:
+              - generic [ref=e858]: 中高 · 保留
+              - text: 货车与旅游车混行，奎屯—乌市10:00–14:00、17:00–21:00易拥堵；没有等价的高等级替代线。D9早出，D14从独山子接入后只在服务区停
+            - cell [ref=e859]:
+              - link "2026暑期拥堵指南" [ref=e860] [cursor=pointer]:
+                - /url: https://wlmq.bendibao.com/xiuxian/2026525/68101.shtm
+          - row [ref=e861]:
+            - cell "那拉提 / 独库北段（D12/D14）" [ref=e862]
+            - cell "新源县那拉提镇、G217乔尔玛—独山子段" [ref=e863]
+            - cell "A 道路与预约 那拉提自驾票仅在“智游那拉提”线上预约；独库北段按乔尔玛入口预约时段执行（详见门票与预约速查）；仙女湖不能按车辆直达安排" [ref=e864]:
+              - generic [ref=e865]: A 道路与预约
+              - text: 那拉提自驾票仅在“智游那拉提”线上预约；独库北段按乔尔玛入口预约时段执行（详见门票与预约速查）；仙女湖不能按车辆直达安排
+            - cell [ref=e866]:
+              - link "那拉提自驾规则" [ref=e867] [cursor=pointer]:
+                - /url: https://www.xjyl.gov.cn/xjylz/c112876/202605/f30d3b1beb464dd59228d130ee56d423.shtml
+              - link "独库正式公告" [ref=e868] [cursor=pointer]:
+                - /url: https://gat.xinjiang.gov.cn/gat/tzgg/202607/d75de3d68abb43feb47d0defc201411e.shtml
+              - link "导航·乔尔玛" [ref=e869] [cursor=pointer]:
+                - /url: https://uri.amap.com/search?keyword=乔尔玛
+          - row [ref=e870]:
+            - cell "G0711/G0612（D16–D18）" [ref=e871]
+            - cell "乌鲁木齐—库尔勒—若羌—茫崖" [ref=e872]
+            - cell "中高 · 保留 天山胜利隧道群、连续弯道、补给稀疏；若羌以东还有资源货运、横风和沙尘。高等级主线仍优于G218改扩建/普通国道替代，严格执行95%出发与城市终端三备" [ref=e873]:
+              - generic [ref=e874]: 中高 · 保留
+              - text: 天山胜利隧道群、连续弯道、补给稀疏；若羌以东还有资源货运、横风和沙尘。高等级主线仍优于G218改扩建/普通国道替代，严格执行95%出发与城市终端三备
+            - cell [ref=e875]:
+              - link "G0711通行提示" [ref=e876] [cursor=pointer]:
+                - /url: https://wlmq.bendibao.com/xiuxian/2026525/68101.shtm
+          - row [ref=e877]:
+            - cell "G315水上雅丹长廊（原D19）" [ref=e878]
+            - cell "老茫崖—西台/东台—小柴旦" [ref=e879]
+            - cell "退出默认路线 近400km改扩建处于四年工期内，官方明确“长距离、高交通维护风险”；近期车主反馈与中途补能不确定叠加，不再为水上雅丹承担单人长日风险" [ref=e880]:
+              - generic [ref=e881]: 退出默认路线
+              - text: 近400km改扩建处于四年工期内，官方明确“长距离、高交通维护风险”；近期车主反馈与中途补能不确定叠加，不再为水上雅丹承担单人长日风险
+            - cell [ref=e882]:
+              - link "G315项目进展" [ref=e883] [cursor=pointer]:
+                - /url: https://jtyst.qinghai.gov.cn/jtyst/2026-06/04/article_2026060410312761689.html
+          - row [ref=e884]:
+            - cell "S318＋G6（D19–D21）" [ref=e885]
+            - cell "花土沟—格尔木—茶卡—西宁" [ref=e886]
+            - cell "替代主线 S318仍有资源货车，但为一级公路，6月官方路况仅乌图美仁附近2km施工导流；接G6后服务区充电覆盖更完整。新增茶卡一晚，避免高原730km连轴转" [ref=e887]:
+              - generic [ref=e888]: 替代主线
+              - text: S318仍有资源货车，但为一级公路，6月官方路况仅乌图美仁附近2km施工导流；接G6后服务区充电覆盖更完整。新增茶卡一晚，避免高原730km连轴转
+            - cell [ref=e889]:
+              - link "S318官方路况" [ref=e890] [cursor=pointer]:
+                - /url: https://jtyst.qinghai.gov.cn/jtyst/2026-06/15/article_2026061509121890081.html
+              - link "G6充电覆盖" [ref=e891] [cursor=pointer]:
+                - /url: https://www.cnr.cn/qhfw/jjqh/20231226/t20231226_526534340.shtml
+          - row [ref=e892]:
+            - cell "G75/G5（D22–D23）" [ref=e893]
+            - cell "西宁—陇南—成都" [ref=e894]
+            - cell "中高 · 保留 山区弯道、隧道和大车多，但高速服务区与城市退出点完整；不切无补给低等级山路，临洮/岷县/宕昌保留疲劳退出" [ref=e895]:
+              - generic [ref=e896]: 中高 · 保留
+              - text: 山区弯道、隧道和大车多，但高速服务区与城市退出点完整；不切无补给低等级山路，临洮/岷县/宕昌保留疲劳退出
+            - cell [ref=e897]:
+              - link "甘肃服务区名录" [ref=e898] [cursor=pointer]:
+                - /url: https://jtys.gansu.gov.cn/jtys/c106393/202110/1880956/files/91c36695680d4c87b001a8243939674c.pdf
+          - row [ref=e899]:
+            - cell "G5013/G5021/G50（D25–D26）" [ref=e900]
+            - cell "成都—重庆—恩施—武汉" [ref=e901]
+            - cell "暑期改线 G42谭家沟—二洞桥在出行期全封闭，改走渝蓉—石渝。G50宜昌—恩施正在做319.5km安全韧性提升，仍需防施工单道、货车、隧道与团雾" [ref=e902]:
+              - generic [ref=e903]: 暑期改线
+              - text: G42谭家沟—二洞桥在出行期全封闭，改走渝蓉—石渝。G50宜昌—恩施正在做319.5km安全韧性提升，仍需防施工单道、货车、隧道与团雾
+            - cell [ref=e904]:
+              - link "G42封闭通告" [ref=e905] [cursor=pointer]:
+                - /url: https://www.sohu.com/a/1035554569_121106884
+              - link "G50提升工程" [ref=e906] [cursor=pointer]:
+                - /url: https://www.hbggzyfwpt.cn/jyxx/jsgcXmxxDetail2?guid=e8c96703-e750-4a51-9fc2-79f85e5354cd
+          - row [ref=e907]:
+            - cell "G4武汉—北京（D28）" [ref=e908]
+            - cell "武汉—郑州—石家庄—北京" [ref=e909]
+            - cell "高负荷 · 保留 客货混行但全程高速、补能密集，没有明显更优替代。三次正式充电兼休息；石家庄19:00疲劳门槛高于“当天必须回家”" [ref=e910]:
+              - generic [ref=e911]: 高负荷 · 保留
+              - text: 客货混行但全程高速、补能密集，没有明显更优替代。三次正式充电兼休息；石家庄19:00疲劳门槛高于“当天必须回家”
+            - cell [ref=e912]:
+              - link "河南服务区充电覆盖" [ref=e913] [cursor=pointer]:
+                - /url: https://jtyst.henan.gov.cn/2024/03-05/2957528.html
+          - row [ref=e914]:
+            - cell "🗄️ 喀纳斯、天山天池等禁宠景区已移出行程，位置与票价信息归档在「不得不错过」页" [ref=e915]
+      - heading "门票与预约速查" [level=2] [ref=e916]
+      - paragraph [ref=e919]: 很多点是「现场买票即可」，但有5 个必须提前线上预约，约满或未约会被劝返/罚款——先看下面的预约时间线，再看逐点门票。宠物准入除禾木外多数景区无官方明文，需另行电话确认。
+      - generic [ref=e920]:
+        - text: ⏰ 必须提前预约（有抢票窗口 / 罚则）：
+        - list [ref=e921]:
+          - listitem [ref=e922]: D9–D10 赛里木湖自驾套票：提前 3–7 天，旺季常约满，每日 10:00 放票准点抢；小程序「一部手机游赛湖」/公众号「赛里木湖旅游」，实名分时；未约会被劝返。
+          - listitem [ref=e923]: D12 那拉提自驾：提前最多 7 日（每日 0:00–0:30 停票外可约）；小程序「智游那拉提」，线下窗口 2026 已全关；7 座及以下、定制自驾驾龄满 3 年。
+          - listitem [ref=e924]: D14 独库公路北段：提前 1–7 天选时段；小程序「游新疆一码游」/公众号「平安天山·新疆交警」；免费，未约直行罚 200 记 1 分，年内爽约>3 次取消当年资格；乔尔玛入口选 08:00–10:00。
+          - listitem [ref=e925]: D11 库尔德宁自驾：提前 1–3 天或当天小程序预约（名额动态调控）；单向环线不可折返，务必先电话确认两只边牧可随车入园再约。
+          - listitem [ref=e926]: 水上雅丹：V25已因G315长距离施工、货车/路面评价与补能不闭环移出执行路线，不再预约。
+      - table [ref=e928]:
+        - rowgroup [ref=e929]:
+          - row [ref=e930]:
+            - columnheader "玩的天 · 景点" [ref=e931]
+            - columnheader "门票口径" [ref=e932]
+            - columnheader "是否预约 · 渠道 · 提前量" [ref=e933]
+            - columnheader "宠物 / 备注" [ref=e934]
+        - rowgroup [ref=e935]:
+          - row [ref=e936]:
+            - cell "D2 居延海" [ref=e937]
+            - cell "门票约60 + 观光车约10/人" [ref=e938]
+            - cell "现场购 未见强制线上预约；8月非胡杨旺季客流小" [ref=e939]:
+              - generic [ref=e940]: 现场购
+              - text: 未见强制线上预约；8月非胡杨旺季客流小
+            - cell "C 宠物需电话/当天确认" [ref=e941]:
+              - generic [ref=e942]: C
+              - text: 宠物需电话/当天确认
+          - row [ref=e943]:
+            - cell "D5 大海道（哈密端）" [ref=e944]
+            - cell "门票45/人 + 车100/车" [ref=e945]
+            - cell "现场购 自驾多为现场；遇管控/直通车才提前1天，出发前1天电话核实开放与天气" [ref=e946]:
+              - generic [ref=e947]: 现场购
+              - text: 自驾多为现场；遇管控/直通车才提前1天，出发前1天电话核实开放与天气
+            - cell "C 只走红柳滩铺装段往返；宠物随车需确认" [ref=e948]:
+              - generic [ref=e949]: C
+              - text: 只走红柳滩铺装段往返；宠物随车需确认
+          - row [ref=e950]:
+            - cell "D7–D8 禾木村" [ref=e951]
+            - cell "官方套票102/人（门票50+区间车往返52）" [ref=e952]
+            - cell "建议提前1–2天网购 喀纳斯官方渠道/OTA；旺季私家车禁入换乘" [ref=e953]:
+              - generic [ref=e954]: 建议提前1–2天网购
+              - text: 喀纳斯官方渠道/OTA；旺季私家车禁入换乘
+            - cell "B/C 用户已确认可入村，民宿可载犬出租车进村；区间车对宠物接受度再与民宿确认" [ref=e955]:
+              - generic [ref=e956]: B/C
+              - text: 用户已确认可入村，民宿可载犬出租车进村；区间车对宠物接受度再与民宿确认
+          - row [ref=e957]:
+            - cell "D9–D10 赛里木湖" [ref=e958]
+            - cell "24h套票145/人；48h套票190/人（含门票+车）" [ref=e959]
+            - cell "须预约 一部手机游赛湖，提前3–7天、每日10:00放票；东门进南门出" [ref=e960]:
+              - generic [ref=e961]: 须预约
+              - text: 一部手机游赛湖，提前3–7天、每日10:00放票；东门进南门出
+            - cell "C 宠物无明文需确认" [ref=e962]:
+              - generic [ref=e963]: C
+              - text: 宠物无明文需确认
+          - row [ref=e964]:
+            - cell "D10 霍城薰衣草园" [ref=e965]
+            - cell "各园约30–50/人" [ref=e966]
+            - cell "条件项·现场 主花期6/10–7/25，8月基本谢，观赏价值低；去前电话确认花况营业" [ref=e967]:
+              - generic [ref=e968]: 条件项·现场
+              - text: 主花期6/10–7/25，8月基本谢，观赏价值低；去前电话确认花况营业
+            - cell "C 宠物需当天确认" [ref=e969]:
+              - generic [ref=e970]: C
+              - text: 宠物需当天确认
+          - row [ref=e971]:
+            - cell "D11 库尔德宁" [ref=e972]
+            - cell "自驾门票约60/人 + 区间车往返约30" [ref=e973]
+            - cell "须预约 景区官方小程序，提前1–3天或当天；名额动态调控" [ref=e974]:
+              - generic [ref=e975]: 须预约
+              - text: 景区官方小程序，提前1–3天或当天；名额动态调控
+            - cell "C 单向环线不可折返，先确认两只边牧随车入园" [ref=e976]:
+              - generic [ref=e977]: C
+              - text: 单向环线不可折返，先确认两只边牧随车入园
+          - row [ref=e978]:
+            - cell "D12 那拉提" [ref=e979]
+            - cell "自驾105 + 门票95 = 200/人·次" [ref=e980]
+            - cell "须预约 智游那拉提，提前最多7日；线下窗口已关；7座以下、驾龄满3年" [ref=e981]:
+              - generic [ref=e982]: 须预约
+              - text: 智游那拉提，提前最多7日；线下窗口已关；7座以下、驾龄满3年
+            - cell "C 宠物资格电话确认 0999-5291888（10:00–22:00）" [ref=e983]:
+              - generic [ref=e984]: C
+              - text: 宠物资格电话确认 0999-5291888（10:00–22:00）
+          - row [ref=e985]:
+            - cell "D13 唐布拉百里画廊" [ref=e986]
+            - cell "公路免费" [ref=e987]
+            - cell "无需预约 公开公路观景；进具体收费小景点另按现场" [ref=e988]:
+              - generic [ref=e989]: 无需预约
+              - text: 公开公路观景；进具体收费小景点另按现场
+            - cell "A 公路无限制" [ref=e990]:
+              - generic [ref=e991]: A
+              - text: 公路无限制
+          - row [ref=e992]:
+            - cell "D14 独库公路北段" [ref=e993]
+            - cell "通行免费" [ref=e994]
+            - cell "须预约 游新疆一码游/平安天山，提前1–7天选时段；未约罚200记1分" [ref=e995]:
+              - generic [ref=e996]: 须预约
+              - text: 游新疆一码游/平安天山，提前1–7天选时段；未约罚200记1分
+            - cell "A 7座以下；乔尔玛08:00–10:00" [ref=e997]:
+              - generic [ref=e998]: A
+              - text: 7座以下；乔尔玛08:00–10:00
+          - row [ref=e999]:
+            - cell "水上雅丹（已移出）" [ref=e1000]
+            - cell "本次不购票" [ref=e1001]
+            - cell "V25归档 G315施工、货车/路面评价和补能风险叠加，不作为临场可恢复项目" [ref=e1002]:
+              - generic [ref=e1003]: V25归档
+              - text: G315施工、货车/路面评价和补能风险叠加，不作为临场可恢复项目
+            - cell "狗不去＝我们不去；本次不再电话确认" [ref=e1004]
+          - row [ref=e1005]:
+            - cell "D20 茶卡盐湖" [ref=e1006]
+            - cell "仅路过不购票；进核心区旺季约60/人" [ref=e1007]
+            - cell "不进核心不购票 进景区现场/OTA" [ref=e1008]:
+              - generic [ref=e1009]: 不进核心不购票
+              - text: 进景区现场/OTA
+            - cell "C 本行程只短停不进核心" [ref=e1010]:
+              - generic [ref=e1011]: C
+              - text: 本行程只短停不进核心
+          - row [ref=e1012]:
+            - cell "D21 青海湖（二郎剑/仙女湾）" [ref=e1013]
+            - cell "旺季约二郎剑90–100、仙女湾60/人（当天核对）" [ref=e1014]
+            - cell "现场可购 旺季建议线上；环湖公路免费，只选一个正规点30–45分钟" [ref=e1015]:
+              - generic [ref=e1016]: 现场可购
+              - text: 旺季建议线上；环湖公路免费，只选一个正规点30–45分钟
+            - cell "C 宠物无明文需确认；不路边停车露营" [ref=e1017]:
+              - generic [ref=e1018]: C
+              - text: 宠物无明文需确认；不路边停车露营
+          - row [ref=e1019]:
+            - cell "D24 成都·双流萌宠乐园" [ref=e1020]
+            - cell "约30–50/人（平台当天）" [ref=e1021]
+            - cell "建议提前预约 美团/点评/现场；约9:00–18:00" [ref=e1022]:
+              - generic [ref=e1023]: 建议提前预约
+              - text: 美团/点评/现场；约9:00–18:00
+            - cell "C 两只中大型犬规则点评/电话确认" [ref=e1024]:
+              - generic [ref=e1025]: C
+              - text: 两只中大型犬规则点评/电话确认
+          - row [ref=e1026]:
+            - cell "D24 成都·Canpet犬岛公园" [ref=e1027]
+            - cell "免门票·按项目消费" [ref=e1028]
+            - cell "一般免预约 保利时光里，人宠社交空间" [ref=e1029]:
+              - generic [ref=e1030]: 一般免预约
+              - text: 保利时光里，人宠社交空间
+            - cell "B/C 中大型犬通常可入，牵引规则以门店当日为准" [ref=e1031]:
+              - generic [ref=e1032]: B/C
+              - text: 中大型犬通常可入，牵引规则以门店当日为准
+          - row [ref=e1033]:
+            - cell "D27 武汉·万象城牧野公园 / KIC PARK" [ref=e1034]
+            - cell "进商场/园区免费" [ref=e1035]
+            - cell "无需购票预约 按营业时间" [ref=e1036]:
+              - generic [ref=e1037]: 无需购票预约
+              - text: 按营业时间
+            - cell "B/C 官方宠物友好；进场前先实测两犬肩高≤61cm" [ref=e1038]:
+              - generic [ref=e1039]: B/C
+              - text: 官方宠物友好；进场前先实测两犬肩高≤61cm
+      - paragraph [ref=e1040]: 价格与是否线上预约以出行当日官方页面/系统库存为准；带狗最要紧的是库尔德宁、那拉提的随车入园资格（单向线路被拒代价大），务必提前电话确认。
+  - contentinfo [ref=e1041]: 为 Saul 和两位边牧定制 · 2026年8月 北京⇄大北疆 · V15行程定稿 + V24高速主线/普通道路备选逐日补能与双源餐饮执行表 · 关键政策、营地、天气、桩况与餐厅营业仍以确认中心的出发前复核为准

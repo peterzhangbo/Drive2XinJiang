@@ -1,0 +1,259 @@
+- generic [ref=f6e1]:
+  - link "跳到主要内容" [ref=f6e2] [cursor=pointer]:
+    - /url: "#mainContent"
+  - banner [ref=f6e3]:
+    - generic [ref=f6e16]:
+      - generic [ref=f6e17]: ELECTRIC EXPEDITION · AUG 2026
+      - heading "北京出发 穿越大北疆" [level=1] [ref=f6e18]:
+        - text: 北京出发
+        - generic [ref=f6e19]: 穿越大北疆
+      - paragraph [ref=f6e20]: 27天 · 约13,000km · 前段夫妻与双边牧同行，后段一人两犬完成东疆—青海—成都—武汉返京大环线
+      - generic [ref=f6e21]:
+        - generic [ref=f6e22]: 全程双边牧同行
+        - generic [ref=f6e29]: 逐段三层补能
+  - tablist "攻略页面栏目" [ref=f6e32]:
+    - tab "主计划" [ref=f6e33] [cursor=pointer]
+    - tab "逐日行程" [selected] [ref=f6e37] [cursor=pointer]
+    - tab "预算与清单" [ref=f6e41] [cursor=pointer]
+    - tab "确认中心" [ref=f6e45] [cursor=pointer]
+    - tab "充电补能" [ref=f6e49] [cursor=pointer]
+    - tab "住宿美食" [ref=f6e52] [cursor=pointer]
+    - tab "宠物指南" [ref=f6e55] [cursor=pointer]
+    - tab "注意事项" [ref=f6e62] [cursor=pointer]
+    - tab "更新日志" [ref=f6e66] [cursor=pointer]
+    - tab "不得不错过" [ref=f6e70] [cursor=pointer]
+  - paragraph [ref=f6e73]: 左右滑动可查看更多栏目 →
+  - main [ref=f6e74]:
+    - status [ref=f6e75]: 动态信息最后核验：2026-07-18 · 距核验0天；动态信息仍须在出发前24小时确认。
+    - text: V15 ! ＋
+    - tabpanel "逐日行程" [ref=f6e943]:
+      - heading "逐日行程" [level=2] [ref=f6e944]
+      - paragraph [ref=f6e948]: 建议 8月1日（周六）出发、8月27日（周四）到家；日期可整体平移。每张卡片展开后是当天的「行 / 玩 / 住 / 吃 / 提醒」全细节。
+      - generic [ref=f6e949]:
+        - button "全部 27 天" [ref=f6e950] [cursor=pointer]
+        - button "玩乐日" [active] [ref=f6e954] [cursor=pointer]
+        - button "赶路日" [ref=f6e961] [cursor=pointer]
+        - button "全部展开" [ref=f6e966] [cursor=pointer]
+        - button "打印 / 存PDF" [ref=f6e969] [cursor=pointer]
+      - generic [ref=f6e973]:
+        - generic [ref=f6e1165]:
+          - generic [ref=f6e1166]: DAY 4
+          - button "敦煌 → S240＋S245 → 哈密（经典路段） 8月4日 · 周二 380 km 6–7h＋休息 主站：敦煌太阳庄园酒店特斯… 哈密星旺宾馆 今日有决策" [ref=f6e1179] [cursor=pointer]:
+            - generic [ref=f6e1181]:
+              - heading "敦煌 → S240＋S245 → 哈密（经典路段）" [level=3] [ref=f6e1182]
+              - generic [ref=f6e1183]: 8月4日 · 周二
+            - generic [ref=f6e1184]:
+              - generic [ref=f6e1185]: 380 km
+              - generic [ref=f6e1189]: 6–7h＋休息
+              - generic [ref=f6e1195]: 主站：敦煌太阳庄园酒店特斯…
+              - generic [ref=f6e1200]: 哈密星旺宾馆
+              - generic [ref=f6e1205]: 今日有决策
+        - generic [ref=f6e1211]:
+          - generic [ref=f6e1212]: DAY 5
+          - button "哈密 → 大海道（哈密端往返） → G7 → 木垒 8月5日 · 周三 850 km 约13–14h 06:30 出发 哈密特斯拉超充 木垒县城宠物友好住宿 住宿待落实" [ref=f6e1225] [cursor=pointer]:
+            - generic [ref=f6e1227]:
+              - heading "哈密 → 大海道（哈密端往返） → G7 → 木垒" [level=3] [ref=f6e1228]
+              - generic [ref=f6e1229]: 8月5日 · 周三
+            - generic [ref=f6e1230]:
+              - generic [ref=f6e1231]: 850 km
+              - generic [ref=f6e1235]: 约13–14h
+              - generic [ref=f6e1241]: 06:30 出发
+              - generic [ref=f6e1246]: 哈密特斯拉超充
+              - generic [ref=f6e1251]: 木垒县城宠物友好住宿
+              - generic [ref=f6e1256]: 住宿待落实
+        - generic [ref=f6e1262]:
+          - generic [ref=f6e1263]: DAY 6
+          - button "木垒 → 阜康 → S21阿乌高速 → 阿勒泰 8月6日 · 周四 690 km 约8–9h 木垒90%以上出发 阿勒泰友谊宾馆 今日有决策" [ref=f6e1276] [cursor=pointer]:
+            - generic [ref=f6e1278]:
+              - heading "木垒 → 阜康 → S21阿乌高速 → 阿勒泰" [level=3] [ref=f6e1279]
+              - generic [ref=f6e1280]: 8月6日 · 周四
+            - generic [ref=f6e1281]:
+              - generic [ref=f6e1282]: 690 km
+              - generic [ref=f6e1286]: 约8–9h
+              - generic [ref=f6e1292]: 木垒90%以上出发
+              - generic [ref=f6e1297]: 阿勒泰友谊宾馆
+              - generic [ref=f6e1302]: 今日有决策
+        - generic [ref=f6e1308]:
+          - generic [ref=f6e1309]: DAY 7
+          - button "阿勒泰 → 布尔津补电 → 禾木住一晚 8月7日 · 周五 300 km 约5h行车＋接驳进村 阿勒泰出发前检查电量 牧雅居民宿 今日有决策" [ref=f6e1322] [cursor=pointer]:
+            - generic [ref=f6e1324]:
+              - heading "阿勒泰 → 布尔津补电 → 禾木住一晚" [level=3] [ref=f6e1325]
+              - generic [ref=f6e1326]: 8月7日 · 周五
+            - generic [ref=f6e1327]:
+              - generic [ref=f6e1328]: 300 km
+              - generic [ref=f6e1332]: 约5h行车＋接驳进村
+              - generic [ref=f6e1338]: 阿勒泰出发前检查电量
+              - generic [ref=f6e1343]: 牧雅居民宿
+              - generic [ref=f6e1348]: 今日有决策
+        - generic [ref=f6e1354]:
+          - generic [ref=f6e1355]: DAY 8
+          - button "禾木晨雾日出 → 布尔津补电 → 乌尔禾 8月8日 · 周六 410 km 约6–7h行车＋接驳出村 D7进入禾木前预留返程电量 柏纳酒店 今日有决策" [ref=f6e1368] [cursor=pointer]:
+            - generic [ref=f6e1370]:
+              - heading "禾木晨雾日出 → 布尔津补电 → 乌尔禾" [level=3] [ref=f6e1371]
+              - generic [ref=f6e1372]: 8月8日 · 周六
+            - generic [ref=f6e1373]:
+              - generic [ref=f6e1374]: 410 km
+              - generic [ref=f6e1378]: 约6–7h行车＋接驳出村
+              - generic [ref=f6e1384]: D7进入禾木前预留返程电量
+              - generic [ref=f6e1389]: 柏纳酒店
+              - generic [ref=f6e1394]: 今日有决策
+        - generic [ref=f6e1448]:
+          - generic [ref=f6e1449]: DAY 10
+          - button "赛里木湖东门进 → 南门出 → 霍城薰衣草园 → 伊宁 8月10日 · 周一 170 km 约4–6h环湖＋3h转场/游玩 D9入住前完成补能 栖云馆民宿 今日有决策" [ref=f6e1464] [cursor=pointer]:
+            - generic [ref=f6e1466]:
+              - heading "赛里木湖东门进 → 南门出 → 霍城薰衣草园 → 伊宁" [level=3] [ref=f6e1467]
+              - generic [ref=f6e1468]: 8月10日 · 周一
+            - generic [ref=f6e1469]:
+              - generic [ref=f6e1470]: 170 km
+              - generic [ref=f6e1474]: 约4–6h环湖＋3h转场/游玩
+              - generic [ref=f6e1480]: D9入住前完成补能
+              - generic [ref=f6e1485]: 栖云馆民宿
+              - generic [ref=f6e1490]: 今日有决策
+        - generic [ref=f6e1496]:
+          - generic [ref=f6e1497]: DAY 11
+          - button "伊宁 → 巩留 → 库尔德宁 → 那拉提 8月11日 · 周二 350 km 约6–6.5h驾驶＋2.5–3h游玩 D10抵达伊宁后优先绿发洲… 那拉提悠然民宿 今日有决策" [ref=f6e1510] [cursor=pointer]:
+            - generic [ref=f6e1512]:
+              - heading "伊宁 → 巩留 → 库尔德宁 → 那拉提" [level=3] [ref=f6e1513]
+              - generic [ref=f6e1514]: 8月11日 · 周二
+            - generic [ref=f6e1515]:
+              - generic [ref=f6e1516]: 350 km
+              - generic [ref=f6e1520]: 约6–6.5h驾驶＋2.5–3h游玩
+              - generic [ref=f6e1526]: D10抵达伊宁后优先绿发洲…
+              - generic [ref=f6e1531]: 那拉提悠然民宿
+              - generic [ref=f6e1536]: 今日有决策
+        - generic [ref=f6e1542]:
+          - generic [ref=f6e1543]: DAY 12
+          - button "那拉提草原深度游（悠然民宿连住） 8月12日 · 周三 80 km 全天游玩 早晨先检查D13到唐布拉后… 那拉提悠然民宿 今日有决策" [ref=f6e1556] [cursor=pointer]:
+            - generic [ref=f6e1558]:
+              - heading "那拉提草原深度游（悠然民宿连住）" [level=3] [ref=f6e1559]
+              - generic [ref=f6e1560]: 8月12日 · 周三
+            - generic [ref=f6e1561]:
+              - generic [ref=f6e1562]: 80 km
+              - generic [ref=f6e1566]: 全天游玩
+              - generic [ref=f6e1572]: 早晨先检查D13到唐布拉后…
+              - generic [ref=f6e1577]: 那拉提悠然民宿
+              - generic [ref=f6e1582]: 今日有决策
+        - generic [ref=f6e1588]:
+          - generic [ref=f6e1589]: DAY 13
+          - button "那拉提 → 乔尔玛 → 唐布拉百里画廊 → 蜜蜂小镇 8月13日 · 周四 180 km 约4h驾驶＋全天边走边玩 那拉提镇主站或备选站充至9… 唐布拉听泉别院 今日有决策" [ref=f6e1602] [cursor=pointer]:
+            - generic [ref=f6e1604]:
+              - heading "那拉提 → 乔尔玛 → 唐布拉百里画廊 → 蜜蜂小镇" [level=3] [ref=f6e1605]
+              - generic [ref=f6e1606]: 8月13日 · 周四
+            - generic [ref=f6e1607]:
+              - generic [ref=f6e1608]: 180 km
+              - generic [ref=f6e1612]: 约4h驾驶＋全天边走边玩
+              - generic [ref=f6e1618]: 那拉提镇主站或备选站充至9…
+              - generic [ref=f6e1623]: 唐布拉听泉别院
+              - generic [ref=f6e1628]: 今日有决策
+        - generic [ref=f6e1634]:
+          - generic [ref=f6e1635]: DAY 14
+          - button "唐布拉 → 乔尔玛 → 独库北段 → 独山子 → 乌鲁木齐 8月14日 · 周五 520 km 约8–9h驾驶＋3–4h观景/充电 07:00 出发 D13夜间在听泉别院或蜜蜂… 乌鲁木齐县 今日有决策" [ref=f6e1651] [cursor=pointer]:
+            - generic [ref=f6e1653]:
+              - heading "唐布拉 → 乔尔玛 → 独库北段 → 独山子 → 乌鲁木齐" [level=3] [ref=f6e1654]
+              - generic [ref=f6e1655]: 8月14日 · 周五
+            - generic [ref=f6e1656]:
+              - generic [ref=f6e1657]: 520 km
+              - generic [ref=f6e1661]: 约8–9h驾驶＋3–4h观景/充电
+              - generic [ref=f6e1667]: 07:00 出发
+              - generic [ref=f6e1672]: D13夜间在听泉别院或蜜蜂…
+              - generic [ref=f6e1677]: 乌鲁木齐县
+              - generic [ref=f6e1682]: 今日有决策
+        - generic [ref=f6e1688]:
+          - generic [ref=f6e1689]: DAY 15
+          - button "乌鲁木齐带狗深度休整 · 续住一晚 8月15日 · 周六 100 km 约2–3h市郊驾驶 上午在乌鲁木齐万科生活广场… 乌鲁木齐县 今日有决策" [ref=f6e1702] [cursor=pointer]:
+            - generic [ref=f6e1704]:
+              - heading "乌鲁木齐带狗深度休整 · 续住一晚" [level=3] [ref=f6e1705]
+              - generic [ref=f6e1706]: 8月15日 · 周六
+            - generic [ref=f6e1707]:
+              - generic [ref=f6e1708]: 100 km
+              - generic [ref=f6e1712]: 约2–3h市郊驾驶
+              - generic [ref=f6e1718]: 上午在乌鲁木齐万科生活广场…
+              - generic [ref=f6e1723]: 乌鲁木齐县
+              - generic [ref=f6e1728]: 今日有决策
+        - generic [ref=f6e1734]:
+          - generic [ref=f6e1735]: DAY 16
+          - button "乌鲁木齐送机 → 天山胜利隧道 → 库尔勒 8月16日 · 周日 430 km 约5–6h驾驶＋送机/补能 D15晚或D16送机前在乌… 床车第1晚：库尔勒城… 今日有决策" [ref=f6e1751] [cursor=pointer]:
+            - generic [ref=f6e1753]:
+              - heading "乌鲁木齐送机 → 天山胜利隧道 → 库尔勒" [level=3] [ref=f6e1754]
+              - generic [ref=f6e1755]: 8月16日 · 周日
+            - generic [ref=f6e1756]:
+              - generic [ref=f6e1757]: 430 km
+              - generic [ref=f6e1761]: 约5–6h驾驶＋送机/补能
+              - generic [ref=f6e1767]: D15晚或D16送机前在乌…
+              - generic [ref=f6e1772]: 床车第1晚：库尔勒城…
+              - generic [ref=f6e1778]: 今日有决策
+        - generic [ref=f6e1878]:
+          - generic [ref=f6e1879]: DAY 19
+          - button "茫崖 → 水上雅丹 → 大柴旦 8月19日 · 周三 600 km 约8–9h驾驶＋1.5–2h游玩 06:30 出发 花土沟95%左右出发 床车第4晚：大柴旦镇… 今日有决策" [ref=f6e1892] [cursor=pointer]:
+            - generic [ref=f6e1894]:
+              - heading "茫崖 → 水上雅丹 → 大柴旦" [level=3] [ref=f6e1895]
+              - generic [ref=f6e1896]: 8月19日 · 周三
+            - generic [ref=f6e1897]:
+              - generic [ref=f6e1898]: 600 km
+              - generic [ref=f6e1902]: 约8–9h驾驶＋1.5–2h游玩
+              - generic [ref=f6e1908]: 06:30 出发
+              - generic [ref=f6e1913]: 花土沟95%左右出发
+              - generic [ref=f6e1918]: 床车第4晚：大柴旦镇…
+              - generic [ref=f6e1924]: 今日有决策
+        - generic [ref=f6e1930]:
+          - generic [ref=f6e1931]: DAY 20
+          - button "大柴旦 → 德令哈 → 茶卡 → 青海湖合法点 → 西宁 8月20日 · 周四 730 km 约10–11h驾驶/充电＋短观景 06:00 出发 大柴旦95%出发 西宁青滨壹号酒店 今日有决策" [ref=f6e1946] [cursor=pointer]:
+            - generic [ref=f6e1948]:
+              - heading "大柴旦 → 德令哈 → 茶卡 → 青海湖合法点 → 西宁" [level=3] [ref=f6e1949]
+              - generic [ref=f6e1950]: 8月20日 · 周四
+            - generic [ref=f6e1951]:
+              - generic [ref=f6e1952]: 730 km
+              - generic [ref=f6e1956]: 约10–11h驾驶/充电＋短观景
+              - generic [ref=f6e1962]: 06:00 出发
+              - generic [ref=f6e1967]: 大柴旦95%出发
+              - generic [ref=f6e1972]: 西宁青滨壹号酒店
+              - generic [ref=f6e1977]: 今日有决策
+        - generic [ref=f6e2030]:
+          - generic [ref=f6e2031]: DAY 22
+          - button "陇南 → 广元 → 剑门蜀道走廊 → 成都 8月22日 · 周六 500 km 约6–7h驾驶＋补能 陇南90%以上出发 成都高新会展希尔顿惠… 今日有决策" [ref=f6e2044] [cursor=pointer]:
+            - generic [ref=f6e2046]:
+              - heading "陇南 → 广元 → 剑门蜀道走廊 → 成都" [level=3] [ref=f6e2047]
+              - generic [ref=f6e2048]: 8月22日 · 周六
+            - generic [ref=f6e2049]:
+              - generic [ref=f6e2050]: 500 km
+              - generic [ref=f6e2054]: 约6–7h驾驶＋补能
+              - generic [ref=f6e2060]: 陇南90%以上出发
+              - generic [ref=f6e2065]: 成都高新会展希尔顿惠…
+              - generic [ref=f6e2070]: 今日有决策
+        - generic [ref=f6e2076]:
+          - generic [ref=f6e2077]: DAY 23
+          - button "成都带狗休整＋与朋友吃饭 8月23日 · 周日 100 km 全天休整/市内短途 上午用成都Tesla或公共… 床车第6晚：成都已确… 今日有决策" [ref=f6e2090] [cursor=pointer]:
+            - generic [ref=f6e2092]:
+              - heading "成都带狗休整＋与朋友吃饭" [level=3] [ref=f6e2093]
+              - generic [ref=f6e2094]: 8月23日 · 周日
+            - generic [ref=f6e2095]:
+              - generic [ref=f6e2096]: 100 km
+              - generic [ref=f6e2100]: 全天休整/市内短途
+              - generic [ref=f6e2106]: 上午用成都Tesla或公共…
+              - generic [ref=f6e2111]: 床车第6晚：成都已确…
+              - generic [ref=f6e2117]: 今日有决策
+        - generic [ref=f6e2170]:
+          - generic [ref=f6e2171]: DAY 25
+          - button "恩施 → 宜昌 → 荆州 → 武汉 8月25日 · 周二 520 km 约7–8h驾驶＋补能 恩施城区90%以上出发 武汉徐东希尔顿惠庭酒店 今日有决策" [ref=f6e2184] [cursor=pointer]:
+            - generic [ref=f6e2186]:
+              - heading "恩施 → 宜昌 → 荆州 → 武汉" [level=3] [ref=f6e2187]
+              - generic [ref=f6e2188]: 8月25日 · 周二
+            - generic [ref=f6e2189]:
+              - generic [ref=f6e2190]: 520 km
+              - generic [ref=f6e2194]: 约7–8h驾驶＋补能
+              - generic [ref=f6e2200]: 恩施城区90%以上出发
+              - generic [ref=f6e2205]: 武汉徐东希尔顿惠庭酒店
+              - generic [ref=f6e2210]: 今日有决策
+        - generic [ref=f6e2216]:
+          - generic [ref=f6e2217]: DAY 26
+          - button "武汉带狗休整＋与朋友吃饭 8月26日 · 周三 100 km 全天休整/市内短途 白天在武汉Tesla 床车第8晚：武汉已确… 今日有决策" [ref=f6e2230] [cursor=pointer]:
+            - generic [ref=f6e2232]:
+              - heading "武汉带狗休整＋与朋友吃饭" [level=3] [ref=f6e2233]
+              - generic [ref=f6e2234]: 8月26日 · 周三
+            - generic [ref=f6e2235]:
+              - generic [ref=f6e2236]: 100 km
+              - generic [ref=f6e2240]: 全天休整/市内短途
+              - generic [ref=f6e2246]: 白天在武汉Tesla
+              - generic [ref=f6e2251]: 床车第8晚：武汉已确…
+              - generic [ref=f6e2257]: 今日有决策
+  - contentinfo [ref=f6e942]: 为 Saul 和两位边牧定制 · 2026年8月 北京⇄大北疆 · V15行程定稿 + V18信息架构 + V19远征控制台视觉系统 · 关键政策、营地、天气与桩况仍以确认中心的出发前复核为准

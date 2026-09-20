@@ -1,0 +1,434 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e14]:
+      - heading "北京 ⇄ 大北疆" [level=1] [ref=e15]
+      - paragraph [ref=e16]: 27天 · 约12,800km · 前段夫妻同行 / 后段一人两边牧床车 · 2026年8月
+      - generic [ref=e17]:
+        - generic [ref=e18]: 🐾 每站带狗玩法
+        - generic [ref=e19]: ⚡ 逐日充电规划
+        - generic [ref=e20]: 🚙 11晚管理营地睡车
+        - generic [ref=e21]: 🏨 15晚住宿
+  - tablist "攻略页面栏目" [ref=e22]:
+    - generic [ref=e23]: 计划
+    - tab "🗺️ 主计划" [ref=e24] [cursor=pointer]
+    - tab "📅 逐日行程" [active] [selected] [ref=e25] [cursor=pointer]
+    - tab "🎒 预算清单" [ref=e26] [cursor=pointer]
+    - generic [ref=e27]: 执行
+    - tab "✅ 确认中心" [ref=e28] [cursor=pointer]
+    - tab "⚡ 充电补能" [ref=e29] [cursor=pointer]
+    - tab "🏨 住宿美食" [ref=e30] [cursor=pointer]
+    - tab "🐾 宠物指南" [ref=e31] [cursor=pointer]
+    - tab "⚠️ 注意事项" [ref=e32] [cursor=pointer]
+    - generic [ref=e33]: 记录
+    - tab "📝 更新日志" [ref=e34] [cursor=pointer]
+    - tab "🗄️ 不得不错过" [ref=e35] [cursor=pointer]
+  - main [ref=e36]:
+    - status [ref=e37]: 动态信息最后核验：2026-07-17 · 距核验0天；动态信息仍须在出发前24小时确认。
+    - tabpanel "📅 逐日行程" [ref=e237]:
+      - heading "📅 逐日行程" [level=2] [ref=e238]
+      - paragraph [ref=e239]: 建议 8月1日（周六）出发、8月27日（周四）到家；日期可整体平移。每张卡片展开后是当天的「行 / 玩 / 住 / 吃 / 提醒」全细节。
+      - generic [ref=e240]:
+        - button "全部 27 天" [ref=e241] [cursor=pointer]
+        - button "🐾 玩乐日" [ref=e242] [cursor=pointer]
+        - button "🛣️ 赶路日" [ref=e243] [cursor=pointer]
+        - button "全部展开" [ref=e244] [cursor=pointer]
+        - button "🖨️ 打印 / 存PDF" [ref=e245] [cursor=pointer]
+      - generic [ref=e246]:
+        - generic [ref=e247]:
+          - generic [ref=e248]:
+            - generic [ref=e257]: DAY 1
+            - generic [ref=e258]: 🏙️
+          - button "▼ 北京 → 临河（巴彦淖尔） 8月1日 · 周六 🛣️ 810 km ⏱️ 9–10h 赶路日" [expanded] [ref=e259] [cursor=pointer]:
+            - generic [ref=e260]: ▼
+            - generic [ref=e261]:
+              - heading "北京 → 临河（巴彦淖尔）" [level=3] [ref=e262]
+              - generic [ref=e263]: 8月1日 · 周六
+            - generic [ref=e264]:
+              - generic [ref=e265]: 🛣️ 810 km
+              - generic [ref=e266]: ⏱️ 9–10h
+              - generic [ref=e267]: 赶路日
+          - generic [ref=e268]:
+            - generic [ref=e269]: 📍 G6→G7 · 张家口—乌兰察布—呼和浩特—包头—临河
+            - generic [ref=e270]:
+              - generic [ref=e271]: ⚡ 充电 & 行车
+              - list [ref=e272]:
+                - listitem [ref=e273]: 出发前一晚家充满电，早6:30出发
+                - listitem [ref=e274]: 呼和浩特·维多利摩尔城特斯拉超充（午饭档：老绥元烧麦）
+                - listitem [ref=e275]: 包头·香格里拉超充视电量补
+                - listitem [ref=e276]: 到店后临河市区/酒店桩充满，为明天无人区做准备
+            - generic [ref=e277]:
+              - generic [ref=e278]: 🐾 玩什么（带狗视角）
+              - list [ref=e279]:
+                - listitem [ref=e280]: 服务区每2.5小时停一次，遛狗10分钟+喂水
+                - listitem [ref=e281]: 呼市午间高温，找树荫停车，别让狗踩晒烫的地面
+            - generic [ref=e282]:
+              - generic [ref=e283]: 🏨 住宿
+              - list [ref=e284]:
+                - listitem [ref=e285]:
+                  - text: 维也纳国际酒店（巴彦淖尔市高铁站市政府店）· 地址：临河区水源路中央公馆A座 · ☎
+                  - link "0478-8259998" [ref=e286] [cursor=pointer]:
+                    - /url: tel:04788259998
+                  - text: · 平台显示宠物需提前联系且免费、公共停车免费；两只边牧和晚到保留仍须写入订单
+                  - link "携程" [ref=e287] [cursor=pointer]:
+                    - /url: https://hotels.ctrip.com/hotels/97451438.html
+                  - link "导航" [ref=e288] [cursor=pointer]:
+                    - /url: https://uri.amap.com/search?keyword=维也纳国际酒店巴彦淖尔市高铁站市政府店
+            - generic [ref=e289]:
+              - generic [ref=e290]: 🍜 吃什么
+              - list [ref=e291]:
+                - listitem [ref=e292]: 晚餐河套菜：猪肉烩酸菜、清蒸羊肉、肉焙子；饭后买华莱士蜜瓜
+            - generic [ref=e293]:
+              - generic [ref=e294]: ⚠️ 提醒
+              - list [ref=e295]:
+                - listitem [ref=e296]: 后排放平铺防滑垫，狗用安全带固定扣
+                - listitem [ref=e297]: 今天检查：狗证件包（疫苗证+检疫证明+犬证）放手套箱
+        - generic [ref=e298]:
+          - generic [ref=e299]:
+            - generic [ref=e308]: DAY 2
+            - generic [ref=e309]: 🐪
+          - button "▼ 临河 → 额济纳旗（进无人区） 8月2日 · 周日 🛣️ 580 km ⏱️ 7–8h 赶路日" [ref=e310] [cursor=pointer]:
+            - generic [ref=e311]: ▼
+            - generic [ref=e312]:
+              - heading "临河 → 额济纳旗（进无人区）" [level=3] [ref=e313]
+              - generic [ref=e314]: 8月2日 · 周日
+            - generic [ref=e315]:
+              - generic [ref=e316]: 🛣️ 580 km
+              - generic [ref=e317]: ⏱️ 7–8h
+              - generic [ref=e318]: 赶路日
+        - generic [ref=e319]:
+          - generic [ref=e320]:
+            - generic [ref=e329]: DAY 3
+            - generic [ref=e330]: 🏜️
+          - button "▼ 额济纳 → 敦煌 8月3日 · 周一 🛣️ 700 km ⏱️ 9–10h 赶路日" [ref=e331] [cursor=pointer]:
+            - generic [ref=e332]: ▼
+            - generic [ref=e333]:
+              - heading "额济纳 → 敦煌" [level=3] [ref=e334]
+              - generic [ref=e335]: 8月3日 · 周一
+            - generic [ref=e336]:
+              - generic [ref=e337]: 🛣️ 700 km
+              - generic [ref=e338]: ⏱️ 9–10h
+              - generic [ref=e339]: 赶路日
+        - generic [ref=e340]:
+          - generic [ref=e341]:
+            - generic [ref=e350]: DAY 4
+            - generic [ref=e351]: 🛣️
+          - button "▼ 敦煌 → S240＋S245 → 哈密（经典路段） 8月4日 · 周二 🛣️ 380 km ⏱️ 6–7h＋休息 🐾 玩乐日" [ref=e352] [cursor=pointer]:
+            - generic [ref=e353]: ▼
+            - generic [ref=e354]:
+              - heading "敦煌 → S240＋S245 → 哈密（经典路段）" [level=3] [ref=e355]
+              - generic [ref=e356]: 8月4日 · 周二
+            - generic [ref=e357]:
+              - generic [ref=e358]: 🛣️ 380 km
+              - generic [ref=e359]: ⏱️ 6–7h＋休息
+              - generic [ref=e360]: 🐾 玩乐日
+        - generic [ref=e361]:
+          - generic [ref=e362]:
+            - generic [ref=e371]: DAY 5
+            - generic [ref=e372]: 🏜️
+          - button "▼ 哈密 → 大海道全程穿越 → 鄯善 8月5日 · 周三 🛣️ 430 km ⏱️ 约12–14h（含游玩） 🐾 玩乐日" [ref=e373] [cursor=pointer]:
+            - generic [ref=e374]: ▼
+            - generic [ref=e375]:
+              - heading "哈密 → 大海道全程穿越 → 鄯善" [level=3] [ref=e376]
+              - generic [ref=e377]: 8月5日 · 周三
+            - generic [ref=e378]:
+              - generic [ref=e379]: 🛣️ 430 km
+              - generic [ref=e380]: ⏱️ 约12–14h（含游玩）
+              - generic [ref=e381]: 🐾 玩乐日
+        - generic [ref=e382]:
+          - generic [ref=e383]:
+            - generic [ref=e392]: DAY 6
+            - generic [ref=e393]: 🛣️
+          - button "▼ 鄯善 → S21阿乌高速全程 → 阿勒泰 8月6日 · 周四 🛣️ 750 km ⏱️ 约11–13h（含休息） 🐾 玩乐日" [ref=e394] [cursor=pointer]:
+            - generic [ref=e395]: ▼
+            - generic [ref=e396]:
+              - heading "鄯善 → S21阿乌高速全程 → 阿勒泰" [level=3] [ref=e397]
+              - generic [ref=e398]: 8月6日 · 周四
+            - generic [ref=e399]:
+              - generic [ref=e400]: 🛣️ 750 km
+              - generic [ref=e401]: ⏱️ 约11–13h（含休息）
+              - generic [ref=e402]: 🐾 玩乐日
+        - generic [ref=e403]:
+          - generic [ref=e404]:
+            - generic [ref=e413]: DAY 7
+            - generic [ref=e414]: 🌲
+          - button "▼ 阿勒泰 → 布尔津补电 → 禾木住一晚 8月7日 · 周五 🛣️ 300 km ⏱️ 约5h行车＋1h区间车 🐾 玩乐日" [ref=e415] [cursor=pointer]:
+            - generic [ref=e416]: ▼
+            - generic [ref=e417]:
+              - heading "阿勒泰 → 布尔津补电 → 禾木住一晚" [level=3] [ref=e418]
+              - generic [ref=e419]: 8月7日 · 周五
+            - generic [ref=e420]:
+              - generic [ref=e421]: 🛣️ 300 km
+              - generic [ref=e422]: ⏱️ 约5h行车＋1h区间车
+              - generic [ref=e423]: 🐾 玩乐日
+        - generic [ref=e424]:
+          - generic [ref=e425]:
+            - generic [ref=e434]: DAY 8
+            - generic [ref=e435]: 🌄
+          - button "▼ 禾木晨雾日出 → 布尔津补电 → 乌尔禾 8月8日 · 周六 🛣️ 410 km ⏱️ 约6–7h行车＋区间车 🐾 玩乐日" [ref=e436] [cursor=pointer]:
+            - generic [ref=e437]: ▼
+            - generic [ref=e438]:
+              - heading "禾木晨雾日出 → 布尔津补电 → 乌尔禾" [level=3] [ref=e439]
+              - generic [ref=e440]: 8月8日 · 周六
+            - generic [ref=e441]:
+              - generic [ref=e442]: 🛣️ 410 km
+              - generic [ref=e443]: ⏱️ 约6–7h行车＋区间车
+              - generic [ref=e444]: 🐾 玩乐日
+        - generic [ref=e445]:
+          - generic [ref=e446]:
+            - generic [ref=e457]: DAY 9
+            - generic [ref=e458]: 🏔️
+          - button "▼ 乌尔禾 → 赛里木湖东门 8月9日 · 周日 🛣️ 420 km ⏱️ 约5–6h行车 赶路日" [ref=e459] [cursor=pointer]:
+            - generic [ref=e460]: ▼
+            - generic [ref=e461]:
+              - heading "乌尔禾 → 赛里木湖东门" [level=3] [ref=e462]
+              - generic [ref=e463]: 8月9日 · 周日
+            - generic [ref=e464]:
+              - generic [ref=e465]: 🛣️ 420 km
+              - generic [ref=e466]: ⏱️ 约5–6h行车
+              - generic [ref=e467]: 赶路日
+        - generic [ref=e468]:
+          - generic [ref=e469]:
+            - generic [ref=e480]: DAY 10
+            - generic [ref=e481]: 🌉
+          - button "▼ 赛里木湖东门进 → 南门出 → 霍城薰衣草园 → 伊宁 8月10日 · 周一 🛣️ 170 km ⏱️ 约4–6h环湖＋3h转场/游玩 🐾 玩乐日" [ref=e482] [cursor=pointer]:
+            - generic [ref=e483]: ▼
+            - generic [ref=e484]:
+              - heading "赛里木湖东门进 → 南门出 → 霍城薰衣草园 → 伊宁" [level=3] [ref=e485]
+              - generic [ref=e486]: 8月10日 · 周一
+            - generic [ref=e487]:
+              - generic [ref=e488]: 🛣️ 170 km
+              - generic [ref=e489]: ⏱️ 约4–6h环湖＋3h转场/游玩
+              - generic [ref=e490]: 🐾 玩乐日
+        - generic [ref=e491]:
+          - generic [ref=e492]:
+            - generic [ref=e501]: DAY 11
+            - generic [ref=e502]: 🌲
+          - button "▼ 伊宁 → 特克斯八卦城 → 库尔德宁 → 那拉提 8月11日 · 周二 🛣️ 480 km ⏱️ 约8–10h驾驶＋短游 🐾 玩乐日" [ref=e503] [cursor=pointer]:
+            - generic [ref=e504]: ▼
+            - generic [ref=e505]:
+              - heading "伊宁 → 特克斯八卦城 → 库尔德宁 → 那拉提" [level=3] [ref=e506]
+              - generic [ref=e507]: 8月11日 · 周二
+            - generic [ref=e508]:
+              - generic [ref=e509]: 🛣️ 480 km
+              - generic [ref=e510]: ⏱️ 约8–10h驾驶＋短游
+              - generic [ref=e511]: 🐾 玩乐日
+        - generic [ref=e512]:
+          - generic [ref=e513]:
+            - generic [ref=e522]: DAY 12
+            - generic [ref=e523]: 🐎
+          - button "▼ 那拉提草原深度游（悠然民宿连住） 8月12日 · 周三 🛣️ 80 km ⏱️ 全天游玩 🐾 玩乐日" [ref=e524] [cursor=pointer]:
+            - generic [ref=e525]: ▼
+            - generic [ref=e526]:
+              - heading "那拉提草原深度游（悠然民宿连住）" [level=3] [ref=e527]
+              - generic [ref=e528]: 8月12日 · 周三
+            - generic [ref=e529]:
+              - generic [ref=e530]: 🛣️ 80 km
+              - generic [ref=e531]: ⏱️ 全天游玩
+              - generic [ref=e532]: 🐾 玩乐日
+        - generic [ref=e533]:
+          - generic [ref=e534]:
+            - generic [ref=e543]: DAY 13
+            - generic [ref=e544]: 🏞️
+          - button "▼ 那拉提 → 乔尔玛 → 唐布拉百里画廊 → 蜜蜂小镇 8月13日 · 周四 🛣️ 180 km ⏱️ 约4h驾驶＋全天边走边玩 🐾 玩乐日" [ref=e545] [cursor=pointer]:
+            - generic [ref=e546]: ▼
+            - generic [ref=e547]:
+              - heading "那拉提 → 乔尔玛 → 唐布拉百里画廊 → 蜜蜂小镇" [level=3] [ref=e548]
+              - generic [ref=e549]: 8月13日 · 周四
+            - generic [ref=e550]:
+              - generic [ref=e551]: 🛣️ 180 km
+              - generic [ref=e552]: ⏱️ 约4h驾驶＋全天边走边玩
+              - generic [ref=e553]: 🐾 玩乐日
+        - generic [ref=e554]:
+          - generic [ref=e555]:
+            - generic [ref=e567]: DAY 14
+            - generic [ref=e568]: ⛰️
+          - button "▼ 唐布拉 → 乔尔玛 → 独库北段 → 独山子 → 乌鲁木齐 8月14日 · 周五 🛣️ 520 km ⏱️ 约8–9h驾驶＋3–4h观景/充电 🐾 玩乐日" [ref=e569] [cursor=pointer]:
+            - generic [ref=e570]: ▼
+            - generic [ref=e571]:
+              - heading "唐布拉 → 乔尔玛 → 独库北段 → 独山子 → 乌鲁木齐" [level=3] [ref=e572]
+              - generic [ref=e573]: 8月14日 · 周五
+            - generic [ref=e574]:
+              - generic [ref=e575]: 🛣️ 520 km
+              - generic [ref=e576]: ⏱️ 约8–9h驾驶＋3–4h观景/充电
+              - generic [ref=e577]: 🐾 玩乐日
+        - generic [ref=e578]:
+          - generic [ref=e579]:
+            - generic [ref=e588]: DAY 15
+            - generic [ref=e589]: 🌆
+          - button "▼ 乌鲁木齐带狗深度休整 · 续住一晚 8月15日 · 周六 🛣️ 100 km ⏱️ 约2–3h市郊驾驶 🐾 玩乐日" [ref=e590] [cursor=pointer]:
+            - generic [ref=e591]: ▼
+            - generic [ref=e592]:
+              - heading "乌鲁木齐带狗深度休整 · 续住一晚" [level=3] [ref=e593]
+              - generic [ref=e594]: 8月15日 · 周六
+            - generic [ref=e595]:
+              - generic [ref=e596]: 🛣️ 100 km
+              - generic [ref=e597]: ⏱️ 约2–3h市郊驾驶
+              - generic [ref=e598]: 🐾 玩乐日
+        - generic [ref=e599]:
+          - generic [ref=e600]:
+            - generic [ref=e612]: DAY 16
+            - generic [ref=e613]: ✈️
+          - button "▼ 乌鲁木齐送机 → 天山胜利隧道 → 库尔勒 8月16日 · 周日 🛣️ 430 km ⏱️ 约5–6h驾驶＋送机/补能 🚙 睡车夜 🐾 玩乐日" [ref=e614] [cursor=pointer]:
+            - generic [ref=e615]: ▼
+            - generic [ref=e616]:
+              - heading "乌鲁木齐送机 → 天山胜利隧道 → 库尔勒" [level=3] [ref=e617]
+              - generic [ref=e618]: 8月16日 · 周日
+            - generic [ref=e619]:
+              - generic [ref=e620]: 🛣️ 430 km
+              - generic [ref=e621]: ⏱️ 约5–6h驾驶＋送机/补能
+              - generic [ref=e622]: 🚙 睡车夜
+              - generic [ref=e623]: 🐾 玩乐日
+        - generic [ref=e624]:
+          - generic [ref=e625]:
+            - generic [ref=e634]: DAY 17
+            - generic [ref=e635]: 🌵
+          - button "▼ 库尔勒 → 尉犁 → 若羌 8月17日 · 周一 🛣️ 430 km ⏱️ 约5–6h驾驶＋补能 🚙 睡车夜 赶路日" [ref=e636] [cursor=pointer]:
+            - generic [ref=e637]: ▼
+            - generic [ref=e638]:
+              - heading "库尔勒 → 尉犁 → 若羌" [level=3] [ref=e639]
+              - generic [ref=e640]: 8月17日 · 周一
+            - generic [ref=e641]:
+              - generic [ref=e642]: 🛣️ 430 km
+              - generic [ref=e643]: ⏱️ 约5–6h驾驶＋补能
+              - generic [ref=e644]: 🚙 睡车夜
+              - generic [ref=e645]: 赶路日
+        - generic [ref=e646]:
+          - generic [ref=e647]:
+            - generic [ref=e656]: DAY 18
+            - generic [ref=e657]: 🪨
+          - button "▼ 若羌 → 依吞布拉克 → 茫崖花土沟 8月18日 · 周二 🛣️ 440 km ⏱️ 约6–7h驾驶＋检查站/补能 🚙 睡车夜 赶路日" [ref=e658] [cursor=pointer]:
+            - generic [ref=e659]: ▼
+            - generic [ref=e660]:
+              - heading "若羌 → 依吞布拉克 → 茫崖花土沟" [level=3] [ref=e661]
+              - generic [ref=e662]: 8月18日 · 周二
+            - generic [ref=e663]:
+              - generic [ref=e664]: 🛣️ 440 km
+              - generic [ref=e665]: ⏱️ 约6–7h驾驶＋检查站/补能
+              - generic [ref=e666]: 🚙 睡车夜
+              - generic [ref=e667]: 赶路日
+        - generic [ref=e668]:
+          - generic [ref=e669]:
+            - generic [ref=e678]: DAY 19
+            - generic [ref=e679]: 🌌
+          - button "▼ 茫崖 → 水上雅丹 → 大柴旦 8月19日 · 周三 🛣️ 600 km ⏱️ 约8–9h驾驶＋1.5–2h游玩 🚙 睡车夜 🐾 玩乐日" [ref=e680] [cursor=pointer]:
+            - generic [ref=e681]: ▼
+            - generic [ref=e682]:
+              - heading "茫崖 → 水上雅丹 → 大柴旦" [level=3] [ref=e683]
+              - generic [ref=e684]: 8月19日 · 周三
+            - generic [ref=e685]:
+              - generic [ref=e686]: 🛣️ 600 km
+              - generic [ref=e687]: ⏱️ 约8–9h驾驶＋1.5–2h游玩
+              - generic [ref=e688]: 🚙 睡车夜
+              - generic [ref=e689]: 🐾 玩乐日
+        - generic [ref=e690]:
+          - generic [ref=e691]:
+            - generic [ref=e702]: DAY 20
+            - generic [ref=e703]: 🌊
+          - button "▼ 大柴旦 → 德令哈 → 茶卡 → 青海湖合法点 → 西宁 8月20日 · 周四 🛣️ 730 km ⏱️ 约10–11h驾驶/充电＋短观景 🚙 睡车夜 🐾 玩乐日" [ref=e704] [cursor=pointer]:
+            - generic [ref=e705]: ▼
+            - generic [ref=e706]:
+              - heading "大柴旦 → 德令哈 → 茶卡 → 青海湖合法点 → 西宁" [level=3] [ref=e707]
+              - generic [ref=e708]: 8月20日 · 周四
+            - generic [ref=e709]:
+              - generic [ref=e710]: 🛣️ 730 km
+              - generic [ref=e711]: ⏱️ 约10–11h驾驶/充电＋短观景
+              - generic [ref=e712]: 🚙 睡车夜
+              - generic [ref=e713]: 🐾 玩乐日
+        - generic [ref=e714]:
+          - generic [ref=e715]:
+            - generic [ref=e724]: DAY 21
+            - generic [ref=e725]: 🛣️
+          - button "▼ 西宁 → 兰州外围 → 临洮/岷县方向 → 陇南 8月21日 · 周五 🛣️ 730 km ⏱️ 约9–10h驾驶＋补能 🚙 睡车夜 赶路日" [ref=e726] [cursor=pointer]:
+            - generic [ref=e727]: ▼
+            - generic [ref=e728]:
+              - heading "西宁 → 兰州外围 → 临洮/岷县方向 → 陇南" [level=3] [ref=e729]
+              - generic [ref=e730]: 8月21日 · 周五
+            - generic [ref=e731]:
+              - generic [ref=e732]: 🛣️ 730 km
+              - generic [ref=e733]: ⏱️ 约9–10h驾驶＋补能
+              - generic [ref=e734]: 🚙 睡车夜
+              - generic [ref=e735]: 赶路日
+        - generic [ref=e736]:
+          - generic [ref=e737]:
+            - generic [ref=e746]: DAY 22
+            - generic [ref=e747]: 🌳
+          - button "▼ 陇南 → 广元 → 剑门蜀道走廊 → 成都 8月22日 · 周六 🛣️ 500 km ⏱️ 约6–7h驾驶＋补能 🚙 睡车夜 🐾 玩乐日" [ref=e748] [cursor=pointer]:
+            - generic [ref=e749]: ▼
+            - generic [ref=e750]:
+              - heading "陇南 → 广元 → 剑门蜀道走廊 → 成都" [level=3] [ref=e751]
+              - generic [ref=e752]: 8月22日 · 周六
+            - generic [ref=e753]:
+              - generic [ref=e754]: 🛣️ 500 km
+              - generic [ref=e755]: ⏱️ 约6–7h驾驶＋补能
+              - generic [ref=e756]: 🚙 睡车夜
+              - generic [ref=e757]: 🐾 玩乐日
+        - generic [ref=e758]:
+          - generic [ref=e759]:
+            - generic [ref=e768]: DAY 23
+            - generic [ref=e769]: 🥘
+          - button "▼ 成都带狗休整＋与朋友吃饭 8月23日 · 周日 🛣️ 100 km ⏱️ 全天休整/市内短途 🚙 睡车夜 🐾 玩乐日" [ref=e770] [cursor=pointer]:
+            - generic [ref=e771]: ▼
+            - generic [ref=e772]:
+              - heading "成都带狗休整＋与朋友吃饭" [level=3] [ref=e773]
+              - generic [ref=e774]: 8月23日 · 周日
+            - generic [ref=e775]:
+              - generic [ref=e776]: 🛣️ 100 km
+              - generic [ref=e777]: ⏱️ 全天休整/市内短途
+              - generic [ref=e778]: 🚙 睡车夜
+              - generic [ref=e779]: 🐾 玩乐日
+        - generic [ref=e780]:
+          - generic [ref=e781]:
+            - generic [ref=e790]: DAY 24
+            - generic [ref=e791]: 🌉
+          - button "▼ 成都 → 遂宁/南充 → 重庆北 → 恩施 8月24日 · 周一 🛣️ 720 km ⏱️ 约9–10h驾驶＋补能 🚙 睡车夜 赶路日" [ref=e792] [cursor=pointer]:
+            - generic [ref=e793]: ▼
+            - generic [ref=e794]:
+              - heading "成都 → 遂宁/南充 → 重庆北 → 恩施" [level=3] [ref=e795]
+              - generic [ref=e796]: 8月24日 · 周一
+            - generic [ref=e797]:
+              - generic [ref=e798]: 🛣️ 720 km
+              - generic [ref=e799]: ⏱️ 约9–10h驾驶＋补能
+              - generic [ref=e800]: 🚙 睡车夜
+              - generic [ref=e801]: 赶路日
+        - generic [ref=e802]:
+          - generic [ref=e803]:
+            - generic [ref=e812]: DAY 25
+            - generic [ref=e813]: 🌊
+          - button "▼ 恩施 → 宜昌 → 荆州 → 武汉 8月25日 · 周二 🛣️ 520 km ⏱️ 约7–8h驾驶＋补能 🚙 睡车夜 🐾 玩乐日" [ref=e814] [cursor=pointer]:
+            - generic [ref=e815]: ▼
+            - generic [ref=e816]:
+              - heading "恩施 → 宜昌 → 荆州 → 武汉" [level=3] [ref=e817]
+              - generic [ref=e818]: 8月25日 · 周二
+            - generic [ref=e819]:
+              - generic [ref=e820]: 🛣️ 520 km
+              - generic [ref=e821]: ⏱️ 约7–8h驾驶＋补能
+              - generic [ref=e822]: 🚙 睡车夜
+              - generic [ref=e823]: 🐾 玩乐日
+        - generic [ref=e824]:
+          - generic [ref=e825]:
+            - generic [ref=e834]: DAY 26
+            - generic [ref=e835]: 🍲
+          - button "▼ 武汉带狗休整＋与朋友吃饭 8月26日 · 周三 🛣️ 100 km ⏱️ 全天休整/市内短途 🚙 睡车夜 🐾 玩乐日" [ref=e836] [cursor=pointer]:
+            - generic [ref=e837]: ▼
+            - generic [ref=e838]:
+              - heading "武汉带狗休整＋与朋友吃饭" [level=3] [ref=e839]
+              - generic [ref=e840]: 8月26日 · 周三
+            - generic [ref=e841]:
+              - generic [ref=e842]: 🛣️ 100 km
+              - generic [ref=e843]: ⏱️ 全天休整/市内短途
+              - generic [ref=e844]: 🚙 睡车夜
+              - generic [ref=e845]: 🐾 玩乐日
+        - generic [ref=e846]:
+          - generic [ref=e847]:
+            - generic [ref=e895]: DAY 27
+            - generic [ref=e896]: 🏠
+          - button "▼ 武汉 → 北京 · 到家 🎉 8月27日 · 周四 🛣️ 1180 km ⏱️ 约13–15h驾驶＋3次补能/遛狗 赶路日" [ref=e897] [cursor=pointer]:
+            - generic [ref=e898]: ▼
+            - generic [ref=e899]:
+              - heading "武汉 → 北京 · 到家 🎉" [level=3] [ref=e900]
+              - generic [ref=e901]: 8月27日 · 周四
+            - generic [ref=e902]:
+              - generic [ref=e903]: 🛣️ 1180 km
+              - generic [ref=e904]: ⏱️ 约13–15h驾驶＋3次补能/遛狗
+              - generic [ref=e905]: 赶路日
+  - contentinfo [ref=e236]: 为 Saul 和两位边牧定制 · 2026年8月 北京⇄大北疆 · 2026-07-17完成V14送机直达库尔勒、成都武汉会友与27天返京重构 · 关键政策、营地、天气与桩况仍以确认中心的出发前复核为准 🐾

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#183c32">
+<meta name="robots" content="noindex,nofollow">
+<title>秋日出发 · 我们的旅行攻略</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23183c32'/%3E%3Cpath d='M32 10L49 43H38V55H26V43H15Z' fill='%23eac887'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="app.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<main id="gate" class="gate">
+  <section class="intro" aria-label="秋日旅行">
+    <span class="eyebrow">OUR ROAD JOURNALS / 2026</span>
+    <h1>向林海，<br>向秋天。</h1>
+    <p>两个人，两只边牧。<br>这一次，开向大兴安岭。</p>
+    <div class="forest" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span class="date">09.25 — 10.07 <span>13 DAYS</span></span>
+  </section>
+  <section class="entry">
+    <div class="entry-inner">
+      <span class="eyebrow">下一段旅程</span>
+      <h2>打开我们的路书</h2>
+      <p class="sub">输入原来的访问密码。进入后，可在右上角随时切换大兴安岭和新疆攻略。</p>
+      <form id="unlockForm">
+        <label for="password">访问密码</label>
+        <div class="input-row"><input id="password" name="password" type="password" autocomplete="current-password" required><button id="reveal" type="button" aria-label="显示密码" aria-pressed="false">显示</button></div>
+        <button id="submit" class="primary" type="submit">进入新旅行 <span aria-hidden="true">→</span></button>
+      </form>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <p class="footnote">当前标签页内记住解锁状态，往返切换无需再次输入。</p>
+      <noscript><p>请开启浏览器 JavaScript，以解锁和查看旅行攻略。</p></noscript>
+    </div>
+  </section>
+</main>
+<div id="reader" class="reader" hidden>
+  <header class="toolbar">
+    <span class="brand">我们的路书<span id="tripStatus">秋日新旅程</span></span>
+    <nav aria-label="切换旅行攻略">
+      <a href="#daxing" data-trip="daxing">大兴安岭 <span>2026 · 秋</span></a>
+      <a href="#xinjiang" data-trip="xinjiang">XinJiang <span>2026 · 夏</span></a>
+      <button id="lock" type="button" title="清除本标签页的解锁状态">锁定</button>
+    </nav>
+  </header>
+  <main id="frames" class="frames" aria-label="旅行攻略"></main>
+</div>
+<dialog id="documentDialog" aria-labelledby="documentTitle">
+  <div class="document-head"><h2 id="documentTitle"></h2><button id="closeDocument" type="button">关闭</button></div>
+  <pre id="documentBody"></pre>
+</dialog>
+</body>
+</html>

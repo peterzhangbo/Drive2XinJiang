@@ -1,0 +1,348 @@
+{
+  "roots": [
+    ".playwright-cli",
+    "docs",
+    "index.html",
+    "output",
+    "tests",
+    "信息核验记录.md",
+    "全程行程简报.md",
+    "大北疆带狗自驾攻略.html",
+    "需求归档.md"
+  ],
+  "files": [
+    {
+      "path": ".playwright-cli/console-2026-07-12T19-23-48-455Z.log",
+      "bytes": 143,
+      "sha256": "3c0373e870c5fc51427bd59458e4e027c4a468d0ec4ebcd454ce6504020ecfae"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-12T19-23-48-711Z.yml",
+      "bytes": 18564,
+      "sha256": "cdbc77193ae0251315ec4581fec83155c08e623a4d729bb05ba50c0a366fdf50"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-16T17-48-43-747Z.yml",
+      "bytes": 16790,
+      "sha256": "1d43de7fae30b18eec76d8f43f3fd63fc5623e7a9d9cfc21c3394b6903e1414e"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-16T17-48-55-959Z.yml",
+      "bytes": 17820,
+      "sha256": "68a5d07ee95233f30d9548845bb6c7702442e080b129eb48329e1d1d863a63f3"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-16T17-49-03-329Z.yml",
+      "bytes": 21469,
+      "sha256": "c5a851e11024597f76b23fc512d5b1ce62b7b0b5b6799ca09de9b8f0e0e31838"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-16T17-49-18-781Z.yml",
+      "bytes": 16667,
+      "sha256": "b8cd3859d4728c59b22c860305037fce10ea20dbce51118c289736a9a09a02d4"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-16T20-10-49-843Z.yml",
+      "bytes": 18380,
+      "sha256": "74a10a05dac18d82211640d41d8b72329e523d0524ed244ec1d464afb52e48c9"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-16T20-10-59-619Z.yml",
+      "bytes": 25729,
+      "sha256": "b637ff6ca1384462d1b6159bd1bfaab997a4774330ea67b154c7a60dd8f69542"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-16T20-11-24-129Z.png",
+      "bytes": 106107,
+      "sha256": "5f6e966b4a727ab4c3e5923e58c9bfa3a1a4d8bb954e319f42a85e6cd3ec8552"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-24-49-763Z.yml",
+      "bytes": 48087,
+      "sha256": "a54c8b1604e337afa9c8db8c65c51573dbc91b4e488b55adff65888345cba1c7"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-36-46-072Z.yml",
+      "bytes": 47789,
+      "sha256": "318c2694addedcf44a8c876e95a8a6791b4456eb74cbf15b67513bceb99f59b3"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-38-01-170Z.yml",
+      "bytes": 47671,
+      "sha256": "552529be55e8074667d1e1728ff3f0c773b1b59e172fc442ec7214db3b50730f"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-38-46-303Z.yml",
+      "bytes": 47217,
+      "sha256": "46b9c0510c2c7c28d97e7983bb400d23249927b0d156bd31bbf21d2e2ff1ee29"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-41-06-156Z.yml",
+      "bytes": 28902,
+      "sha256": "c60d5d28e91f5b1e58b0d6bc63e9567607e639ee149ccfc6202a78264d6adc30"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-44-51-994Z.yml",
+      "bytes": 47217,
+      "sha256": "a706ae585eeadbc50094d93b9eb0986816064ccb6ed815dfbf09aaea87f388d8"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-45-16-652Z.yml",
+      "bytes": 47097,
+      "sha256": "7603d88be88881aab44adce66d94f605dce3bb1f1e9a3695633454d25961c4b0"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-45-29-538Z.yml",
+      "bytes": 27434,
+      "sha256": "540aa1baa45f2211c62f5ccfb2497cd40631a8a87245f986e719afa8ec631157"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-46-44-501Z.yml",
+      "bytes": 47097,
+      "sha256": "b9a96f1315da9c6103e76731b2667823de50439130563a1a8839e437b2cb8dbb"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-46-52-027Z.yml",
+      "bytes": 27434,
+      "sha256": "8e325bb6945e18a5caa7d44739f140b3e6a0df2832836f8bfe92e503d9bc4f84"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-47-16-118Z.yml",
+      "bytes": 17791,
+      "sha256": "a3a3e3783cd924b7005350450ba47cdece6ab0c0935c1031076bb1c4aa86590e"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T11-47-40-727Z.yml",
+      "bytes": 47097,
+      "sha256": "528f5b31dc2a21445371c8355e1759eafbc033c165e8562aaab1a51349933216"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T20-50-30-808Z.yml",
+      "bytes": 46297,
+      "sha256": "0aeb1496e71828d13e5f5e66511a5b54995ba1e2d45b66e0cdfa73bbb4dcf165"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T20-50-46-151Z.yml",
+      "bytes": 28039,
+      "sha256": "916591031ae797e2f65c8c1dfd93f52c620738ed859c2e2a28ce72b78c90fb00"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T20-53-24-751Z.yml",
+      "bytes": 47115,
+      "sha256": "588384d4b1a9fbf6f1bb4c79f3c3935f845a7566e078ffc339ba0df6d3437ced"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-18T20-53-48-274Z.yml",
+      "bytes": 28884,
+      "sha256": "5f598144a2c0d0d891edb16eea538ae7abdcc71754d5fbd6515acb82b51a9b7d"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T09-19-06-794Z.yml",
+      "bytes": 46316,
+      "sha256": "bdc6f81f86b21a12fb5546e50b75ea7853ce3af91a0a98cc474af53ae4b3d32e"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T09-20-42-368Z.yml",
+      "bytes": 36501,
+      "sha256": "52a8361884d1d4af0849f26b7e7851e3fd5b606e108b2f1a4278e203edb80e63"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T09-21-34-801Z.yml",
+      "bytes": 47630,
+      "sha256": "2b0f6cef447ffdbcfd117cbcc7bd028e2fae8413bf968cfcdde173dcafc17fbf"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T10-50-08-086Z.yml",
+      "bytes": 55082,
+      "sha256": "4623c2e9f8815ab3089b6049cad600e909ca4edaea78afb0f9ce6a0db22c811e"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T10-51-13-564Z.yml",
+      "bytes": 56480,
+      "sha256": "82e3caee23b4d84d5078c66dcbd1585552568785c7a9526389351df5d6ec5dda"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T10-51-27-473Z.yml",
+      "bytes": 38226,
+      "sha256": "017101a5ca1ed1743f2cc9240635361e68eee763d309e70b2f02e488aab00a54"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T10-52-05-370Z.yml",
+      "bytes": 56480,
+      "sha256": "5f71bf252b891e503fdbbd14236322dcb1c1c2e8df1c216021b98c43dbbba8dd"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T10-52-22-886Z.yml",
+      "bytes": 28788,
+      "sha256": "ff049b63ac706f1a17efb892c9f2d0cf618b3df468e1d6d33238655fb09a28bd"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T10-52-39-880Z.yml",
+      "bytes": 37481,
+      "sha256": "315dff36696dc03d45d3d02034cb48db1a0c277ca79a09334721f0c838def2f8"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T10-52-54-054Z.yml",
+      "bytes": 46466,
+      "sha256": "60a7128a623ba3ad6cca01bf87ba59ae4a4b382d6f179b6ed16299c8eba9e4fe"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T12-39-00-564Z.yml",
+      "bytes": 55187,
+      "sha256": "5254a2ca0dd670b93b468557f4bbbf619f900ed24589a33a98d6610f2951b563"
+    },
+    {
+      "path": ".playwright-cli/page-2026-07-19T12-41-40-582Z.yml",
+      "bytes": 28296,
+      "sha256": "e9a5bb3598b524b3cc7e21fed7684f3c4463ba50f7648a37c20f3e26913c8b44"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-16-v8-trip-guide-repair.md",
+      "bytes": 8174,
+      "sha256": "85d9aad56a5f9b1fd2b126641abdd591ec848030df062bf494d5cd19d0d4b466"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-16-trip-guide-repair-design.md",
+      "bytes": 9377,
+      "sha256": "c82df46941452042e0d497d5efc7791f389adf79454683c8f0bb2d1049926549"
+    },
+    {
+      "path": "index.html",
+      "bytes": 590,
+      "sha256": "d93cdc310222ef353e49d71e75852143642e3d9ea1c75221d10e64c365f3ec60"
+    },
+    {
+      "path": "output/playwright/after-dashboard.png",
+      "bytes": 77976,
+      "sha256": "9c929539b2272251b6081b2f4e157e0fba27c775c8ef7b4f21144f85476aea1f"
+    },
+    {
+      "path": "output/playwright/after-desktop-v1.png",
+      "bytes": 640676,
+      "sha256": "20a4b678e45236556860d57999fd32b5e593cce4381b8064246e942304ff4318"
+    },
+    {
+      "path": "output/playwright/after-desktop-v2.png",
+      "bytes": 588085,
+      "sha256": "a87591fd35bdf546a20b2dadb6b90c32cff2f7ac7bf7c717827401605aa2df27"
+    },
+    {
+      "path": "output/playwright/after-map-risk.png",
+      "bytes": 309477,
+      "sha256": "10cd4f1b0c4aca49362f66f2dafaf0ba91252118dce967566b482c5db56df2cf"
+    },
+    {
+      "path": "output/playwright/after-mobile-days.png",
+      "bytes": 161856,
+      "sha256": "3f140d633e17118d073e65fa453bcdd73827455c7364bf07ee7af20d40b4823d"
+    },
+    {
+      "path": "output/playwright/after-mobile-top-v2.png",
+      "bytes": 206625,
+      "sha256": "a2a3ee835b92674ded4733ab0f1eb0f9ce85032dae9954b7c2536cf0e5af8da2"
+    },
+    {
+      "path": "output/playwright/after-mobile-v1.png",
+      "bytes": 84244,
+      "sha256": "ea686450afbb2f8a7e5c09b10731c9cf427b8f4eb87fec4ede4096f6a7e722e3"
+    },
+    {
+      "path": "output/playwright/before-desktop.png",
+      "bytes": 247073,
+      "sha256": "0290dccf7224185fe85e9f5e24a5fdaa17c76173eb46de7da396fd263fc4a08f"
+    },
+    {
+      "path": "output/playwright/before-mobile.png",
+      "bytes": 140491,
+      "sha256": "75a2ca367e432e24cfafcf469285194e7114cea0a77e4633fedbfa2db110c770"
+    },
+    {
+      "path": "output/playwright/v20-charge-desktop.png",
+      "bytes": 347849,
+      "sha256": "c8c5fcf15bf9ff768bef046aa193e6dae63e5482038cdd4497776594e5cd00db"
+    },
+    {
+      "path": "output/playwright/v20-charge-mobile.png",
+      "bytes": 358078,
+      "sha256": "c58f7c85bfd6300b396e2f96338cb03fb264e838b7a5a0dd9f4b7dad8f222478"
+    },
+    {
+      "path": "output/playwright/v21-dining-desktop.png",
+      "bytes": 92815,
+      "sha256": "74a7acae76308fa30c7f7c1db40ff8607e1e5cb908a8d27c90c48c99b7d7afd5"
+    },
+    {
+      "path": "output/playwright/v21-dining-mobile.png",
+      "bytes": 101039,
+      "sha256": "fd63863d96251d6f5d68a6d240d4a7ac1a7672a00f844a45415ed168ef8c1235"
+    },
+    {
+      "path": "output/playwright/v22-dual-rating-desktop.png",
+      "bytes": 111501,
+      "sha256": "ce706388a17d185a52e9747d688eb3eb87714d4e03bcad28ab6e930701020456"
+    },
+    {
+      "path": "output/playwright/v22-dual-rating-mobile.png",
+      "bytes": 120533,
+      "sha256": "d0f55c04955bd65febbf68a5304c4ebfcaa9965d690aa9c8642d9e3a86fb0658"
+    },
+    {
+      "path": "output/playwright/v23-charge-mobile.png",
+      "bytes": 171665,
+      "sha256": "6de77f10c48ef74d75190282d0b1f9ea5d2251091a3f8d02f121c5958bff9d3e"
+    },
+    {
+      "path": "output/playwright/v25-road-review-desktop.png",
+      "bytes": 2319219,
+      "sha256": "8dc121c49f4a11919424faf737a658a9f54b18c72acbb6f0781a453a73e83f14"
+    },
+    {
+      "path": "output/playwright/v25-road-review-mobile.png",
+      "bytes": 1713500,
+      "sha256": "e89182739b3a805c73150d874d2f6b1757be71f61e63c795be611f9cbdeb3ead"
+    },
+    {
+      "path": "output/playwright/v26-desktop.png",
+      "bytes": 588401,
+      "sha256": "820fef89ff52871cee48fdf10772e08c98b8fd630a1d737c02ffd75170f37b56"
+    },
+    {
+      "path": "output/playwright/v26-mobile-charging.png",
+      "bytes": 174489,
+      "sha256": "f3c53838367a015b9f2d10b211feac3cb449f5a278977198e8f8df995d126d61"
+    },
+    {
+      "path": "output/playwright/v26-mobile.png",
+      "bytes": 184189,
+      "sha256": "48aef6e5e71119244e972d4d876ffc4d40c587310207ac3f103f405138523926"
+    },
+    {
+      "path": "tests/validate_trip_guide.mjs",
+      "bytes": 17246,
+      "sha256": "efbc0735c3ca4e11730a57d34517c5db2bb818327eeb5f5f8ec104df1d04e84b"
+    },
+    {
+      "path": "信息核验记录.md",
+      "bytes": 16976,
+      "sha256": "b51c5b7da22b01c8a6a91d9761df6257eb0889962458dc30b2fedfa7a1d4824d"
+    },
+    {
+      "path": "全程行程简报.md",
+      "bytes": 11172,
+      "sha256": "d772f0b8d389a42280057f4c6bc1ba7411fba855ee3b448e29a281253a7f8a58"
+    },
+    {
+      "path": "大北疆带狗自驾攻略.html",
+      "bytes": 366789,
+      "sha256": "7606302adf4c1a147d87eab0464259448c4eacd7de1c461a224b1281cb20b615"
+    },
+    {
+      "path": "需求归档.md",
+      "bytes": 18215,
+      "sha256": "34954f4a3c65bf2f444d92b121a472be005ac64d513dbb8d385fe3ce14a9ddf0"
+    }
+  ],
+  "archivedAt": "2026-09-20",
+  "sourceCommit": "2c1b338",
+  "note": "原项目66个文件原样迁移；.git、.gitignore和空.worktrees保留在项目根目录。归档后新增的说明和本清单不计入原文件数量。"
+}
