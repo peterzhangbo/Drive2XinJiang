@@ -11,7 +11,7 @@ const trip = JSON.parse(read(dir + '行程数据.json'));
 const html = read(dir + 'index.html');
 const md = read(dir + '行程草案.md');
 assert.equal(trip.days.length, 13);
-assert.equal(trip.version, 'V0.4');
+assert.equal(trip.version, 'V0.5');
 assert.equal((html.match(/data-day="\d+"/g) || []).length, 13);
 for (const [i, day] of trip.days.entries()) {
   assert.equal(day.day, i + 1);
@@ -19,10 +19,20 @@ for (const [i, day] of trip.days.entries()) {
   assert.equal(day.date, `${date.getUTCMonth() + 1}/${date.getUTCDate()}`);
   const card = html.match(new RegExp(`<article[^>]*data-day="${day.day}"[\\s\\S]*?</article>`))?.[0];
   assert.ok(card, `缺少D${day.day}`);
+  const cardText = card.replace(/<[^>]*>/g, '').replaceAll('&amp;', '&').replaceAll('&lt;', '<').replaceAll('&gt;', '>').replaceAll('&quot;', '"');
   for (const field of ['route', 'stay', 'km', 'drive', 'total', 'plan', 'road', 'charge', 'fallback', 'lodging', 'food', 'checks']) {
-    assert.ok(card.includes(day[field]), `网页D${day.day}/${field}不一致`);
+    assert.ok(cardText.includes(day[field]), `网页D${day.day}/${field}不一致`);
     assert.ok(md.includes(day[field]), `文档D${day.day}/${field}不一致`);
   }
+  assert.ok(day.schedule.length >= 5);
+  for (const [time, action] of day.schedule) {
+    assert.ok(cardText.includes(time) && cardText.includes(action));
+    assert.ok(md.includes(time) && md.includes(action));
+  }
+  assert.ok(day.navigation.length >= 3);
+  for (const name of day.navigation) assert.ok(card.includes(encodeURIComponent(name)));
+  assert.equal(day.kmRange.length, 2);
+  assert.ok(day.kmRange[1] >= day.kmRange[0]);
 }
 assert.ok(trip.days[0].route.includes('通辽'));
 assert.ok(trip.days[1].route.endsWith('牙克石'));
@@ -41,6 +51,21 @@ assert.ok(html.includes('非导航地图'));
 assert.ok(html.includes('尚未全部落实'));
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
 assert.equal(ids.length, new Set(ids).size);
+assert.deepEqual(trip.days.reduce((sum, day) => sum.map((value, index) => value + day.kmRange[index]), [0, 0]), [4880, 6050]);
+assert.ok(html.includes('10晚酒店＋2晚服务区条件车宿'));
+assert.ok(html.includes('daxing-confirm-v05'));
+assert.equal((html.match(/<select id="status-/g) || []).length, 23);
+assert.equal((html.match(/type="checkbox"/g) || []).length, 8);
+assert.ok((html.match(/href="tel:/g) || []).length > 40);
+assert.ok(html.includes('beforeprint') && html.includes('@media print'));
+assert.ok(html.includes('所需电量超过100%'));
+assert.ok(trip.days[4].checks.includes('12:00'));
+assert.ok(!trip.days[4].checks.includes('15:00以后'));
+for (const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(match[1]), `失效锚点${match[1]}`);
+const budgetRows = [...html.matchAll(/<tr><td>[^<]+<\/td><td>(\d+)–(\d+)<\/td><td>/g)];
+assert.equal(budgetRows.length, 9);
+const sumBudget = budgetRows.reduce((sum, row) => [sum[0] + Number(row[1]), sum[1] + Number(row[2])], [0, 0]);
+assert.ok(html.includes(`id="budget-total">${sumBudget[0]}–${sumBudget[1]}`));
 console.log('通过：13天日期、路线、网页/文档/数据一致，估算和退路提示齐全。');
 
 const archive = '归档/新疆自驾_2026-08/';
@@ -61,9 +86,10 @@ const clear = await webcrypto.subtle.decrypt({name:'AES-GCM',iv:Buffer.from(pack
 const payload = JSON.parse(new TextDecoder().decode(clear));
 assert.deepEqual(Object.keys(payload.trips), ['daxing', 'xinjiang']);
 assert.ok(payload.trips.daxing.html.includes('data-day="13"'));
-assert.ok(payload.trips.daxing.html.includes('V0.4'));
+assert.ok(payload.trips.daxing.html.includes('V0.5'));
 assert.equal(payload.trips.daxing.documents['行程草案.md'], md);
 assert.equal(payload.trips.daxing.documents['出行落实清单.md'], read(dir + '出行落实清单.md'));
+assert.equal(payload.trips.daxing.documents['执行细节与应急.md'], read(dir + '执行细节与应急.md'));
 assert.ok(!payload.trips.xinjiang.html.includes('id="pwGate"'));
 assert.ok(!payload.trips.xinjiang.html.includes("var PASS ="));
 assert.ok(payload.trips.daxing.html.includes("parent.postMessage"));
