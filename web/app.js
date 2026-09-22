@@ -11,16 +11,24 @@ let sessionName;
 let busy = false;
 const bytes = value => Uint8Array.from(atob(value), char => char.charCodeAt(0));
 const base64 = value => btoa(String.fromCharCode(...new Uint8Array(value)));
-const packetPromise = fetch('trips.enc.json', {cache:'no-store'}).then(response => {
-  if (!response.ok) throw new Error('无法加载攻略，请刷新后重试。');
-  return response.json();
-}).then(value => {
-  packet = value;
-  sessionName = 'road-journals-key:' + value.salt;
-  return value;
-});
-// 立即接住网络失败；表单提交时仍显示具体加载错误。
-packetPromise.catch(() => { status.textContent = '攻略加载失败，请检查网络后刷新。'; });
+let packetPromise;
+function loadPacket() {
+  if (!packetPromise) {
+    packetPromise = fetch('trips.enc.json', {cache:'no-store'}).then(response => {
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    }).then(value => {
+      packet = value;
+      sessionName = 'road-journals-key:' + value.salt;
+      return value;
+    }).catch(() => {
+      // 失败不缓存；网络恢复后，原页再次提交会重新下载。
+      packetPromise = undefined;
+      throw new Error('行程数据加载失败，不是密码错误。请检查网络后再次点击“进入新旅行”重试。');
+    });
+  }
+  return packetPromise;
+}
 
 async function decrypt(rawKey) {
   const key = await crypto.subtle.importKey('raw', rawKey, 'AES-GCM', false, ['decrypt']);
@@ -66,8 +74,8 @@ document.querySelector('#unlockForm').addEventListener('submit', async event => 
   submit.disabled = true;
   status.textContent = '正在打开路书…';
   try {
-    await packetPromise;
     if (!crypto.subtle) throw new Error('请通过 HTTPS 或本机预览地址打开网站。');
+    await loadPacket();
     const material = await crypto.subtle.importKey('raw', new TextEncoder().encode(input.value), 'PBKDF2', false, ['deriveBits']);
     const rawKey = await crypto.subtle.deriveBits({name:'PBKDF2',salt:bytes(packet.salt),iterations:packet.iterations,hash:'SHA-256'}, material, 256);
     const data = await decrypt(rawKey);
@@ -118,12 +126,12 @@ window.addEventListener('message', event => {
 document.querySelector('#closeDocument').addEventListener('click', () => document.querySelector('#documentDialog').close());
 (async () => {
   try {
-    await packetPromise;
+    await loadPacket();
     const saved = sessionStorage.getItem(sessionName);
     if (saved && crypto.subtle) {
       try { enter(await decrypt(bytes(saved))); return; }
       catch { sessionStorage.removeItem(sessionName); }
     }
-  } catch { /* 网络提示由加载与提交处理。 */ }
+  } catch (error) { if (!busy) status.textContent = error.message; }
   input.focus();
 })();
