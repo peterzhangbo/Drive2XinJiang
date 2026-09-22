@@ -6,6 +6,7 @@ import { createHash, webcrypto } from 'node:crypto';
 import { renderMarkdown } from './daxing-details.mjs';
 assert.throws(() => renderMarkdown('| C19 | 候选 |\n| C20 | 缺口 |\n| C21 | 站点 |'), /表格/);
 assert.ok(renderMarkdown('| 编号 | 内容 |\n|---|---|\n| C20 | 缺口 |').includes('<td>C20</td>'));
+assert.ok(renderMarkdown('[景点清单](景点携犬与购票.md)').includes('href="景点携犬与购票.md"'));
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
@@ -14,7 +15,10 @@ const trip = JSON.parse(read(dir + '行程数据.json'));
 const html = read(dir + 'index.html');
 const md = read(dir + '行程草案.md');
 assert.equal(trip.days.length, 13);
-assert.equal(trip.version, 'V0.7');
+assert.equal(trip.lodgingConfirmation.confirmedNights, 11);
+assert.equal(trip.lodgingConfirmation.pendingNight, 12);
+const attractionsDoc = read(dir + '景点携犬与购票.md');
+assert.equal(trip.version, 'V0.8');
 assert.equal((html.match(/data-day="\d+"/g) || []).length, 13);
 for (const [i, day] of trip.days.entries()) {
   assert.equal(day.day, i + 1);
@@ -26,6 +30,16 @@ for (const [i, day] of trip.days.entries()) {
   for (const field of ['route', 'stay', 'km', 'drive', 'total', 'plan', 'road', 'charge', 'fallback', 'lodging', 'food', 'checks']) {
     assert.ok(cardText.includes(day[field]), `网页D${day.day}/${field}不一致`);
     assert.ok(md.includes(day[field]), `文档D${day.day}/${field}不一致`);
+  }
+  assert.ok(day.attractions.length >= 1, `D${day.day}缺景点/不游玩说明`);
+  assert.equal(day.lodgingStatus, day.day <= 11 ? '用户已确认住宿' : day.day === 12 ? '最后一晚待确认' : '返京，无住宿');
+  for (const spot of day.attractions) {
+    for (const field of ['name','visit','pet','booking','purchase','fallback']) {
+      assert.ok(spot[field] && cardText.includes(spot[field]), `D${day.day}景点${field}未渲染`);
+      assert.ok(attractionsDoc.includes(spot[field]) && md.includes(spot[field]));
+    }
+    for (const id of spot.sources) assert.ok(trip.attractionSources.some(s => s.id === id));
+    for (const link of spot.links) assert.ok(card.includes(link.url.replaceAll('&','&amp;')));
   }
   assert.ok(day.schedule.length >= 5);
   for (const [time, action] of day.schedule) {
@@ -112,12 +126,16 @@ const clear = await webcrypto.subtle.decrypt({name:'AES-GCM',iv:Buffer.from(pack
 const payload = JSON.parse(new TextDecoder().decode(clear));
 assert.deepEqual(Object.keys(payload.trips), ['daxing', 'xinjiang']);
 assert.ok(payload.trips.daxing.html.includes('data-day="13"'));
-assert.ok(payload.trips.daxing.html.includes('V0.7'));
+assert.ok(payload.trips.daxing.html.includes('V0.8'));
 assert.equal(payload.trips.daxing.documents['行程草案.md'], md);
 assert.equal(payload.trips.daxing.documents['出行落实清单.md'], read(dir + '出行落实清单.md'));
 assert.equal(payload.trips.daxing.documents['执行细节与应急.md'], read(dir + '执行细节与应急.md'));
 assert.equal(payload.trips.daxing.documents['全程审查报告.md'], read(dir + '全程审查报告.md'));
 assert.ok(payload.trips.daxing.html.includes('href="全程审查报告.md"'));
+assert.equal(payload.trips.daxing.documents['景点携犬与购票.md'], attractionsDoc);
+assert.ok(!html.includes('初始全部待核'));
+assert.ok(!html.includes('具体酒店待填；'));
+assert.equal((html.match(/id="attractions-day-\d+"/g) || []).length, 13);
 assert.ok(!payload.trips.xinjiang.html.includes('id="pwGate"'));
 assert.ok(!payload.trips.xinjiang.html.includes("var PASS ="));
 assert.ok(payload.trips.daxing.html.includes("parent.postMessage"));
