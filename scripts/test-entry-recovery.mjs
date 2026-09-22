@@ -16,7 +16,7 @@ const code = `async (page) => {
   await page.route('**/app.js*', route => route.fulfill({contentType:'text/javascript', body:${JSON.stringify(source)}}));
   await page.route('**/trips.enc.json*', route => {
     requests++;
-    return offline ? route.abort('failed') : route.continue();
+    return offline ? route.abort('failed') : route.fulfill({contentType:'application/json', path:${JSON.stringify(path.join(root, 'docs/trips.enc.json'))}});
   });
   await page.goto('https://peterzhangbo.github.io/Drive2XinJiang/?entry-test=' + Date.now() + '#daxing');
   await page.evaluate(() => sessionStorage.clear());
@@ -32,9 +32,22 @@ const code = `async (page) => {
   let days = 0;
   let switched = false;
   let wrongPassword = '';
+  let verification = null;
   if (recovered) {
     await page.waitForFunction(() => document.querySelector('iframe')?.contentDocument?.querySelectorAll('[data-day]').length === 13);
     days = await page.evaluate(() => document.querySelector('iframe').contentDocument.querySelectorAll('[data-day]').length);
+    await page.setViewportSize({width:390,height:844});
+    verification = await page.evaluate(() => {
+      const doc = document.querySelector('iframe').contentDocument;
+      return {
+        version:doc.body.textContent.includes('V0.9'),
+        progress:!!doc.querySelector('#verification'),
+        c23:doc.body.textContent.includes('C23'),
+        tasks:doc.querySelectorAll('select[id^="status-"]').length,
+        hotelTasks:doc.querySelectorAll('[id^="status-night-"], [id^="status-mordaga-stay-"]').length,
+        mobileOverflow:doc.documentElement.scrollWidth > doc.documentElement.clientWidth + 1
+      };
+    });
     await page.getByRole('link', {name:'XinJiang 2026 · 夏'}).click();
     await page.getByRole('link', {name:'大兴安岭 2026 · 秋'}).click();
     switched = await page.locator('#gate').isHidden();
@@ -45,7 +58,7 @@ const code = `async (page) => {
     wrongPassword = await page.locator('#status').textContent();
   }
   await page.unrouteAll();
-  return {failure,recovered,requests,days,switched,wrongPassword};
+  return {failure,recovered,requests,days,switched,wrongPassword,verification};
 }`;
 const run = spawnSync(cli, ['--session', 'travel-debug', '--raw', 'run-code', code], {cwd:root, encoding:'utf8', maxBuffer:2e6});
 // CLI回显可能含表单输入，仅输出结果对象，绝不输出完整命令或密码。
@@ -60,4 +73,5 @@ assert.doesNotMatch(result.failure, /Load failed|Failed to fetch|密码不正确
 assert.equal(result.days, 13);
 assert.equal(result.switched, true);
 assert.match(result.wrongPassword, /密码不正确/);
-console.log('通过：断网后原页重试恢复、中文网络提示、13天渲染、免密码切换和错密码提示。');
+assert.deepEqual(result.verification, {version:true,progress:true,c23:true,tasks:10,hotelTasks:0,mobileOverflow:false});
+console.log('通过：本地待发布版断网重试、13天渲染、免密码切换、V0.9核验内容、无住宿待办及390px无整页横向溢出。');

@@ -15,10 +15,10 @@ const trip = JSON.parse(read(dir + '行程数据.json'));
 const html = read(dir + 'index.html');
 const md = read(dir + '行程草案.md');
 assert.equal(trip.days.length, 13);
-assert.equal(trip.lodgingConfirmation.confirmedNights, 11);
-assert.equal(trip.lodgingConfirmation.pendingNight, 12);
+assert.equal(trip.lodgingConfirmation.managedBy, 'user');
+assert.ok(!Object.hasOwn(trip.lodgingConfirmation, 'pendingNight'));
 const attractionsDoc = read(dir + '景点携犬与购票.md');
-assert.equal(trip.version, 'V0.8');
+assert.equal(trip.version, 'V0.9');
 assert.equal((html.match(/data-day="\d+"/g) || []).length, 13);
 for (const [i, day] of trip.days.entries()) {
   assert.equal(day.day, i + 1);
@@ -32,9 +32,9 @@ for (const [i, day] of trip.days.entries()) {
     assert.ok(md.includes(day[field]), `文档D${day.day}/${field}不一致`);
   }
   assert.ok(day.attractions.length >= 1, `D${day.day}缺景点/不游玩说明`);
-  assert.equal(day.lodgingStatus, day.day <= 11 ? '用户已确认住宿' : day.day === 12 ? '最后一晚待确认' : '返京，无住宿');
+  assert.equal(day.lodgingStatus, day.day < 13 ? '用户自行安排，不列待办' : '返京，无住宿');
   for (const spot of day.attractions) {
-    for (const field of ['name','visit','pet','booking','purchase','fallback']) {
+    for (const field of ['name','verification','visit','pet','booking','purchase','fallback']) {
       assert.ok(spot[field] && cardText.includes(spot[field]), `D${day.day}景点${field}未渲染`);
       assert.ok(attractionsDoc.includes(spot[field]) && md.includes(spot[field]));
     }
@@ -57,7 +57,8 @@ assert.deepEqual(trip.days.slice(0,3).map(d => d.stay), ['霍林郭勒','海拉�
 assert.ok(trip.days[3].route.startsWith('恩和'));
 assert.ok(trip.days[3].charge.includes('285–319km'));
 assert.ok(html.includes('status-outbound-v06'));
-for (let day=1; day<=3; day++) assert.ok(html.includes(`status-night-${day}-v06`));
+assert.ok(!html.includes('status-night-'));
+assert.ok(!html.includes('status-mordaga-stay-'));
 assert.ok(!trip.days.slice(0,3).some(d => /阿荣旗|牙克石|荷叶花/.test(d.route + d.stay + d.charge)));
 assert.ok(html.includes('C21 D2'));
 assert.ok(!html.includes('D5起保留旧版'));
@@ -67,15 +68,14 @@ assert.ok(trip.days[5].route.startsWith('莫尔道嘎镇'));
 assert.ok(trip.days[5].plan.includes('2.5–3小时'));
 assert.ok(trip.days[5].stay.startsWith('室韦'));
 assert.ok(!trip.days.some(d => d.route.includes('奇乾')));
-for (let day=4; day<=6; day++) assert.ok(html.includes(`status-night-${day}-v07`));
-for (let c=1; c<=22; c++) assert.ok(new RegExp(`<td>C${String(c).padStart(2,'0')} `).test(html), `C${c}必须是表体数据，不能被吞掉或变表头`);
+for (let c=1; c<=23; c++) assert.ok(new RegExp(`<td>C${String(c).padStart(2,'0')} `).test(html), `C${c}必须是表体数据，不能被吞掉或变表头`);
 assert.equal((html.match(/id="charge-day-\d+"/g) || []).length, 13);
 assert.equal((html.match(/id="meal-day-\d+"/g) || []).length, 13);
-assert.ok(html.includes('车宿仅D12条件安排'));
+assert.ok(html.includes('住宿由用户自行安排'));
 assert.ok(!html.includes('车宿仅D1、D12'));
-assert.ok(html.includes('D1霍林郭勒') && html.includes('D2海拉尔') && html.includes('D3恩和'));
+for (const day of trip.days.slice(0,3)) assert.ok(new RegExp(`data-day="${day.day}"[\\s\\S]*?夜宿：${day.stay}`).test(html));
 assert.ok(trip.days[4].route.includes('伊克萨玛 → 白鹿岛'));
-assert.ok(trip.days[4].lodging.includes('不可携宠'));
+assert.ok(trip.days[4].lodging.includes('不推荐酒店'));
 assert.ok(trip.days[4].charge.includes('酒店夜充候选'));
 assert.ok(trip.days[4].charge.includes('220–280km'));
 assert.ok(trip.days[4].charge.includes('取消穿越'));
@@ -92,21 +92,26 @@ assert.ok(html.includes('尚未全部落实'));
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
 assert.equal(ids.length, new Set(ids).size);
 assert.deepEqual(trip.days.reduce((sum, day) => sum.map((value, index) => value + day.kmRange[index]), [0, 0]), [4950, 5920]);
-assert.ok(html.includes('11晚酒店＋1晚服务区条件车宿'));
+assert.ok(html.includes('以下预算不含住宿费用'));
 assert.ok(html.includes('daxing-confirm-v05'));
-assert.equal((html.match(/<select id="status-/g) || []).length, 23);
+assert.equal((html.match(/<select id="status-/g) || []).length, 10);
 assert.equal((html.match(/type="checkbox"/g) || []).length, 8);
-assert.ok((html.match(/href="tel:/g) || []).length > 40);
+assert.ok((html.match(/href="tel:/g) || []).length > 20);
 assert.ok(html.includes('beforeprint') && html.includes('@media print'));
 assert.ok(html.includes('所需电量超过100%'));
 assert.ok(trip.days[4].checks.includes('13:00'));
 assert.ok(!trip.days[4].checks.includes('15:00以后'));
 for (const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(match[1]), `失效锚点${match[1]}`);
 const budgetRows = [...html.matchAll(/<tr><td>[^<]+<\/td><td>(\d+)–(\d+)<\/td><td>/g)];
-assert.equal(budgetRows.length, 9);
+assert.equal(budgetRows.length, 8);
 const sumBudget = budgetRows.reduce((sum, row) => [sum[0] + Number(row[1]), sum[1] + Number(row[2])], [0, 0]);
 assert.ok(html.includes(`id="budget-total">${sumBudget[0]}–${sumBudget[1]}`));
-console.log('通过：13天日期、网页/文档/数据一致，22个充电台账条目及13天补能/餐饮行无遗漏，北部衔接与退路通过。');
+assert.ok(html.includes('id="verification"'));
+assert.ok(html.includes('cnsc9914?region=CN'));
+assert.ok(trip.days[10].charge.includes('C23') && trip.days[11].charge.includes('C23'));
+assert.ok(trip.days[9].attractions.every(a => a.sources.includes('S13') && a.sources.includes('S14') && a.sources.includes('S15')));
+assert.ok(!/最后一晚待定|最后一晚待确认|实际店名待填|实际店名待补录/.test(html + md + attractionsDoc));
+console.log('通过：13天日期、网页/文档/数据一致，23个充电台账及13天補能/餐饮齐全；住宿移出待办，新增证据与边界同步。');
 
 const archive = '归档/新疆自驾_2026-08/';
 const manifest = JSON.parse(read(archive + '原文件校验清单.json'));
@@ -126,7 +131,8 @@ const clear = await webcrypto.subtle.decrypt({name:'AES-GCM',iv:Buffer.from(pack
 const payload = JSON.parse(new TextDecoder().decode(clear));
 assert.deepEqual(Object.keys(payload.trips), ['daxing', 'xinjiang']);
 assert.ok(payload.trips.daxing.html.includes('data-day="13"'));
-assert.ok(payload.trips.daxing.html.includes('V0.8'));
+assert.ok(payload.trips.daxing.html.includes('V0.9'));
+assert.equal(payload.trips.daxing.documents['核验进展.md'], read(dir + '核验进展.md'));
 assert.equal(payload.trips.daxing.documents['行程草案.md'], md);
 assert.equal(payload.trips.daxing.documents['出行落实清单.md'], read(dir + '出行落实清单.md'));
 assert.equal(payload.trips.daxing.documents['执行细节与应急.md'], read(dir + '执行细节与应急.md'));
