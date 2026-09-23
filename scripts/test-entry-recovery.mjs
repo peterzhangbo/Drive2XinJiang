@@ -40,7 +40,7 @@ const code = `async (page) => {
     verification = await page.evaluate(() => {
       const doc = document.querySelector('iframe').contentDocument;
       return {
-        version:doc.body.textContent.includes('V0.9'),
+        version:doc.body.textContent.includes('V1.0'),
         progress:!!doc.querySelector('#verification'),
         c23:doc.body.textContent.includes('C23'),
         tasks:doc.querySelectorAll('select[id^="status-"]').length,
@@ -74,4 +74,4 @@ assert.equal(result.days, 13);
 assert.equal(result.switched, true);
 assert.match(result.wrongPassword, /密码不正确/);
 assert.deepEqual(result.verification, {version:true,progress:true,c23:true,tasks:10,hotelTasks:0,mobileOverflow:false});
-console.log('通过：本地待发布版断网重试、13天渲染、免密码切换、V0.9核验内容、无住宿待办及390px无整页横向溢出。');
+console.log('通过：本地待发布版断网重试、13天渲染、免密码切换、V1.0核验内容、无住宿待办及390px无整页横向溢出。');
